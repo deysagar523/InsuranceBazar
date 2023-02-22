@@ -5,7 +5,9 @@
 <struts>
     <!-- Configuration for the default package. -->
     <package name="default" namespace="/" extends="struts-default">
-        
+        <action name="Login" class="com.exavalu.models.Employee" method="doLogin">
+            <result name="SUCCESS">employeeDetails.jsp</result>
+            <result name="FAILURE">login.jsp</result>
+        </action>       
     </package>
-    
 </struts>

@@ -3,8 +3,6 @@ package com.exavalu.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import org.apache.log4j.Logger;
 
 /**
  *
@@ -37,9 +35,8 @@ public class JDBCConnectionManager {
             }
 
         } catch (ClassNotFoundException | SQLException e) {
+
             e.printStackTrace();
-            Logger log = Logger.getLogger(JDBCConnectionManager.class.getName());
-            log.error(LocalDateTime.now() + "-- Error in the getConnection Process !!!!!" + " Error Code: " + e.getMessage());
         }
 
         return connection;

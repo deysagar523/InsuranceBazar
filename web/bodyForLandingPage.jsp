@@ -86,36 +86,36 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
+<!--                    <a href="index.html" class="nav-item nav-link active">Home</a>
                     <a href="about.html" class="nav-item nav-link">About</a>
-                    <a href="service.html" class="nav-item nav-link">Services</a>
+                    <a href="service.html" class="nav-item nav-link">Services</a>-->
                   <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Renew Your Policy</a>
                         <div class="dropdown-menu m-0">
-                            <a href="FNOL.html" class="dropdown-item">Life Renewal</a>
-                            <a href="helpClaim.html" class="dropdown-item">Health Renewal</a>
-                            <a href="team.html" class="dropdown-item">Motor Renewal</a>
-                            <a href="testimonial.html" class="dropdown-item">Bike Renewal</a>
+                            <a href="FNOL.html" class="dropdown-item"><i class="fa fa-umbrella" style="font-size:20px;color:greenyellow"></i> Life Renewal</a>
+                            <a href="helpClaim.html" class="dropdown-item"><i class='fas fa-heartbeat' style='font-size:20px;color:greenyellow'></i> Health Renewal</a>
+                            <a href="team.html" class="dropdown-item"><i class='fas fa-car-crash' style='font-size:20px;color:greenyellow'></i> Motor Renewal</a>
+                            <a href="testimonial.html" class="dropdown-item"><i class='fas fa-plane' style='font-size:20px;color:greenyellow'></i> Travel Renewal</a>
 <!--                            <a href="404.html" class="dropdown-item">404 Page</a>-->
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Claim</a>
                         <div class="dropdown-menu m-0">
-                            <a href="FNOL.html" class="dropdown-item">File a New Claim</a>
-                            <a href="helpClaim.html" class="dropdown-item">Know more about filing Claim</a>
-                            <a href="team.html" class="dropdown-item">Tracking existing Claim</a>
+                            <a href="FNOL.html" class="dropdown-item"> <i class='fas fa-edit' style='font-size:20px;color:greenyellow'></i>  File a New Claim</a>
+                            <a href="helpClaim.html" class="dropdown-item"><i class='fas fa-search' style='font-size:20px;color:greenyellow'></i>  Know more about filing Claim</a>
+                            <a href="team.html" class="dropdown-item"><i class='fas fa-calendar-alt' style='font-size:20px;color:greenyellow'></i>  Tracking existing Claim</a>
 <!--                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>-->
 <!--                            <a href="404.html" class="dropdown-item">404 Page</a>-->
                         </div>
                     </div>
                     <a href="contact.html" class="nav-item nav-link">Contact</a>
                 </div>
-                <a href="login.jsp" class="btn btn-primary rounded-pill py-2 px-4">Sign In</a>
+                <a href="login.jsp" target="displayarea"  class="btn btn-primary rounded-pill py-2 px-4">Sign In</a>
             </div>
         </nav>
 
-        <div class="container-fluid bg-primary py-5 mb-5 hero-header">
+        <div name="displayarea" class="container-fluid bg-primary py-5 mb-5 hero-header">
             <div class="container py-5">
                 <div class="row justify-content-center py-5">
                     <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">

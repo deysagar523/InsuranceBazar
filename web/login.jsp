@@ -40,11 +40,11 @@
     <!-- login form  -->
     <div class="outer-login-div">
       <div class="login-div">
-        <form id="login_form" class="login_input_group" onsubmit="return false">
+        <form action="Login" method="Post">
 
-          <input type="text" id="login_Email" class="login_input_field" placeholder="Email ID" name="User ID" required>
+          <input type="text" id="login_Email" class="login_input_field" placeholder="" name="email" required>
 
-          <input type="password" id="login_Password" class="login_input_field" placeholder="Password" name="Password"
+          <input type="password" id="login_Password" class="login_input_field" placeholder="Password" name="password"
             required>
 
           <div class="login_check">
@@ -58,7 +58,7 @@
                 Conditions</span></span>
           </div>
 
-          <button type="submit" class="login_submit_btn" id="login_submit" disabled>Log
+          <button type="submit" class="login_submit_btn" >Log
             in</button>
         </form>
         <div>

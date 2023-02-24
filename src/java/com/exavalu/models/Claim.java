@@ -26,11 +26,12 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
     
     
     private String claimId;
-    private String claimDate;
+    private String claimExpiryDate;
     private String incidentDate;
     private String incidentLocation;
     private String policeReportNo;
     private String claimStatus;
+    private String healthIssue,place,educationDetails;
     
     private String userId;
     private String fullName;
@@ -43,6 +44,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
     private String policyId;
     private String policyName;
     private String policyDescription;
+    
     
     /**
      * @return the claimId
@@ -58,19 +60,8 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         this.claimId = claimId;
     }
 
-    /**
-     * @return the claimDate
-     */
-    public String getClaimDate() {
-        return claimDate;
-    }
 
-    /**
-     * @param claimDate the claimDate to set
-     */
-    public void setClaimDate(String claimDate) {
-        this.claimDate = claimDate;
-    }
+    
 
     /**
      * @return the incidentDate
@@ -296,6 +287,62 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
      */
     public void setMap(ApplicationMap map) {
         this.map = map;
+    }
+
+    /**
+     * @return the claimExpiryDate
+     */
+    public String getClaimExpiryDate() {
+        return claimExpiryDate;
+    }
+
+    /**
+     * @param claimExpiryDate the claimExpiryDate to set
+     */
+    public void setClaimExpiryDate(String claimExpiryDate) {
+        this.claimExpiryDate = claimExpiryDate;
+    }
+
+    /**
+     * @return the healthIssue
+     */
+    public String getHealthIssue() {
+        return healthIssue;
+    }
+
+    /**
+     * @param healthIssue the healthIssue to set
+     */
+    public void setHealthIssue(String healthIssue) {
+        this.healthIssue = healthIssue;
+    }
+
+    /**
+     * @return the place
+     */
+    public String getPlace() {
+        return place;
+    }
+
+    /**
+     * @param place the place to set
+     */
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    /**
+     * @return the educationDetails
+     */
+    public String getEducationDetails() {
+        return educationDetails;
+    }
+
+    /**
+     * @param educationDetails the educationDetails to set
+     */
+    public void setEducationDetails(String educationDetails) {
+        this.educationDetails = educationDetails;
     }
     
     

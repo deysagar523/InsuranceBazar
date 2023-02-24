@@ -111,7 +111,7 @@
                     </div>
                     <a href="contact.html" class="nav-item nav-link">Contact</a>
                 </div>
-                <a href="login.jsp" target="displayarea"  class="btn btn-primary rounded-pill py-2 px-4">Sign In</a>
+                <a href="login.jsp"   class="btn btn-primary rounded-pill py-2 px-4">Sign In</a>
             </div>
         </nav>
 

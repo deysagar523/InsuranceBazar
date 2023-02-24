@@ -1,15 +1,14 @@
-<!DOCTYPE struts PUBLIC
-"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
-"http://struts.apache.org/dtds/struts-2.0.dtd">
-
 <struts>
     <!-- Configuration for the default package. -->
     <package name="default" namespace="/" extends="struts-default">
         <action name="Login" class="com.exavalu.models.User" method="doLogin">
-            <result name="USER">officerHomePage.jsp</result>
-            <result name="UNDERWRITER">underwriterHomePage.jsp</result>
+            <result name="USER">userHomePage.jsp</result>
+            <result name="UNDERWRITER">officerHomePage.jsp</result>
             <result name="OFFICER">officerHomePage.jsp</result>
             <result name="FAILURE">login.jsp</result>
-        </action>       
+        </action> 
+        <action name="Logout" class="com.exavalu.models.User" method="doLogOut">
+            <result name="SUCCESS">landingPage.jsp</result>         
+        </action>      
     </package>
 </struts>

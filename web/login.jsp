@@ -42,7 +42,7 @@
       <div class="login-div">
         <form action="Login" method="Post">
 
-          <input type="text" id="login_Email" class="login_input_field" placeholder="" name="email" required>
+          <input type="text" id="login_Email" class="login_input_field" placeholder="Email" name="email" required>
 
           <input type="password" id="login_Password" class="login_input_field" placeholder="Password" name="password"
             required>

@@ -1,4 +1,96 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+    
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="img/favicon.ico" rel="icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="css/style-login.css" rel="stylesheet">
+    </head>
+ 
+    <body>
+     
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form action="#">
+			<h1>Create Account</h1>
+			<div class="social-container">
+				<a href="#" class="social"><i class="fab fa-facebook-f fw-normal"></i></a>
+				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+			</div>
+			<span>or use your email for registration</span>
+			<input type="text" placeholder="Name" />
+			<input type="email" placeholder="Email" />
+			<input type="password" placeholder="Password" />
+			<button>Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="Login" method ="Post">
+			<h1>Sign in</h1>
+			<div class="social-container">
+				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+			</div>
+			<span>or use your account</span>
+			<input type="email" name="email" placeholder="Email" />
+			<input type="password"  name="password" placeholder="Password" />
+                        <a href="#"></a>
+                        <button type="submit">Sign In</button>
+                         <a href="ForgetPassword.jsp">Forgot your password? </a>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, Friend!</h1>
+				<p>Enter your personal details and start journey with us</p>
+                                <a href="signup.jsp">	<button class="ghost" id="signUp">Sign Up</button> </a>
+			</div>
+		</div>
+	</div>
+</div>
 
+
+    </body>
+    </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,14 +108,14 @@
 <body>
   <div class="form-box">
 
-    <!-- NAVIGATION BAR  -->
+     NAVIGATION BAR  
     <div class="button-box">
       <div id="navbar"></div>
       <button type="button" class="toggle-button navbar" id="loginBtn">Login</button>
       <button type="button" class="toggle-button" id="registerBtn">Register</button>
     </div>
 
-    <!-- SOCIAL ICONS  -->
+     SOCIAL ICONS  
     <div class="social-icons">
       <a href="https://www.facebook.com/" target="_blank">
           <img src="./Media Files/fb.png" alt="login with facebook">
@@ -32,12 +124,12 @@
         target="_blank">
           <img src="./Media Files/google.png" alt="Login with Google">
       </a>
-<!--      <a href="https://twitter.com/login" target="_blank">
+      <a href="https://twitter.com/login" target="_blank">
         <img src="./Media Files/login_twitter.webp" alt="login with twitter">
-      </a>-->
+      </a>
     </div>
 
-    <!-- login form  -->
+     login form  
     <div class="outer-login-div">
       <div class="login-div">
         <form action="Login" method="Post">
@@ -68,15 +160,15 @@
       <div id="snackbar_login" class="snackbar">Login Successful :)</div>
     </div>
 
-    <!-- REGISTRATION FORM  -->
+     REGISTRATION FORM  
     <div class="outer-registration">
       <div class="inner-registration">
         <form id="registration_form" class="login_input_group" onsubmit="return false">
           <input type="text" id="registration_name" class="login_input_field" placeholder="Name " name="Name" required>
           <input type="email" id="registration_email" class="login_input_field" placeholder="Email Id" name="Email"
             required>
-<!--          <input type="text" id="registration_stream" class="login_input_field" placeholder="Stream" name="Stream"
-            required>-->
+          <input type="text" id="registration_stream" class="login_input_field" placeholder="Stream" name="Stream"
+            required>
           <input type="text" id="registration_password" class="login_input_field" placeholder="Password" name="Password"
             required>
           
@@ -109,4 +201,4 @@
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 
-</html>
+</html>-->

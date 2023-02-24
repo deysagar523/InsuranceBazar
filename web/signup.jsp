@@ -1,97 +1,56 @@
-<!DOCTYPE html>
-<!---Coding By CodingLab | www.codinglabweb.com--->
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <!--<title>Registration Form in HTML CSS</title>-->
-    <!---Custom CSS File--->
-    <link rel="stylesheet" href="./css/style-signup.css" />
-  </head>
-  <body>
-    <section class="container">
-      <header>Registration Form</header>
-      <form action="#" class="form">
-        <div class="input-box">
-          <label>Full Name</label>
-          <input type="text" placeholder="Enter full name" required />
-        </div>
+<html>
+   <head>
+        <meta charset="UTF-8">
+    
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="img/favicon.ico" rel="icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="css/style-signup.jsp" rel="stylesheet">
+    </head>
+    
+    <body>
+        <div class="signup">
+  <div class="signup-connect">
+    <h1>Create An Account</h1>
+    <a href="#" class="btn btn-social btn-facebook">
+      <i class="fa fa-facebook" aria-hidden="true"></i>
+      Sign in with Facebook
+    </a>
+    <a href="#" class="btn btn-social btn-twitter">
+      <i class="fa fa-twitter" aria-hidden="true"></i>
+      Sign in with Twitter
+    </a>
+    <a href="#" class="btn btn-social btn-google">
+      <i class="fa fa-google-plus" aria-hidden="true"></i>
+      Sign in with Google
+    </a>
 
-        <div class="input-box">
-          <label>Email Address</label>
-          <input type="text" placeholder="Enter email address" required />
-        </div>
+  </div>
+  <div class="signup-classic">
+    <h2>Enter Your Details</h2>
+    <form class="form">
+      <fieldset class="username">
+        <input type="text" placeholder="username">
+      </fieldset>
+      <fieldset class="email">
+        <input type="email" placeholder="email">
+      </fieldset>
+      <fieldset class="password">
+        <input type="password" placeholder="password">
+      </fieldset>
+      <button type="submit" class="btn">Sign up</button>
+    </form>
+  </div>
+</div>
 
-        <div class="column">
-          <div class="input-box">
-            <label>Phone Number</label>
-            <input type="number" placeholder="Enter phone number" required />
-          </div>
-          <div class="input-box">
-            <label>Birth Date</label>
-            <input type="date" placeholder="Enter birth date" required />
-          </div>
-        </div>
-        <div class="gender-box">
-          <h3>Gender</h3>
-          <div class="gender-option">
-            <div class="gender">
-              <input type="radio" id="check-male" name="gender" checked />
-              <label for="check-male">male</label>
-            </div>
-            <div class="gender">
-              <input type="radio" id="check-female" name="gender" />
-              <label for="check-female">Female</label>
-            </div>
-            <div class="gender">
-              <input type="radio" id="check-other" name="gender" />
-              <label for="check-other">prefer not to say</label>
-            </div>
-          </div>
-        </div>
-        <div class="input-box address">
-          <label>Address</label>
-          <input type="text" placeholder="Enter street address" required />
-        
-          <div class="column">
-            <div class="select-box">
-              <select>
-                <option hidden>Country</option>
-                <option>America</option>
-                <option>Japan</option>
-                <option>India</option>
-                <option>Nepal</option>
-              </select>
-            </div>
-          
-          </div>
-          <div class="column">
-            <div class="select-box">
-              <select>
-                <option hidden>State</option>
-                <option>America</option>
-                <option>Japan</option>
-                <option>India</option>
-                <option>Nepal</option>
-              </select>
-            </div>
-          </div>
-          <div class="column">
-            <div class="select-box">
-              <select>
-                <option hidden>District</option>
-                <option>America</option>
-                <option>Japan</option>
-                <option>India</option>
-                <option>Nepal</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <button class="button">Sign Up</button>
-      </form>
-    </section>
-  </body>
-</html>
+    </body>
 

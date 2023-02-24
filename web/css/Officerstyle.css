@@ -2384,15 +2384,15 @@ footer .author-footer{
   }
   
   .btn-primary {
-	color: #fff;
-	background-color: #081A51;
-	border-color: #081A51;
+	color: black;
+	background-color:#9ec645;
+	border-color:#9ec645;
   }
   
   .btn-primary:hover {
-	color: #fff;
-	background-color: #0069d9;
-	border-color: #0062cc;
+	color: white;
+	background-color:#09470e;
+	border-color: #09470e;
   }
   
   .btn-primary:focus, .btn-primary.focus {
@@ -4414,3 +4414,7 @@ footer .author-footer{
 		opacity: 1
 	}
 }
+
+
+
+

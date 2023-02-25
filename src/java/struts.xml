@@ -10,7 +10,11 @@
             <result name="UNDERWRITER">underwriterHomePage.jsp</result>
             <result name="OFFICER">officerHomePage.jsp</result>
             <result name="FAILURE">login.jsp</result>
-        </action> 
+        </action>
+        <action name="SignUp" class="com.exavalu.models.User" method="doSignUp">
+            <result name="SUCCESS">login.jsp</result>
+            <result name="FAILURE">signup.jsp</result> 
+        </action>
         <action name="Logout" class="com.exavalu.models.User" method="doLogOut">
             <result name="SUCCESS">landingPage.jsp</result>         
         </action>      

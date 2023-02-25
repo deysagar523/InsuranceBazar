@@ -70,9 +70,10 @@ public class LoginService {
 
         return success;
     }
-     public boolean doSignUp(User user) {
+
+    public boolean doSignUp(User user) {
          
-        String sql = "INSERT INTO users(email,password,fullName,countryCode,stateCode,districtCode,phone,gender,dob)\n" +"VALUES(? ,? ,? ,? ,?,?,?,? ,?);";
+        String sql = "INSERT INTO users(email,password, role)\n" +"VALUES(? ,?, ?);";
 
            
         
@@ -81,18 +82,15 @@ public class LoginService {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, user.getEmail());
             ps.setString(2, user.getPassword());
-             ps.setString(3, user.getFullName());
-            
-             ps.setString(5, user.getCountryCode());
-             ps.setString(6, user.getStateCode());
-             ps.setString(7, user.getDistrictCode());
-            
-            System.out.println("LoginService :: "+ps);
+            ps.setString(3, "1");
+             
+            System.out.println("LoginService dosignup :: "+ps);
             ps.executeUpdate();
             return true;
             
             
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
               Logger log=Logger.getLogger(LoginService.class.getName());
           log.error(LocalDateTime.now()+" "+ex.getMessage());
          

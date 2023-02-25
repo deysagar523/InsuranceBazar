@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.exavalu.models;
+
 import com.exavalu.services.LoginService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -17,14 +18,13 @@ import org.apache.struts2.dispatcher.ApplicationMap;
 
 import org.apache.struts2.interceptor.ApplicationAware;
 
-
-
 /**
  *
  * @author HP
  */
 public class User extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
-    private String email,password,role,fullName,userId,countryCode,stateCode,districtCode,phone, gender,dob;
+
+    private String email, password, role, fullName, userId, countryCode, stateCode, districtCode, phone, gender, dob;
 
     public String getEmail() {
         return email;
@@ -121,7 +121,7 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
     public static void setLOG(Logger LOG) {
         ActionSupport.LOG = LOG;
     }
-     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
+    private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
     private ApplicationMap map = (ApplicationMap) ActionContext.getContext().getApplication();
 
@@ -134,6 +134,7 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
     public void setSession(Map<String, Object> session) {
         sessionMap = (SessionMap) session;
     }
+
     public String doSignUp() throws Exception {
         String result = "FAILURE";
 
@@ -141,8 +142,12 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
 
         if (success) {
             System.out.println("Returning Success from doSignUp method");
+            String successMsg = "Account created successfully";
+            sessionMap.put("SuccessMsgForSignUp", successMsg);
             result = "SUCCESS";
         } else {
+            String errorMsg = "Account Creation Failed! Try Again?";
+            sessionMap.put("ErrorMsgForSignUp", errorMsg);
             System.out.println("Returning Failure from doSignUp method");
         }
 
@@ -157,14 +162,12 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
         if (success) {
             System.out.println("Returning Success from doLogin method");
             User user = LoginService.getUser(this.getEmail());
-            if(user.getRole().equals("1")){
+            if (user.getRole().equals("1")) {
                 result = "USER";
-            }
-            else if(user.getRole().equals("2")){
+            } else if (user.getRole().equals("2")) {
                 result = "UNDERWRITER";
-            }
-            else {
-                result ="OFFICER";
+            } else {
+                result = "OFFICER";
             }
 //            ArrayList fnolList = FNOLService.getAllFnols();
 //            sessionMap.put("fnolList", fnolList);

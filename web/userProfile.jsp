@@ -117,7 +117,7 @@
 						<a class="dropdown-item" href="my-profile.html"><i class="fa fa-user size-icon-1"></i> <span>My Profile</span></a>
 						<a class="dropdown-item" href="settings.html"><i class="fa fa-cog size-icon-1"></i> <span>Settings</span></a>
 						<hr class="dropdown-divider">
-						<a class="dropdown-item" href="#"><i class="fa fa-sign-out-alt  size-icon-1"></i> My Profile</a>
+						<a class="dropdown-item" href="Logout"><i class="fa fa-sign-out-alt  size-icon-1"></i> Logout</a>
 					</ul>
 				  </li>
 			</ul>
@@ -173,7 +173,7 @@
                 <li class="divider" data-text="Atrana"></li>
 
 				<li>
-                    <a href="#">
+                    <a href="paymentForm.jsp">
 						<i class='bx bx-columns icon' ></i> 
 						Payment
 						<i class='bx bx-chevron-right icon-right' ></i>

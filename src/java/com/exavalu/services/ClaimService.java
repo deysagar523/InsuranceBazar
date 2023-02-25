@@ -5,6 +5,10 @@
 package com.exavalu.services;
 
 import com.exavalu.models.Claim;
+import com.exavalu.utils.JDBCConnectionManager;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 /**
@@ -24,6 +28,8 @@ public class ClaimService {
     public static ArrayList getOfficerOnlyClaims(){
         return  null;
     }
+    
+
     
     public static Claim getClaimById(String claimId){
         return null;

@@ -20,32 +20,61 @@ import org.apache.struts2.interceptor.ApplicationAware;
  *
  * @author user
  */
-public class Claim extends ActionSupport implements ApplicationAware, SessionAware, Serializable{
+public class Claim extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
 
     //INSTANCE VARIABLES
-    
-    
+    //for all claims
     private String claimId;
     private String claimExpiryDate;
-    private String incidentDate;
-    private String incidentLocation;
-    private String policeReportNo;
     private String claimStatus;
-    private String healthIssue,place,educationDetails;
-    
+    private String claimName;
+
     private String userId;
     private String fullName;
     private String email;
     private String phone;
-    
     private String categoryId;
     private String categoryName;
-    
+
     private String policyId;
     private String policyName;
     private String policyDescription;
-    
-    
+
+    //for car insurance only 
+    private String incidentDate;
+    private String incidentLocation;
+    private String policeReportNo;
+    private String carModel, carNo, carRegistrationYear;
+
+    //for hralth insurance
+    private String medicalHistory, relation, dob, relativeName;
+
+    //for child plan
+    private String childName;
+
+    //for investment insurance
+    private String occupation, annualIncome;
+
+    //for travel inusrance
+    private String travelDestination, travelStartDate, travelEndDate, noOfTravelMembers;
+
+    //for educational plan 
+    private String educationLevel;
+
+    private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
+
+    private ApplicationMap map = (ApplicationMap) ActionContext.getContext().getApplication();
+
+    @Override
+    public void setApplication(Map<String, Object> application) {
+        setMap((ApplicationMap) application);
+    }
+
+    @Override
+    public void setSession(Map<String, Object> session) {
+        setSessionMap((SessionMap<String, Object>) (SessionMap) session);
+    }
+
     /**
      * @return the claimId
      */
@@ -60,49 +89,18 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         this.claimId = claimId;
     }
 
-
-    
-
     /**
-     * @return the incidentDate
+     * @return the claimExpiryDate
      */
-    public String getIncidentDate() {
-        return incidentDate;
+    public String getClaimExpiryDate() {
+        return claimExpiryDate;
     }
 
     /**
-     * @param incidentDate the incidentDate to set
+     * @param claimExpiryDate the claimExpiryDate to set
      */
-    public void setIncidentDate(String incidentDate) {
-        this.incidentDate = incidentDate;
-    }
-
-    /**
-     * @return the incidentLocation
-     */
-    public String getIncidentLocation() {
-        return incidentLocation;
-    }
-
-    /**
-     * @param incidentLocation the incidentLocation to set
-     */
-    public void setIncidentLocation(String incidentLocation) {
-        this.incidentLocation = incidentLocation;
-    }
-
-    /**
-     * @return the policeReportNo
-     */
-    public String getPoliceReportNo() {
-        return policeReportNo;
-    }
-
-    /**
-     * @param policeReportNo the policeReportNo to set
-     */
-    public void setPoliceReportNo(String policeReportNo) {
-        this.policeReportNo = policeReportNo;
+    public void setClaimExpiryDate(String claimExpiryDate) {
+        this.claimExpiryDate = claimExpiryDate;
     }
 
     /**
@@ -117,6 +115,20 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
      */
     public void setClaimStatus(String claimStatus) {
         this.claimStatus = claimStatus;
+    }
+
+    /**
+     * @return the claimName
+     */
+    public String getClaimName() {
+        return claimName;
+    }
+
+    /**
+     * @param claimName the claimName to set
+     */
+    public void setClaimName(String claimName) {
+        this.claimName = claimName;
     }
 
     /**
@@ -244,23 +256,232 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
     public void setPolicyDescription(String policyDescription) {
         this.policyDescription = policyDescription;
     }
-    
-    //SESSION MAP CONFIGURATION
-    
-    private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
-    private ApplicationMap map = (ApplicationMap) ActionContext.getContext().getApplication();
-
-    @Override
-    public void setApplication(Map<String, Object> application) {
-        setMap((ApplicationMap) application);
+    /**
+     * @return the incidentDate
+     */
+    public String getIncidentDate() {
+        return incidentDate;
     }
 
-    @Override
-    public void setSession(Map<String, Object> session) {
-        setSessionMap((SessionMap<String, Object>) (SessionMap) session);
+    /**
+     * @param incidentDate the incidentDate to set
+     */
+    public void setIncidentDate(String incidentDate) {
+        this.incidentDate = incidentDate;
     }
-    
+
+    /**
+     * @return the incidentLocation
+     */
+    public String getIncidentLocation() {
+        return incidentLocation;
+    }
+
+    /**
+     * @param incidentLocation the incidentLocation to set
+     */
+    public void setIncidentLocation(String incidentLocation) {
+        this.incidentLocation = incidentLocation;
+    }
+
+    /**
+     * @return the policeReportNo
+     */
+    public String getPoliceReportNo() {
+        return policeReportNo;
+    }
+
+    /**
+     * @param policeReportNo the policeReportNo to set
+     */
+    public void setPoliceReportNo(String policeReportNo) {
+        this.policeReportNo = policeReportNo;
+    }
+
+    /**
+     * @return the carModel
+     */
+    public String getCarModel() {
+        return carModel;
+    }
+
+    /**
+     * @param carModel the carModel to set
+     */
+    public void setCarModel(String carModel) {
+        this.carModel = carModel;
+    }
+
+    /**
+     * @return the carNo
+     */
+    public String getCarNo() {
+        return carNo;
+    }
+
+    /**
+     * @param carNo the carNo to set
+     */
+    public void setCarNo(String carNo) {
+        this.carNo = carNo;
+    }
+
+
+    /**
+     * @return the medicalHistory
+     */
+    public String getMedicalHistory() {
+        return medicalHistory;
+    }
+
+    /**
+     * @param medicalHistory the medicalHistory to set
+     */
+    public void setMedicalHistory(String medicalHistory) {
+        this.medicalHistory = medicalHistory;
+    }
+
+    /**
+     * @return the relation
+     */
+    public String getRelation() {
+        return relation;
+    }
+
+    /**
+     * @param relation the relation to set
+     */
+    public void setRelation(String relation) {
+        this.relation = relation;
+    }
+
+    /**
+     * @return the dob
+     */
+    public String getDob() {
+        return dob;
+    }
+
+    /**
+     * @param dob the dob to set
+     */
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    /**
+     * @return the relativeName
+     */
+    public String getRelativeName() {
+        return relativeName;
+    }
+
+    /**
+     * @param relativeName the relativeName to set
+     */
+    public void setRelativeName(String relativeName) {
+        this.relativeName = relativeName;
+    }
+
+    /**
+     * @return the childName
+     */
+    public String getChildName() {
+        return childName;
+    }
+
+    /**
+     * @param childName the childName to set
+     */
+    public void setChildName(String childName) {
+        this.childName = childName;
+    }
+
+    /**
+     * @return the occupation
+     */
+    public String getOccupation() {
+        return occupation;
+    }
+
+    /**
+     * @param occupation the occupation to set
+     */
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
+    }
+
+    /**
+     * @return the annualIncome
+     */
+    public String getAnnualIncome() {
+        return annualIncome;
+    }
+
+    /**
+     * @param annualIncome the annualIncome to set
+     */
+    public void setAnnualIncome(String annualIncome) {
+        this.annualIncome = annualIncome;
+    }
+
+    /**
+     * @return the travelStartDate
+     */
+    public String getTravelStartDate() {
+        return travelStartDate;
+    }
+
+    /**
+     * @param travelStartDate the travelStartDate to set
+     */
+    public void setTravelStartDate(String travelStartDate) {
+        this.travelStartDate = travelStartDate;
+    }
+
+    /**
+     * @return the travelEndDate
+     */
+    public String getTravelEndDate() {
+        return travelEndDate;
+    }
+
+    /**
+     * @param travelEndDate the travelEndDate to set
+     */
+    public void setTravelEndDate(String travelEndDate) {
+        this.travelEndDate = travelEndDate;
+    }
+
+    /**
+     * @return the noOfTravelMembers
+     */
+    public String getNoOfTravelMembers() {
+        return noOfTravelMembers;
+    }
+
+    /**
+     * @param noOfTravelMembers the noOfTravelMembers to set
+     */
+    public void setNoOfTravelMembers(String noOfTravelMembers) {
+        this.noOfTravelMembers = noOfTravelMembers;
+    }
+
+    /**
+     * @return the educationLevel
+     */
+    public String getEducationLevel() {
+        return educationLevel;
+    }
+
+    /**
+     * @param educationLevel the educationLevel to set
+     */
+    public void setEducationLevel(String educationLevel) {
+        this.educationLevel = educationLevel;
+    }
+
     /**
      * @return the sessionMap
      */
@@ -290,63 +511,31 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
     }
 
     /**
-     * @return the claimExpiryDate
+     * @return the carRegistrationYear
      */
-    public String getClaimExpiryDate() {
-        return claimExpiryDate;
+    public String getCarRegistrationYear() {
+        return carRegistrationYear;
     }
 
     /**
-     * @param claimExpiryDate the claimExpiryDate to set
+     * @param carRegistrationYear the carRegistrationYear to set
      */
-    public void setClaimExpiryDate(String claimExpiryDate) {
-        this.claimExpiryDate = claimExpiryDate;
+    public void setCarRegistrationYear(String carRegistrationYear) {
+        this.carRegistrationYear = carRegistrationYear;
     }
 
     /**
-     * @return the healthIssue
+     * @return the travelDestination
      */
-    public String getHealthIssue() {
-        return healthIssue;
+    public String getTravelDestination() {
+        return travelDestination;
     }
 
     /**
-     * @param healthIssue the healthIssue to set
+     * @param travelDestination the travelDestination to set
      */
-    public void setHealthIssue(String healthIssue) {
-        this.healthIssue = healthIssue;
+    public void setTravelDestination(String travelDestination) {
+        this.travelDestination = travelDestination;
     }
 
-    /**
-     * @return the place
-     */
-    public String getPlace() {
-        return place;
-    }
-
-    /**
-     * @param place the place to set
-     */
-    public void setPlace(String place) {
-        this.place = place;
-    }
-
-    /**
-     * @return the educationDetails
-     */
-    public String getEducationDetails() {
-        return educationDetails;
-    }
-
-    /**
-     * @param educationDetails the educationDetails to set
-     */
-    public void setEducationDetails(String educationDetails) {
-        this.educationDetails = educationDetails;
-    }
-    
-    
-    
-
-    
 }

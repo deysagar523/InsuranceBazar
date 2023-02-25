@@ -18,17 +18,17 @@ import org.apache.log4j.Logger;
  *
  * @author LENOVO
  */
-public class UnderwriterService {
+public class InsuranceOfficerService {
 
-    public ArrayList getAllPendingHealthClaims() {
-        ArrayList pendingHealthPolicyList = new ArrayList();
+    public ArrayList getAllApprovedHealthClaims() {
+        ArrayList approvedHealthPolicyList = new ArrayList();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,categories ca,policies p where c.userId=u.userId and c.categoryId=ca.categoryId and c.policyId=p.policyId and claimStatus=? and categoryId=?";
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
-
-            preparedStatement.setString(1, "1");
+            //claim status 2 means status approved by underwriter
+            preparedStatement.setString(1, "2");
             preparedStatement.setString(2, "1");
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -57,7 +57,7 @@ public class UnderwriterService {
 //                  System.out.println(claim.getDriverName());
 //                   System.out.println(claim.getEmailAddress());
 //                    System.out.println(claim.getDate());
-                pendingHealthPolicyList.add(claim);
+                approvedHealthPolicyList.add(claim);
 
             }
 
@@ -67,18 +67,18 @@ public class UnderwriterService {
             ex.printStackTrace();
         }
         //System.out.println("Number of pending list = " + pendingHealthPolicyList.size());
-        return pendingHealthPolicyList;
+        return approvedHealthPolicyList;
     }
 
-    public ArrayList getAllPendingCarClaims() {
-        ArrayList pendingCarPolicyList = new ArrayList();
+    public ArrayList getAllApprovedCarClaims() {
+        ArrayList approvedCarPolicyList = new ArrayList();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,categories ca,policies p where c.userId=u.userId and c.categoryId=ca.categoryId and c.policyId=p.policyId and claimStatus=? and categoryId=?";
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
 
-            preparedStatement.setString(1, "1");
+            preparedStatement.setString(1, "2");
             preparedStatement.setString(2, "2");
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -109,7 +109,7 @@ public class UnderwriterService {
 //                  System.out.println(claim.getDriverName());
 //                   System.out.println(claim.getEmailAddress());
 //                    System.out.println(claim.getDate());
-                pendingCarPolicyList.add(claim);
+                approvedCarPolicyList.add(claim);
 
             }
 
@@ -119,18 +119,18 @@ public class UnderwriterService {
             ex.printStackTrace();
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
-        return pendingCarPolicyList;
+        return approvedCarPolicyList;
     }
 
-    public ArrayList getAllPendingTermClaims() {
-        ArrayList pendingTermPolicyList = new ArrayList();
+    public ArrayList getAllApprovedTermClaims() {
+        ArrayList approvedTermPolicyList = new ArrayList();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,categories ca,policies p where c.userId=u.userId and c.categoryId=ca.categoryId and c.policyId=p.policyId and claimStatus=? and categoryId=?";
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
 
-            preparedStatement.setString(1, "1");
+            preparedStatement.setString(1, "2");
             preparedStatement.setString(2, "3");
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -157,7 +157,7 @@ public class UnderwriterService {
 //                  System.out.println(claim.getDriverName());
 //                   System.out.println(claim.getEmailAddress());
 //                    System.out.println(claim.getDate());
-                pendingTermPolicyList.add(claim);
+                approvedTermPolicyList.add(claim);
 
             }
 
@@ -167,18 +167,18 @@ public class UnderwriterService {
             ex.printStackTrace();
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
-        return pendingTermPolicyList;
+        return approvedTermPolicyList;
     }
 
-    public ArrayList getAllPendingInvestmentClaims() {
-        ArrayList pendingInvestmentPolicyList = new ArrayList();
+    public ArrayList getAllApprovedInvestmentClaims() {
+        ArrayList approvedInvestmentPolicyList = new ArrayList();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,categories ca,policies p where c.userId=u.userId and c.categoryId=ca.categoryId and c.policyId=p.policyId and claimStatus=? and categoryId=?";
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
 
-            preparedStatement.setString(1, "1");
+            preparedStatement.setString(1, "2");
             preparedStatement.setString(2, "4");
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -205,7 +205,7 @@ public class UnderwriterService {
 //                  System.out.println(claim.getDriverName());
 //                   System.out.println(claim.getEmailAddress());
 //                    System.out.println(claim.getDate());
-                pendingInvestmentPolicyList.add(claim);
+                approvedInvestmentPolicyList.add(claim);
 
             }
 
@@ -215,18 +215,18 @@ public class UnderwriterService {
             ex.printStackTrace();
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
-        return pendingInvestmentPolicyList;
+        return approvedInvestmentPolicyList;
     }
 
-    public ArrayList getAllPendingOtherClaims() {
-        ArrayList pendingOtherPolicyList = new ArrayList();
+    public ArrayList getAllApprovedOtherClaims() {
+        ArrayList approvedOtherPolicyList = new ArrayList();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,categories ca,policies p where c.userId=u.userId and c.categoryId=ca.categoryId and c.policyId=p.policyId and claimStatus=? and categoryId=?";
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
 
-            preparedStatement.setString(1, "1");
+            preparedStatement.setString(1, "2");
             preparedStatement.setString(2, "5");
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -246,7 +246,7 @@ public class UnderwriterService {
                 claim.setPolicyDescription(rs.getString("policyDescription"));
 
                 claim.setEducationLevel(rs.getString("educationLevel"));
-                
+
                 claim.setTravelEndDate(rs.getString("travelEndDate"));
                 claim.setTravelStartDate(rs.getString("travelStartDate"));
                 claim.setTravelDestination(rs.getString("travelDestination"));
@@ -257,7 +257,7 @@ public class UnderwriterService {
 //                  System.out.println(claim.getDriverName());
 //                   System.out.println(claim.getEmailAddress());
 //                    System.out.println(claim.getDate());
-                pendingOtherPolicyList.add(claim);
+                approvedOtherPolicyList.add(claim);
 
             }
 
@@ -267,19 +267,19 @@ public class UnderwriterService {
             ex.printStackTrace();
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
-        return pendingOtherPolicyList;
+        return approvedOtherPolicyList;
     }
 
-    public boolean approvePolicy(String claimId) {
+    public boolean sanctionPolicy(String claimId) {
         boolean result = true;
         try {
             Connection con = JDBCConnectionManager.getConnection();
-            String sql = "UPDATE insurancebazardb.claims\n"
+            String sql = "UPDATE insurancebazar.claims\n"
                     + "SET claimStatus = ? where claimId=?";
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
-            //status 2 = Approved by underwriter
-            preparedStatement.setString(1, "2");
+            //status 3 = sanctioned by the io
+            preparedStatement.setString(1, "3");
             preparedStatement.setString(2, claimId);
 
 //            System.out.println("sql="+preparedStatement);
@@ -290,37 +290,11 @@ public class UnderwriterService {
             }
 
         } catch (SQLException ex) {
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
+            Logger log = Logger.getLogger(InsuranceOfficerService.class.getName());
             log.error(LocalDateTime.now() + "@" + ex);
             ex.printStackTrace();
         }
         return result;
-    }
 
-    public boolean rejectPolicy(String claimId) {
-        boolean result = true;
-        try {
-            Connection con = JDBCConnectionManager.getConnection();
-            String sql = "UPDATE insurancebazardb.claims\n"
-                    + "SET claimStatus = ? where claimId=?";
-
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
-            //status 4 = rejected by underwriter
-            preparedStatement.setString(1, "4");
-            preparedStatement.setString(2, claimId);
-
-//            System.out.println("sql="+preparedStatement);
-            int row = preparedStatement.executeUpdate();
-
-            if (row == 1) {
-                result = true;
-            }
-
-        } catch (SQLException ex) {
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now() + "@" + ex);
-            ex.printStackTrace();
-        }
-        return result;
     }
 }

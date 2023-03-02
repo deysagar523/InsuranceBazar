@@ -4,6 +4,9 @@
  */
 package com.exavalu.models;
 
+import com.exavalu.services.ClaimService;
+import com.exavalu.services.InsuranceOfficerService;
+import com.exavalu.services.UnderwriterService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.util.logging.Logger;
@@ -21,6 +24,132 @@ import org.apache.struts2.interceptor.ApplicationAware;
  * @author user
  */
 public class Claim extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
+
+    /**
+     * @return the planId
+     */
+    public String getPlanId() {
+        return planId;
+    }
+
+    /**
+     * @param planId the planId to set
+     */
+    public void setPlanId(String planId) {
+        this.planId = planId;
+    }
+
+    /**
+     * @return the gender
+     */
+    public String getGender() {
+        return gender;
+    }
+
+    /**
+     * @param gender the gender to set
+     */
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    /**
+     * @return the age
+     */
+    public String getAge() {
+        return age;
+    }
+
+    /**
+     * @param age the age to set
+     */
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    /**
+     * @return the message
+     */
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * @param message the message to set
+     */
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    /**
+     * @return the bikeNumber
+     */
+    public String getBikeNumber() {
+        return bikeNumber;
+    }
+
+    /**
+     * @param bikeNumber the bikeNumber to set
+     */
+    public void setBikeNumber(String bikeNumber) {
+        this.bikeNumber = bikeNumber;
+    }
+
+    /**
+     * @return the bikeMake
+     */
+    public String getBikeMake() {
+        return bikeMake;
+    }
+
+    /**
+     * @param bikeMake the bikeMake to set
+     */
+    public void setBikeMake(String bikeMake) {
+        this.bikeMake = bikeMake;
+    }
+
+    /**
+     * @return the bikeModel
+     */
+    public String getBikeModel() {
+        return bikeModel;
+    }
+
+    /**
+     * @param bikeModel the bikeModel to set
+     */
+    public void setBikeModel(String bikeModel) {
+        this.bikeModel = bikeModel;
+    }
+
+    /**
+     * @return the bikeVariant
+     */
+    public String getBikeVariant() {
+        return bikeVariant;
+    }
+
+    /**
+     * @param bikeVariant the bikeVariant to set
+     */
+    public void setBikeVariant(String bikeVariant) {
+        this.bikeVariant = bikeVariant;
+    }
+
+    /**
+     * @return the bikeRegistrationYear
+     */
+    public String getBikeRegistrationYear() {
+        return bikeRegistrationYear;
+    }
+
+    /**
+     * @param bikeRegistrationYear the bikeRegistrationYear to set
+     */
+    public void setBikeRegistrationYear(String bikeRegistrationYear) {
+        this.bikeRegistrationYear = bikeRegistrationYear;
+    }
 
     //INSTANCE VARIABLES
     //for all claims
@@ -45,9 +174,13 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
     private String incidentLocation;
     private String policeReportNo;
     private String carModel, carNo, carRegistrationYear;
+    
+    private String bikeNumber, bikeMake, bikeModel, bikeVariant, bikeRegistrationYear;
+    private String message;
 
     //for hralth insurance
     private String medicalHistory, relation, dob, relativeName;
+    private String gender;
 
     //for child plan
     private String childName;
@@ -57,9 +190,12 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
 
     //for travel inusrance
     private String travelDestination, travelStartDate, travelEndDate, noOfTravelMembers;
+    private String age;
 
     //for educational plan 
     private String educationLevel;
+    
+    private String planId;
 
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
@@ -537,5 +673,259 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
     public void setTravelDestination(String travelDestination) {
         this.travelDestination = travelDestination;
     }
+    
+    public String doAddHealthClaim() {
+
+        String result = "FAILURE";
+
+        Claim claim= new Claim();
+        claim.setUserId(userId);
+        claim.setPolicyId(policyId);
+        claim.setMedicalHistory(medicalHistory);
+        claim.setRelation(relation);
+        claim.setDob(dob);
+        claim.setRelativeName(relativeName);
+        claim.setClaimStatus(claimStatus);
+        claim.setMessage(message);
+        claim.setFullName(fullName);
+        claim.setEmail(email);
+        claim.setAge(age);
+        claim.setGender(gender);
+        
+        boolean res = ClaimService.insertHealthClaim(claim);
+        if (res) {
+            result = "SUCCESS";
+           
+            sessionMap.put("Success", "successfull");
+            
+            System.out.println(" health Successfully Filed");
+        } else {
+            System.out.println("health not filed!");
+        }
+        return result;
+    }
+    
+    public String doAddBikeClaim() {
+
+        String result = "FAILURE";
+
+        Claim claim= new Claim();
+        claim.setUserId(userId);
+        claim.setPolicyId(policyId);
+        claim.setBikeNumber(bikeNumber);
+        claim.setBikeMake(bikeMake);
+        claim.setBikeModel(bikeModel);
+        claim.setBikeVariant(bikeVariant);
+        claim.setBikeRegistrationYear(bikeRegistrationYear);
+        claim.setClaimStatus(claimStatus);
+        claim.setMessage(message);
+        claim.setFullName(fullName);
+        claim.setEmail(email);
+        
+        boolean res = ClaimService.insertBikeClaim(claim);
+        if (res) {
+            result = "SUCCESS";
+            sessionMap.put("ClaimId", this.claimId);
+            sessionMap.put("BikeNumber", this.bikeNumber);
+            sessionMap.put("BikeMake", this.bikeMake);
+            sessionMap.put("BikeModel", this.bikeModel);
+            System.out.println("bike id:"+this.bikeNumber);
+            sessionMap.put("Success", "successfull");
+            
+            System.out.println("Successfully Filed");
+        } else {
+            System.out.println("Claim not filed!");
+        }
+        return result;
+    }
+    
+    public String doAddCarClaim() {
+
+        String result = "FAILURE";
+
+        Claim claim= new Claim();
+        claim.setUserId(userId);
+        claim.setPolicyId(policyId);
+        claim.setCarNo(carNo);
+        claim.setCarModel(carModel);
+        claim.setCarRegistrationYear(carRegistrationYear);
+        claim.setIncidentLocation(incidentLocation);
+        claim.setIncidentDate(incidentDate);
+        claim.setPoliceReportNo(policeReportNo);
+        claim.setClaimStatus(claimStatus);
+        claim.setMessage(message);
+        claim.setFullName(fullName);
+        claim.setEmail(email);
+        
+        boolean res = ClaimService.insertCarClaim(claim);
+        if (res) {
+            result = "SUCCESS";
+           
+            sessionMap.put("Success", "successfull");
+            
+            System.out.println("Successfully car fnol Filed");
+        } else {
+            System.out.println("car Claim not filed!");
+        }
+        return result;
+    }
+    
+        public String doAddTravelClaim() {
+
+        String result = "FAILURE";
+
+        Claim claim= new Claim();
+        claim.setUserId(userId);
+        claim.setPolicyId(policyId);
+        claim.setTravelDestination(travelDestination);
+        claim.setTravelStartDate(travelStartDate);
+        claim.setTravelEndDate(travelEndDate);
+        claim.setAge(getAge());
+        claim.setMedicalHistory(medicalHistory);
+        
+        claim.setClaimStatus(claimStatus);
+        claim.setMessage(message);
+        claim.setFullName(fullName);
+        claim.setEmail(email);
+        
+        boolean res = ClaimService.insertTravelClaim(claim);
+        if (res) {
+            result = "SUCCESS";
+           
+            sessionMap.put("Success", "successfull");
+            
+            System.out.println("Successfully travel fnol Filed");
+        } else {
+            System.out.println("travel Claim not filed!");
+        }
+        return result;
+    }
+        
+        
+        
+        public String doPayment() {
+
+        String result = "FAILURE";
+
+        
+        
+        boolean res = ClaimService.doPayment(this.bikeNumber);
+        if (res) {
+            result = "SUCCESS";
+           
+            sessionMap.put("Success", "successfull");
+            
+            System.out.println("paymnet");
+        } else {
+            System.out.println("travel Claim not filed!");
+        }
+        return result;
+    }
+        
+        public String doApprovePolicy() {
+        String result = "SUCCESS";
+        UnderwriterService.getInstance().addToApproveHistory(this.claimId);
+        ArrayList underwriter_approved_histories = UnderwriterService.getInstance().getAllApprovedHistories();
+        sessionMap.put("UnderwriterApprovedHistories", underwriter_approved_histories);
+        UnderwriterService.getInstance().approvePolicy(this.claimId);
+
+        ArrayList allPendingMediclaimClaims = UnderwriterService.getInstance().getAllPendingHealthMediclaimClaims();
+        ArrayList allPendingCriticalIllnessClaims = UnderwriterService.getInstance().getAllPendingHealthCriticalIllnessClaims();
+        ArrayList allPendingTwoWheelerClaims = UnderwriterService.getInstance().getAllPendingCarTwoWheelerClaims();
+        ArrayList allPendingFourWheelerClaims = UnderwriterService.getInstance().getAllPendingCarFourWheelerClaims();
+        ArrayList allPendingLifeInsuranceClaims = UnderwriterService.getInstance().getAllPendingTermLifeInsuranceClaims();
+        ArrayList allPendingTermForNriClaims = UnderwriterService.getInstance().getAllPendingTermForNriClaims();
+        ArrayList allPendingChildInvestmentClaims = UnderwriterService.getInstance().getAllPendingInvestmentChildClaims();
+        ArrayList allPendingPensionPlanClaims = UnderwriterService.getInstance().getAllPendingInvestmentPensionClaims();
+        ArrayList allPendingTravelClaims = UnderwriterService.getInstance().getAllPendingOtherTravelClaims();
+        ArrayList allPendingEducationalPlanClaims = UnderwriterService.getInstance().getAllPendingOtherEducationalClaims();
+
+        sessionMap.put("AllPendingMediclaimClaims", allPendingMediclaimClaims);
+        sessionMap.put("AllPendingCriticalIllnessClaims", allPendingCriticalIllnessClaims);
+        sessionMap.put("AllPendingTwoWheelerClaims", allPendingTwoWheelerClaims);
+        sessionMap.put("AllPendingFourWheelerClaims", allPendingFourWheelerClaims);
+        sessionMap.put("AllPendingLifeInsuranceClaims", allPendingLifeInsuranceClaims);
+        sessionMap.put("AllPendingTermForNriClaims", allPendingTermForNriClaims);
+        sessionMap.put("AllPendingChildInvestmentClaims", allPendingChildInvestmentClaims);
+        sessionMap.put("AllPendingPensionPlanClaims", allPendingPensionPlanClaims);
+        sessionMap.put("AllPendingTravelClaims", allPendingTravelClaims);
+        sessionMap.put("AllPendingEducationalPlanClaims", allPendingEducationalPlanClaims);
+        return result;
+
+    }
+
+    public String doRejectPolicy() {
+        String result = "SUCCESS";
+        UnderwriterService.getInstance().addToRejectedHistory(this.claimId);
+        ArrayList underwriter_rejected_histories = UnderwriterService.getInstance().getAllRejectedHistories();
+        sessionMap.put("UnderwriterRejectedHistories", underwriter_rejected_histories);
+        UnderwriterService.getInstance().rejectPolicy(this.claimId);
+
+        ArrayList allPendingMediclaimClaims = UnderwriterService.getInstance().getAllPendingHealthMediclaimClaims();
+        ArrayList allPendingCriticalIllnessClaims = UnderwriterService.getInstance().getAllPendingHealthCriticalIllnessClaims();
+        ArrayList allPendingTwoWheelerClaims = UnderwriterService.getInstance().getAllPendingCarTwoWheelerClaims();
+        ArrayList allPendingFourWheelerClaims = UnderwriterService.getInstance().getAllPendingCarFourWheelerClaims();
+        ArrayList allPendingLifeInsuranceClaims = UnderwriterService.getInstance().getAllPendingTermLifeInsuranceClaims();
+        ArrayList allPendingTermForNriClaims = UnderwriterService.getInstance().getAllPendingTermForNriClaims();
+        ArrayList allPendingChildInvestmentClaims = UnderwriterService.getInstance().getAllPendingInvestmentChildClaims();
+        ArrayList allPendingPensionPlanClaims = UnderwriterService.getInstance().getAllPendingInvestmentPensionClaims();
+        ArrayList allPendingTravelClaims = UnderwriterService.getInstance().getAllPendingOtherTravelClaims();
+        ArrayList allPendingEducationalPlanClaims = UnderwriterService.getInstance().getAllPendingOtherEducationalClaims();
+
+        sessionMap.put("AllPendingMediclaimClaims", allPendingMediclaimClaims);
+        sessionMap.put("AllPendingCriticalIllnessClaims", allPendingCriticalIllnessClaims);
+        sessionMap.put("AllPendingTwoWheelerClaims", allPendingTwoWheelerClaims);
+        sessionMap.put("AllPendingFourWheelerClaims", allPendingFourWheelerClaims);
+        sessionMap.put("AllPendingLifeInsuranceClaims", allPendingLifeInsuranceClaims);
+        sessionMap.put("AllPendingTermForNriClaims", allPendingTermForNriClaims);
+        sessionMap.put("AllPendingChildInvestmentClaims", allPendingChildInvestmentClaims);
+        sessionMap.put("AllPendingPensionPlanClaims", allPendingPensionPlanClaims);
+        sessionMap.put("AllPendingTravelClaims", allPendingTravelClaims);
+        sessionMap.put("AllPendingEducationalPlanClaims", allPendingEducationalPlanClaims);
+        return result;
+
+    }
+
+    public String doSanctionPolicy() {
+        String result = "SUCCESS";
+        InsuranceOfficerService.getInstance().addToSanctionedHistory(this.claimId);
+        ArrayList insuranceOfficer_sanctioned_histories = InsuranceOfficerService.getInstance().getAllSanctionedHistories();
+        sessionMap.put("InsuranceOfficerSanctionedHistories", insuranceOfficer_sanctioned_histories);
+        InsuranceOfficerService.getInstance().sanctionPolicy(this.claimId);
+
+        ArrayList allApprovedMediclaimClaims = InsuranceOfficerService.getInstance().getAllApprovedHealthMediclaimClaims();
+        ArrayList allApprovedCriticalIllnessClaims = InsuranceOfficerService.getInstance().getAllApprovedHealthCriticalIllnessClaims();
+        ArrayList allApprovedTwoWheelerClaims = InsuranceOfficerService.getInstance().getAllApprovedCarTwoWheelerClaims();
+        ArrayList allApprovedFourWheelerClaims = InsuranceOfficerService.getInstance().getAllApprovedCarFourWheelerClaims();
+        ArrayList allApprovedLifeInsuranceClaims = InsuranceOfficerService.getInstance().getAllApprovedTermLifeInsuranceClaims();
+        ArrayList allApprovedTermForNriClaims = InsuranceOfficerService.getInstance().getAllApprovedTermForNriClaims();
+        ArrayList allApprovedChildInvestmentClaims = InsuranceOfficerService.getInstance().getAllApprovedInvestmentChildClaims();
+        ArrayList allApprovedPensionPlanClaims = InsuranceOfficerService.getInstance().getAllApprovedInvestmentPensionClaims();
+        ArrayList allApprovedTravelClaims = InsuranceOfficerService.getInstance().getAllApprovedOtherTravelClaims();
+        ArrayList allApprovedEducationalPlanClaims = InsuranceOfficerService.getInstance().getAllApprovedOtherEducationalClaims();
+
+        sessionMap.put("AllApprovedMediclaimClaims", allApprovedMediclaimClaims);
+        sessionMap.put("AllApprovedCriticalIllnessClaims", allApprovedCriticalIllnessClaims);
+        sessionMap.put("AllApprovedTwoWheelerClaims", allApprovedTwoWheelerClaims);
+        sessionMap.put("AllApprovedFourWheelerClaims", allApprovedFourWheelerClaims);
+        sessionMap.put("AllApprovedLifeInsuranceClaims", allApprovedLifeInsuranceClaims);
+        sessionMap.put("AllApprovedTermForNriClaims", allApprovedTermForNriClaims);
+        sessionMap.put("AllApprovedChildInvestmentClaims", allApprovedChildInvestmentClaims);
+        sessionMap.put("AllApprovedPensionPlanClaims", allApprovedPensionPlanClaims);
+        sessionMap.put("AllApprovedTravelClaims", allApprovedTravelClaims);
+        sessionMap.put("AllApprovedEducationalPlanClaims", allApprovedEducationalPlanClaims);
+        return result;
+
+    }
+    
+    public String doSearchClaim()
+    {
+        String result="SUCCESS";
+        Claim particularClaim=ClaimService.searchClaim(this.claimId);
+        sessionMap.put("ParticularClaim",particularClaim);
+        return result;
+    }
+        
+    
 
 }

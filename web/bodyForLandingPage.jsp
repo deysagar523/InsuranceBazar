@@ -62,6 +62,7 @@
             </div>
             <div class="col-lg-4 text-center text-lg-end">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
+                    <a href="ConsumePaymentCardAPI">PaymentCardAPI</a>
                     <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-twitter fw-normal"></i></a>
                     <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-facebook-f fw-normal"></i></a>
                     <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-linkedin-in fw-normal"></i></a>
@@ -99,6 +100,7 @@
 <!--                            <a href="404.html" class="dropdown-item">404 Page</a>-->
                         </div>
                     </div>
+                    
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Claim</a>
                         <div class="dropdown-menu m-0">

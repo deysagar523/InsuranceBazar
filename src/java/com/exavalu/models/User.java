@@ -4,10 +4,16 @@
  */
 package com.exavalu.models;
 
+import com.exavalu.services.CategoryService;
+import com.exavalu.services.InsuranceOfficerService;
 import com.exavalu.services.LoginService;
+import com.exavalu.services.PlanService;
+import com.exavalu.services.UnderwriterService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.util.logging.Logger;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -24,8 +30,52 @@ import org.apache.struts2.interceptor.ApplicationAware;
  */
 public class User extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
 
-    private String email, password, role, fullName, userId, countryCode, stateCode, districtCode, phone, gender, dob;
+    /**
+     * @return the imageData
+     */
+    public String getImageData() {
+        return imageData;
+    }
 
+    /**
+     * @param imageData the imageData to set
+     */
+    public void setImageData(String imageData) {
+        this.imageData = imageData;
+    }
+
+    /**
+     * @return the image
+     */
+    public File getImage() {
+        return image;
+    }
+
+    /**
+     * @param image the image to set
+     */
+    public void setImage(File image) {
+        this.image = image;
+    }
+
+    /**
+     * @return the incomeSource
+     */
+    public String getIncomeSource() {
+        return incomeSource;
+    }
+
+    /**
+     * @param incomeSource the incomeSource to set
+     */
+    public void setIncomeSource(String incomeSource) {
+        this.incomeSource = incomeSource;
+    }
+
+    private String email, password, role, fullName, userId, countryCode, stateCode, districtCode, phone, gender, dob;
+    private String incomeSource;
+    private String imageData;
+    private File image;
     public String getEmail() {
         return email;
     }
@@ -160,23 +210,94 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
         boolean success = LoginService.getInstance().doLogin(this);
 
         if (success) {
-            System.out.println("Returning Success from doLogin method");
+            ArrayList planList= PlanService.getAllBikePlans();
+//            
+//            System.out.println("Returning Success from doLogin method");
             User user = LoginService.getUser(this.getEmail());
+//            System.out.println("gender:"+user.getGender()+" phone:"+user.getPhone());
             if (user.getRole().equals("1")) {
+                sessionMap.put("Plans", planList);
+
                 result = "USER";
             } else if (user.getRole().equals("2")) {
                 result = "UNDERWRITER";
+                ArrayList underwriter_approved_histories = UnderwriterService.getInstance().getAllApprovedHistories();
+                sessionMap.put("UnderwriterApprovedHistories", underwriter_approved_histories);
+                ArrayList underwriter_rejected_histories = UnderwriterService.getInstance().getAllRejectedHistories();
+                sessionMap.put("UnderwriterRejectedHistories", underwriter_rejected_histories);
+                ArrayList allPendingMediclaimClaims = UnderwriterService.getInstance().getAllPendingHealthMediclaimClaims();
+                ArrayList allPendingCriticalIllnessClaims = UnderwriterService.getInstance().getAllPendingHealthCriticalIllnessClaims();
+                ArrayList allPendingTwoWheelerClaims = UnderwriterService.getInstance().getAllPendingCarTwoWheelerClaims();
+                ArrayList allPendingFourWheelerClaims = UnderwriterService.getInstance().getAllPendingCarFourWheelerClaims();
+                ArrayList allPendingLifeInsuranceClaims = UnderwriterService.getInstance().getAllPendingTermLifeInsuranceClaims();
+                ArrayList allPendingTermForNriClaims = UnderwriterService.getInstance().getAllPendingTermForNriClaims();
+                ArrayList allPendingChildInvestmentClaims = UnderwriterService.getInstance().getAllPendingInvestmentChildClaims();
+                ArrayList allPendingPensionPlanClaims = UnderwriterService.getInstance().getAllPendingInvestmentPensionClaims();
+                ArrayList allPendingTravelClaims = UnderwriterService.getInstance().getAllPendingOtherTravelClaims();
+                ArrayList allPendingEducationalPlanClaims = UnderwriterService.getInstance().getAllPendingOtherEducationalClaims();
+
+                sessionMap.put("AllPendingMediclaimClaims", allPendingMediclaimClaims);
+                sessionMap.put("AllPendingCriticalIllnessClaims", allPendingCriticalIllnessClaims);
+                sessionMap.put("AllPendingTwoWheelerClaims", allPendingTwoWheelerClaims);
+                sessionMap.put("AllPendingFourWheelerClaims", allPendingFourWheelerClaims);
+                sessionMap.put("AllPendingLifeInsuranceClaims", allPendingLifeInsuranceClaims);
+                sessionMap.put("AllPendingTermForNriClaims", allPendingTermForNriClaims);
+                sessionMap.put("AllPendingChildInvestmentClaims", allPendingChildInvestmentClaims);
+                sessionMap.put("AllPendingPensionPlanClaims", allPendingPensionPlanClaims);
+                sessionMap.put("AllPendingTravelClaims", allPendingTravelClaims);
+                sessionMap.put("AllPendingEducationalPlanClaims", allPendingEducationalPlanClaims);
             } else {
                 result = "OFFICER";
+                ArrayList insuranceOfficer_sanctioned_histories = InsuranceOfficerService.getInstance().getAllSanctionedHistories();
+                sessionMap.put("InsuranceOfficerSanctionedHistories", insuranceOfficer_sanctioned_histories);
+                ArrayList allApprovedMediclaimClaims = InsuranceOfficerService.getInstance().getAllApprovedHealthMediclaimClaims();
+                ArrayList allApprovedCriticalIllnessClaims = InsuranceOfficerService.getInstance().getAllApprovedHealthCriticalIllnessClaims();
+                ArrayList allApprovedTwoWheelerClaims = InsuranceOfficerService.getInstance().getAllApprovedCarTwoWheelerClaims();
+                ArrayList allApprovedFourWheelerClaims = InsuranceOfficerService.getInstance().getAllApprovedCarFourWheelerClaims();
+                ArrayList allApprovedLifeInsuranceClaims = InsuranceOfficerService.getInstance().getAllApprovedTermLifeInsuranceClaims();
+                ArrayList allApprovedTermForNriClaims = InsuranceOfficerService.getInstance().getAllApprovedTermForNriClaims();
+                ArrayList allApprovedChildInvestmentClaims = InsuranceOfficerService.getInstance().getAllApprovedInvestmentChildClaims();
+                ArrayList allApprovedPensionPlanClaims = InsuranceOfficerService.getInstance().getAllApprovedInvestmentPensionClaims();
+                ArrayList allApprovedTravelClaims = InsuranceOfficerService.getInstance().getAllApprovedOtherTravelClaims();
+                ArrayList allApprovedEducationalPlanClaims = InsuranceOfficerService.getInstance().getAllApprovedOtherEducationalClaims();
+
+                sessionMap.put("AllApprovedMediclaimClaims", allApprovedMediclaimClaims);
+                sessionMap.put("AllApprovedCriticalIllnessClaims", allApprovedCriticalIllnessClaims);
+                sessionMap.put("AllApprovedTwoWheelerClaims", allApprovedTwoWheelerClaims);
+                sessionMap.put("AllApprovedFourWheelerClaims", allApprovedFourWheelerClaims);
+                sessionMap.put("AllApprovedLifeInsuranceClaims", allApprovedLifeInsuranceClaims);
+                sessionMap.put("AllApprovedTermForNriClaims", allApprovedTermForNriClaims);
+                sessionMap.put("AllApprovedChildInvestmentClaims", allApprovedChildInvestmentClaims);
+                sessionMap.put("AllApprovedPensionPlanClaims", allApprovedPensionPlanClaims);
+                sessionMap.put("AllApprovedTravelClaims", allApprovedTravelClaims);
+                sessionMap.put("AllApprovedEducationalPlanClaims", allApprovedEducationalPlanClaims);
             }
 //            ArrayList fnolList = FNOLService.getAllFnols();
 //            sessionMap.put("fnolList", fnolList);
             sessionMap.put("User", user);
+            System.out.println(user.getFullName());
 //            result = "SUCCESS";
         } else {
             System.out.println("Returning Failure from doLogin method");
+
         }
 
+        return result;
+    }   
+    
+    public String doUpdateUser() throws FileNotFoundException{
+        String result="FAILURE";
+        boolean updated= LoginService.updateUser(this, this.userId);
+        System.out.println("user id "+this.gender+"to be updated");
+        if(updated){
+            User user= LoginService.getUser(this.email);
+            sessionMap.put("User", user);
+            System.out.println("user id "+this.phone+"updated");
+            result="SUCCESS";
+        }else{
+            
+            System.out.println("failed to update");
+        }
         return result;
     }
 

@@ -4,9 +4,11 @@
  */
 package com.exavalu.models;
 
+import com.exavalu.services.PolicyService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Map;
 import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.dispatcher.SessionMap;
@@ -18,7 +20,21 @@ import org.apache.struts2.interceptor.SessionAware;
  */
 public class Category extends ActionSupport implements SessionAware, Serializable {
 
-    private int categoryId;
+    /**
+     * @return the categoryId
+     */
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    /**
+     * @param categoryId the categoryId to set
+     */
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    private String categoryId;
     private String categoryName;
 
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
@@ -35,19 +51,7 @@ public class Category extends ActionSupport implements SessionAware, Serializabl
         setSessionMap((SessionMap<String, Object>) (SessionMap) session);
     }
 
-    /**
-     * @return the categoryId
-     */
-    public int getCategoryId() {
-        return categoryId;
-    }
-
-    /**
-     * @param categoryId the categoryId to set
-     */
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
+    
 
     /**
      * @return the categoryName
@@ -89,6 +93,19 @@ public class Category extends ActionSupport implements SessionAware, Serializabl
      */
     public void setMap(ApplicationMap map) {
         this.map = map;
+    }
+    
+    public String doGetPolicies(){
+        String result= "FAILURE";
+        System.out.println("doGetPolicies");
+        if(this.getCategoryId()!=null){
+            ArrayList policyList= PolicyService.getPoliciesByCategoryId(this.getCategoryId());
+            System.out.println("category id: "+this.getCategoryId());
+            sessionMap.put("PolicyList", policyList);
+            result="SUCCESS";
+        }
+        
+        return result;
     }
 
 }

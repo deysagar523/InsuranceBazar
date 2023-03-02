@@ -1,56 +1,61 @@
-
-<!doctype html>
-<html lang="en">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
     <head>
-        <title>Employee Management</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <meta name="theme-color" content="#712cf9">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Menu Page</title>
+        <link rel="stylesheet" href="./css/candidate_menu.css">
+<!--        <style>
+            .sticky {
+                position: fixed;
+                top: 0;
+                width: 100%;
+            }
 
-        <!-- Custom styles for this template -->
-        <link href="css/header.css" rel="stylesheet">
-        <!--<link href="css/carousel.css" rel="stylesheet">-->
+            /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+            .sticky + .content {
+                padding-top: 60px;
+            }
+        </style>-->
     </head>
-    <header class="p-3 text-bg-dark">
-        <div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                    <img src="images/flower-logo.jpg" width="75" height="75"></img>
-                </a>
 
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">About</a></li>
-                </ul>
 
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                    <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
-                </form>
-
-                <div class="text-end">
-                    <% if (request.getSession().getAttribute("Loggedin") == null) {%>
-
-                    <a href="login.jsp">
-                        <button type="button" class="btn btn-outline-light me-2" >Login</button>
+    <body>
+        
+        <nav class="navbar">
+                <div class="container main-nav flex">
+                    <a href="candidatehome.jsp" class="company-logo">
+<!--                        <img src="assets/HireSphere.png" alt="Company Logo">-->
+                                <h1> Insurance Bazzar</h1>
                     </a>
-                    <a href="signup.jsp">
-                        <button type="button" class="btn btn-warning">Sign-up</button>
-                    </a>
-                    <%
-                        }
-                    else {%>
-
-                    <a href="Logout">
-                        <button type="button" class="btn btn-outline-light me-2" >Log Out</button>
-                    </a>
-                    <%
-                        }
-                    %>
-
-
+                    <div class="nav-links">
+                        <ul class="flex">
+                            <li><a href="userHomePage.jsp" class="hover-link">Home</a></li>
+                            
+                            <li><a href="ViewApplication?candidateId=${candidate.getCandidateId()}" class="hover-link">My Policies</a></li>
+                            
+                            <li><a href="userProfile.jsp" class="hover-link">Profile</a></li>
+                            <li><a href="Logout" class="hover-link secondary-button" style="background-color:#9ec645";>Logout</a></li
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </header>
+            </nav> 
+            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script>
+               function visitCandidateProfile() {
+          console.log("visit candidate profle is working");
+          $.ajax({
+              url: 'VisitCandidateProfile',
+
+              success: function (responseText) {
+// alert(responseText);
+                  $("candidateProfile.jsp").html(responseText);
+
+              }
+          }
+          );
+
+         </script>
+    </body>
+</html>

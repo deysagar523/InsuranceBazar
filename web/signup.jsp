@@ -26,7 +26,7 @@
             if (pass != confirm_pass) {
                 document.getElementById('wrong_pass_alert').style.color = 'red';
                 document.getElementById('wrong_pass_alert').innerHTML
-                  = 'X Use same password';
+                  = '<span><i class="fa fa-times" aria-hidden="true"></i></span> Use same password';
                 document.getElementById('create').disabled = true;
                 document.getElementById('create').style.opacity = (0.4);
             } else {
@@ -36,6 +36,7 @@
                 document.getElementById('create').disabled = false;
                 document.getElementById('create').style.opacity = (1);
             }
+        }
     </script>
     
     <body>

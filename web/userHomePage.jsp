@@ -1,8 +1,3 @@
-<%-- 
-    Document   : LandingPage
-    Created on : 21-Feb-2023, 6:06:48 pm
-    Author     : user
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -43,7 +38,7 @@
 
 
 
-<!--    <link href="css/style.css" rel="stylesheet">-->
+    <link href="css/stylenav.css" rel="stylesheet">
 </head>
 
 <body>
@@ -89,6 +84,84 @@
 <!--                    <a href="index.html" class="nav-item nav-link active">Home</a>
                     <a href="about.html" class="nav-item nav-link">About</a>
                     <a href="service.html" class="nav-item nav-link">Services</a>-->
+ <div class="nav-item dropdown">
+     <li class="dropdown menu-large"> 
+                     
+                        
+                </div>
+ <li class="nav-item dropdown megamenu-li dmenu">
+ <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Insurance Products</a>
+                <div class="dropdown-menu megamenu sm-menu border-top" aria-labelledby="dropdown01">
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-3 border-right mb-4">
+                            <h6>Health Insurance</h6>
+                            <a class="dropdown-item" href="#"><i class="fab fa-magento"></i> Mediclaim policy</a>
+                            <a class="dropdown-item" href="#"><i class="fab fa-magento"></i>Critical Illness Insurance</a>
+                            <a class="dropdown-item" href="#"><i class="fab fa-magento"></i> Odoo ERP</a>
+                            <a class="dropdown-item" href="#"><i class="fab fa-magento"></i> Mobile Commerce</a>
+                            <a class="dropdown-item" href="#"><i class="fab fa-magento"></i> CRM for Commerce</a>
+                        </div>
+                       <div class="col-sm-6 col-lg-3 border-right mb-4">
+                            <h6>Life Insurance</h6>
+                            <a class="dropdown-item" href="#"><i class="fab fa-php"></i> PHP Website Development</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-circle"></i> Phalcon Development</a>
+                            <a class="dropdown-item" href="#"><i class="fab fa-laravel"></i> Laravel Development</a>
+                            <a class="dropdown-item" href="#"><i class="fab fa-wordpress-simple"></i> WordPress Development</a>
+                            <a class="dropdown-item" href="#"><i class="fab fa-php"></i> Symfony Development</a>
+                        </div>
+                        <div class="col-sm-6 col-lg-3 border-right mb-4">
+                            <h6>Travel Insurance</h6>
+                            <a class="dropdown-item" href="#"><i class="fab fa-apple"></i> iPhone App Development</a>
+                            <a class="dropdown-item" href="#"><i class="fab fa-android"></i> Android App Development</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-mobile-alt"></i> Phone Gap App Development</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-tablet-alt"></i> Hybrid App Development</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-mobile-alt"></i> Ionic Development</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-tablet-alt"></i> React Native Development</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-mobile-alt"></i> Xamarin App Development</a>
+                        </div>
+                        <div class="col-sm-6 col-lg-3 mb-4">
+                            <h6>Motor Insurance</h6>
+                            <a class="dropdown-item" href="#"><i class="fas fa-cubes"></i> Car Insurance</a>
+                            <a class="dropdown-item" href="twoWheelerPolicy.jsp"><i class="fas fa-cube"></i>  Bike Insurance</a>
+                            <a class="dropdown-item" href="#"><i class="fab fa-angular"></i> AngularJS</a>
+                            <a class="dropdown-item" href="#"><i class="fab fa-node-js"></i> Node.JS Development</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-leaf fa-rotate-90"></i> MongoDB Development</a>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-sm-6 col-lg-3 border-right mb-4">
+                            <h6>Child Saving</h6>
+                            <a class="dropdown-item" href="#"><i class="fab fa-windows"></i> Microsoft App Development</a>
+                            <a class="dropdown-item" href="#"><i class="fab fa-windows"></i> MS Desktop App Development</a>
+                            <a class="dropdown-item" href="#"><i class="fab fa-windows"></i> SharePoint Development</a>
+                            <a class="dropdown-item" href="#"><i class="fab fa-windows"></i> ASP.NET Development</a>
+                            <a class="dropdown-item" href="#"><i class="fab fa-windows"></i> CMS Development</a>
+                        </div>
+                       <div class="col-sm-6 col-lg-3 border-right mb-4">
+                            <h6>Smart Plans</h6>
+                            <a class="dropdown-item" href="#"><i class="fas fa-cloud"></i> DevOps</a>
+                            <a class="dropdown-item" href="#"><i class="fab fa-amazon"></i> Amazon Web Services</a>
+                            <a class="dropdown-item" href="#"><i class="fab fa-windows"></i> Azure Cloud Service</a>
+                            <a class="dropdown-item" href="#"><i class="fab fa-google"></i> Google App Engine Services</a>
+                        </div>
+                        <div class="col-sm-6 col-lg-3 border-right mb-4">
+                            <h6>Investment Plans</h6>
+                            <a class="dropdown-item" href="#"><i class="fas fa-laptop"></i> Augmented Reality</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-laptop"></i> CRM</a>
+                            <a class="dropdown-item" href="#"><i class="fab fa-buromobelexperte"></i> Enterprise Mobility Services</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-th-large"></i> Blockchain Services</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-briefcase"></i> Business Intelligence</a>
+                        </div>
+                        <div class="col-sm-6 col-lg-3 mb-4">
+                            <h6>Home Insurance</h6>
+                            <a class="dropdown-item" href="#"><i class="fas fa-laptop"></i> Digital Marketing</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-laptop"></i> PPC Management Services</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-laptop"></i> E-commerce SEO Services</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-laptop"></i> Conversion Rate Optimization</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
                   <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Renew Your Policy</a>
                         <div class="dropdown-menu m-0">
@@ -99,6 +172,7 @@
 <!--                            <a href="404.html" class="dropdown-item">404 Page</a>-->
                         </div>
                     </div>
+ 
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Claim</a>
                         <div class="dropdown-menu m-0">

@@ -5,12 +5,15 @@
 package com.exavalu.services;
 
 import com.exavalu.models.Claim;
+import com.exavalu.models.UnderwriterHistory;
+
 import com.exavalu.utils.JDBCConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
@@ -19,34 +22,45 @@ import org.apache.log4j.Logger;
  * @author LENOVO
  */
 public class UnderwriterService {
-
-    public ArrayList getAllPendingHealthClaims() {
-        ArrayList pendingHealthPolicyList = new ArrayList();
+    
+    public static UnderwriterService underwriterService = null;
+    
+    public static UnderwriterService getInstance() {
+        if (underwriterService == null) {
+            return new UnderwriterService();
+        } else {
+            return underwriterService;
+        }
+    }
+    
+    public ArrayList getAllPendingHealthMediclaimClaims() {
+        ArrayList pendingHealthMediclaimPolicyList = new ArrayList();
         try {
             Connection con = JDBCConnectionManager.getConnection();
-            String sql = "select * from claims c,users u,categories ca,policies p where c.userId=u.userId and c.categoryId=ca.categoryId and c.policyId=p.policyId and claimStatus=? and categoryId=?";
-
+            String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
+            
             PreparedStatement preparedStatement = con.prepareStatement(sql);
-
+            
             preparedStatement.setString(1, "1");
+            
             preparedStatement.setString(2, "1");
             ResultSet rs = preparedStatement.executeQuery();
-
+            
             while (rs.next()) {
                 Claim claim = new Claim();
                 claim.setClaimId(rs.getString("claimId"));
                 claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
                 claim.setClaimStatus(rs.getString("claimStatus"));
                 claim.setClaimName(rs.getString("claimName"));
-
+                
                 claim.setFullName(rs.getString("fullName"));
                 claim.setEmail(rs.getString("email"));
-
+                
                 claim.setCategoryName(rs.getString("categoryName"));
-
+                
                 claim.setPolicyName(rs.getString("policyName"));
                 claim.setPolicyDescription(rs.getString("policyDescription"));
-
+                
                 claim.setMedicalHistory(rs.getString("medicalHistory"));
                 claim.setDob(rs.getString("dob"));
                 claim.setRelation(rs.getString("relation"));
@@ -57,46 +71,149 @@ public class UnderwriterService {
 //                  System.out.println(claim.getDriverName());
 //                   System.out.println(claim.getEmailAddress());
 //                    System.out.println(claim.getDate());
-                pendingHealthPolicyList.add(claim);
-
+                pendingHealthMediclaimPolicyList.add(claim);
+                
             }
-
+            
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
             log.error(LocalDateTime.now() + "@" + ex);
             ex.printStackTrace();
         }
-        //System.out.println("Number of pending list = " + pendingHealthPolicyList.size());
-        return pendingHealthPolicyList;
+        System.out.println("Number of pending mediclaim policy list = " + pendingHealthMediclaimPolicyList.size());
+        return pendingHealthMediclaimPolicyList;
     }
-
-    public ArrayList getAllPendingCarClaims() {
-        ArrayList pendingCarPolicyList = new ArrayList();
+    
+    public ArrayList getAllPendingHealthCriticalIllnessClaims() {
+        ArrayList pendingHealthCriticalIllnessPolicyList = new ArrayList();
         try {
             Connection con = JDBCConnectionManager.getConnection();
-            String sql = "select * from claims c,users u,categories ca,policies p where c.userId=u.userId and c.categoryId=ca.categoryId and c.policyId=p.policyId and claimStatus=? and categoryId=?";
-
+            String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
+            
             PreparedStatement preparedStatement = con.prepareStatement(sql);
-
+            
             preparedStatement.setString(1, "1");
+            
             preparedStatement.setString(2, "2");
             ResultSet rs = preparedStatement.executeQuery();
-
+            
             while (rs.next()) {
                 Claim claim = new Claim();
                 claim.setClaimId(rs.getString("claimId"));
                 claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
                 claim.setClaimStatus(rs.getString("claimStatus"));
                 claim.setClaimName(rs.getString("claimName"));
-
+                
                 claim.setFullName(rs.getString("fullName"));
                 claim.setEmail(rs.getString("email"));
-
+                
                 claim.setCategoryName(rs.getString("categoryName"));
+                
+                claim.setPolicyName(rs.getString("policyName"));
+                claim.setPolicyDescription(rs.getString("policyDescription"));
+                
+                claim.setMedicalHistory(rs.getString("medicalHistory"));
+                claim.setDob(rs.getString("dob"));
+                claim.setRelation(rs.getString("relation"));
+                claim.setRelativeName(rs.getString("relativeName"));
 
+//                System.out.println(claim.getClaimId());
+//                 System.out.println(claim.getClaimStatus());
+//                  System.out.println(claim.getDriverName());
+//                   System.out.println(claim.getEmailAddress());
+//                    System.out.println(claim.getDate());
+                pendingHealthCriticalIllnessPolicyList.add(claim);
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger log = Logger.getLogger(UnderwriterService.class.getName());
+            log.error(LocalDateTime.now() + "@" + ex);
+            ex.printStackTrace();
+        }
+        System.out.println("Number of pending mediclaim policy list = " + pendingHealthCriticalIllnessPolicyList.size());
+        return pendingHealthCriticalIllnessPolicyList;
+    }
+    
+    public ArrayList getAllPendingCarTwoWheelerClaims() {
+        ArrayList pendingCarTwoWheelerPolicyList = new ArrayList();
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
+            
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            
+            preparedStatement.setString(1, "1");
+            
+            preparedStatement.setString(2, "3");
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while (rs.next()) {
+                Claim claim = new Claim();
+                claim.setClaimId(rs.getString("claimId"));
+                claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
+                claim.setClaimStatus(rs.getString("claimStatus"));
+                claim.setClaimName(rs.getString("claimName"));
+                
+                claim.setFullName(rs.getString("fullName"));
+                claim.setEmail(rs.getString("email"));
+                
                 claim.setPolicyName(rs.getString("policyName"));
                 claim.setPolicyDescription(rs.getString("policyDescription"));
 
+//                claim.setIncidentDate(rs.getString("incidentDate"));
+//                claim.setIncidentLocation(rs.getString("incidentLocatin"));
+//                claim.setPoliceReportNo(rs.getString("policeReportNo"));
+                claim.setBikeMake(rs.getString("bikeMake"));
+//                claim.setBikeModel(rs.getString("bikeModel"));
+                claim.setBikeNumber(rs.getString("bikeNumber"));
+                claim.setBikeRegistrationYear(rs.getString("bikeRegistrationYear"));
+                claim.setBikeVariant(rs.getString("bikeVariant"));
+//                System.out.println(claim.getClaimId());
+//                 System.out.println(claim.getClaimStatus());
+//                  System.out.println(claim.getDriverName());
+//                   System.out.println(claim.getEmailAddress());
+//                    System.out.println(claim.getDate());
+                pendingCarTwoWheelerPolicyList.add(claim);
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger log = Logger.getLogger(UnderwriterService.class.getName());
+            log.error(LocalDateTime.now() + "@" + ex);
+            ex.printStackTrace();
+        }
+        System.out.println("Number of pending list = " + pendingCarTwoWheelerPolicyList.size());
+        return pendingCarTwoWheelerPolicyList;
+    }
+    
+    public ArrayList getAllPendingCarFourWheelerClaims() {
+        ArrayList pendingCarFourWheelerPolicyList = new ArrayList();
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            
+            preparedStatement.setString(1, "1");
+            
+            preparedStatement.setString(2, "4");
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while (rs.next()) {
+                Claim claim = new Claim();
+                claim.setClaimId(rs.getString("claimId"));
+                claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
+                claim.setClaimStatus(rs.getString("claimStatus"));
+                claim.setClaimName(rs.getString("claimName"));
+                
+                claim.setFullName(rs.getString("fullName"));
+                claim.setEmail(rs.getString("email"));
+                
+                claim.setCategoryName(rs.getString("categoryName"));
+                
+                claim.setPolicyName(rs.getString("policyName"));
+                claim.setPolicyDescription(rs.getString("policyDescription"));
+                
                 claim.setIncidentDate(rs.getString("incidentDate"));
                 claim.setIncidentLocation(rs.getString("incidentLocatin"));
                 claim.setPoliceReportNo(rs.getString("policeReportNo"));
@@ -109,94 +226,47 @@ public class UnderwriterService {
 //                  System.out.println(claim.getDriverName());
 //                   System.out.println(claim.getEmailAddress());
 //                    System.out.println(claim.getDate());
-                pendingCarPolicyList.add(claim);
-
+                pendingCarFourWheelerPolicyList.add(claim);
+                
             }
-
+            
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
             log.error(LocalDateTime.now() + "@" + ex);
             ex.printStackTrace();
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
-        return pendingCarPolicyList;
+        return pendingCarFourWheelerPolicyList;
     }
-
-    public ArrayList getAllPendingTermClaims() {
-        ArrayList pendingTermPolicyList = new ArrayList();
+    
+    public ArrayList getAllPendingTermLifeInsuranceClaims() {
+        ArrayList pendingTermLifeInsurancePolicyList = new ArrayList();
         try {
             Connection con = JDBCConnectionManager.getConnection();
-            String sql = "select * from claims c,users u,categories ca,policies p where c.userId=u.userId and c.categoryId=ca.categoryId and c.policyId=p.policyId and claimStatus=? and categoryId=?";
-
+            String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
+            
             PreparedStatement preparedStatement = con.prepareStatement(sql);
-
+            
             preparedStatement.setString(1, "1");
-            preparedStatement.setString(2, "3");
+            
+            preparedStatement.setString(2, "5");
             ResultSet rs = preparedStatement.executeQuery();
-
+            
             while (rs.next()) {
                 Claim claim = new Claim();
                 claim.setClaimId(rs.getString("claimId"));
                 claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
                 claim.setClaimStatus(rs.getString("claimStatus"));
                 claim.setClaimName(rs.getString("claimName"));
-
+                
                 claim.setFullName(rs.getString("fullName"));
                 claim.setEmail(rs.getString("email"));
-
+                
                 claim.setCategoryName(rs.getString("categoryName"));
-
+                
                 claim.setPolicyName(rs.getString("policyName"));
                 claim.setPolicyDescription(rs.getString("policyDescription"));
-
-                claim.setChildName(rs.getString("childName"));
-                claim.setDob(rs.getString("dob"));
-
-//                System.out.println(claim.getClaimId());
-//                 System.out.println(claim.getClaimStatus());
-//                  System.out.println(claim.getDriverName());
-//                   System.out.println(claim.getEmailAddress());
-//                    System.out.println(claim.getDate());
-                pendingTermPolicyList.add(claim);
-
-            }
-
-        } catch (SQLException ex) {
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now() + "@" + ex);
-            ex.printStackTrace();
-        }
-        //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
-        return pendingTermPolicyList;
-    }
-
-    public ArrayList getAllPendingInvestmentClaims() {
-        ArrayList pendingInvestmentPolicyList = new ArrayList();
-        try {
-            Connection con = JDBCConnectionManager.getConnection();
-            String sql = "select * from claims c,users u,categories ca,policies p where c.userId=u.userId and c.categoryId=ca.categoryId and c.policyId=p.policyId and claimStatus=? and categoryId=?";
-
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
-
-            preparedStatement.setString(1, "1");
-            preparedStatement.setString(2, "4");
-            ResultSet rs = preparedStatement.executeQuery();
-
-            while (rs.next()) {
-                Claim claim = new Claim();
-                claim.setClaimId(rs.getString("claimId"));
-                claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
-                claim.setClaimStatus(rs.getString("claimStatus"));
-                claim.setClaimName(rs.getString("claimName"));
-
-                claim.setFullName(rs.getString("fullName"));
-                claim.setEmail(rs.getString("email"));
-
-                claim.setCategoryName(rs.getString("categoryName"));
-
-                claim.setPolicyName(rs.getString("policyName"));
-                claim.setPolicyDescription(rs.getString("policyDescription"));
-
+                
                 claim.setOccupation(rs.getString("occupation"));
                 claim.setAnnualIncome(rs.getString("annualIncome"));
 
@@ -205,46 +275,188 @@ public class UnderwriterService {
 //                  System.out.println(claim.getDriverName());
 //                   System.out.println(claim.getEmailAddress());
 //                    System.out.println(claim.getDate());
-                pendingInvestmentPolicyList.add(claim);
-
+                pendingTermLifeInsurancePolicyList.add(claim);
+                
             }
-
+            
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
             log.error(LocalDateTime.now() + "@" + ex);
             ex.printStackTrace();
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
-        return pendingInvestmentPolicyList;
+        return pendingTermLifeInsurancePolicyList;
     }
-
-    public ArrayList getAllPendingOtherClaims() {
-        ArrayList pendingOtherPolicyList = new ArrayList();
+    
+    public ArrayList getAllPendingTermForNriClaims() {
+        ArrayList pendingTermForNriPolicyList = new ArrayList();
         try {
             Connection con = JDBCConnectionManager.getConnection();
-            String sql = "select * from claims c,users u,categories ca,policies p where c.userId=u.userId and c.categoryId=ca.categoryId and c.policyId=p.policyId and claimStatus=? and categoryId=?";
-
+            String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
+            
             PreparedStatement preparedStatement = con.prepareStatement(sql);
-
+            
             preparedStatement.setString(1, "1");
-            preparedStatement.setString(2, "5");
+            
+            preparedStatement.setString(2, "6");
             ResultSet rs = preparedStatement.executeQuery();
-
+            
             while (rs.next()) {
                 Claim claim = new Claim();
                 claim.setClaimId(rs.getString("claimId"));
                 claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
                 claim.setClaimStatus(rs.getString("claimStatus"));
                 claim.setClaimName(rs.getString("claimName"));
-
+                
                 claim.setFullName(rs.getString("fullName"));
                 claim.setEmail(rs.getString("email"));
-
+                
                 claim.setCategoryName(rs.getString("categoryName"));
-
+                
                 claim.setPolicyName(rs.getString("policyName"));
                 claim.setPolicyDescription(rs.getString("policyDescription"));
+                
+                claim.setOccupation(rs.getString("occupation"));
+                claim.setAnnualIncome(rs.getString("annualIncome"));
+                
+                claim.setChildName(rs.getString("childName"));
+                claim.setDob(rs.getString("dob"));
 
+//                System.out.println(claim.getClaimId());
+//                 System.out.println(claim.getClaimStatus());
+//                  System.out.println(claim.getDriverName());
+//                   System.out.println(claim.getEmailAddress());
+//                    System.out.println(claim.getDate());
+                pendingTermForNriPolicyList.add(claim);
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger log = Logger.getLogger(UnderwriterService.class.getName());
+            log.error(LocalDateTime.now() + "@" + ex);
+            ex.printStackTrace();
+        }
+        //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
+        return pendingTermForNriPolicyList;
+    }
+    
+    public ArrayList getAllPendingInvestmentChildClaims() {
+        ArrayList pendingInvestmentChildPolicyList = new ArrayList();
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
+            
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            
+            preparedStatement.setString(1, "1");
+            
+            preparedStatement.setString(2, "7");
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while (rs.next()) {
+                Claim claim = new Claim();
+                claim.setClaimId(rs.getString("claimId"));
+                claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
+                claim.setClaimStatus(rs.getString("claimStatus"));
+                claim.setClaimName(rs.getString("claimName"));
+                
+                claim.setFullName(rs.getString("fullName"));
+                claim.setEmail(rs.getString("email"));
+                
+                claim.setCategoryName(rs.getString("categoryName"));
+                
+                claim.setChildName(rs.getString("childName"));
+                claim.setDob(rs.getString("dob"));
+
+//                System.out.println(claim.getClaimId());
+//                 System.out.println(claim.getClaimStatus());
+//                  System.out.println(claim.getDriverName());
+//                   System.out.println(claim.getEmailAddress());
+//                    System.out.println(claim.getDate());
+                pendingInvestmentChildPolicyList.add(claim);
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger log = Logger.getLogger(UnderwriterService.class.getName());
+            log.error(LocalDateTime.now() + "@" + ex);
+            ex.printStackTrace();
+        }
+        //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
+        return pendingInvestmentChildPolicyList;
+    }
+    
+    public ArrayList getAllPendingInvestmentPensionClaims() {
+        ArrayList pendingInvestmentPensionPolicyList = new ArrayList();
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
+            
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            
+            preparedStatement.setString(1, "1");
+            
+            preparedStatement.setString(2, "8");
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while (rs.next()) {
+                Claim claim = new Claim();
+                claim.setClaimId(rs.getString("claimId"));
+                claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
+                claim.setClaimStatus(rs.getString("claimStatus"));
+                claim.setClaimName(rs.getString("claimName"));
+                
+                claim.setFullName(rs.getString("fullName"));
+                claim.setEmail(rs.getString("email"));
+                
+                claim.setCategoryName(rs.getString("categoryName"));
+
+//                System.out.println(claim.getClaimId());
+//                 System.out.println(claim.getClaimStatus());
+//                  System.out.println(claim.getDriverName());
+//                   System.out.println(claim.getEmailAddress());
+//                    System.out.println(claim.getDate());
+                pendingInvestmentPensionPolicyList.add(claim);
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger log = Logger.getLogger(UnderwriterService.class.getName());
+            log.error(LocalDateTime.now() + "@" + ex);
+            ex.printStackTrace();
+        }
+        //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
+        return pendingInvestmentPensionPolicyList;
+    }
+    
+    public ArrayList getAllPendingOtherTravelClaims() {
+        ArrayList pendingOtherTravelPolicyList = new ArrayList();
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
+            
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            
+            preparedStatement.setString(1, "1");
+            
+            preparedStatement.setString(2, "9");
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while (rs.next()) {
+                Claim claim = new Claim();
+                claim.setClaimId(rs.getString("claimId"));
+                claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
+                claim.setClaimStatus(rs.getString("claimStatus"));
+                claim.setClaimName(rs.getString("claimName"));
+                
+                claim.setFullName(rs.getString("fullName"));
+                claim.setEmail(rs.getString("email"));
+                
+                claim.setCategoryName(rs.getString("categoryName"));
+                
+                claim.setPolicyName(rs.getString("policyName"));
+                claim.setPolicyDescription(rs.getString("policyDescription"));
+                
                 claim.setEducationLevel(rs.getString("educationLevel"));
                 
                 claim.setTravelEndDate(rs.getString("travelEndDate"));
@@ -257,26 +469,74 @@ public class UnderwriterService {
 //                  System.out.println(claim.getDriverName());
 //                   System.out.println(claim.getEmailAddress());
 //                    System.out.println(claim.getDate());
-                pendingOtherPolicyList.add(claim);
-
+                pendingOtherTravelPolicyList.add(claim);
+                
             }
-
+            
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
             log.error(LocalDateTime.now() + "@" + ex);
             ex.printStackTrace();
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
-        return pendingOtherPolicyList;
+        return pendingOtherTravelPolicyList;
     }
+    
+    public ArrayList getAllPendingOtherEducationalClaims() {
+        ArrayList pendingOtherEducationalPolicyList = new ArrayList();
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
+            
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            
+            preparedStatement.setString(1, "1");
+            
+            preparedStatement.setString(2, "10");
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while (rs.next()) {
+                Claim claim = new Claim();
+                claim.setClaimId(rs.getString("claimId"));
+                claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
+                claim.setClaimStatus(rs.getString("claimStatus"));
+                claim.setClaimName(rs.getString("claimName"));
+                
+                claim.setFullName(rs.getString("fullName"));
+                claim.setEmail(rs.getString("email"));
+                
+                claim.setCategoryName(rs.getString("categoryName"));
+                
+                claim.setPolicyName(rs.getString("policyName"));
+                claim.setPolicyDescription(rs.getString("policyDescription"));
+                
+                claim.setEducationLevel(rs.getString("educationLevel"));
 
+//                System.out.println(claim.getClaimId());
+//                 System.out.println(claim.getClaimStatus());
+//                  System.out.println(claim.getDriverName());
+//                   System.out.println(claim.getEmailAddress());
+//                    System.out.println(claim.getDate());
+                pendingOtherEducationalPolicyList.add(claim);
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger log = Logger.getLogger(UnderwriterService.class.getName());
+            log.error(LocalDateTime.now() + "@" + ex);
+            ex.printStackTrace();
+        }
+        //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
+        return pendingOtherEducationalPolicyList;
+    }
+    
     public boolean approvePolicy(String claimId) {
         boolean result = true;
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "UPDATE insurancebazardb.claims\n"
                     + "SET claimStatus = ? where claimId=?";
-
+            
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             //status 2 = Approved by underwriter
             preparedStatement.setString(1, "2");
@@ -284,11 +544,11 @@ public class UnderwriterService {
 
 //            System.out.println("sql="+preparedStatement);
             int row = preparedStatement.executeUpdate();
-
+            
             if (row == 1) {
                 result = true;
             }
-
+            
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
             log.error(LocalDateTime.now() + "@" + ex);
@@ -296,14 +556,14 @@ public class UnderwriterService {
         }
         return result;
     }
-
+    
     public boolean rejectPolicy(String claimId) {
         boolean result = true;
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "UPDATE insurancebazardb.claims\n"
                     + "SET claimStatus = ? where claimId=?";
-
+            
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             //status 4 = rejected by underwriter
             preparedStatement.setString(1, "4");
@@ -311,16 +571,170 @@ public class UnderwriterService {
 
 //            System.out.println("sql="+preparedStatement);
             int row = preparedStatement.executeUpdate();
-
+            
             if (row == 1) {
                 result = true;
             }
-
+            
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
             log.error(LocalDateTime.now() + "@" + ex);
             ex.printStackTrace();
         }
         return result;
+    }
+    
+    public void addToApproveHistory(String claimId) {
+        String sql = "INSERT INTO underwriter_histories(claimId,userFullName,userEmail,policyName,claimStatus,timeOfAction)\n" + "VALUES(? ,?,?,?,?,?);";
+        
+        String sql2 = "select * from claims c,policies p  where c.policyId=p.policyId and claimId=?";
+        
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            PreparedStatement ps2 = con.prepareStatement(sql2);
+            ps2.setString(1, claimId);
+            
+            ResultSet rs = ps2.executeQuery();
+            String userFullName = "", userEmail = "", policyName = "";
+            while (rs.next()) {
+                userFullName = rs.getString("fullName");
+                policyName = rs.getString("policyName");
+                userEmail = rs.getString("email");
+            }
+            LocalDateTime currentLocalDateTime = LocalDateTime.now();
+
+            // Create DateTimeFormatter instance with specified format
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+            // Format LocalDateTime to String
+            String formattedDateTime = currentLocalDateTime.format(dateTimeFormatter);
+            ps.setString(1, claimId);
+            
+            ps.setString(2, userFullName);
+            ps.setString(3, userEmail);
+            ps.setString(4, policyName);
+            ps.setString(5, "2");
+            ps.setString(6, formattedDateTime);
+            //System.out.println("LoginService dosignup :: "+ps);
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(LoginService.class.getName());
+            log.error(LocalDateTime.now() + " " + ex.getMessage());
+            
+        }
+        
+    }
+    
+     public void addToRejectedHistory(String claimId) {
+        String sql = "INSERT INTO underwriter_histories(claimId,userFullName,userEmail,policyName,claimStatus,timeOfAction)\n" + "VALUES(? ,?,?,?,?,?);";
+        
+        String sql2 = "select * from claims c,policies p  where c.policyId=p.policyId and claimId=?";
+        
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            PreparedStatement ps2 = con.prepareStatement(sql2);
+            ps2.setString(1, claimId);
+            
+            ResultSet rs = ps2.executeQuery();
+            String userFullName = "", userEmail = "", policyName = "";
+            while (rs.next()) {
+                userFullName = rs.getString("fullName");
+                policyName = rs.getString("policyName");
+                userEmail = rs.getString("email");
+            }
+            LocalDateTime currentLocalDateTime = LocalDateTime.now();
+
+            // Create DateTimeFormatter instance with specified format
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+            // Format LocalDateTime to String
+            String formattedDateTime = currentLocalDateTime.format(dateTimeFormatter);
+            ps.setString(1, claimId);
+            
+            ps.setString(2, userFullName);
+            ps.setString(3, userEmail);
+            ps.setString(4, policyName);
+            ps.setString(5, "4");
+            ps.setString(6, formattedDateTime);
+            //System.out.println("LoginService dosignup :: "+ps);
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(LoginService.class.getName());
+            log.error(LocalDateTime.now() + " " + ex.getMessage());
+            
+        }
+        
+    }
+    
+    
+    
+    public ArrayList getAllApprovedHistories() {
+        ArrayList histories = new ArrayList();
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            String sql = "select * from underwriter_histories where claimStatus=?";
+            
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1,"2");
+           
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while (rs.next()) {
+                UnderwriterHistory history = new UnderwriterHistory();
+                
+                history.setClaimId(rs.getString("claimId"));
+                history.setPolicyName(rs.getString("policyName"));
+                history.setUserEmail(rs.getString("userEmail"));
+                history.setUserFullName(rs.getString("userFullName"));
+                history.setTimeOfAction(rs.getString("timeOfAction"));
+                histories.add(history);
+                
+            }
+            
+        } catch (SQLException | ExceptionInInitializerError ex) {
+            Logger log = Logger.getLogger(UnderwriterService.class.getName());
+            log.error(LocalDateTime.now() + "@" + ex);
+            ex.getMessage();
+        }
+        //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
+        return histories;
+    }
+    
+     public ArrayList getAllRejectedHistories() {
+        ArrayList histories = new ArrayList();
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            String sql = "select * from underwriter_histories where claimStatus=?";
+            
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            
+            preparedStatement.setString(1, "4");
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while (rs.next()) {
+                UnderwriterHistory history = new UnderwriterHistory();
+                Claim claim = new Claim();
+                history.setClaimId(rs.getString("claimId"));
+                history.setPolicyName(rs.getString("policyName"));
+                history.setUserEmail(rs.getString("userEmail"));
+                history.setUserFullName(rs.getString("userFullName"));
+                history.setTimeOfAction(rs.getString("timeOfAction"));
+                histories.add(history);
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger log = Logger.getLogger(UnderwriterService.class.getName());
+            log.error(LocalDateTime.now() + "@" + ex);
+            ex.printStackTrace();
+        }
+        //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
+        return histories;
     }
 }

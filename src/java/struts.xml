@@ -17,6 +17,69 @@
         </action>
         <action name="Logout" class="com.exavalu.models.User" method="doLogOut">
             <result name="SUCCESS">landingPage.jsp</result>         
-        </action>      
+        </action>
+        
+        <action name="UpdateUser" class="com.exavalu.models.User" method="doUpdateUser">
+            <result name="SUCCESS">userHomePage.jsp</result> 
+            <result name="FAILURE">userProfile.jsp</result>        
+        </action>
+        
+         <action name="CreateBikeClaim" class="com.exavalu.models.Claim" method="doAddBikeClaim">
+            <result name="SUCCESS">bikePlan.jsp</result>
+            <result name="FAILURE">twoWheelerPolicy.jsp</result>         
+        </action>
+        
+         <action name="CreateCarClaim" class="com.exavalu.models.Claim" method="doAddCarClaim">
+            <result name="SUCCESS">bikePlan.jsp</result>
+            <result name="FAILURE">fourWheelerPolicy.jsp</result>         
+        </action>
+        <action name="CreateTravelClaim" class="com.exavalu.models.Claim" method="doAddTravelClaim">
+            <result name="SUCCESS">bikePlan.jsp</result>
+            <result name="FAILURE">travelPolicy.jsp</result>         
+        </action> 
+        <action name="CreateHealthClaim" class="com.exavalu.models.Claim" method="doAddHealthClaim">
+            <result name="SUCCESS">bikePlanPage.jsp</result>
+            <result name="FAILURE">healthClaimForm.jsp</result>         
+        </action>
+         <action name="FetchPolicies" class="com.exavalu.models.Category" method="doGetPolicies">
+            <result name="SUCCESS">policyList.jsp</result>         
+        </action>
+        
+        <action name="Payment" class="com.exavalu.models.Claim" method="doPayment">
+            <result name="SUCCESS">thankYouPayPage.jsp</result>         
+        </action>
+        <action name="ConsumePaymentCardAPI" class="com.exavalu.models.PaymentCard" method="getDataFromAPI">
+            <result name="SUCCESS">confirmationPage.jsp</result>         
+        </action>
+        <action name="GetPolicyDetails" class="com.exavalu.models.Policy" method="doGetPolicyDetails">
+            <result name="TWOWHEELER">twoWheelerPolicy.jsp</result> 
+            <result name="FOURWHEELER">fourWheelerPolicy.jsp</result>
+            <result name="TRAVEL">travelPolicy.jsp</result> 
+            <result name="HEALTH">healthClaimForm.jsp</result> 
+            <result name="TRAVEL">travelPolicy.jsp</result> 
+            <result name="EDUCATION">educationPolicy.jsp</result> 
+            <result name="PENSION">vehicleClaim.jsp</result> 
+            <result name="CHILD">vehicleClaim.jsp</result> 
+            <result name="LIFE">lifeInsurancePolicy.jsp</result>
+            <result name="NRI">NRIPolicy.jsp</result>         
+        </action>  
+        
+        <action name="ApprovePolicy" class="com.exavalu.models.Claim" method="doApprovePolicy">
+            <result name="SUCCESS">underwriterHomePage.jsp</result>         
+        </action> 
+        <action name="RejectPolicy" class="com.exavalu.models.Claim" method="doRejectPolicy">
+            <result name="SUCCESS">underwriterHomePage.jsp</result>         
+        </action>   
+        <action name="SanctionPolicy" class="com.exavalu.models.Claim" method="doSanctionPolicy">
+            <result name="SUCCESS">officerHomePage.jsp</result>         
+        </action> 
+        <action name="FetchParticularClaim" class="com.exavalu.models.Claim" method="doSearchClaim">
+            <result name="SUCCESS">claimContent.jsp</result>         
+        </action> 
+        <action name="FetchBikeApi" class="com.exavalu.models.BikeApi" method="fetchBikeApi">
+            <result name="SUCCESS">bikeApiData.jsp</result>         
+        </action>
+        
+             
     </package>
 </struts>

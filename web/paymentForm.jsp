@@ -1,7 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
          <meta charset="utf-8">
     <title>InsuranceBazaar</title>
+    
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -426,13 +428,15 @@ hr {
             <img class="card_img" src="https://cdn-icons-png.flaticon.com/512/349/349228.png" alt="" />
             <img class="card_img" src="https://img.icons8.com/fluency/512/mastercard.png" alt="" />
           </div>
-          <form action="">
-            <input type="text" name="Name" value="" placeholder="Card Holder" maxlength="60" />
-            <input type="text" name="Number" value="" placeholder="Card Number" maxlength="16" />
+            <form action="Payment?bikeNumber=${BikeNumber}" method="post">
+            <input type="text" id="cardHolder"  value="" placeholder="Card Holder" maxlength="60" />
+            <span id="cardNumberWarning"></span>
+            <input type="text" id="cardNumber"  value="" placeholder="Card Number" maxlength="16" />
             <div>
-              <input type="text" name="Name" value="" placeholder="Expire" maxlength="4" />
-              <input type="text" name="Name" value="" placeholder="CVC" maxlength="3" />
+              <input type="text" onClick="loadCards()"   value="" placeholder="Expire" maxlength="4" />
+              <input type="text"  value="" placeholder="CVC" maxlength="3" />
             </div>
+            <button type="submit" class="confirm_btn">Confirm</button>
           </form>
           <span class="save_card">Save Card</span>
         </div>
@@ -447,7 +451,7 @@ hr {
             <img src="https://cdn-icons-png.flaticon.com/512/196/196565.png" alt="" />
           </div>
         </div>
-        <button class="confirm_btn">Confirm</button>
+        
       </section>
       <!-- Order Summary Section  -->
       <section class="order_summary">
@@ -477,11 +481,12 @@ hr {
         <p class="condition">
           Pay and Confirm Order by QR Code Using <b>Mobile Application</b>
         </p>
-        <button class="review_btn">Review and Confirm</button>
+        <button href="userHomePage.jsp" class="review_btn">Review and Confirm</button>
       </section>
      
     </div>
   </main>
+            <script src="cardValidation.js"></script>
 
 </body>
 <script>

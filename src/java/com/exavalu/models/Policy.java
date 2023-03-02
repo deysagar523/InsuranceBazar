@@ -4,6 +4,8 @@
  */
 package com.exavalu.models;
 
+import com.exavalu.services.LoginService;
+import com.exavalu.services.PolicyService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.Serializable;
@@ -18,7 +20,35 @@ import org.apache.struts2.interceptor.SessionAware;
  * @author LENOVO
  */
 public class Policy extends ActionSupport implements SessionAware, Serializable {
-    private int policyId,categoryId;
+
+    /**
+     * @return the policyId
+     */
+    public String getPolicyId() {
+        return policyId;
+    }
+
+    /**
+     * @param policyId the policyId to set
+     */
+    public void setPolicyId(String policyId) {
+        this.policyId = policyId;
+    }
+
+    /**
+     * @return the categoryId
+     */
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    /**
+     * @param categoryId the categoryId to set
+     */
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+    private String policyId,categoryId;
     private String policyName,policyExpiryDate,policyAmount,policyDescription;
     
      private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
@@ -36,33 +66,9 @@ public class Policy extends ActionSupport implements SessionAware, Serializable 
         setSessionMap((SessionMap<String, Object>) (SessionMap) session);
     }
 
-    /**
-     * @return the policyId
-     */
-    public int getPolicyId() {
-        return policyId;
-    }
+    
 
-    /**
-     * @param policyId the policyId to set
-     */
-    public void setPolicyId(int policyId) {
-        this.policyId = policyId;
-    }
-
-    /**
-     * @return the categoryId
-     */
-    public int getCategoryId() {
-        return categoryId;
-    }
-
-    /**
-     * @param categoryId the categoryId to set
-     */
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
+    
 
     /**
      * @return the policyName
@@ -146,6 +152,38 @@ public class Policy extends ActionSupport implements SessionAware, Serializable 
      */
     public void setMap(ApplicationMap map) {
         this.map = map;
+    }
+    
+    public String doGetPolicyDetails(){
+        String result="SUCCESS";
+        Policy policy= PolicyService.getPolicyDetails(this.getPolicyId());
+        
+        sessionMap.put("Policy", policy);
+        if(policy.getPolicyName().equals("Two Wheeler")){
+            result="TWOWHEELER";
+        }else if(policy.getPolicyName().equals("Four Wheeler")){
+            System.out.println("this is"+policy.getPolicyName());
+            result="FOURWHEELER";
+        }else if(policy.getPolicyName().equals("Travel Insurance")){
+            System.out.println("this is"+policy.getPolicyName());
+            result="TRAVEL";
+        }
+        else if(policy.getCategoryId().equals("1")){
+            result="HEALTH";
+        }else if(policy.getPolicyName().equals("Education Plan")){
+            result="EDUCATION";
+        }else if(policy.getPolicyName().equals("Pension Plan")){
+            result="PENSION";
+        }else if(policy.getPolicyName().equals("Child Investment")){
+            result="CHILD";
+        }
+        else if(policy.getPolicyName().equals("Life Insurance")){
+            result="LIFE";
+        }
+        else{
+            result= "NRI";
+        }
+        return result;
     }
     
 }

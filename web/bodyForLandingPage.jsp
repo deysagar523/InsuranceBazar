@@ -40,16 +40,57 @@
     <link rel="stylesheet" href="WEB-INF/css/style.css" type="text/css"/>
     <link rel="stylesheet" href="WEB-INF/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="WEB-INF/lib/owlcarousel/assets/owl.carousel.css" type="text/css"/>
+    
+    <script src="https://code.jquery.com/jquery-3.6.3.js" 
+                integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" 
+                crossorigin="anonymous">
+        </script>
+
 
 
 
 <!--    <link href="css/style.css" rel="stylesheet">-->
 </head>
 
+<script>
+    function laodPolicies(categoryId){
+        console.log(categoryId);
+        
+        $.ajax({
+                url: 'FetchPolicies',
+                data: {
+                    categoryId: categoryId
+                },
+                success: function (responseText) {
+                    
+
+                    $("#policiesContainer").html(responseText);
+                }
+            });
+        
+    }
+    
+    function laodPage(){
+        console.log("login.jsp");
+        
+        $.ajax({
+                url: 'login.jsp',
+                
+                success: function (responseText) {
+                    
+
+                    $("#landing_container").html(responseText);
+                }
+            });
+        
+    }
+</script>
+
+
 <body>
  
 
-
+    <div id="landing_container">
     <!-- Topbar Start -->
     <div class="container-fluid bg-dark px-5 d-none d-lg-block">
         <div class="row gx-0">
@@ -412,6 +453,7 @@ the Best Insurance</h1>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- Footer End -->
 

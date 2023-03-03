@@ -1,5 +1,6 @@
 
 <!doctype html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
     <head>
 
@@ -21,7 +22,10 @@
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
+        <script src="https://code.jquery.com/jquery-3.6.3.js" 
+                integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" 
+                crossorigin="anonymous">
+        </script>
         <title>user Profile</title>
 
         <!-- Bootstrap CSS-->
@@ -33,6 +37,40 @@
         <!-- Boxicons CSS-->
         <link rel="stylesheet" href="css/boxicons.min.css">
     </head>
+    <script>
+        function loadPage(jsp) {
+            console.log("Within load Page");
+
+            $.ajax({
+                url: jsp,
+
+                success: function (responseText) {
+
+                    console.log(responseText);
+                    $("#container").html(responseText);
+                }
+            });
+
+        }
+        
+        function laodPlans(userId) {
+            
+            console.log(userId);
+
+            $.ajax({
+                url: 'FetchPlans',
+                data:{
+                    userId:userId
+                },
+                success: function (responseText) {
+
+                    alert(responseText);
+                    $("#container").html(responseText);
+                }
+            });
+
+        }
+    </script>
     <script>
         function previewImage(event) {
             alert("preview img working");
@@ -158,10 +196,10 @@
                         <li>
                             <a href="index.html" class="active">
                                 <i class='bx bxs-dashboard icon' ></i> Dashboard
-                            </a>
+<!--                            </a>
                         </li>
 
-                        <!-- Divider-->
+                         Divider
                         <li class="divider" data-text="STARTER"></li>
 
                         <li>
@@ -174,7 +212,7 @@
                         </li>
 
                         <li>
-                            <a href="blank-pages.html">
+                            <a href="policyListTwoWheeler_1.jsp">
                                 <i class='bx bxs-meh-blank icon'></i> 
                                 My Policies
                             </a>
@@ -189,7 +227,7 @@
 
                         </li>
 
-                        <!-- Divider-->
+                         Divider
                         <li class="divider" data-text="Atrana"></li>
 
                         <li>
@@ -212,7 +250,7 @@
 
 
 
-                        <!-- Divider-->
+                         Divider
                         <li class="divider" data-text="Pages"></li>
 
                         <li>
@@ -222,26 +260,75 @@
                                 <i class='bx bx-chevron-right icon-right' ></i>
                             </a>
 
-
-                            <!--            <div class="ads">
-                                                            <div class="wrapper">
-                                                                    <div class="help-icon"><i class="fa fa-circle-question fa-3x"></i></div>
-                                                                    <p>Need Help with <strong>Atrana</strong>?</p>
-                                                <a href="docs/" class="btn-upgrade">Documentation</a>
-                                             </div>
-                                        </div>-->
                             </div>
 
                             </div> 
                             </div>
-                            </div><!-- End Sidebar-->
+                            </div> End Sidebar-->
+</a>
+                        </li>
+
+                        <!-- Divider-->
+                        <li class="divider" data-text="STARTER"></li>
+
+
+                        <li>
+                            <a onclick="loadPage('historyPageUnderwriter.jsp')">
+                                <i class='bx bxs-meh-blank icon'></i> 
+                               My Profile
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a onClick="laodPlans(<c:out value="${userId}"> </c:out>)">
+                                <i class='bx bxs-meh-blank icon'></i> 
+                               My Plans
+                            </a>
+                        </li>
+
+                        
+                       
+
+                     
+         
+                        <li>
+                            <a href="paymentForm.jsp">
+                                <i class='bx bx-columns icon' ></i> 
+                                Payment
+                                <i class='bx bx-chevron-right icon-right' ></i>
+                            </a>
+                        </li>
+                         <li>
+                            <a href="paymentForm.jsp">
+                                <i class='bx bx-columns icon' ></i> 
+                               Claim Support
+                                <i class='bx bx-chevron-right icon-right' ></i>
+                            </a>
+                        </li>
+                        <li>
+                            
+
+                                <a class="dropdown-item" href="Logout" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16" color="white">
+                                    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                                    <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                    </svg> <span style="color: white">Logout</span></a>
+                           
+                        </li>
+
+                      
+
+                </div>
+
+            </div> 
+        </div>
+    </div><!-- End Sidebar-->
 
 
                             <div class="sidebar-overlay"></div>
 
 
                             <!--Content Start-->
-                            <div class="content-start transition">
+                            <div class="content-start transition" id="container">
                                 <div class="container-fluid dashboard">
                                     <div class="content-header">
                                         <h4>Hi, ${User.fullName}!</h4>

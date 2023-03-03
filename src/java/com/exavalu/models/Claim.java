@@ -26,6 +26,62 @@ import org.apache.struts2.interceptor.ApplicationAware;
 public class Claim extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
 
     /**
+     * @return the planCompany
+     */
+    public String getPlanCompany() {
+        return planCompany;
+    }
+
+    /**
+     * @param planCompany the planCompany to set
+     */
+    public void setPlanCompany(String planCompany) {
+        this.planCompany = planCompany;
+    }
+
+    /**
+     * @return the planDuration
+     */
+    public String getPlanDuration() {
+        return planDuration;
+    }
+
+    /**
+     * @param planDuration the planDuration to set
+     */
+    public void setPlanDuration(String planDuration) {
+        this.planDuration = planDuration;
+    }
+
+    /**
+     * @return the planAmount
+     */
+    public String getPlanAmount() {
+        return planAmount;
+    }
+
+    /**
+     * @param planAmount the planAmount to set
+     */
+    public void setPlanAmount(String planAmount) {
+        this.planAmount = planAmount;
+    }
+
+    /**
+     * @return the adharCard
+     */
+    public String getAdharCard() {
+        return adharCard;
+    }
+
+    /**
+     * @param adharCard the adharCard to set
+     */
+    public void setAdharCard(String adharCard) {
+        this.adharCard = adharCard;
+    }
+
+    /**
      * @return the planId
      */
     public String getPlanId() {
@@ -157,11 +213,13 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
     private String claimExpiryDate;
     private String claimStatus;
     private String claimName;
+    private String adharCard;
 
     private String userId;
     private String fullName;
     private String email;
     private String phone;
+    private String age;
     private String categoryId;
     private String categoryName;
 
@@ -190,12 +248,17 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
 
     //for travel inusrance
     private String travelDestination, travelStartDate, travelEndDate, noOfTravelMembers;
-    private String age;
+    
+   
+    
 
     //for educational plan 
     private String educationLevel;
     
+    //plan deatils
+    
     private String planId;
+    private String planCompany, planDuration, planAmount;
 
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
@@ -209,6 +272,34 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
     @Override
     public void setSession(Map<String, Object> session) {
         setSessionMap((SessionMap<String, Object>) (SessionMap) session);
+    }
+    
+     /**
+     * @return the sessionMap
+     */
+    public SessionMap<String, Object> getSessionMap() {
+        return sessionMap;
+    }
+
+    /**
+     * @param sessionMap the sessionMap to set
+     */
+    public void setSessionMap(SessionMap<String, Object> sessionMap) {
+        this.sessionMap = sessionMap;
+    }
+
+    /**
+     * @return the map
+     */
+    public ApplicationMap getMap() {
+        return map;
+    }
+
+    /**
+     * @param map the map to set
+     */
+    public void setMap(ApplicationMap map) {
+        this.map = map;
     }
 
     /**
@@ -618,34 +709,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         this.educationLevel = educationLevel;
     }
 
-    /**
-     * @return the sessionMap
-     */
-    public SessionMap<String, Object> getSessionMap() {
-        return sessionMap;
-    }
-
-    /**
-     * @param sessionMap the sessionMap to set
-     */
-    public void setSessionMap(SessionMap<String, Object> sessionMap) {
-        this.sessionMap = sessionMap;
-    }
-
-    /**
-     * @return the map
-     */
-    public ApplicationMap getMap() {
-        return map;
-    }
-
-    /**
-     * @param map the map to set
-     */
-    public void setMap(ApplicationMap map) {
-        this.map = map;
-    }
-
+    
     /**
      * @return the carRegistrationYear
      */
@@ -725,7 +789,9 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         boolean res = ClaimService.insertBikeClaim(claim);
         if (res) {
             result = "SUCCESS";
-            sessionMap.put("ClaimId", this.claimId);
+//            sessionMap.put("ClaimId", this.claimId);
+            Claim claim1= ClaimService.getClaimById(this.bikeNumber);
+            sessionMap.put("ClaimId", claim1.claimId);
             sessionMap.put("BikeNumber", this.bikeNumber);
             sessionMap.put("BikeMake", this.bikeMake);
             sessionMap.put("BikeModel", this.bikeModel);
@@ -735,6 +801,38 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
             System.out.println("Successfully Filed");
         } else {
             System.out.println("Claim not filed!");
+        }
+        return result;
+    }
+    
+     public String doGetClaim(){
+        
+        String result="SUCCESS";
+        System.out.println("Current claim is: "+this.getClaimId());
+        Claim claim= ClaimService.getClaim(this.getClaimId());
+       
+        getSessionMap().put("successUpdate", "viewSuccess");
+        System.out.println("FROM CLAIM MODEL:  CLAIM FETCHED");
+        sessionMap.put("Claim", claim);
+            
+        
+        return result;
+    }
+     
+     public String doFileFnol(){
+        
+        String result= "FAILURE";
+        System.out.println("Current claim is: "+this.getClaimId());
+        boolean res = ClaimService.fileFnol(this.getClaimId());
+       
+        if(res){
+            result="SUCCESS";
+            
+            System.out.println("CLAIM status updated to 1");
+            
+            
+        }else{
+            System.out.println(" CLAIM status not updated to 1");
         }
         return result;
     }
@@ -769,6 +867,8 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         }
         return result;
     }
+    
+    
     
         public String doAddTravelClaim() {
 
@@ -809,15 +909,17 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
 
         
         
-        boolean res = ClaimService.doPayment(this.bikeNumber);
+        boolean res = ClaimService.doPayment(this.claimId, this.planId, this.planDuration);
+        System.out.println("res:"+res);
         if (res) {
+            
             result = "SUCCESS";
-           
+           MailSender.sendEmailAfterPayment(this.bikeMake,this.bikeModel,this.bikeNumber,this.email);
             sessionMap.put("Success", "successfull");
             
             System.out.println("paymnet");
         } else {
-            System.out.println("travel Claim not filed!");
+            System.out.println("payment not filed!");
         }
         return result;
     }
@@ -923,6 +1025,18 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         String result="SUCCESS";
         Claim particularClaim=ClaimService.searchClaim(this.claimId);
         sessionMap.put("ParticularClaim",particularClaim);
+        return result;
+    }
+    
+    public String doGetPlanDetails()
+    {
+        String result="FAILURE";
+        Plan plan= ClaimService.getPlanDetails(this.planId);
+        if(plan!=null){
+            result="SUCCESS";
+            sessionMap.put("Plan", plan);
+        }
+       
         return result;
     }
         

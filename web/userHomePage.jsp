@@ -36,12 +36,50 @@
     <link rel="stylesheet" href="WEB-INF/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="WEB-INF/lib/owlcarousel/assets/owl.carousel.css" type="text/css"/>
 
-
+    <script src="https://code.jquery.com/jquery-3.6.3.js" 
+                integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" 
+                crossorigin="anonymous">
+        </script>
 
     <link href="css/stylenav.css" rel="stylesheet">
 </head>
 
-<body>
+<script>
+    function laodPolicies(categoryId){
+        console.log(categoryId);
+        
+        $.ajax({
+                url: 'FetchPolicies',
+                data: {
+                    categoryId: categoryId
+                },
+                success: function (responseText) {
+                    
+
+                    $("#policiesContainer").html(responseText);
+                }
+            });
+        
+    }
+    
+    function laodPage(jsp){
+        console.log("loadpage");
+        
+        $.ajax({
+                url: jsp,
+                
+                success: function (responseText) {
+                    
+                    alert(responseText);
+                    $("#home_container").html(responseText);
+                }
+            });
+        
+    }
+</script>
+
+
+<body id="home_container">
  
 
 

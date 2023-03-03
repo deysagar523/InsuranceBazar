@@ -5,6 +5,7 @@
 package com.exavalu.services;
 
 
+ 
 import com.exavalu.models.Plan;
 import com.exavalu.utils.JDBCConnectionManager;
 import java.sql.Connection;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 public class PlanService {
     
     public static ArrayList getAllBikePlans(){
+        
         ArrayList planList= new ArrayList();
         try {
             Connection con = JDBCConnectionManager.getConnection();
@@ -32,7 +34,8 @@ public class PlanService {
 
             while(rs.next())
             {
-                Plan plan= new Plan();
+                System.out.println("plans page:");
+                Plan plan = new Plan();
                 plan.setPlanId(rs.getString("planId"));
                 plan.setPlanCompany(rs.getString("planCompany"));
                 plan.setPolicyName(rs.getString("policyName"));

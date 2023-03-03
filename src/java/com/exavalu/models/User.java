@@ -210,11 +210,11 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
         String result = "FAILURE";
 
         boolean success = LoginService.getInstance().doLogin(this);
-
+           
         if (success) {
-            ArrayList planList= PlanService.getAllBikePlans();
+           ArrayList planList= PlanService.getAllBikePlans();
 //            
-//            System.out.println("Returning Success from doLogin method");
+            System.out.println("Returning Success from doLogin method");
             User user = LoginService.getUser(this.getEmail());
 //            System.out.println("gender:"+user.getGender()+" phone:"+user.getPhone());
             if (user.getRole().equals("1")) {

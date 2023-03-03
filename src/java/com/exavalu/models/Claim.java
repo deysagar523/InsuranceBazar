@@ -910,10 +910,12 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         
         
         boolean res = ClaimService.doPayment(this.claimId, this.planId, this.planDuration);
-        System.out.println("res:"+res);
+        //System.out.println("res:"+res);
         if (res) {
             
-            result = "SUCCESS";
+           result = "SUCCESS";
+           Claim claim=ClaimService.getClaim(this.claimId);
+           sessionMap.put("ClaimExpiryDate", claim.claimExpiryDate);
            MailSender.sendEmailAfterPayment(this.bikeMake,this.bikeModel,this.bikeNumber,this.email);
             sessionMap.put("Success", "successfull");
             

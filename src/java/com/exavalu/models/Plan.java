@@ -20,7 +20,7 @@ import org.apache.struts2.interceptor.ApplicationAware;
  * @author user
  */
 public class Plan extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
-    
+    private String planId, policyId, planCompany, planDuration, planAmount, policyName;
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
     private ApplicationMap map = (ApplicationMap) ActionContext.getContext().getApplication();
@@ -149,7 +149,7 @@ public class Plan extends ActionSupport implements ApplicationAware, SessionAwar
         this.planAmount = planAmount;
     }
     
-    private String planId, policyId, planCompany, planDuration, planAmount, policyName;
+    
 
     
     

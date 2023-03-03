@@ -15,17 +15,41 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <link href="css/style-login.css" rel="stylesheet">
-    
+    <script src="https://code.jquery.com/jquery-3.6.3.js" 
+            integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" 
+            crossorigin="anonymous">
+    </script>
+
+
+
     <style>
         body{
             background-image: url('img/blur.png');
         }
     </style>
     </head>
-    
- 
-    <body>
-     
+   
+    <body id="container">
+      
+
+
+
+      <script>
+        function loadPage(jsp) {
+            console.log("Within load Page");
+
+            $.ajax({
+                url: jsp,
+
+                success: function (responseText) {
+
+                    console.log(responseText);
+                    $("#container").html(responseText);
+                }
+            });
+
+        }
+    </script>
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
 		<form action="#">
@@ -55,7 +79,7 @@
 			<input type="password"  name="password" placeholder="Password" />
                         <a href="#"></a>
                         <button type="submit">Sign In</button>
-                         <a href="ForgetPassword.jsp">Forgot your password? </a>
+                        <a onclick="loadPage('ForgetPassword.jsp')">Forgot your password? </a>
 		</form>
 	</div>
 	<div class="overlay-container">
@@ -68,7 +92,7 @@
 			<div class="overlay-panel overlay-right">
 				<h1>Hello, Friend!</h1>
 				<p>Enter your personal details and start journey with us</p>
-                                <a href="signup.jsp">	<button class="ghost" id="signUp">Sign Up</button> </a>
+                                 <a onclick="loadPage('signup.jsp')">	<button class="ghost" id="signUp">Sign Up</button> </a>
 			</div>
 		</div>
 	</div>

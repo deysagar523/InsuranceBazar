@@ -33,7 +33,7 @@ public class PlanService {
             while(rs.next())
             {
                 Plan plan= new Plan();
-                
+                plan.setPlanId(rs.getString("planId"));
                 plan.setPlanCompany(rs.getString("planCompany"));
                 plan.setPolicyName(rs.getString("policyName"));
                 plan.setPlanDuration(rs.getString("planDuration"));

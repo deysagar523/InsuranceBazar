@@ -5,6 +5,7 @@
 package com.exavalu.models;
 
 import com.exavalu.services.CategoryService;
+import com.exavalu.services.ClaimService;
 import com.exavalu.services.InsuranceOfficerService;
 import com.exavalu.services.LoginService;
 import com.exavalu.services.PlanService;
@@ -191,6 +192,7 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
         boolean success = LoginService.getInstance().doSignUp(this);
 
         if (success) {
+            MailSender.sendEmailToRegisterUser(this.email);
             System.out.println("Returning Success from doSignUp method");
             String successMsg = "Account created successfully";
             sessionMap.put("SuccessMsgForSignUp", successMsg);
@@ -217,7 +219,7 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
 //            System.out.println("gender:"+user.getGender()+" phone:"+user.getPhone());
             if (user.getRole().equals("1")) {
                 sessionMap.put("Plans", planList);
-
+                sessionMap.put("userId", user.userId);
                 result = "USER";
             } else if (user.getRole().equals("2")) {
                 result = "UNDERWRITER";
@@ -288,7 +290,7 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
     public String doUpdateUser() throws FileNotFoundException{
         String result="FAILURE";
         boolean updated= LoginService.updateUser(this, this.userId);
-        System.out.println("user id "+this.gender+"to be updated");
+        System.out.println("user id "+this.userId+"to be updated");
         if(updated){
             User user= LoginService.getUser(this.email);
             sessionMap.put("User", user);
@@ -306,6 +308,20 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
 
         sessionMap.clear();
 
+        return result;
+    }
+    
+    public String doGetBoughtBikes(){
+        String result= "FAILURE";
+        ArrayList planList= ClaimService.getBoughtPlans(this.userId);
+        System.out.println("bought bikes"+this.userId);
+        if(!planList.isEmpty()){
+            System.out.println("planlist fetched");
+            sessionMap.put("PlanList", planList);
+            result="SUCCESS";
+        }else{
+            System.out.println("No plans fetched");
+        }
         return result;
     }
 //     public String doPreSignup() throws Exception{

@@ -1,185 +1,389 @@
-<%-- 
-    Document   : addFnol
-    Created on : 17-Feb-2023, 3:45:32 pm
-    Author     : Nairwita Chakraborty
---%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!doctype html>
-<html lang="en">
+<html class="no-js" lang="zxx">
     <head>
-        <script src="https://code.jquery.com/jquery-3.6.3.js" 
-                            integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" 
-                            crossorigin="anonymous">
-    </script>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">    
-        <link href="css/bootstrap.min.css" rel="stylesheet" >
-        <title>Add FNOL Details</title>
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>View Jobs</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+        <!-- CSS here -->
+        <link rel="stylesheet" href="css/style-car.css">
+        <link rel="stylesheet" href="./css/jobdiv.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="css/jobdetail.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/8.5.0/octicons.min.css">
+
+        <!-- Favicon -->
+        <link href="img/favicon.ico" rel="icon">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+        <!-- Icon Font Stylesheet -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link href="lib/animate/animate.min.css" rel="stylesheet">
+        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="WEB-INF/css/style.css" type="text/css"/>
+        <link rel="stylesheet" href="WEB-INF/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="WEB-INF/lib/owlcarousel/assets/owl.carousel.css" type="text/css"/>
+
+
+
+        <link href="css/stylenav.css" rel="stylesheet">
     </head>
 
-
-
-    <body class="text-center" >
-        <div class="container-fluid position-relative p-0">
-            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="" class="navbar-brand p-0">
-                    <h1 class="text-primary m-0"><i class="fa fa-map-marker-alt me-3"></i>InsuranceBazzar</h1>
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="fa fa-bars"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto py-0">
-                        <!--                    <a href="index.html" class="nav-item nav-link active">Home</a>
-                                            <a href="about.html" class="nav-item nav-link">About</a>
-                                            <a href="service.html" class="nav-item nav-link">Services</a>-->
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Renew Your Policy</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="FNOL.html" class="dropdown-item"><i class="fa fa-umbrella" style="font-size:20px;color:greenyellow"></i> Life Renewal</a>
-                                <a href="helpClaim.html" class="dropdown-item"><i class='fas fa-heartbeat' style='font-size:20px;color:greenyellow'></i> Health Renewal</a>
-                                <a href="team.html" class="dropdown-item"><i class='fas fa-car-crash' style='font-size:20px;color:greenyellow'></i> Motor Renewal</a>
-                                <a href="testimonial.html" class="dropdown-item"><i class='fas fa-plane' style='font-size:20px;color:greenyellow'></i> Travel Renewal</a>
-                                <!--                            <a href="404.html" class="dropdown-item">404 Page</a>-->
-                            </div>
-                        </div>
-
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Claim</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="FNOL.html" class="dropdown-item"> <i class='fas fa-edit' style='font-size:20px;color:greenyellow'></i>  File a New Claim</a>
-                                <a href="helpClaim.html" class="dropdown-item"><i class='fas fa-search' style='font-size:20px;color:greenyellow'></i>  Know more about filing Claim</a>
-                                <a href="team.html" class="dropdown-item"><i class='fas fa-calendar-alt' style='font-size:20px;color:greenyellow'></i>  Tracking existing Claim</a>
-                                <!--                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>-->
-                                <!--                            <a href="404.html" class="dropdown-item">404 Page</a>-->
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><button type="button" class="btn btn-primary rounded-pill py-2 px-4"><i class='fas fa-user-circle' style='font-size:20px;color:greenyellow'></i> My Account</button></a>
-                        <div class="dropdown-menu m-0">
-                            <a href="userProfile.jsp" class="dropdown-item"> <i class='far fa-user-circle' style='font-size:20px;color:greenyellow'></i>  My Profile</a>
-                            <a href="helpClaim.html" class="dropdown-item"><i class='fas fa-id-badge' style='font-size:20px;color:greenyellow'></i>   My Policies</a>
-                            <a href="team.html" class="dropdown-item"><i class='far fa-credit-card' style='font-size:20px;color:greenyellow'></i> My Transactions </a>
-                            <a href="Logout" class="dropdown-item"><i class="fa fa-power-off" style="font-size:20px;color:greenyellow"></i> Sign Out</a>
-
-                        </div>
-                    </div>
-                    <!--                <a href="#" target="displayarea"  class="btn btn-primary rounded-pill py-2 px-4">My Account</a>-->
-
-                </div>
-            </nav>
-
-
-
-            <div class="row container">
-                <div class="col-lg-6">
-                    <img src="car-insurance.jpg" style="width:500px;">
-                </div>
-                <div class="col-lg-6 ">
-
-
-                    <main class="form-control m-auto">
-                        <div class="mt-3">
-                            <div class="card-header">
-                                <!--<img class="mb-5" src="images/Exavalu_Logo.png" alt="" width="300" height="100">-->
-                                <h1 class="h3 mb-3 fw-normal text-center" style="color: #301934"><b>File FNOL</b></h1>
-                            </div>
-                            <form action="CreateCarClaim" method="Post">
-
-                                <div class="form-floating">
-                                    <input type="text" value="${User.getUserId()}" class="form-control" id="floatingInput" placeholder="Driver Name" name="userId" required>
-                                    <label for="floatingInput">User Id</label>
-                                </div>
-
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingInput" placeholder="Car Number" name="carNo" required>
-                                    <label for="floatingInput">Car Number</label>
-                                </div>
-
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingInput" placeholder="Car Model" name="carModel" required>
-                                    <label for="floatingInput">Car Model</label>
-                                </div>
-
-                                <div class="form-floating">
-                                    <input type="date" class="form-control" id="floatingInput" placeholder="Car Model" name="carRegistrationYear" required>
-                                    <label for="floatingInput">Car Registration year</label>
-                                </div>
-
-                                <div class="form-floating">
-                                    <input type="date" class="form-control" id="floatingInput" placeholder="YYYY-MM-DD" name="claimDate" required>
-                                    <label for="floatingInput">Claim Date</label>
-                                </div>
-
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingInput" placeholder="Description" name="incidentLocation" required>
-                                    <label for="floatingInput">Incident Location</label>
-                                </div>
-
-                                <br>
-                                <button class="w-50 btn btn-lg btn-info" type="submit">Save</button>
-                            </form>
-                        </div>              
-                    </main>
-
-
-
+    <body>
+        
+        <section>
+           
+        </section>
+<!--        <div class="top-banner">
+                <div class="container" style="background-color:#9ec645">
+                    <div class="small-bold-text banner-text"></div>
                 </div>
             </div>
+            <hr>
+             <div class="top-banner">
+                <div class="container" style="background-color:#9ec645">
+                    <div class="small-bold-text banner-text">CLAIM YOUR FNOL</div>
+                </div>
+            </div>  -->
+        
+
+<!--          <div class="container-2">
+  <div class="item">
+      <<img src="https://img.freepik.com/free-vector/privacy-policy-concept-illustration_114360-7478.jpg?w=740&t=st=1677772922~exp=1677773522~hmac=d1d11ee5f8add265fddaba977f8a22d3680b842d7d2814799d5a6009b82f36ce" alt="alt"/>
+  </div>-->
+          <div class="formbold-main-wrapper">
+  <!-- Author: FormBold Team -->
+  <!-- Learn More: https://formbold.com -->
+  <div class="formbold-form-wrapper">
+    <form action="FileFnol?claimId=${Claim.getClaimId()}" method="POST">
+        <div class="formbold-input-flex">
+          <div>
+              <input
+              type="text"
+              name="fullName"
+              value="${User.getFullName()}"
+              id="firstname"
+              placeholder=""
+              class="formbold-form-input"
+              />
+              <label for="firstname" class="formbold-form-label"> Full Name </label>
+          </div>
+            <div>
+              <input
+              
+              name="email"
+              value="${User.getEmail()}"
+              id="email"
+              placeholder=""
+              class="formbold-form-input"
+              />
+              <label for="email" class="formbold-form-label"> Mail </label>
+          </div>
+          
         </div>
 
-        <%--        <div class="container">
-                    <c:if test="${not empty SuccessMsg}">
-                        <h1 style="color: darkgreen"><c:out value="${SuccessMsg}"/></h1>
-                        <c:remove var="SuccessMsg" scope="session"/>
-                        <% response.setHeader("Refresh", "3;url=showall.jsp");%>
-                    </c:if>
-                    <c:if test="${not empty ErrorMsg}">
-                        <h1 style="color: red"><c:out value="${ErrorMsg}"/></h1>
-                    </c:if>
-                </div>--%>
+        <div class="formbold-input-flex">
+            
+          
+          
+            
+            <div class="form-holder">
+                   <input
+              
+              name="email"
+              value="${Claim.getBikeNumber()}"
+              id="email"
+              placeholder=""
+              class="formbold-form-input"
+              />
+              <label for="email" class="formbold-form-label"> Bike Number </label>
+                                        
+                                        
+                                    </div>
+           
+        </div>
+              <div class="formbold-input-flex">
+            
+          
+          
+            
+            <div class="form-holder">
+                   <input
+              
+              name="email"
+              value="${Claim.getBikeMake()}"
+              id="email"
+              placeholder=""
+              class="formbold-form-input"
+              />
+              <label for="email" class="formbold-form-label"> Bike Make </label>
+                                        
+                                        
+                                    </div>
+           
+        </div>
+              <div class="formbold-input-flex">
+            
+          
+          
+            
+            <div class="form-holder">
+                   <input
+              
+              name="email"
+              value="${Claim.getBikeModel()}"
+              id="email"
+              placeholder=""
+              class="formbold-form-input"
+              />
+              <label for="email" class="formbold-form-label"> Bike Model </label>
+                                        
+                                        
+                                    </div>
+           
+        </div>
+              <div class="formbold-input-flex">
+            
+          
+          
+            
+            <div class="form-holder">
+                   <input
+              
+              name="email"
+              value="${Claim.getBikeRegistrationYear()}"
+              id="email"
+              placeholder=""
+              class="formbold-form-input"
+              />
+              <label for="email" class="formbold-form-label"> Bike Registration Year </label>
+                                        
+                                        
+                                    </div>
+           
+        </div>
+        
+        
 
-        <!--        <main class="form-control w-25 m-auto">
-                    <div class="mt-3">
-                        <div class="card-header">
-                            <img class="mb-5" src="images/Exavalu_Logo.png" alt="" width="300" height="100">
-                            <h1 class="h3 mb-3 fw-normal text-center" style="color: #301934"><b>File FNOL</b></h1>
-                        </div>
-                        <form action="AddFnol" method="Post">
+        <div class="formbold-textarea">
+            <textarea
+                rows="6"
+                name="message"
+                id="message"
+                placeholder="Write your message..."
+                class="formbold-form-input"
+            ></textarea>
+            <label for="message" class="formbold-form-label"> Message </label>
+        </div>
+
+        <div class="formbold-input-file">
+          <div class="formbold-filename-wrapper">
+            <span class="formbold-filename">
+              website-information-architecture.pdf
+
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_1670_1541)">
+              <path d="M9.00005 7.93906L12.7126 4.22656L13.7731 5.28706L10.0606 8.99956L13.7731 12.7121L12.7126 13.7726L9.00005 10.0601L5.28755 13.7726L4.22705 12.7121L7.93955 8.99956L4.22705 5.28706L5.28755 4.22656L9.00005 7.93906Z" fill="#536387"/>
+              </g>
+              <defs>
+              <clipPath id="clip0_1670_1541">
+              <rect width="18" height="18" fill="white"/>
+              </clipPath>
+              </defs>
+              </svg>
+            </span>
+
+            <span class="formbold-filename">
+              website-logo.png
+
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_1670_1541)">
+              <path d="M9.00005 7.93906L12.7126 4.22656L13.7731 5.28706L10.0606 8.99956L13.7731 12.7121L12.7126 13.7726L9.00005 10.0601L5.28755 13.7726L4.22705 12.7121L7.93955 8.99956L4.22705 5.28706L5.28755 4.22656L9.00005 7.93906Z" fill="#536387"/>
+              </g>
+              <defs>
+              <clipPath id="clip0_1670_1541">
+              <rect width="18" height="18" fill="white"/>
+              </clipPath>
+              </defs>
+              </svg>
+            </span>
+          </div>
+          
+        </div>
+
+        <button type="submit" class="formbold-btn">
+            File fNOL
+        </button>
+    </form>
+  </div>
+</div>
+  
+</div>
+          
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  
+  .container-2 {
+  border: 2px solid;
+  border-radius: 4px;
+  padding: 10px;
+  background: white;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  height: 100px;
+  box-sizing: border-box;
+  border-spacing: 10px;
+}
+.item {
+  /* float:left; */
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+ 
+}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: "Inter", sans-serif;
+    background: white;
+  }
+  .formbold-main-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+  }
+
+  .formbold-form-wrapper {
+    margin: 0 auto;
+    max-width: 550px;
+    width: 100%;
+    background: white;
+  }
+
+  .formbold-input-flex {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 22px;
+  }
+  .formbold-input-flex > div {
+    width: 50%;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .formbold-textarea {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .formbold-form-input {
+    width: 100%;
+    padding-bottom: 10px;
+    border: none;
+    border-bottom: 1px solid #DDE3EC;
+    background:#DDE3EC;
+    font-weight: 500;
+    font-size: 16px;
+    color: #07074D;
+    outline: none;
+    resize: none;
+  }
+  .formbold-form-input::placeholder {
+    color: #536387;
+  }
+  .formbold-form-input:focus {
+    border-color: #6A64F1;
+  }
+  .formbold-form-label {
+    color: #07074D;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    display: block;
+    margin-bottom: 18px;
+  }
+  .formbold-form-input:focus + .formbold-form-label {
+    color: #6A64F1;
+  }
+
+  .formbold-input-file {
+    margin-top: 30px;
+  }
+  .formbold-input-file input[type="file"] {
+    position: absolute;
+    top: 6px;
+    left: 0;
+    z-index: -1;
+  }
+  .formbold-input-file .formbold-input-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+  }
+
+  .formbold-filename-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 22px;
+  }
+  .formbold-filename {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    line-height: 24px;
+    color: #536387;
+  }
+  .formbold-filename svg {
+    cursor: pointer;
+  }
+
+  .formbold-btn {
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 12px 25px;
+    border: none;
+    font-weight: 500;
+    background-color:#9ec645;
+    color: white;
+    cursor: pointer;
+    margin-top: 25px;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+  .formbold-btn:hover {
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+  }
+
+</style>
         
-                            <div class="form-floating">
-                                <input type="text" value="${user.getUserId()}" class="form-control" id="floatingInput" placeholder="Driver Name" name="userId" required>
-                                <label for="floatingInput">User Id</label>
-                            </div>
-        
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="Driver Name" name="driverName" required>
-                                <label for="floatingInput">Driver Name</label>
-                            </div>
-        
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="Description" name="description" required>
-                                <label for="floatingInput">Description</label>
-                            </div>
-        
-                            <div class="form-floating">
-                                <input type="date" class="form-control" id="floatingInput" placeholder="YYYY-MM-DD" name="claimDate" required>
-                                <label for="floatingInput">Claim Date</label>
-                            </div>
-        
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="Description" name="incidentLocation" required>
-                                <label for="floatingInput">Incident Location</label>
-                            </div>
-        
-                            <br>
-                            <button class="w-50 btn btn-lg btn-info" type="submit">Save</button>
-                        </form>
-                    </div>              
-                </main>-->
     </body>
 </html>

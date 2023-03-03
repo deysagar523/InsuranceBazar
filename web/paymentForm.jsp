@@ -24,22 +24,18 @@
 
 
     <style>
-
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
-
         * {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
         }
-
         body {
             width: 100vw;
             height: 100vh;
             background: linear-gradient(109.7deg, #32afd5 0%, #59ea68 50%, #c1dd52 100%);
             font-family: 'Inter', sans-serif;
         }
-
         .container {
             width: 100%;
             height: 100%;
@@ -49,7 +45,6 @@
             align-items: center;
             position: relative;
         }
-
         .main {
             background: rgba(255, 255, 255, 0.54);
             border-radius: 20px;
@@ -76,20 +71,17 @@
             font-weight: 900;
             font-size: 1.2rem;
         }
-
         .addresses {
             display: flex;
             justify-content: center;
             align-items: center;
         }
-
         .addresses form {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 20px;
         }
-
         .address_primary {
             width: 25rem;
             height: 8rem;
@@ -104,7 +96,6 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-
         .address_secondary {
             width: 25rem;
             height: 8rem;
@@ -119,14 +110,12 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-
         .active1 {
             background-color: #ffffff;
         }
         .active {
             background-color: #bcf7da;
         }
-
         .info {
             display: grid;
             grid-template-columns: 20% 80%;
@@ -135,11 +124,9 @@
             padding: 5px 0 0 30px;
             font-size: 15px;
         }
-
         .info .bold {
             font-weight: 700;
         }
-
         .new_address {
             font-weight: bold;
             font-size: 15px;
@@ -151,12 +138,10 @@
             font-weight: bold;
             transition: all 0.3s;
         }
-
         .new_address:hover {
             color: #07cb1a;
             cursor: pointer;
         }
-
         /* Payment Method Section */
         .payment_method {
             width: 55rem;
@@ -167,7 +152,6 @@
             left: 30px;
             border-radius: 10px;
         }
-
         .card_info {
             width: 40rem;
             height: 25rem;
@@ -178,43 +162,36 @@
             margin: 0 0 0 40px;
             position: relative;
         }
-
         .card_head {
             display: flex;
             align-items: center;
             gap: 10px;
             padding: 20px 0 0 20px;
         }
-
         .card_head .card_title {
             font-size: 20px;
             font-weight: bold;
         }
-
         .card_head .btn1 {
             width: 20px;
             height: 20px;
         }
-
         .card_types {
             display: flex;
             align-items: center;
             gap: 20px;
             padding: 10px 0 0 60px;
         }
-
         .card_types .card_img {
             width: 50px;
             height: 50px;
         }
-
         .card_info form {
             display: flex;
             flex-direction: column;
             width: fit-content;
             padding: 10px 0 0 60px;
         }
-
         .card_info form input {
             padding: 15px 30px 15px 16px;
             margin-top: 20px;
@@ -225,12 +202,10 @@
             border-radius: 50px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
         }
-
         .card_info form div {
             display: flex;
             gap: 70px;
         }
-
         .save_card {
             font-weight: bold;
             font-size: 15px;
@@ -242,18 +217,15 @@
             font-weight: bold;
             transition: all 0.3s;
         }
-
         .save_card:hover {
             color: #07cb1a;
             cursor: pointer;
         }
-
         .e_payment {
             position: absolute;
             top: 70px;
             right: 50px;
         }
-
         .e_payment img {
             width: 100px;
             height: 100px;
@@ -264,12 +236,10 @@
             border-radius: 50%;
             transition: all 0.2s;
         }
-
         .e_payment img:hover {
             cursor: pointer;
             transform: rotateZ(360deg);
         }
-
         .confirm_btn {
             background: #9ec645;
             padding: 10px 50px;
@@ -284,13 +254,11 @@
             filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.25));
             transition: all 0.3s;
         }
-
         .confirm_btn:hover {
             background: #00474d;
             cursor: pointer;
             scale: 1.1;
         }
-
         /* Order Summary Section */
         .order_summary {
             width: 20rem;
@@ -299,18 +267,15 @@
             top: 30px;
             right: 25px;
         }
-
         .order_head {
             padding: 20px 0 20px 80px;
             font-weight: 900;
             font-size: 1.2rem;
         }
-
         hr {
             border: none;
             border-top: 0.5px solid black;
         }
-
         .order_price {
             display: grid;
             grid-template-columns: repeat(1, 4fr);
@@ -322,11 +287,9 @@
             justify-content: space-between;
             margin-top: 20px;
         }
-
         .dark {
             font-weight: bold;
         }
-
         .qr_code {
             width: 10rem;
             height: 10rem;
@@ -336,13 +299,11 @@
             margin: auto;
             margin-top: 70px;
         }
-
         .condition {
             margin-top: 40px;
             width: 100%;
             font-size: 15px;
         }
-
         .review_btn {
             background:#9ec645;
             padding: 10px 60px;
@@ -355,13 +316,11 @@
             filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.25));
             transition: all 0.3s;
         }
-
         .review_btn:hover {
             background: #00474d;
             cursor: pointer;
             scale: 1.1;
         }
-
         .project_by {
             position: absolute;
             bottom: 50px;
@@ -373,7 +332,6 @@
             font-size: 20px;
             text-transform: uppercase;
         }
-
     </style>
     <body>
         <main class="container">
@@ -428,10 +386,12 @@
                             <img class="card_img" src="https://cdn-icons-png.flaticon.com/512/349/349228.png" alt="" />
                             <img class="card_img" src="https://img.icons8.com/fluency/512/mastercard.png" alt="" />
                         </div>
-                        <form action="Payment?bikeNumber=${BikeNumber}" method="post">
+                        <form action="Payment?claimId=${ClaimId}" method="post">
+                            <input type="hidden" id="cardHolder"  value="${Plan.planId}" name="planId" maxlength="60" />
+                            <input type="hidden" id="cardHolder"  value="${Plan.planDuration}" name="planDuration" maxlength="60" />
                             <input  type="hidden"  name="email" value="${User.email}" />
-                            <input type="hidden" name="claimId" value="${ClaimId}"/>
                             
+                             <input type="hidden" name="bikeNumber" value="${BikeNumber}"/>
                             <input type="hidden" name="bikeMake" value="${BikeMake}"/>
                             <input type="hidden" name="bikeModel" value="${BikeModel}"/>
                             <input type="text" id="cardHolder"  value="" placeholder="Card Holder" maxlength="60" />
@@ -465,21 +425,21 @@
                         <hr />
                         <div class="price">
                             <p>Claim:</p>
-                            <p>health Insurance</p>
+                            <p>${Plan.getPolicyName()}</p>
                         </div>
                         <div class="price">
                             <p>Period</p>
-                            <p>5 years</p>
+                            <p>${Plan.getPlanDuration()} year</p>
                         </div>
-                        <div class="price">
-                            <p>Members</p>
-                            <p>1</p>
-                        </div>
+                        <!--          <div class="price">
+                                    <p>Members</p>
+                                    <p>1</p>
+                                  </div>-->
                         <br />
                         <hr />
                         <div class="total_price">
                             <p class="dark">Total:</p>
-                            <p class="dark">2 Lakhs</p>
+                            <p class="dark">${Plan.getPlanAmount()}</p>
                         </div>
                     </div>
                     <img class="qr_code" src="https://cdn-icons-png.flaticon.com/512/714/714390.png" alt="" />
@@ -495,21 +455,18 @@
 
     </body>
     <script>
-                      const addPri = document.querySelector('.address_primary');
-                      const addSec = document.querySelector('.address_secondary');
-
-                      const addBg = () => {
-                          addPri.addEventListener('click', () => {
-                              addPri.classList.remove('active1');
-                              addSec.classList.remove('active');
-                          });
-
-                          addSec.addEventListener('click', () => {
-                              addSec.classList.add('active');
-                              addPri.classList.add('active1');
-                          });
-                      };
-                      addBg();
-
+                                    const addPri = document.querySelector('.address_primary');
+                                    const addSec = document.querySelector('.address_secondary');
+                                    const addBg = () => {
+                                        addPri.addEventListener('click', () => {
+                                            addPri.classList.remove('active1');
+                                            addSec.classList.remove('active');
+                                        });
+                                        addSec.addEventListener('click', () => {
+                                            addSec.classList.add('active');
+                                            addPri.classList.add('active1');
+                                        });
+                                    };
+                                    addBg();
     </script>
 </html>

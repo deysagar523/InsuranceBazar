@@ -44,9 +44,27 @@
          <action name="FetchPolicies" class="com.exavalu.models.Category" method="doGetPolicies">
             <result name="SUCCESS">policyList.jsp</result>         
         </action>
+        <action name="BuyPlan" class="com.exavalu.models.Claim" method="doGetPlanDetails">
+            <result name="SUCCESS">paymentForm.jsp</result>
+            <result name="FAILURE">bikePlan.jsp</result>          
+        </action>
+        
+        <action name="FetchPlans" class="com.exavalu.models.User" method="doGetBoughtBikes">
+            <result name="SUCCESS">boughtPlans.jsp</result>
+            <result name="FAILURE">userHomePage.jsp</result>         
+        </action>
+        
+        <action name="LoadFNOLPage" class="com.exavalu.models.Claim" method="doGetClaim">
+            <result name="SUCCESS">vehicleClaim.jsp</result>
+            <result name="FAILURE">userHomePage.jsp</result>         
+        </action>
+        <action name="FileFnol" class="com.exavalu.models.Claim" method="doFileFnol">
+            <result name="SUCCESS">userProfile.jsp</result>
+            <result name="FAILURE">vehicleClaim.jsp</result>         
+        </action>
         
         <action name="Payment" class="com.exavalu.models.Claim" method="doPayment">
-            <result name="SUCCESS">thankYouPayPage.jsp</result>         
+            <result name="SUCCESS">userHomePage.jsp</result>         
         </action>
         <action name="ConsumePaymentCardAPI" class="com.exavalu.models.PaymentCard" method="getDataFromAPI">
             <result name="SUCCESS">confirmationPage.jsp</result>         
@@ -57,7 +75,7 @@
             <result name="TRAVEL">travelPolicy.jsp</result> 
             <result name="HEALTH">healthClaimForm.jsp</result> 
             <result name="TRAVEL">travelPolicy.jsp</result> 
-            <result name="EDUCATION">educationPolicy.jsp</result> 
+            <result name="EDUCATION">userProfile.jsp</result> 
             <result name="PENSION">vehicleClaim.jsp</result> 
             <result name="CHILD">vehicleClaim.jsp</result> 
             <result name="LIFE">lifeInsurancePolicy.jsp</result>

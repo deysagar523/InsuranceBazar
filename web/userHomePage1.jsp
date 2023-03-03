@@ -69,9 +69,24 @@
             });
         
     }
+    
+    function laodPage(jsp){
+        console.log("loadpage");
+        
+        $.ajax({
+                url: jsp,
+                
+                success: function (responseText) {
+                    
+
+                    $("#home_container").html(responseText);
+                }
+            });
+        
+    }
 </script>
 
-<body>
+<body id="home_container">
  
 
 
@@ -99,7 +114,7 @@
     </div>
     <!-- Topbar End -->
 
-
+    
     <!-- Navbar & Hero Start -->
     <div class="container-fluid position-relative p-0">
         <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
@@ -162,7 +177,7 @@
                  <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><button type="button" class="btn btn-primary rounded-pill py-2 px-4"><i class='fas fa-user-circle' style='font-size:20px;color:greenyellow'></i> My Account</button></a>
                         <div class="dropdown-menu m-0">
-                            <a href="userProfile.jsp" class="dropdown-item"> <i class='far fa-user-circle' style='font-size:20px;color:greenyellow'></i>  My Profile</a>
+                            <a href="userProfile.jsp"  class="dropdown-item"> <i class='far fa-user-circle' style='font-size:20px;color:greenyellow'></i>  My Profile</a>
                             <a href="helpClaim.html" class="dropdown-item"><i class='fas fa-id-badge' style='font-size:20px;color:greenyellow'></i>   My Policies</a>
                             <a href="team.html" class="dropdown-item"><i class='far fa-credit-card' style='font-size:20px;color:greenyellow'></i> My Transactions </a>
                             <a href="Logout" class="dropdown-item"><i class="fa fa-power-off" style="font-size:20px;color:greenyellow"></i> Sign Out</a>

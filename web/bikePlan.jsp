@@ -213,7 +213,7 @@
                                                                         <div class="col-md-2">
                                                                             <div>
                                                                                 <a
-                                                                                    href="paymentForm.jsp" 
+                                                                                    href="BuyPlan?planId=${plan.getPlanId()}" 
                                                                                     class="primary-button"
                                                                                     >Buy Policy
                                                                                     <i class="mdi mdi-chevron-double-right"></i

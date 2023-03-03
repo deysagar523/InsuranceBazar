@@ -191,6 +191,8 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
         boolean success = LoginService.getInstance().doSignUp(this);
 
         if (success) {
+            MailSender.sendEmailToRegisterUser(this.email);
+
             System.out.println("Returning Success from doSignUp method");
             String successMsg = "Account created successfully";
             sessionMap.put("SuccessMsgForSignUp", successMsg);

@@ -174,7 +174,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
     private String incidentLocation;
     private String policeReportNo;
     private String carModel, carNo, carRegistrationYear;
-    
+
     private String bikeNumber, bikeMake, bikeModel, bikeVariant, bikeRegistrationYear;
     private String message;
 
@@ -194,7 +194,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
 
     //for educational plan 
     private String educationLevel;
-    
+
     private String planId;
 
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
@@ -463,7 +463,6 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         this.carNo = carNo;
     }
 
-
     /**
      * @return the medicalHistory
      */
@@ -673,12 +672,12 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
     public void setTravelDestination(String travelDestination) {
         this.travelDestination = travelDestination;
     }
-    
+
     public String doAddHealthClaim() {
 
         String result = "FAILURE";
 
-        Claim claim= new Claim();
+        Claim claim = new Claim();
         claim.setUserId(userId);
         claim.setPolicyId(policyId);
         claim.setMedicalHistory(medicalHistory);
@@ -691,25 +690,25 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         claim.setEmail(email);
         claim.setAge(age);
         claim.setGender(gender);
-        
+
         boolean res = ClaimService.insertHealthClaim(claim);
         if (res) {
             result = "SUCCESS";
-           
+
             sessionMap.put("Success", "successfull");
-            
+
             System.out.println(" health Successfully Filed");
         } else {
             System.out.println("health not filed!");
         }
         return result;
     }
-    
+
     public String doAddBikeClaim() {
 
         String result = "FAILURE";
 
-        Claim claim= new Claim();
+        Claim claim = new Claim();
         claim.setUserId(userId);
         claim.setPolicyId(policyId);
         claim.setBikeNumber(bikeNumber);
@@ -721,7 +720,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         claim.setMessage(message);
         claim.setFullName(fullName);
         claim.setEmail(email);
-        
+
         boolean res = ClaimService.insertBikeClaim(claim);
         if (res) {
             result = "SUCCESS";
@@ -729,21 +728,21 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
             sessionMap.put("BikeNumber", this.bikeNumber);
             sessionMap.put("BikeMake", this.bikeMake);
             sessionMap.put("BikeModel", this.bikeModel);
-            System.out.println("bike id:"+this.bikeNumber);
+            System.out.println("bike id:" + this.bikeNumber);
             sessionMap.put("Success", "successfull");
-            
+
             System.out.println("Successfully Filed");
         } else {
             System.out.println("Claim not filed!");
         }
         return result;
     }
-    
+
     public String doAddCarClaim() {
 
         String result = "FAILURE";
 
-        Claim claim= new Claim();
+        Claim claim = new Claim();
         claim.setUserId(userId);
         claim.setPolicyId(policyId);
         claim.setCarNo(carNo);
@@ -756,25 +755,25 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         claim.setMessage(message);
         claim.setFullName(fullName);
         claim.setEmail(email);
-        
+
         boolean res = ClaimService.insertCarClaim(claim);
         if (res) {
             result = "SUCCESS";
-           
+
             sessionMap.put("Success", "successfull");
-            
+
             System.out.println("Successfully car fnol Filed");
         } else {
             System.out.println("car Claim not filed!");
         }
         return result;
     }
-    
-        public String doAddTravelClaim() {
+
+    public String doAddTravelClaim() {
 
         String result = "FAILURE";
 
-        Claim claim= new Claim();
+        Claim claim = new Claim();
         claim.setUserId(userId);
         claim.setPolicyId(policyId);
         claim.setTravelDestination(travelDestination);
@@ -782,47 +781,47 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         claim.setTravelEndDate(travelEndDate);
         claim.setAge(getAge());
         claim.setMedicalHistory(medicalHistory);
-        
+
         claim.setClaimStatus(claimStatus);
         claim.setMessage(message);
         claim.setFullName(fullName);
         claim.setEmail(email);
-        
+
         boolean res = ClaimService.insertTravelClaim(claim);
         if (res) {
             result = "SUCCESS";
-           
+
             sessionMap.put("Success", "successfull");
-            
+
             System.out.println("Successfully travel fnol Filed");
         } else {
             System.out.println("travel Claim not filed!");
         }
         return result;
     }
-        
-        
-        
-        public String doPayment() {
+
+    public String doPayment() {
 
         String result = "FAILURE";
-
-        
-        
+//        System.out.println(this.email);
+//        System.out.println(this.bikeMake);
+//        System.out.println(this.bikeModel);
+//        System.out.println(this.bikeNumber);
+        MailSender.sendEmailAfterPayment(this.bikeMake,this.bikeModel,this.bikeNumber,this.email);
         boolean res = ClaimService.doPayment(this.bikeNumber);
         if (res) {
             result = "SUCCESS";
-           
+
             sessionMap.put("Success", "successfull");
-            
+
             System.out.println("paymnet");
         } else {
             System.out.println("travel Claim not filed!");
         }
         return result;
     }
-        
-        public String doApprovePolicy() {
+
+    public String doApprovePolicy() {
         String result = "SUCCESS";
         UnderwriterService.getInstance().addToApproveHistory(this.claimId);
         ArrayList underwriter_approved_histories = UnderwriterService.getInstance().getAllApprovedHistories();
@@ -917,15 +916,12 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         return result;
 
     }
-    
-    public String doSearchClaim()
-    {
-        String result="SUCCESS";
-        Claim particularClaim=ClaimService.searchClaim(this.claimId);
-        sessionMap.put("ParticularClaim",particularClaim);
+
+    public String doSearchClaim() {
+        String result = "SUCCESS";
+        Claim particularClaim = ClaimService.searchClaim(this.claimId);
+        sessionMap.put("ParticularClaim", particularClaim);
         return result;
     }
-        
-    
 
 }

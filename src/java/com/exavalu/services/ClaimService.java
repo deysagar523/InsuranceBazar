@@ -222,7 +222,7 @@ public class ClaimService {
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             
-            System.out.println("bikenumber="+bikeNumber);
+            //System.out.println("bikenumber="+bikeNumber);
           
             preparedStatement.setString(1, bikeNumber);
             

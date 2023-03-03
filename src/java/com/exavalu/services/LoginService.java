@@ -124,7 +124,7 @@ public class LoginService {
                 user.setFullName(rs.getString("fullName"));
                 System.out.println("from getUser fullName:"+rs.getString("fullName"));
                 user.setCountryCode(rs.getString("countryCode"));
-                user.setStateCode(rs.getString("stateCodel"));
+                user.setStateCode(rs.getString("stateCode"));
                 user.setDistrictCode(rs.getString("districtCode"));
                 user.setPhone(rs.getString("phone"));
                 System.out.println("from getUser phone:"+rs.getString("phone"));
@@ -162,7 +162,7 @@ public class LoginService {
             }
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            System.out.println(ex.getMessage());
         }
         System.err.println("Number of countries = " + countryList.size());
         return countryList;
@@ -190,7 +190,7 @@ public class LoginService {
             }
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+           System.out.println(ex.getMessage());;
         }
         System.err.println("Number of states = " + stateList.size());
         return stateList;
@@ -219,7 +219,7 @@ public class LoginService {
             }
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+           System.out.println(ex.getMessage());
         }
         System.err.println("Number of districts = " + districtList.size());
         return districtList;
@@ -255,7 +255,7 @@ public class LoginService {
             }
 
         } catch (SQLException ex) {
-            ex.getMessage();
+            System.out.println(ex.getMessage());
         }
         return result;
     }

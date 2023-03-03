@@ -44,7 +44,7 @@ public class LoginService {
 
     public boolean doLogin(User user) {
         boolean success=false;
-
+    
         String sql = "Select * from users where email=? and password=?";
 
         try {
@@ -69,7 +69,7 @@ public class LoginService {
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
 
         }
-
+        
         return success;
     }
 

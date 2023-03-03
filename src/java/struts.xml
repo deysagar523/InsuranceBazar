@@ -64,7 +64,7 @@
         </action>
         
         <action name="Payment" class="com.exavalu.models.Claim" method="doPayment">
-            <result name="SUCCESS">userHomePage.jsp</result>         
+            <result name="SUCCESS">downloadPdf.jsp</result>         
         </action>
         <action name="ConsumePaymentCardAPI" class="com.exavalu.models.PaymentCard" method="getDataFromAPI">
             <result name="SUCCESS">confirmationPage.jsp</result>         

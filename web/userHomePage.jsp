@@ -214,7 +214,7 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Claim</a>
                         <div class="dropdown-menu m-0">
-                            <a href="FNOL.html" class="dropdown-item"> <i class='fas fa-edit' style='font-size:20px;color:greenyellow'></i>  File a New Claim</a>
+                            <a href="boughtPolicies.jsp" class="dropdown-item"> <i class='fas fa-edit' style='font-size:20px;color:greenyellow'></i>  File a New Claim</a>
                             <a href="helpClaim.html" class="dropdown-item"><i class='fas fa-search' style='font-size:20px;color:greenyellow'></i>  Know more about filing Claim</a>
                             <a href="team.html" class="dropdown-item"><i class='fas fa-calendar-alt' style='font-size:20px;color:greenyellow'></i>  Tracking existing Claim</a>
 <!--                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>-->

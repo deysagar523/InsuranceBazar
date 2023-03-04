@@ -142,6 +142,42 @@ public class ClaimService {
         System.out.println("Number of claims bought = " + claimList.size());
         return claimList;
     }
+    
+    public static ArrayList getBikes(String userId) {
+        ArrayList claimList = new ArrayList();
+        try {
+
+            Connection con = JDBCConnectionManager.getConnection();
+            //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
+            String sql = "select * from claims c, policies p, plans plan, users u where c.policyId= p.policyId and c.userId= u.userId and c.planId= plan.planId and c.claimStatus=\"bought\" and u.userId=? order by c.claimId desc; ";
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, userId);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                Claim claim = new Claim();
+
+                claim.setClaimId(rs.getString("claimId"));
+                claim.setBikeNumber(rs.getString("bikeNumber"));
+                claim.setBikeMake(rs.getString("bikeMake"));
+                claim.setBikeModel(rs.getString("bikeModel"));
+                claim.setBikeRegistrationYear(rs.getString("bikeRegistrationYear"));
+                claim.setPolicyName(rs.getString("policyName"));
+                claim.setPlanId(rs.getString("planId"));
+                claim.setPlanCompany(rs.getString("planCompany"));
+                claim.setPlanAmount(rs.getString("planAmount"));
+                claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
+                
+
+                claimList.add(claim);
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        System.out.println("Number of claims bought = " + claimList.size());
+        return claimList;
+    }
 
     public static ArrayList getAllClaims() {
         return null;

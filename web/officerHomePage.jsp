@@ -18,6 +18,18 @@
         <!-- Boxicons CSS-->
         <link rel="stylesheet" href="css/boxicons.min.css">
         <!-- Apexcharts  CSS -->
+
+        <!-- Vendor CSS Files -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-icons.css" rel="stylesheet"> 
+        <link href="css/boxicons.min.css" rel="stylesheet">
+        <link href="css/quill.snow.css" rel="stylesheet">
+        <link href="css/quill.bubble.css" rel="stylesheet">
+        <link href="css/remixicon.css" rel="stylesheet">
+        <link href="css/styleGraph.css" rel="stylesheet">
+
+        <!-- Template Main CSS File -->
+        <link href="css/styleGraphMain.css" rel="stylesheet">
     </head>
     <script>
         function loadPage(jsp) {
@@ -38,39 +50,39 @@
     <body>
 
         <!--Topbar -->
-<!--        <div class="topbar transition">
-            <div class="bars">
-                <button type="button" class="btn transition" id="sidebar-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16" color="black">
-                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                    </svg>                </button>
-            </div>
-            <div class="menu">
-                <ul>
-
-
-
-
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLKYamkRB_qMHdd_HvhrxBlHhExgcAW6Mquw&usqp=CAU" alt="">
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #86B817;">
-                            	<a class="dropdown-item" href="my-profile.html"><i class="fa fa-user size-icon-1"></i> <span>My Profile</span></a>
-                                    <a class="dropdown-item" href="settings.html"><i class="fa fa-cog size-icon-1"></i> <span>Settings</span></a>
-                                    <hr class="dropdown-divider">
-                            
-                            <a class="dropdown-item" href="Logout" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16" color="white">
-                                <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
-                                <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-                                </svg> <span style="color: white">Logout</span></a>
+        <!--        <div class="topbar transition">
+                    <div class="bars">
+                        <button type="button" class="btn transition" id="sidebar-toggle">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16" color="black">
+                            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                            </svg>                </button>
+                    </div>
+                    <div class="menu">
+                        <ul>
+        
+        
+        
+        
+                            </li>
+        
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLKYamkRB_qMHdd_HvhrxBlHhExgcAW6Mquw&usqp=CAU" alt="">
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #86B817;">
+                                        <a class="dropdown-item" href="my-profile.html"><i class="fa fa-user size-icon-1"></i> <span>My Profile</span></a>
+                                            <a class="dropdown-item" href="settings.html"><i class="fa fa-cog size-icon-1"></i> <span>Settings</span></a>
+                                            <hr class="dropdown-divider">
+                                    
+                                    <a class="dropdown-item" href="Logout" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16" color="white">
+                                        <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                                        <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                        </svg> <span style="color: white">Logout</span></a>
+                                </ul>
+                            </li>
                         </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>-->
+                    </div>
+                </div>-->
 
         <!--Sidebar-->
         <div class="sidebar transition overlay-scrollbars animate__animated  animate__slideInLeft">
@@ -144,7 +156,7 @@
 
 
 
-                                 <li><a onclick="loadPage('policyListTwoWheeler.jsp')">two wheeler</a></li>
+                                <li><a onclick="loadPage('policyListTwoWheeler.jsp')">two wheeler</a></li>
                                 <li><a onclick="loadPage('policyListFourWheeler.jsp')">Four wheeler</a></li>
                                 <!--				<li><a href="bootstrap-carousel.html"></a></li>
                                                                 <li><a href="bootstrap-dropdown.html"></a></li>
@@ -199,7 +211,7 @@
 
 
 
-                               <li><a onclick="loadPage('policyListChildInvestment.jsp')">Child Investment</a></li>
+                                <li><a onclick="loadPage('policyListChildInvestment.jsp')">Child Investment</a></li>
                                 <li><a onclick="loadPage('policyListPensionPlan.jsp')">Pension Plan</a></li>
                                 <!--				<li><a href="bootstrap-carousel.html"></a></li>
                                                                 <li><a href="bootstrap-dropdown.html"></a></li>
@@ -226,7 +238,7 @@
 
 
 
-                                 <li><a onclick="loadPage('policyListTravel.jsp')">Travel Insurance </a></li>
+                                <li><a onclick="loadPage('policyListTravel.jsp')">Travel Insurance </a></li>
                                 <li><a onclick="loadPage('policyListEducationPlan.jsp')">Education Plan</a></li>
                                 <!--				<li><a href="bootstrap-carousel.html"></a></li>
                                                                 <li><a href="bootstrap-dropdown.html"></a></li>
@@ -239,13 +251,13 @@
                             </ul>
                         </li>
                         <li>
-                            
 
-                                <a class="dropdown-item" href="Logout" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16" color="white">
-                                    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
-                                    <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-                                    </svg> <span style="color: white">Logout</span></a>
-                           
+
+                            <a class="dropdown-item" href="Logout" >
+                                <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                                <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                </svg> <span style="color: white">Logout</span></a>
+
                         </li>
 
                         <!-- Divider-->
@@ -450,156 +462,174 @@
                 </div>
 
                 <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header">
-                        </div>
-                        <div class="card-body">
-                            <div id="columnchart"></div>
+                    <div class="card-body" style="background-color: white; width: 75vw; margin-bottom: 20px">
+                        <h5>Reports/Today</h5>
+
+                        <!-- Line Chart -->
+                        <div id="reportsChart"></div>
+
+                        <script>
+                            document.addEventListener("DOMContentLoaded", () => {
+                                new ApexCharts(document.querySelector("#reportsChart"), {
+                                    series: [ {
+                                            name: 'Users Registered',
+                                            data: [ ${Day5Users},${Day4Users},${Day3Users},${Day2Users},${Day1Users},${TodayUsers}]
+                                        }],
+                                    chart: {
+                                        height: 350,
+                                        type: 'area',
+                                        toolbar: {
+                                            show: false
+                                        },
+                                    },
+                                    markers: {
+                                        size: 4
+                                    },
+                                    colors: ['#4154f1', '#2eca6a', '#ff771d'],
+                                    fill: {
+                                        type: "gradient",
+                                        gradient: {
+                                            shadeIntensity: 1,
+                                            opacityFrom: 0.3,
+                                            opacityTo: 0.4,
+                                            stops: [0, 90, 100]
+                                        }
+                                    },
+                                    dataLabels: {
+                                        enabled: false
+                                    },
+                                    stroke: {
+                                        curve: 'smooth',
+                                        width: 2
+                                    },
+                                    xaxis: {
+                                        type: 'date',
+                                        categories: ["${Day5}", "${Day4}", "${Day3}", "${Day2}", "${Day1}", "${CurrentDay}"]
+                                    },
+                                    tooltip: {
+                                        x: {
+                                            format: 'dd/MM/yy'
+                                        },
+                                    }
+                                }).render();
+                            });
+                        </script>
+                        <!-- End Line Chart -->
+
+                    </div>
+
+
+                    <div class="col-md-12">
+                        <div class="card" style="width: 75vw">
+                            <div class="card-header">
+                                <h4>Latest Claims</h4>
+                            </div>
+                            <div class="card-body"> 
+                                <div class="table-responsive"> 
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">FNOL Id</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Date</th>
+                                                <th scope="col">Amount</th>
+                                                <th scope="col">Policy Name</th>
+                                                <th scope="col">Status</th>
+
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">#SK2548	</th>
+                                                <td>Neal Matthews</td>
+                                                <td>07 Oct, 2022</td>
+                                                <td>$400</td>
+                                                <td>Health</td>
+                                                <td><span class="text-success">Santioned</span></td>
+                                                <td><button class="btn btn-primary btn-success" style="background-color: #86B817;">--</button></td>
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row">#SK2548	</th>
+                                                <td>Neal Matthews</td>
+                                                <td>07 Oct, 2022</td>
+                                                <td>$400</td>
+                                                <td>Life</td>
+                                                <td><span class="text-success">Santioned</span></td>
+                                                <td><button class="btn btn-primary btn-success" style="background-color: #86B817;">--</button></td>
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row">#SK2548	</th>
+                                                <td>Neal Matthews</td>
+                                                <td>07 Oct, 2022</td>
+                                                <td>$400</td>
+                                                <td>Car</td>
+                                                <td><span class="text-danger">Rejected</span></td>
+                                                <td><button class="btn btn-primary btn-success" style="background-color: #86B817;">--</button></td>
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row">#SK2548	</th>
+                                                <td>Neal Matthews</td>
+                                                <td>07 Oct, 2022</td>
+                                                <td>$400</td>
+                                                <td>Education</td>
+                                                <td><span class="text-warning">Pending</span></td>
+                                                <td><button class="btn btn-primary btn-success" style="background-color: #86B817;">Edit</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
+            </div>
+        </div>
 
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Recent Users</h4>
-                        </div>
-                        <div class="card-body pb-4">
-                            <div class="recent-message d-flex px-4 py-3">
-                                <div class="avatar avatar-lg">
-                                    <img src="assets/images/message/4.jpg">
-                                </div>
-                                <div class="name ms-4">
-                                    <h5 class="mb-1">Hank Schrader</h5>
-                                    <h6 class="text-muted mb-0">@johnducky</h6>
-                                </div>
-                            </div>
-                            <div class="recent-message d-flex px-4 py-3">
-                                <div class="avatar avatar-lg">
-                                    <img src="assets/images/message/5.jpg">
-                                </div>
-                                <div class="name ms-4">
-                                    <h5 class="mb-1">Dean Winchester</h5>
-                                    <h6 class="text-muted mb-0">@imdean</h6>
-                                </div>
-                            </div>
-                            <div class="recent-message d-flex px-4 py-3">
-                                <div class="avatar avatar-lg">
-                                    <img src="assets/images/message/1.jpg">
-                                </div>
-                                <div class="name ms-4">
-                                    <h5 class="mb-1">John Doe</h5>
-                                    <h6 class="text-muted mb-0">@Doejohn</h6>
-                                </div>
-                            </div>
-                            <div class="px-4">
-                                <button class='btn btn-block btn-xl btn-success' style="background-color: #86B817;">View All
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Latest Claims</h4>
-                        </div>
-                        <div class="card-body"> 
-                            <div class="table-responsive"> 
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">FNOL Id</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Date</th>
-                                            <th scope="col">Amount</th>
-                                            <th scope="col">Policy Name</th>
-                                            <th scope="col">Status</th>
-
-                                            <th scope="col">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">#SK2548	</th>
-                                            <td>Neal Matthews</td>
-                                            <td>07 Oct, 2022</td>
-                                            <td>$400</td>
-                                            <td>Health</td>
-                                            <td><span class="text-success">Santioned</span></td>
-                                            <td><button class="btn btn-primary btn-success" style="background-color: #86B817;">--</button></td>
-                                        </tr>
-
-                                        <tr>
-                                            <th scope="row">#SK2548	</th>
-                                            <td>Neal Matthews</td>
-                                            <td>07 Oct, 2022</td>
-                                            <td>$400</td>
-                                            <td>Life</td>
-                                            <td><span class="text-success">Santioned</span></td>
-                                            <td><button class="btn btn-primary btn-success" style="background-color: #86B817;">--</button></td>
-                                        </tr>
-
-                                        <tr>
-                                            <th scope="row">#SK2548	</th>
-                                            <td>Neal Matthews</td>
-                                            <td>07 Oct, 2022</td>
-                                            <td>$400</td>
-                                            <td>Car</td>
-                                            <td><span class="text-danger">Rejected</span></td>
-                                            <td><button class="btn btn-primary btn-success" style="background-color: #86B817;">--</button></td>
-                                        </tr>
-
-                                        <tr>
-                                            <th scope="row">#SK2548	</th>
-                                            <td>Neal Matthews</td>
-                                            <td>07 Oct, 2022</td>
-                                            <td>$400</td>
-                                            <td>Education</td>
-                                            <td><span class="text-warning">Pending</span></td>
-                                            <td><button class="btn btn-primary btn-success" style="background-color: #86B817;">Edit</button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Footer -->				
+        <footer>
+            <div class="footer">
+                <div class="float-start">
+                    <p>2023 &copy; Insurance Bazar</p>
                 </div>
 
             </div>
-        </div>
-    </div>
+        </footer>
 
 
-    <!-- Footer -->				
-    <footer>
-        <div class="footer">
-            <div class="float-start">
-                <p>2023 &copy; Insurance Bazar</p>
-            </div>
-
-        </div>
-    </footer>
+        <!-- Preloader -->
 
 
-    <!-- Preloader -->
+        <!-- Loader -->
 
+        <!-- General JS Scripts -->
 
-    <!-- Loader -->
+        <!-- JS Libraies -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
 
-    <!-- General JS Scripts -->
+        <!-- Chart Js -->
 
-    <!-- JS Libraies -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
+        <!-- Template JS File -->
+        <script src="js/script.js"></script>
+        <script src="js/custom.js"></script>
 
-    <!-- Chart Js -->
+        <!-- Vendor JS Files -->
+        <script src="js/apexcharts.min.js"></script>
+        <script src="js/chart.umd.js"></script>
+        <script src="js/echarts.min.js"></script>
+        <script src="js/quill.min.js"></script>
+        <script src="js/simple-datatables.js"></script>
+        <script src="js/tinymce.min.js"></script>
 
-    <!-- Template JS File -->
-    <script src="js/script.js"></script>
-    <script src="js/custom.js"></script>
-
+        <!-- Template Main JS File -->
+        <script src="js/mainGraph.js"></script>
+</body>
 
 </body>
 </html>

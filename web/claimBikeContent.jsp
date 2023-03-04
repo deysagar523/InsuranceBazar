@@ -7,16 +7,25 @@
                 <table style="color:black">
                     <th>Details of Bike Claim:</th>
                     <tr>
-                        <td>CLAIM ID : <strong>${ParticularClaim.claimId}</strong></td>
+                          <td>POLICY NAME: <strong>${ParticularClaim.policyName}</strong></td>
                     </tr>
                     <tr>
-                        <td>FULL NAME : <strong>${ParticularClaim.fullName}</strong></td>
+                          <td>FULL NAME : <strong>${ParticularClaim.fullName}</strong></td>
                     </tr>
                     <tr>
-                        <td>EMAIL : <strong>${ParticularClaim.email}</strong></td>
+                        <td>BIKE NUMBER : <strong>${ParticularClaim.bikeNumber}</strong></td>
                     </tr>
                     <tr>
-                        <td>POLICY NAME : <strong>${ParticularClaim.policyName}</strong></td>
+                        <td>BIKE MAKE : <strong>${ParticularClaim.bikeMake}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>BIKE MODEL : <strong>${ParticularClaim.bikeModel}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>BIKE REGISTRATION YEAR : <strong>${ParticularClaim.bikeRegistrationYear}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>PLAN EXPIRY DATE : <strong>${ParticularClaim.claimExpiryDate}</strong></td>
                     </tr>
                     
                     

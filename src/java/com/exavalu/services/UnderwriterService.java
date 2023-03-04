@@ -700,7 +700,7 @@ public class UnderwriterService {
         } catch (SQLException | ExceptionInInitializerError ex) {
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
             log.error(LocalDateTime.now() + "@" + ex);
-            ex.getMessage();
+            System.out.println(ex.getMessage());
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
         return histories;

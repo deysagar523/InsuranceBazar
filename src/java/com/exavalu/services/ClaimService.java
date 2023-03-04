@@ -424,6 +424,7 @@ public class ClaimService {
                 claim.setBikeModel(rs.getString("bikeModel"));
                 claim.setBikeRegistrationYear(rs.getString("bikeRegistrationYear"));
                 claim.setAdharCard(rs.getString("adharCard"));
+                claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
 
             }
 

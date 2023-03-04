@@ -75,7 +75,7 @@ public class LoginService {
 
     public boolean doSignUp(User user) {
 
-        String sql = "INSERT INTO users(email,password, role)\n" + "VALUES(? ,?, ?);";
+        String sql = "INSERT INTO users(email,password, role,dateOfRegistration)\n" + "VALUES(? ,?, ?,CURDATE());";
 
         try {
             Connection con = JDBCConnectionManager.getConnection();

@@ -343,6 +343,11 @@ public class ClaimService {
 
                 //particularClaim.setCategoryName(rs.getString("categoryName"));
                 particularClaim.setPolicyName(rs.getString("policyName"));
+                particularClaim.setBikeNumber(rs.getString("bikeNumber"));
+                particularClaim.setBikeMake(rs.getString("bikeMake"));
+                particularClaim.setBikeModel(rs.getString("bikeModel"));
+                particularClaim.setBikeRegistrationYear(rs.getString("bikeRegistrationYear"));
+                particularClaim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
                 //particularClaim.setPolicyDescription(rs.getString("policyDescription"));
 
                 //particularClaim.setMedicalHistory(rs.getString("medicalHistory"));

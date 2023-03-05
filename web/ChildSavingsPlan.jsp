@@ -79,7 +79,7 @@
                             <div class="container">
                                 <section>
 
-                                <c:forEach items="${Plans}" var="plan">
+                                <c:forEach items="${ChildPlans}" var="plan">
                                     <div class="row rounded">
                                         <div class="col-12">
                                             <div class="tab-content mt-2" id="pills-tabContent">
@@ -198,16 +198,15 @@
                                                                         <div class="col-md-4">
                                                                             <div>
                                                                                 <p class="text-muted mb-0 mo-mb-2">
-                                                                                    <span class="text-dark">IDV: ${plan.getIDV()}/-</span
+                                                                                    <span class="text-dark"> Lump Sum ${plan.getLumpSumPayout()}</span
                                                                                     >
                                                                                 </p>
                                                                             </div>
                                                                         </div>
-                                                                        
                                                                         <div class="col-md-6">
                                                                             <div>
                                                                                 <p class="text-muted mb-0 mo-mb-2">
-                                                                                    <span class="text-dark">Notes :</span> Your pocket friendly plan
+                                                                                    <span class="text-dark">Notes :</span> rate @19.1%
                                                                                 </p>
                                                                             </div>
                                                                         </div>

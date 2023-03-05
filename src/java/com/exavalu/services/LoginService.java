@@ -121,6 +121,7 @@ public class LoginService {
                 user.setEmail(rs.getString("email"));
                 user.setUserId(rs.getString("userId"));
                 user.setRole(rs.getString("role"));
+                user.setAge(rs.getString("age"));
                 user.setFullName(rs.getString("fullName"));
                 System.out.println("from getUser fullName:"+rs.getString("fullName"));
                 user.setCountryCode(rs.getString("countryCode"));
@@ -230,7 +231,7 @@ public class LoginService {
         boolean result = false;
         try {
             Connection con = JDBCConnectionManager.getConnection();
-            String sql = "UPDATE users SET fullName = ? , gender = ? , phone = ?, incomeSource=?, image=? WHERE userId = ?";
+            String sql = "UPDATE users SET fullName = ? , gender = ? , phone = ?, age=?, incomeSource=?, image=? WHERE userId = ?";
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             
@@ -239,12 +240,13 @@ public class LoginService {
             preparedStatement.setString(1, user.getFullName());
             preparedStatement.setString(2, user.getGender());
             preparedStatement.setString(3, user.getPhone());
-            preparedStatement.setString(4, user.getIncomeSource());
-            preparedStatement.setBinaryStream(5, inputStream);
+            preparedStatement.setString(4, user.getAge());
+            preparedStatement.setString(5, user.getIncomeSource());
+            preparedStatement.setBinaryStream(6, inputStream);
             
         
                        
-            preparedStatement.setString(6, userId);
+            preparedStatement.setString(7, userId);
             
             int row = preparedStatement.executeUpdate();
 

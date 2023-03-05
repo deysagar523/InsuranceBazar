@@ -1,9 +1,9 @@
 <%-- 
-    Document   : bikeFnolForm
-    Created on : 02-Mar-2023, 10:28:03 pm
+    Document   : bikePolicies
+    Created on : 03-Mar-2023, 8:07:58 pm
     Author     : user
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,7 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello ${Claim.getClaimId()}</h1>
-        <p>${Claim.getBikeNumber()}</p>
+        <h1>Hello World!</h1>
     </body>
 </html>

@@ -26,6 +26,48 @@ import org.apache.struts2.interceptor.ApplicationAware;
 public class Claim extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
 
     /**
+     * @return the childBirthNo
+     */
+    public String getChildBirthNo() {
+        return childBirthNo;
+    }
+
+    /**
+     * @param childBirthNo the childBirthNo to set
+     */
+    public void setChildBirthNo(String childBirthNo) {
+        this.childBirthNo = childBirthNo;
+    }
+
+    /**
+     * @return the childAge
+     */
+    public String getChildAge() {
+        return childAge;
+    }
+
+    /**
+     * @param childAge the childAge to set
+     */
+    public void setChildAge(String childAge) {
+        this.childAge = childAge;
+    }
+
+    /**
+     * @return the childGender
+     */
+    public String getChildGender() {
+        return childGender;
+    }
+
+    /**
+     * @param childGender the childGender to set
+     */
+    public void setChildGender(String childGender) {
+        this.childGender = childGender;
+    }
+
+    /**
      * @return the planCompany
      */
     public String getPlanCompany() {
@@ -241,7 +283,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
     private String gender;
 
     //for child plan
-    private String childName;
+    private String childName, childAge, childGender, childBirthNo;
 
     //for investment insurance
     private String occupation, annualIncome;
@@ -782,7 +824,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         claim.setBikeVariant(bikeVariant);
         claim.setBikeRegistrationYear(bikeRegistrationYear);
         claim.setClaimStatus(claimStatus);
-        claim.setMessage(message);
+        
         claim.setFullName(fullName);
         claim.setEmail(email);
         
@@ -805,25 +847,77 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         return result;
     }
     
+    public String doAddChildClaim() {
+
+        String result = "FAILURE";
+
+        Claim claim= new Claim();
+        claim.setUserId(userId);
+        claim.setPolicyId(policyId);
+        claim.setChildName(childName);
+        claim.setChildAge(childAge);
+        claim.setChildGender(childGender);
+        claim.setChildBirthNo(childBirthNo);
+        claim.setClaimStatus(claimStatus);
+        
+        claim.setFullName(fullName);
+        claim.setEmail(email);
+        claim.setAge(age);
+        
+        
+        boolean res = ClaimService.insertChildClaim(claim);
+        if (res) {
+            result = "SUCCESS";
+            Claim claim1= ClaimService.getClaimByChildBirthNo(this.childBirthNo);
+            sessionMap.put("ClaimId", claim1.claimId);
+            sessionMap.put("ChildBirthNo", this.childBirthNo);
+            sessionMap.put("ChildName", this.childName);
+            sessionMap.put("ChildAge", this.childAge);
+            System.out.println("child birth no:"+this.childBirthNo);
+//            sessionMap.put("ClaimId", this.claimId);
+            
+            sessionMap.put("Success", "successfull");
+            
+            System.out.println("Successfully Filed Child Claim");
+        } else {
+            System.out.println("Child Claim not filed!");
+        }
+        return result;
+    }
+    
      public String doGetClaim(){
         
         String result="SUCCESS";
-        System.out.println("Current claim is: "+this.getClaimId());
+        System.out.println("Current claim is under do getclaim: "+this.getClaimId());
         Claim claim= ClaimService.getClaim(this.getClaimId());
-       
-        getSessionMap().put("successUpdate", "viewSuccess");
-        System.out.println("FROM CLAIM MODEL:  CLAIM FETCHED");
         sessionMap.put("Claim", claim);
+        if(claim.getPolicyName().equalsIgnoreCase("Child Investment")){
+            
+            result="CHILDCLAIM";
+            System.out.println("result:childClaim");
+        }else if(claim.getPolicyName().equalsIgnoreCase("Two Wheeler")){
+            result="BIKECLAIM";
+            System.out.println("result:bikeClaim");
+        }else if(claim.getPolicyName().equalsIgnoreCase("Mediclaim")){
+            result="MEDICLAIM";
+            System.out.println("result:mediClaim");
+        }
+       
+        
+        System.out.println("FROM CLAIM MODEL:  CLAIM FETCHED");
+        
             
         
         return result;
     }
      
-     public String doFileFnol(){
+     public String doUpdateBikeClaim(){
         
         String result= "FAILURE";
         System.out.println("Current claim is: "+this.getClaimId());
-        boolean res = ClaimService.fileFnol(this.getClaimId());
+        System.out.println("Current claim is: "+this.getIncidentLocation());
+        System.out.println("Current claim is: "+this.getIncidentDate());
+        boolean res = ClaimService.updateBikeClaim(this);
        
         if(res){
             result="SUCCESS";
@@ -833,6 +927,24 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
             
         }else{
             System.out.println(" CLAIM status not updated to 1");
+        }
+        return result;
+    }
+     public String doUpdateChildClaim(){
+        
+        String result= "FAILURE";
+        System.out.println("Current child claim is: "+this.getClaimId());
+        
+        boolean res = ClaimService.updateChildClaim(this);
+       
+        if(res){
+            result="SUCCESS";
+            
+            System.out.println("child CLAIM status updated to 1");
+            
+            
+        }else{
+            System.out.println(" child CLAIM status not updated to 1");
         }
         return result;
     }

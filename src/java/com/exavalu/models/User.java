@@ -32,6 +32,20 @@ import org.apache.struts2.interceptor.ApplicationAware;
 public class User extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
 
     /**
+     * @return the age
+     */
+    public String getAge() {
+        return age;
+    }
+
+    /**
+     * @param age the age to set
+     */
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    /**
      * @return the imageData
      */
     public String getImageData() {
@@ -77,6 +91,7 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
     private String incomeSource;
     private String imageData;
     private File image;
+    private String age;
 
     public String getEmail() {
         return email;
@@ -214,12 +229,16 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
 
         if (success) {
             ArrayList planList = PlanService.getAllBikePlans();
-//            
+            ArrayList childPlanList = PlanService.getAllChildPlans();
+            ArrayList medPlanList = PlanService.getAllMedPlans();
+            
             System.out.println("Returning Success from doLogin method");
             User user = LoginService.getUser(this.getEmail());
 //            System.out.println("gender:"+user.getGender()+" phone:"+user.getPhone());
             if (user.getRole().equals("1")) {
                 sessionMap.put("Plans", planList);
+                sessionMap.put("ChildPlans", childPlanList);
+                sessionMap.put("MedPlans", medPlanList);
                 sessionMap.put("userId", user.userId);
                 result = "USER";
             } else if (user.getRole().equals("2")) {

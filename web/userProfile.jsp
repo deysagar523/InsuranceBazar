@@ -85,7 +85,7 @@
             }
         }
     </script>
-    <body>
+    <body id="container">
         <!--Topbar -->
         <div class="topbar transition">
             <div class="bars">
@@ -273,7 +273,7 @@
 
 
                         <li>
-                            <a onclick="loadPage('historyPageUnderwriter.jsp')">
+                            <a href="userProfile.jsp">
                                 <i class='bx bxs-meh-blank icon'></i> 
                                My Profile
                             </a>
@@ -328,7 +328,7 @@
 
 
                             <!--Content Start-->
-                            <div class="content-start transition" id="container">
+                            <div class="content-start transition">
                                 <div class="container-fluid dashboard">
                                     <div class="content-header">
                                         <h4>Hi, ${User.fullName}!</h4>
@@ -389,6 +389,11 @@
                                                                 <option value="I">Self-employed</option>
                                                                 <option value="A">Unemployed</option>
                                                             </select>
+                                                        </div>
+                                                        
+                                                        <div class="mb-3 col-md-6">
+                                                            <<label for="age" class="form-label">Age</label>
+                                                            <input type="number" class="form-control" id="organization" name="age" value="${User.age}" required/>
                                                         </div>
 
 

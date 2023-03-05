@@ -160,7 +160,7 @@
                         <div class="col-sm-6 col-lg-3 mb-4">
                             <h6>Motor Insurance</h6>
                             <a class="dropdown-item" href="#"><i class="fas fa-cubes"></i> Car Insurance</a>
-                            <a class="dropdown-item" href="twoWheelerPolicy.jsp"><i class="fas fa-cube"></i>  Bike Insurance</a>
+                            <a class="dropdown-item" onClick="laodPage('twoWheelerPolicy.jsp')" style="cursor:pointer;"><i class="fas fa-cube"></i>  Bike Insurance</a>
                             <a class="dropdown-item" href="#"><i class="fab fa-angular"></i> AngularJS</a>
                             <a class="dropdown-item" href="#"><i class="fab fa-node-js"></i> Node.JS Development</a>
                             <a class="dropdown-item" href="#"><i class="fas fa-leaf fa-rotate-90"></i> MongoDB Development</a>
@@ -169,7 +169,7 @@
                      <div class="row">
                         <div class="col-sm-6 col-lg-3 border-right mb-4">
                             <h6>Child Saving</h6>
-                            <a class="dropdown-item" href="#"><i class="fab fa-windows"></i> Microsoft App Development</a>
+                            <a class="dropdown-item" onClick="laodPage('childPolicy.jsp')" style="cursor:pointer;"><i class="fas fa-cube"></i> Child investment</a>
                             <a class="dropdown-item" href="#"><i class="fab fa-windows"></i> MS Desktop App Development</a>
                             <a class="dropdown-item" href="#"><i class="fab fa-windows"></i> SharePoint Development</a>
                             <a class="dropdown-item" href="#"><i class="fab fa-windows"></i> ASP.NET Development</a>
@@ -214,7 +214,7 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Claim</a>
                         <div class="dropdown-menu m-0">
-                            <a href="FNOL.html" class="dropdown-item"> <i class='fas fa-edit' style='font-size:20px;color:greenyellow'></i>  File a New Claim</a>
+                            <a href="boughtPolicies.jsp" class="dropdown-item"> <i class='fas fa-edit' style='font-size:20px;color:greenyellow'></i>  File a New Claim</a>
                             <a href="helpClaim.html" class="dropdown-item"><i class='fas fa-search' style='font-size:20px;color:greenyellow'></i>  Know more about filing Claim</a>
                             <a href="team.html" class="dropdown-item"><i class='fas fa-calendar-alt' style='font-size:20px;color:greenyellow'></i>  Tracking existing Claim</a>
 <!--                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>-->

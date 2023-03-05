@@ -20,6 +20,48 @@ import org.apache.struts2.interceptor.ApplicationAware;
  * @author user
  */
 public class Plan extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
+
+    /**
+     * @return the IDV
+     */
+    public String getIDV() {
+        return IDV;
+    }
+
+    /**
+     * @param IDV the IDV to set
+     */
+    public void setIDV(String IDV) {
+        this.IDV = IDV;
+    }
+
+    /**
+     * @return the lumpSumPayout
+     */
+    public String getLumpSumPayout() {
+        return lumpSumPayout;
+    }
+
+    /**
+     * @param lumpSumPayout the lumpSumPayout to set
+     */
+    public void setLumpSumPayout(String lumpSumPayout) {
+        this.lumpSumPayout = lumpSumPayout;
+    }
+
+    /**
+     * @return the coverAmount
+     */
+    public String getCoverAmount() {
+        return coverAmount;
+    }
+
+    /**
+     * @param coverAmount the coverAmount to set
+     */
+    public void setCoverAmount(String coverAmount) {
+        this.coverAmount = coverAmount;
+    }
     private String planId, policyId, planCompany, planDuration, planAmount, policyName;
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
@@ -149,7 +191,7 @@ public class Plan extends ActionSupport implements ApplicationAware, SessionAwar
         this.planAmount = planAmount;
     }
     
-    
+    private String IDV, lumpSumPayout, coverAmount;
 
     
     

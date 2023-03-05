@@ -41,6 +41,7 @@ public class PlanService {
                 plan.setPolicyName(rs.getString("policyName"));
                 plan.setPlanDuration(rs.getString("planDuration"));
                 plan.setPlanAmount(rs.getString("planAmount"));
+                plan.setIDV(rs.getString("IDV"));
                 
                 
                 
@@ -58,4 +59,81 @@ public class PlanService {
         return planList;
     }
     
+        public static ArrayList getAllChildPlans(){
+        
+        ArrayList planList= new ArrayList();
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
+            String sql = "select * from plans pl, policies po where pl.policyId= po.policyId and po.policyId=7;";
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+
+            while(rs.next())
+            {
+                System.out.println("child plans page:");
+                Plan plan = new Plan();
+                plan.setPlanId(rs.getString("planId"));
+                plan.setPlanCompany(rs.getString("planCompany"));
+                plan.setPolicyName(rs.getString("policyName"));
+                plan.setPlanDuration(rs.getString("planDuration"));
+                plan.setPlanAmount(rs.getString("planAmount"));
+                plan.setLumpSumPayout(rs.getString("lumpSumPayout"));
+                
+                
+                
+                planList.add(plan);
+                
+
+            }
+
+
+        } catch (SQLException ex) {
+            
+            System.out.println(ex.getMessage());
+        }
+        System.out.println("child plans:"+planList.size());
+        return planList;
+    }
+        
+        public static ArrayList getAllMedPlans(){
+        
+        ArrayList planList= new ArrayList();
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
+            String sql = "select * from plans pl, policies po where pl.policyId= po.policyId and po.policyId=3;";
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+
+            while(rs.next())
+            {
+                System.out.println("med plans page:");
+                Plan plan = new Plan();
+                plan.setPlanId(rs.getString("planId"));
+                plan.setPlanCompany(rs.getString("planCompany"));
+                plan.setPolicyName(rs.getString("policyName"));
+                plan.setPlanDuration(rs.getString("planDuration"));
+                plan.setPlanAmount(rs.getString("planAmount"));
+                plan.setCoverAmount(rs.getString("coverAmount"));
+                
+                
+                
+                planList.add(plan);
+                
+
+            }
+
+
+        } catch (SQLException ex) {
+            
+            System.out.println(ex.getMessage());
+        }
+        System.out.println("med plans:"+planList.size());
+        return planList;
+    }
 }

@@ -32,6 +32,48 @@
 
 
     </style>
+    <script>
+        function fetchContent(claimId)
+        {
+            //alert(claimId);
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function ()
+            {
+                document.getElementById("onclickViewClaim").innerHTML = xmlhttp.responseText;
+            };
+
+
+            xmlhttp.open("POST", "FetchParticularClaim?claimId=" + claimId, true);
+            xmlhttp.send();
+        }
+        function fetchVapi(claimId)
+            {
+                alert(claimId);
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function ()
+                {
+                    document.getElementById("childIdentityDetails").innerHTML = xmlhttp.responseText;
+                };
+
+
+                xmlhttp.open("POST", "FetchChildApi?claimId=" + claimId, true);
+                xmlhttp.send();
+                //FetchApi
+            }
+           function functionApprove(claimId)
+           {
+               alert(claimId);
+               window.location.href = `ApprovePolicy?claimId=`+claimId;
+
+           }
+           function functionReject(claimId)
+           {
+               alert(claimId);
+               window.location.href = `RejectPolicy?claimId=`+claimId;
+
+           }
+
+    </script>
     <body>
 
 
@@ -48,8 +90,11 @@
                             <table class="table">
                                 <thead class="thead-primary"> 
                                     <tr>
+                                        <th>User NAme</th>
                                         <th>Child Name</th>
-                                        <th>DOB</th>				        
+                                        <th>Child Age</th>
+                                        <th>Child Gender</th>
+                                        <th>Child Birth Number</th>
                                         <th>Policy Name</th>
                                         <th>Action</th>
                                     </tr>
@@ -60,24 +105,24 @@
                                         <c:if test="${AllPendingChildInvestmentClaims.size()!=0}">
                                             <c:forEach items="${AllPendingChildInvestmentClaims}" var="claim">
                                                 <tr data-index="0">
-                                                    <td><c:out value="${claim.medicalHistory}"> </c:out></td>
-                                                    <td><c:out value="${claim.relation}"> </c:out>
-                                                    <td><c:out value="${claim.dob}"> </c:out></td>
-                                                    <td><c:out value="${claim.relativeName}"> </c:out></td>
+                                                    <td><c:out value="${claim.fullName}"> </c:out></td>
+                                                    <td><c:out value="${claim.childName}"> </c:out></td>
+                                                    <td><c:out value="${claim.childAge}"> </c:out>
+                                                    <td><c:out value="${claim.childGender}"> </c:out></td>
+                                                    <td><c:out value="${claim.childBirthNo}"> </c:out></td>
                                                     <td><c:out value="${claim.policyName}"> </c:out></td>
 
 
                                                         <td>
-                                                            <a href="#" class="btn btn-success">Approve</a>
-                                                            <a href="#" class="btn btn-danger">Reject</a>
-                                                        </td>
+                                                            <button type="button" class="btn btn-dark" onclick="fetchContent(${claim.claimId})">View</button>
+                                                    </td>
 
 
 
 
 
 
-                                                    </tr>
+                                                </tr>
                                             </c:forEach>
                                         </c:if>
                                         <c:if test="${AllPendingChildInvestmentClaims.size()==0}">
@@ -120,6 +165,22 @@
                         </div>
                     </div>
                 </div>
+                <table id="tableId" class="table-borderless">
+
+                    <td rowspan = "3">
+                        <div id="onclickViewClaim">
+
+                        </div>
+                    </td>
+                    <td>
+                        <div id="childIdentityDetails">
+
+
+                        </div>
+
+                    </td>
+
+                </table>
             </div>
         </section>
 

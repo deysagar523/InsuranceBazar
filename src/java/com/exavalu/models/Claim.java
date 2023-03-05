@@ -837,6 +837,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
             sessionMap.put("BikeNumber", this.bikeNumber);
             sessionMap.put("BikeMake", this.bikeMake);
             sessionMap.put("BikeModel", this.bikeModel);
+             sessionMap.put("PolicyName", claim1.policyName);
             System.out.println("bike id:"+this.bikeNumber);
             sessionMap.put("Success", "successfull");
             
@@ -873,7 +874,8 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
             sessionMap.put("ChildBirthNo", this.childBirthNo);
             sessionMap.put("ChildName", this.childName);
             sessionMap.put("ChildAge", this.childAge);
-            System.out.println("child birth no:"+this.childBirthNo);
+            sessionMap.put("PolicyName", claim1.policyName);
+            //System.out.println("child birth no:"+this.childBirthNo);
 //            sessionMap.put("ClaimId", this.claimId);
             
             sessionMap.put("Success", "successfull");
@@ -1026,9 +1028,18 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         if (res) {
             
            result = "SUCCESS";
+           System.out.println("policy name="+this.policyName);
            Claim claim=ClaimService.getClaim(this.claimId);
            sessionMap.put("ClaimExpiryDate", claim.claimExpiryDate);
-           MailSender.sendEmailAfterPayment(this.bikeMake,this.bikeModel,this.bikeNumber,this.email);
+           if(this.policyName.equalsIgnoreCase("Two Wheeler"))
+           {
+               MailSender.sendEmailAfterBikePayment(this.bikeMake,this.bikeModel,this.bikeNumber,this.email);
+           }
+           if(this.policyName.equalsIgnoreCase("Child Investment"))
+           {
+                MailSender.sendEmailAfterChildPayment(this.childName,this.childBirthNo,this.childAge,this.email);
+           }
+           
             sessionMap.put("Success", "successfull");
             
             System.out.println("paymnet");
@@ -1138,6 +1149,18 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
     {
         String result="SUCCESS";
         Claim particularClaim=ClaimService.searchClaim(this.claimId);
+        
+        if(particularClaim.getPolicyName().equalsIgnoreCase("Child Investment")){
+            
+            result="CHILDCLAIM";
+            //System.out.println("result:childClaim");
+        }else if(particularClaim.getPolicyName().equalsIgnoreCase("Two Wheeler")){
+            result="BIKECLAIM";
+            //System.out.println("result:bikeClaim");
+        }else if(particularClaim.getPolicyName().equalsIgnoreCase("Mediclaim")){
+            result="MEDICLAIM";
+            System.out.println("result:mediClaim");
+        }
         sessionMap.put("ParticularClaim",particularClaim);
         return result;
     }

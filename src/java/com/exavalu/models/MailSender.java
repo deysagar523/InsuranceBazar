@@ -62,7 +62,7 @@ public class MailSender {
         }
     }
 
-    public static void sendEmailAfterPayment(String bikeMake, String bikeModel, String bikeNumber, String toEmail) {
+    public static void sendEmailAfterBikePayment(String bikeMake, String bikeModel, String bikeNumber, String toEmail) {
        try {
             Properties props = new Properties();
             props.put("mail.smtp.host", "smtp.gmail.com");
@@ -91,6 +91,45 @@ public class MailSender {
            
             
             mailMessage.setText("Relax, now your bike "+bikeMake+" "+ bikeModel+" "+" is safe with us!!!");
+
+            Transport.send(mailMessage);
+            
+        } catch (AddressException ex) {
+            
+        } catch (MessagingException ex) {
+            
+        }
+    }
+
+    static void sendEmailAfterChildPayment(String childName, String childBirthNo, String childAge,String toEmail) {
+     try {
+            Properties props = new Properties();
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            props.put("mail.smtp.socketFactory.port", "465");
+            props.put("mail.smtp.socketFactory.class",
+                    "javax.net.ssl.SSLSocketFactory");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.port", "25");
+            
+            Session session = Session.getDefaultInstance(props,
+                    new javax.mail.Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(userName, password);
+                }
+            });
+            
+            Message mailMessage = new MimeMessage(session);
+
+            //setting up all the messages
+            mailMessage.setFrom(new InternetAddress(fromEmail));
+            mailMessage.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(toEmail));
+            mailMessage.setSubject("Successfully Payment Done for your child "+childName+" in InsueranceBazar");
+           
+           
+            
+            mailMessage.setText("Relax, now your child "+childName+" with birth certificate Number"+ childBirthNo +"is safe with us");
 
             Transport.send(mailMessage);
             

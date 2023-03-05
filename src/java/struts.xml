@@ -104,11 +104,16 @@
             <result name="SUCCESS">officerHomePage.jsp</result>         
         </action> 
         <action name="FetchParticularClaim" class="com.exavalu.models.Claim" method="doSearchClaim">
-            <result name="SUCCESS">claimBikeContent.jsp</result>         
+            <result name="BIKECLAIM">claimBikeContent.jsp</result>   
+            <result name="CHILDCLAIM">claimChildContent.jsp</result>         
         </action> 
         <action name="FetchBikeApi" class="com.exavalu.models.BikeApi" method="fetchBikeApi">
             <result name="SUCCESS">bikeApiData.jsp</result>         
         </action>
+        <action name="FetchChildApi" class="com.exavalu.models.ChildApi" method="fetchChildApi">
+            <result name="SUCCESS">childApiData.jsp</result>         
+        </action>
+        
         
              
     </package>

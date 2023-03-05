@@ -113,7 +113,7 @@ public class ClaimService {
 
             Connection con = JDBCConnectionManager.getConnection();
             //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
-            String sql = "select * from claims c, policies p, plans plan, users u where c.policyId= p.policyId and c.userId= u.userId and c.planId= plan.planId and c.claimStatus=\"bought\" and u.userId=? order by c.claimId desc; ";
+            String sql = "select * from claims c, policies p, plans plan, users u where c.policyId= p.policyId and c.userId= u.userId and c.planId= plan.planId and c.paid=\"true\" and u.userId=? order by c.claimId desc; ";
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             preparedStatement.setString(1, userId);
             ResultSet rs = preparedStatement.executeQuery();
@@ -405,7 +405,7 @@ public class ClaimService {
         Claim claim = new Claim();
         try {
             Connection con = JDBCConnectionManager.getConnection();
-            String sql = "select * from claims c, policies p, users u where c.policyId= p.policyId and c.userId= u.userId and c.claimId=?;";
+            String sql = "select * from claims c, policies p, plans pl, users u where c.policyId= p.policyId and c.planId= pl.planId and c.userId= u.userId and c.claimId=?;";
 //            String sql = "select * from employees e, departments d, roles r "
 //                    + "where e.departmentId=d.departmentId and e.roleId=r.roleId "
 //                    +"and e.employeeId=?";
@@ -424,7 +424,10 @@ public class ClaimService {
                 claim.setBikeModel(rs.getString("bikeModel"));
                 claim.setBikeRegistrationYear(rs.getString("bikeRegistrationYear"));
                 claim.setAdharCard(rs.getString("adharCard"));
+                claim.setPlanCompany(rs.getString("planCompany"));
+                claim.setPlanAmount(rs.getString("planAmount"));
                 claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
+                claim.setClaimId(rs.getString("claimId"));
 
             }
 
@@ -436,17 +439,25 @@ public class ClaimService {
 
     }
 
-    public static boolean fileFnol(String claimId) {
+    public static boolean updateClaim(Claim claim) {
 
-        Claim claim = new Claim();
+        
 
-        String sql = "UPDATE claims SET claimStatus =\"1\" WHERE claimId = ?";
+        String sql = "UPDATE claims SET claimStatus =\"1\", incidentLocation=?, incidentDate=?, policeReportNo=?, adharCard=? WHERE claimId = ?";
         boolean result = false;
+        System.out.println(claim.getIncidentLocation());
+        System.out.println(claim.getIncidentDate());
+        System.out.println(claim.getAdharCard());
+        
         try {
             Connection con = JDBCConnectionManager.getConnection();
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setString(1, claimId);
+            preparedStatement.setString(1, claim.getIncidentLocation());
+            preparedStatement.setString(2, claim.getIncidentDate());
+            preparedStatement.setString(3, claim.getPoliceReportNo());
+            preparedStatement.setString(4, claim.getAdharCard());
+            preparedStatement.setString(5, claim.getClaimId());
 
             int row = preparedStatement.executeUpdate();
 
@@ -454,7 +465,7 @@ public class ClaimService {
                 System.out.println(" from claimService status changred to 1");
                 result = true;
             } else {
-                System.out.println(" status not not changed to 1 fnolService ");
+                System.out.println(" status not not changed to 1 claimService ");
             }
 
         } catch (SQLException ex) {

@@ -54,11 +54,11 @@
             <result name="FAILURE">userHomePage.jsp</result>         
         </action>
         
-        <action name="LoadFNOLPage" class="com.exavalu.models.Claim" method="doGetClaim">
+        <action name="LoadClaimDetails" class="com.exavalu.models.Claim" method="doGetClaim">
             <result name="SUCCESS">vehicleClaim.jsp</result>
             <result name="FAILURE">userHomePage.jsp</result>         
         </action>
-        <action name="FileFnol" class="com.exavalu.models.Claim" method="doFileFnol">
+        <action name="UpdateClaim" class="com.exavalu.models.Claim" method="doUpdateClaim">
             <result name="SUCCESS">userProfile.jsp</result>
             <result name="FAILURE">vehicleClaim.jsp</result>         
         </action>

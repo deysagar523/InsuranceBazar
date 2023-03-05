@@ -273,7 +273,7 @@
 
 
                         <li>
-                            <a onclick="loadPage('historyPageUnderwriter.jsp')">
+                            <a href="userProfile.jsp">
                                 <i class='bx bxs-meh-blank icon'></i> 
                                My Profile
                             </a>

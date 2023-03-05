@@ -808,7 +808,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
      public String doGetClaim(){
         
         String result="SUCCESS";
-        System.out.println("Current claim is: "+this.getClaimId());
+        System.out.println("Current claim is under do getclaim: "+this.getClaimId());
         Claim claim= ClaimService.getClaim(this.getClaimId());
        
         getSessionMap().put("successUpdate", "viewSuccess");
@@ -819,11 +819,13 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         return result;
     }
      
-     public String doFileFnol(){
+     public String doUpdateClaim(){
         
         String result= "FAILURE";
         System.out.println("Current claim is: "+this.getClaimId());
-        boolean res = ClaimService.fileFnol(this.getClaimId());
+        System.out.println("Current claim is: "+this.getIncidentLocation());
+        System.out.println("Current claim is: "+this.getIncidentDate());
+        boolean res = ClaimService.updateClaim(this);
        
         if(res){
             result="SUCCESS";

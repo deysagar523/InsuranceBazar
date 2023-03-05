@@ -160,7 +160,7 @@
                         <div class="col-sm-6 col-lg-3 mb-4">
                             <h6>Motor Insurance</h6>
                             <a class="dropdown-item" href="#"><i class="fas fa-cubes"></i> Car Insurance</a>
-                            <a class="dropdown-item" href="twoWheelerPolicy.jsp"><i class="fas fa-cube"></i>  Bike Insurance</a>
+                            <a class="dropdown-item" onClick="laodPage('twoWheelerPolicy.jsp')" style="cursor:pointer;"><i class="fas fa-cube"></i>  Bike Insurance</a>
                             <a class="dropdown-item" href="#"><i class="fab fa-angular"></i> AngularJS</a>
                             <a class="dropdown-item" href="#"><i class="fab fa-node-js"></i> Node.JS Development</a>
                             <a class="dropdown-item" href="#"><i class="fas fa-leaf fa-rotate-90"></i> MongoDB Development</a>
@@ -169,7 +169,7 @@
                      <div class="row">
                         <div class="col-sm-6 col-lg-3 border-right mb-4">
                             <h6>Child Saving</h6>
-                            <a class="dropdown-item" href="#"><i class="fab fa-windows"></i> Microsoft App Development</a>
+                            <a class="dropdown-item" onClick="laodPage('childPolicy.jsp')" style="cursor:pointer;"><i class="fas fa-cube"></i> Child investment</a>
                             <a class="dropdown-item" href="#"><i class="fab fa-windows"></i> MS Desktop App Development</a>
                             <a class="dropdown-item" href="#"><i class="fab fa-windows"></i> SharePoint Development</a>
                             <a class="dropdown-item" href="#"><i class="fab fa-windows"></i> ASP.NET Development</a>

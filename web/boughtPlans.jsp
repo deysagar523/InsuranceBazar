@@ -61,6 +61,10 @@
         }
     </script>
     <body id="container">
+        
+       
+            <jsp:include page="menu.jsp"></jsp:include>
+        
 
         <div>
             <section class="ftco-section">
@@ -79,7 +83,7 @@
                                             <!--                                        <th>Incident Location</th>
                                                                                     <th>Incident Date</th>
                                                                                     <th>Police Report No</th>-->
-                                            <th>Plan No</th>
+                                            <th>Policy</th>
                                             <th>Plan Company</th>
                                             <th>Plan Expiry</th>
                                             <th>Plan Amount</th>
@@ -92,13 +96,14 @@
                                         <c:if test="${PlanList.size()!=0}">
                                             <c:forEach items="${PlanList}" var="plan">
                                                 <tr data-index="0">
-                                                    <td><c:out value="${plan.planId}"> </c:out></td>
+                                                    <td><c:out value="${plan.policyName}"> </c:out></td>
                                                     <td><c:out value="${plan.planCompany}"> </c:out></td>
                                                     <td><c:out value="${plan.claimExpiryDate}"> </c:out></td>
                                                     <td><c:out value="${plan.planAmount}"> </c:out>
+                                                        
                                                         <td>
-                                                            <!--<a onClick="ajaxViewClaim(<c:out value="${plan.claimId}"> </c:out>)" style="cursor:pointer" class="btn btn-success mr-2">View Details</a>-->
-                                                        <a href="LoadClaimDetails?claimId=${plan.claimId}" style="cursor:pointer" class="btn btn-success mr-2">View Details</a>
+                                                            <a onClick="ajaxViewClaim(<c:out value="${plan.claimId}"> </c:out>)" style="cursor:pointer" class="btn btn-success mr-2">View Details</a>
+                                                        <!--<a href="LoadClaimDetails?claimId=${plan.claimId}" style="cursor:pointer" class="btn btn-success mr-2">View Details</a>-->
 
 
 

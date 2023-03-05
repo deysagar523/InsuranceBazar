@@ -29,6 +29,11 @@
             <result name="FAILURE">twoWheelerPolicy.jsp</result>         
         </action>
         
+        <action name="CreateChildClaim" class="com.exavalu.models.Claim" method="doAddChildClaim">
+            <result name="SUCCESS">ChildSavingsPlan.jsp</result>
+            <result name="FAILURE">childPolicy.jsp</result>         
+        </action>
+        
          <action name="CreateCarClaim" class="com.exavalu.models.Claim" method="doAddCarClaim">
             <result name="SUCCESS">bikePlan.jsp</result>
             <result name="FAILURE">fourWheelerPolicy.jsp</result>         
@@ -55,12 +60,19 @@
         </action>
         
         <action name="LoadClaimDetails" class="com.exavalu.models.Claim" method="doGetClaim">
-            <result name="SUCCESS">vehicleClaim.jsp</result>
+            <result name="CHILDCLAIM">childServiceClaim.jsp</result>
+            <result name="BIKECLAIM">vehicleClaim.jsp</result>
+            <result name="MEDICLAIM">childServiceClaim.jsp</result>
             <result name="FAILURE">userHomePage.jsp</result>         
         </action>
-        <action name="UpdateClaim" class="com.exavalu.models.Claim" method="doUpdateClaim">
+        <action name="UpdateBikeClaim" class="com.exavalu.models.Claim" method="doUpdateBikeClaim">
             <result name="SUCCESS">userProfile.jsp</result>
             <result name="FAILURE">vehicleClaim.jsp</result>         
+        </action>
+        
+        <action name="UpdateChildClaim" class="com.exavalu.models.Claim" method="doUpdateChildClaim">
+            <result name="SUCCESS">userProfile.jsp</result>
+            <result name="FAILURE">childServiceClaim.jsp</result>         
         </action>
         
         <action name="Payment" class="com.exavalu.models.Claim" method="doPayment">

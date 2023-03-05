@@ -363,10 +363,12 @@ public class UnderwriterService {
                 claim.setFullName(rs.getString("fullName"));
                 claim.setEmail(rs.getString("email"));
 
-                claim.setCategoryName(rs.getString("categoryName"));
+               claim.setPolicyName(rs.getString("policyName"));
 
                 claim.setChildName(rs.getString("childName"));
-                claim.setDob(rs.getString("dob"));
+                claim.setChildAge(rs.getString("childAge"));
+                claim.setChildGender(rs.getString("childGender"));
+                claim.setChildBirthNo(rs.getString("childBirthNo"));
 
 //                System.out.println(claim.getClaimId());
 //                 System.out.println(claim.getClaimStatus());
@@ -382,7 +384,7 @@ public class UnderwriterService {
             log.error(LocalDateTime.now() + "@" + ex);
             ex.printStackTrace();
         }
-        //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
+        System.out.println("Number of pending list = " + pendingInvestmentChildPolicyList.size());
         return pendingInvestmentChildPolicyList;
     }
 

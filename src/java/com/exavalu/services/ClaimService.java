@@ -279,7 +279,7 @@ public class ClaimService {
         Claim claim = new Claim();
         try {
             Connection con = JDBCConnectionManager.getConnection();
-            String sql = "select * from claims where bikeNumber=?;";
+            String sql = "select * from claims c,policies p where c.policyId=p.policyId and bikeNumber=?;";
 //            String sql = "select * from employees e, departments d, roles r "
 //                    + "where e.departmentId=d.departmentId and e.roleId=r.roleId "
 //                    +"and e.employeeId=?";
@@ -293,6 +293,7 @@ public class ClaimService {
                 claim.setUserId(rs.getString("userId"));
                 claim.setEmail(rs.getString("email"));
                 claim.setFullName(rs.getString("fullName"));
+                claim.setPolicyName(rs.getString("policyName"));
 //                claim.setPhone(rs.getString("phone"));
                 claim.setGender(rs.getString("gender"));
                 claim.setBikeNumber(rs.getString("bikeNumber"));
@@ -389,6 +390,13 @@ public class ClaimService {
                 particularClaim.setBikeModel(rs.getString("bikeModel"));
                 particularClaim.setBikeRegistrationYear(rs.getString("bikeRegistrationYear"));
                 particularClaim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
+                
+                
+                particularClaim.setChildAge(rs.getString("childAge"));
+                particularClaim.setChildName(rs.getString("childName"));
+                particularClaim.setChildGender(rs.getString("childGender"));
+                particularClaim.setChildBirthNo(rs.getString("childBirthNo"));
+                
                 //particularClaim.setPolicyDescription(rs.getString("policyDescription"));
 
                 //particularClaim.setMedicalHistory(rs.getString("medicalHistory"));
@@ -579,7 +587,7 @@ public class ClaimService {
         Claim claim = new Claim();
         try {
             Connection con = JDBCConnectionManager.getConnection();
-            String sql = "select * from claims where childBirthNo=?;";
+            String sql = "select * from claims c,policies p  where c.policyId=p.policyId and childBirthNo=?;";
 //            String sql = "select * from employees e, departments d, roles r "
 //                    + "where e.departmentId=d.departmentId and e.roleId=r.roleId "
 //                    +"and e.employeeId=?";
@@ -593,7 +601,7 @@ public class ClaimService {
                 claim.setUserId(rs.getString("userId"));
                 claim.setEmail(rs.getString("email"));
                 claim.setFullName(rs.getString("fullName"));
-//                claim.setPhone(rs.getString("phone"));
+                claim.setPolicyName(rs.getString("policyName"));
                 claim.setAge(rs.getString("age"));
                 claim.setChildBirthNo(rs.getString("childBirthNo"));
                 claim.setChildName(rs.getString("childName"));

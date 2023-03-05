@@ -84,6 +84,7 @@
         <title>Policy Details</title>
     </head>
     <body>
+        <jsp:include page="menu.jsp"></jsp:include>
         <script>
             window.onload = function () {
                 document.getElementById("GetFile")

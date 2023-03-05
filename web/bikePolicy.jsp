@@ -103,7 +103,7 @@
                             <div class="name">Name</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="text" value="${User.getFullName()}" name="fullName">
+                                    <input class="input--style-5" type="text" value=${User.getFullName()} name="fullName">
                                 </div>
                             </div>
                         </div>

@@ -77,6 +77,7 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
     private String incomeSource;
     private String imageData;
     private File image;
+
     public String getEmail() {
         return email;
     }
@@ -210,9 +211,9 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
         String result = "FAILURE";
 
         boolean success = LoginService.getInstance().doLogin(this);
-           
+
         if (success) {
-           ArrayList planList= PlanService.getAllBikePlans();
+            ArrayList planList = PlanService.getAllBikePlans();
 //            
             System.out.println("Returning Success from doLogin method");
             User user = LoginService.getUser(this.getEmail());
@@ -223,6 +224,46 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
                 result = "USER";
             } else if (user.getRole().equals("2")) {
                 result = "UNDERWRITER";
+                String todayDateElement = UnderwriterService.elementsForXaxis("0");
+                sessionMap.put("CurrentDay", todayDateElement);
+                String day1 = UnderwriterService.elementsForXaxis("-1");
+                sessionMap.put("Day1", day1);
+                String day2 = UnderwriterService.elementsForXaxis("-2");
+                sessionMap.put("Day2", day2);
+                String day3 = UnderwriterService.elementsForXaxis("-3");
+                sessionMap.put("Day3", day3);
+                String day4 = UnderwriterService.elementsForXaxis("-4");
+                sessionMap.put("Day4", day4);
+                String day5 = UnderwriterService.elementsForXaxis("-5");
+                sessionMap.put("Day5", day5);
+
+//                System.out.println(todayDateElement);
+//                 System.out.println(day1);
+//                  System.out.println(day2);
+//                   System.out.println(day3);
+//                    System.out.println(day4);
+//                     System.out.println(day5);
+                String todayRegisteration = UnderwriterService.totalRegisteredUsers("0");
+                sessionMap.put("TodayUsers", todayRegisteration);
+                String day1User = UnderwriterService.totalRegisteredUsers("-1");
+                sessionMap.put("Day1Users", day1User);
+                String day2User = UnderwriterService.totalRegisteredUsers("-2");
+                sessionMap.put("Day2Users", day2User);
+                String day3User = UnderwriterService.totalRegisteredUsers("-3");
+                sessionMap.put("Day3Users", day3User);
+
+                String day4User = UnderwriterService.totalRegisteredUsers("-4");
+                sessionMap.put("Day4Users", day4User);
+
+                String day5User = UnderwriterService.totalRegisteredUsers("-5");
+                sessionMap.put("Day5Users", day5User);
+
+//                System.out.println("today"+todayRegisteration);
+//                 System.out.println("1"+day1User);
+//                  System.out.println("2"+day2User);
+//                   System.out.println("3"+day3User);
+//                    System.out.println("4"+day4User);
+//                     System.out.println("5"+day5User);
                 ArrayList underwriter_approved_histories = UnderwriterService.getInstance().getAllApprovedHistories();
                 sessionMap.put("UnderwriterApprovedHistories", underwriter_approved_histories);
                 ArrayList underwriter_rejected_histories = UnderwriterService.getInstance().getAllRejectedHistories();
@@ -250,6 +291,46 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
                 sessionMap.put("AllPendingEducationalPlanClaims", allPendingEducationalPlanClaims);
             } else {
                 result = "OFFICER";
+                String todayDateElement = UnderwriterService.elementsForXaxis("0");
+                sessionMap.put("CurrentDay", todayDateElement);
+                String day1 = UnderwriterService.elementsForXaxis("-1");
+                sessionMap.put("Day1", day1);
+                String day2 = UnderwriterService.elementsForXaxis("-2");
+                sessionMap.put("Day2", day2);
+                String day3 = UnderwriterService.elementsForXaxis("-3");
+                sessionMap.put("Day3", day3);
+                String day4 = UnderwriterService.elementsForXaxis("-4");
+                sessionMap.put("Day4", day4);
+                String day5 = UnderwriterService.elementsForXaxis("-5");
+                sessionMap.put("Day5", day5);
+
+//                System.out.println(todayDateElement);
+//                 System.out.println(day1);
+//                  System.out.println(day2);
+//                   System.out.println(day3);
+//                    System.out.println(day4);
+//                     System.out.println(day5);
+                String todayRegisteration = UnderwriterService.totalRegisteredUsers("0");
+                sessionMap.put("TodayUsers", todayRegisteration);
+                String day1User = UnderwriterService.totalRegisteredUsers("-1");
+                sessionMap.put("Day1Users", day1User);
+                String day2User = UnderwriterService.totalRegisteredUsers("-2");
+                sessionMap.put("Day2Users", day2User);
+                String day3User = UnderwriterService.totalRegisteredUsers("-3");
+                sessionMap.put("Day3Users", day3User);
+
+                String day4User = UnderwriterService.totalRegisteredUsers("-4");
+                sessionMap.put("Day4Users", day4User);
+
+                String day5User = UnderwriterService.totalRegisteredUsers("-5");
+                sessionMap.put("Day5Users", day5User);
+
+//                System.out.println("today"+todayRegisteration);
+//                 System.out.println("1"+day1User);
+//                  System.out.println("2"+day2User);
+//                   System.out.println("3"+day3User);
+//                    System.out.println("4"+day4User);
+//                     System.out.println("5"+day5User);
                 ArrayList insuranceOfficer_sanctioned_histories = InsuranceOfficerService.getInstance().getAllSanctionedHistories();
                 sessionMap.put("InsuranceOfficerSanctionedHistories", insuranceOfficer_sanctioned_histories);
                 ArrayList allApprovedMediclaimClaims = InsuranceOfficerService.getInstance().getAllApprovedHealthMediclaimClaims();
@@ -285,19 +366,19 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
         }
 
         return result;
-    }   
-    
-    public String doUpdateUser() throws FileNotFoundException{
-        String result="FAILURE";
-        boolean updated= LoginService.updateUser(this, this.userId);
-        System.out.println("user id "+this.userId+"to be updated");
-        if(updated){
-            User user= LoginService.getUser(this.email);
+    }
+
+    public String doUpdateUser() throws FileNotFoundException {
+        String result = "FAILURE";
+        boolean updated = LoginService.updateUser(this, this.userId);
+        System.out.println("user id " + this.userId + "to be updated");
+        if (updated) {
+            User user = LoginService.getUser(this.email);
             sessionMap.put("User", user);
-            System.out.println("user id "+this.phone+"updated");
-            result="SUCCESS";
-        }else{
-            
+            System.out.println("user id " + this.phone + "updated");
+            result = "SUCCESS";
+        } else {
+
             System.out.println("failed to update");
         }
         return result;
@@ -310,20 +391,21 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
 
         return result;
     }
-    
-    public String doGetBoughtBikes(){
-        String result= "FAILURE";
-        ArrayList planList= ClaimService.getBoughtPlans(this.userId);
-        System.out.println("bought bikes"+this.userId);
-        if(!planList.isEmpty()){
+
+    public String doGetBoughtBikes() {
+        String result = "FAILURE";
+        ArrayList planList = ClaimService.getBoughtPlans(this.userId);
+        System.out.println("bought bikes" + this.userId);
+        if (!planList.isEmpty()) {
             System.out.println("planlist fetched");
             sessionMap.put("PlanList", planList);
-            result="SUCCESS";
-        }else{
+            result = "SUCCESS";
+        } else {
             System.out.println("No plans fetched");
         }
         return result;
     }
+
 //     public String doPreSignup() throws Exception{
 //         String result="SUCCESS";
 //        ArrayList countryList = LoginService.getInstance().getAllCountries();

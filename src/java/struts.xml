@@ -92,7 +92,7 @@
             <result name="SUCCESS">officerHomePage.jsp</result>         
         </action> 
         <action name="FetchParticularClaim" class="com.exavalu.models.Claim" method="doSearchClaim">
-            <result name="SUCCESS">claimContent.jsp</result>         
+            <result name="SUCCESS">claimBikeContent.jsp</result>         
         </action> 
         <action name="FetchBikeApi" class="com.exavalu.models.BikeApi" method="fetchBikeApi">
             <result name="SUCCESS">bikeApiData.jsp</result>         

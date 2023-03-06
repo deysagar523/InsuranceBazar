@@ -10,7 +10,7 @@
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        <link rel="stylesheet" href="css/Policyliststyle.css">
+        <link rel="stylesheet" href="css/PolicyListStyle.css">
         <!-- Bootstrap CSS-->
         <link rel="stylesheet" href="css/bootstrap.css">
         <!-- Style CSS -->
@@ -19,22 +19,13 @@
         <link rel="stylesheet" href="css/all.css">
         <!-- Boxicons CSS-->
         <link rel="stylesheet" href="css/boxicons.min.css">
+        <!-- Fixed Table Header CSS-->
+      <link rel="stylesheet" href="css/fixedHeaderTable.css">
 
     </head>
     <style>
         .ftco-section{
             padding: 0;
-        }
-        .table thead.thead-primary{
-            background: #86B817;
-        }
-        .my-custom-scrollbar {
-            position: relative;
-            height: 300px;
-            overflow: auto;
-        }
-        .table-wrapper-scroll-y {
-            display: block;
         }
         #tableId{
             margin-top: 20px;
@@ -132,7 +123,7 @@
                                                                                                                         <a href="RejectPolicy?claimId=${claim.claimId}" class="btn btn-danger">Reject</a>
                                                                                                                     </td>-->
                                                     <td>
-                                                        <button type="button" class="btn btn-dark" onclick="fetchContent(${claim.claimId})">View</button>
+                                                        <button type="button" class="btn btn-success" onclick="fetchContent(${claim.claimId})">View</button>
                                                     </td>
 
 

@@ -1,106 +1,121 @@
 <html>
     <head>
         <meta charset="UTF-8">
-    
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="img/favicon.ico" rel="icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="css/style-login.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.3.js" 
-            integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" 
-            crossorigin="anonymous">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="img/favicon.ico" rel="icon">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+        <!-- Icon Font Stylesheet -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+        <link href="css/style-login.css" rel="stylesheet">
+            <script src="https://code.jquery.com/jquery-3.6.3.js" 
+                                integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" 
+                                crossorigin="anonymous">
     </script>
 
 
 
-    <style>
-        body{
-            background-image: url('img/blur.png');
-        }
-    </style>
+        <style>
+            body{
+                background-image: url('img/blur.png');
+            }
+        </style>
     </head>
-   
+
     <body id="container">
-      
 
 
 
-      <script>
-        function loadPage(jsp) {
-            console.log("Within load Page");
 
-            $.ajax({
-                url: jsp,
+        <script>
+            function loadPage(jsp) {
+                console.log("Within load Page");
 
-                success: function (responseText) {
+                $.ajax({
+                    url: jsp,
 
-                    console.log(responseText);
-                    $("#container").html(responseText);
-                }
-            });
+                    success: function (responseText) {
 
-        }
-    </script>
-<div class="container" id="container">
-	<div class="form-container sign-up-container">
-		<form action="#">
-			<h1>Create Account</h1>
-			<div class="social-container">
-				<a href="#" class="social"><i class="fab fa-facebook-f fw-normal"></i></a>
-				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-			</div>
-			<span>or use your email for registration</span>
-			<input type="text" placeholder="Name" />
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<button>Sign Up</button>
-		</form>
-	</div>
-	<div class="form-container sign-in-container">
-		<form action="Login" method ="Post">
-			<h1>Sign in</h1>
-			<div class="social-container">
-				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-			</div>
-			<span>or use your account</span>
-			<input type="email" name="email" placeholder="Email" />
-			<input type="password"  name="password" placeholder="Password" />
-                        <a href="#"></a>
-                        <button type="submit">Sign In</button>
-                        <a onclick="loadPage('ForgetPassword.jsp')">Forgot your password? </a>
-		</form>
-	</div>
-	<div class="overlay-container">
-		<div class="overlay">
-			<div class="overlay-panel overlay-left">
-				<h1>Welcome Back!</h1>
-				<p>To keep connected with us please login with your personal info</p>
-				<button class="ghost" id="signIn">Sign In</button>
-			</div>
-			<div class="overlay-panel overlay-right">
-				<h1>Hello, Friend!</h1>
-				<p>Enter your personal details and start journey with us</p>
-                                 <a onclick="loadPage('signup.jsp')">	<button class="ghost" id="signUp">Sign Up</button> </a>
-			</div>
-		</div>
-	</div>
-</div>
+                        console.log(responseText);
+                        $("#container").html(responseText);
+                    }
+                });
+
+            }
+        </script>
+        <div class="container" id="container">
+
+            <div class="form-container sign-up-container">
+                <form action="#">
+                    <h1>Create Account</h1>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="fab fa-facebook-f fw-normal"></i></a>
+                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <span>or use your email for registration</span>
+                    <input type="text" placeholder="Name" />
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Password" />
+                    <button>Sign Up</button>
+                </form>
+            </div>
+            <div class="form-container sign-in-container">
+                <div>
+                    <c:if test="${ErrorMsgForLogin.length()!=0}">
+                        <div class="alert alert-danger" role="alert" style="margin-top: 50px;width: 50%;justify-content: center;">
+                            ${ErrorMsgForLogin}
+                        </div>
+                    </c:if>
+                </div>
+                <div>
+                    <c:if test="${SuccessMsgForSignUp.length()!=0}">
+                        <div class="alert alert-success" role="alert" style="margin-top: 50px;width: 50%;justify-content: center;">
+                            ${SuccessMsgForSignUp}
+                        </div>
+                    </c:if>
+                </div>
+                <form action="Login" method ="Post">
+                    <h1>Sign in</h1>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <span>or use your account</span>
+                    <input type="email" name="email" placeholder="Email" />
+                    <input type="password"  name="password" placeholder="Password" />
+                    <a href="#"></a>
+                    <button type="submit">Sign In</button>
+                    <a onclick="loadPage('ForgetPassword.jsp')">Forgot your password? </a>
+                </form>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Welcome Back!</h1>
+                        <p>To keep connected with us please login with your personal info</p>
+                        <button class="ghost" id="signIn">Sign In</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Hello, Friend!</h1>
+                        <p>Enter your personal details and start journey with us</p>
+                        <a onclick="loadPage('signup.jsp')">	<button class="ghost" id="signUp">Sign Up</button> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
     </body>
-    </html>
+</html>
 
 
 

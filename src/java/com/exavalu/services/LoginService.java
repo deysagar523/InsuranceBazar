@@ -9,6 +9,7 @@ import com.exavalu.models.District;
 import com.exavalu.models.State;
 import com.exavalu.models.User;
 import com.exavalu.utils.JDBCConnectionManager;
+import com.mysql.cj.protocol.Resultset;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.Blob;
@@ -43,8 +44,8 @@ public class LoginService {
     }
 
     public boolean doLogin(User user) {
-        boolean success=false;
-    
+        boolean success = false;
+
         String sql = "Select * from users where email=? and password=?";
 
         try {
@@ -57,11 +58,9 @@ public class LoginService {
 
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                
-                success= true;
-                
-               
-                
+
+                success = true;
+
             }
 
         } catch (SQLException ex) {
@@ -69,17 +68,26 @@ public class LoginService {
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
 
         }
-        
+
         return success;
     }
 
     public boolean doSignUp(User user) {
 
-        String sql = "INSERT INTO users(email,password, role,dateOfRegistration)\n" + "VALUES(? ,?, ?,CURDATE());";
-
+       
+        
         try {
+             String sql2 = "select * from users where email=?";
+            String sql = "INSERT INTO users(email,password, role,dateOfRegistration)\n" + "VALUES(? ,?, ?,CURDATE());";
             Connection con = JDBCConnectionManager.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
+            PreparedStatement ps1 = con.prepareStatement(sql2);
+            ps1.setString(1, user.getEmail());
+            ResultSet rs = ps1.executeQuery();
+            if(rs.next())
+            {
+                return false;
+            }
             ps.setString(1, user.getEmail());
             ps.setString(2, user.getPassword());
             ps.setString(3, "1");
@@ -106,7 +114,7 @@ public class LoginService {
 
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sql);
-            
+
             preparedStatement.setString(1, email);
 
             ResultSet rs = preparedStatement.executeQuery();
@@ -123,14 +131,14 @@ public class LoginService {
                 user.setRole(rs.getString("role"));
                 user.setAge(rs.getString("age"));
                 user.setFullName(rs.getString("fullName"));
-                System.out.println("from getUser fullName:"+rs.getString("fullName"));
+                System.out.println("from getUser fullName:" + rs.getString("fullName"));
                 user.setCountryCode(rs.getString("countryCode"));
                 user.setStateCode(rs.getString("stateCode"));
                 user.setDistrictCode(rs.getString("districtCode"));
                 user.setPhone(rs.getString("phone"));
-                System.out.println("from getUser phone:"+rs.getString("phone"));
+                System.out.println("from getUser phone:" + rs.getString("phone"));
                 user.setGender(rs.getString("gender"));
-                System.out.println("from getUser gender:"+rs.getString("gender"));
+                System.out.println("from getUser gender:" + rs.getString("gender"));
                 user.setDob(rs.getString("dob"));
 
                 // con.close();
@@ -191,7 +199,7 @@ public class LoginService {
             }
 
         } catch (SQLException ex) {
-           System.out.println(ex.getMessage());;
+            System.out.println(ex.getMessage());;
         }
         System.err.println("Number of states = " + stateList.size());
         return stateList;
@@ -220,22 +228,21 @@ public class LoginService {
             }
 
         } catch (SQLException ex) {
-           System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());
         }
         System.err.println("Number of districts = " + districtList.size());
         return districtList;
     }
-    
-    
-    public static boolean updateUser(User user, String userId) throws FileNotFoundException{
+
+    public static boolean updateUser(User user, String userId) throws FileNotFoundException {
         boolean result = false;
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "UPDATE users SET fullName = ? , gender = ? , phone = ?, age=?, incomeSource=?, image=? WHERE userId = ?";
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
-            
-            System.out.println("image: "+user.getImage());
+
+            System.out.println("image: " + user.getImage());
             FileInputStream inputStream = new FileInputStream(user.getImage());
             preparedStatement.setString(1, user.getFullName());
             preparedStatement.setString(2, user.getGender());
@@ -243,15 +250,12 @@ public class LoginService {
             preparedStatement.setString(4, user.getAge());
             preparedStatement.setString(5, user.getIncomeSource());
             preparedStatement.setBinaryStream(6, inputStream);
-            
-        
-                       
+
             preparedStatement.setString(7, userId);
-            
+
             int row = preparedStatement.executeUpdate();
 
-            if(row==1)
-            {
+            if (row == 1) {
                 System.out.println("row updated");
                 result = true;
             }

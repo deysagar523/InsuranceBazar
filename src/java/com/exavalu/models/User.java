@@ -214,7 +214,7 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
             sessionMap.put("SuccessMsgForSignUp", successMsg);
             result = "SUCCESS";
         } else {
-            String errorMsg = "Account Creation Failed! Try Again?";
+            String errorMsg = "Email Already Exists! Try with anotherEmail";
             sessionMap.put("ErrorMsgForSignUp", errorMsg);
             System.out.println("Returning Failure from doSignUp method");
         }
@@ -380,7 +380,10 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
             System.out.println(user.getFullName());
 //            result = "SUCCESS";
         } else {
-            System.out.println("Returning Failure from doLogin method");
+            String errorMsg = "Invalid Email Or Password Combination";
+            sessionMap.put("ErrorMsgForLogin", errorMsg);
+            System.out.println("Returning Failure from doSignUp method");
+            
 
         }
 

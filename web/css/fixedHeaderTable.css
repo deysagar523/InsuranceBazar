@@ -1,0 +1,15 @@
+.table thead.thead-primary{
+    background: #9ec645;
+    color: white;
+    top:0;
+    position:sticky;
+}
+.table {
+    line-height: 10px;
+    position: relative;
+}
+
+.my-custom-scrollbar {
+    height: 300px;
+    overflow-y: scroll;
+}

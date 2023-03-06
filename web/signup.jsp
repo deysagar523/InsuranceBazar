@@ -18,9 +18,21 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <link href="css/style-signup.jsp" rel="stylesheet">
-        
-        
-        
+
+        <style>
+            .alert-danger{
+                background:#d9534f;
+                width:30vw;
+                height:40px;
+                margin-top: 10vh;
+                color: white;
+                margin-left:auto;
+                margin-right:auto;
+                text-align: center;
+                border-radius: 10px;
+            }
+                    </style>
+
     </head>
 
     <script>
@@ -47,7 +59,7 @@
     <body>
         <div>
             <c:if test="${ErrorMsgForSignUp.length()!=0}">
-                <div class="alert alert-danger" role="alert" style="margin-top: 50px;width: 50%;justify-content: center;">
+                <div class="alert-danger">
                     ${ErrorMsgForSignUp}
                 </div>
             </c:if>

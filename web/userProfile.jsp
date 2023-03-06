@@ -52,15 +52,15 @@
             });
 
         }
-        
+
         function laodPlans(userId) {
-            
+
             console.log(userId);
 
             $.ajax({
                 url: 'FetchPlans',
-                data:{
-                    userId:userId
+                data: {
+                    userId: userId
                 },
                 success: function (responseText) {
 
@@ -160,321 +160,327 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                        
+
                         <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <c:if test="${User.imageData!=null}">
+                                <img src="data:image/png;base64,${User.imageData}" style="max-width: 150px; max-height: 150px;">
+                            </c:if>
+                            <c:if test="${User.imageData==null}">
 
-                            <img src="data:image/png;base64,${User.imageData}" style="max-width: 150px; max-height: 150px;">
-
-
-
+                                <img src="img/user.png" style="max-width: 150px; max-height: 150px;">
+                            </c:if>
                         </a>
-                       
-                       
-                    
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="my-profile.html"><i class="fa fa-user size-icon-1"></i> <span>My Profile</span></a>
-                        <a class="dropdown-item" href="settings.html"><i class="fa fa-cog size-icon-1"></i> <span>Settings</span></a>
-                        <hr class="dropdown-divider">
-                        <a class="dropdown-item" href="Logout"><i class="fa fa-sign-out-alt  size-icon-1"></i> Logout</a>
+
+
+                        
+
+
+
+
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="my-profile.html"><i class="fa fa-user size-icon-1"></i> <span>My Profile</span></a>
+                                <a class="dropdown-item" href="settings.html"><i class="fa fa-cog size-icon-1"></i> <span>Settings</span></a>
+                                <hr class="dropdown-divider">
+                                <a class="dropdown-item" href="Logout"><i class="fa fa-sign-out-alt  size-icon-1"></i> Logout</a>
+                            </ul>
+                        </li>
                     </ul>
-                    </li>
-                </ul>
+                </div>
             </div>
-        </div>
 
-        <!--Sidebar-->
-        <div class="sidebar transition overlay-scrollbars animate__animated  animate__slideInLeft">
-            <div class="sidebar-content"> 
-                <div id="sidebar">
+            <!--Sidebar-->
+            <div class="sidebar transition overlay-scrollbars animate__animated  animate__slideInLeft">
+                <div class="sidebar-content"> 
+                    <div id="sidebar">
 
-                    <!-- Logo -->
-                    <div class="logo">
-                        <h2 class="mb-0"><img src="https://png.pngtree.com/png-clipart/20200709/original/pngtree-life-insurance-logo-png-image_4113029.jpg">Insurance Bazzar</h2>
-                    </div>
+                        <!-- Logo -->
+                        <div class="logo">
+                            <h2 class="mb-0"><img src="https://png.pngtree.com/png-clipart/20200709/original/pngtree-life-insurance-logo-png-image_4113029.jpg">Insurance Bazzar</h2>
+                        </div>
 
-                    <ul class="side-menu">
-                        <li>
-                            <a href="index.html" class="active">
-                                <i class='bx bxs-dashboard icon' ></i> Dashboard
-<!--                            </a>
-                        </li>
+                        <ul class="side-menu">
+                            <li>
+                                <a href="index.html" class="active">
+                                    <i class='bx bxs-dashboard icon' ></i> Dashboard
+                                    <!--                            </a>
+                                                            </li>
+                                    
+                                                             Divider
+                                                            <li class="divider" data-text="STARTER"></li>
+                                    
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i class='bx bx-columns icon' ></i> 
+                                                                    My Profile
+                                                                    <i class='bx bx-chevron-right icon-right' ></i>
+                                                                </a>
+                                    
+                                                            </li>
+                                    
+                                                            <li>
+                                                                <a href="policyListTwoWheeler_1.jsp">
+                                                                    <i class='bx bxs-meh-blank icon'></i> 
+                                                                    My Policies
+                                                                </a>
+                                                            </li>
+                                    
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i class='fa fa-th icon' ></i> 
+                                                                    Claim Support
+                                                                    <i class='bx bx-chevron-right icon-right' ></i>
+                                                                </a>
+                                    
+                                                            </li>
+                                    
+                                                             Divider
+                                                            <li class="divider" data-text="Atrana"></li>
+                                    
+                                                            <li>
+                                                                <a href="paymentForm.jsp">
+                                                                    <i class='bx bx-columns icon' ></i> 
+                                                                    Payment
+                                                                    <i class='bx bx-chevron-right icon-right' ></i>
+                                                                </a>
+                                    
+                                                            </li>
+                                    
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i class='bx bxs-notepad icon' ></i> 
+                                                                    Help
+                                                                    <i class='bx bx-chevron-right icon-right' ></i>
+                                                                </a>
+                                    
+                                                            </li>
+                                    
+                                    
+                                    
+                                                             Divider
+                                                            <li class="divider" data-text="Pages"></li>
+                                    
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i class='bx bxs-user icon' ></i> 
+                                                                    Settings
+                                                                    <i class='bx bx-chevron-right icon-right' ></i>
+                                                                </a>
+                                    
+                                                                </div>
+                                    
+                                                                </div> 
+                                                                </div>
+                                                                </div> End Sidebar-->
+                                </a>
+                            </li>
 
-                         Divider
-                        <li class="divider" data-text="STARTER"></li>
+                            <!-- Divider-->
+                            <li class="divider" data-text="STARTER"></li>
 
-                        <li>
-                            <a href="#">
-                                <i class='bx bx-columns icon' ></i> 
-                                My Profile
-                                <i class='bx bx-chevron-right icon-right' ></i>
-                            </a>
 
-                        </li>
+                            <li>
+                                <a href="userProfile.jsp">
+                                    <i class='bx bxs-meh-blank icon'></i> 
+                                    My Profile
+                                </a>
+                            </li>
 
-                        <li>
-                            <a href="policyListTwoWheeler_1.jsp">
-                                <i class='bx bxs-meh-blank icon'></i> 
-                                My Policies
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <i class='fa fa-th icon' ></i> 
-                                Claim Support
-                                <i class='bx bx-chevron-right icon-right' ></i>
-                            </a>
-
-                        </li>
-
-                         Divider
-                        <li class="divider" data-text="Atrana"></li>
-
-                        <li>
-                            <a href="paymentForm.jsp">
-                                <i class='bx bx-columns icon' ></i> 
-                                Payment
-                                <i class='bx bx-chevron-right icon-right' ></i>
-                            </a>
-
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <i class='bx bxs-notepad icon' ></i> 
-                                Help
-                                <i class='bx bx-chevron-right icon-right' ></i>
-                            </a>
-
-                        </li>
+                            <li>
+                                <a onClick="laodPlans(<c:out value="${userId}"> </c:out>)">
+                                        <i class='bx bxs-meh-blank icon'></i> 
+                                        My Plans
+                                    </a>
+                                </li>
 
 
 
-                         Divider
-                        <li class="divider" data-text="Pages"></li>
-
-                        <li>
-                            <a href="#">
-                                <i class='bx bxs-user icon' ></i> 
-                                Settings
-                                <i class='bx bx-chevron-right icon-right' ></i>
-                            </a>
-
-                            </div>
-
-                            </div> 
-                            </div>
-                            </div> End Sidebar-->
-</a>
-                        </li>
-
-                        <!-- Divider-->
-                        <li class="divider" data-text="STARTER"></li>
 
 
-                        <li>
-                            <a href="userProfile.jsp">
-                                <i class='bx bxs-meh-blank icon'></i> 
-                               My Profile
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a onClick="laodPlans(<c:out value="${userId}"> </c:out>)">
-                                <i class='bx bxs-meh-blank icon'></i> 
-                               My Plans
-                            </a>
-                        </li>
 
-                        
-                       
+                                <li>
+                                    <a href="paymentForm.jsp">
+                                        <i class='bx bx-columns icon' ></i> 
+                                        Payment
+                                        <i class='bx bx-chevron-right icon-right' ></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="paymentForm.jsp">
+                                        <i class='bx bx-columns icon' ></i> 
+                                        Claim Support
+                                        <i class='bx bx-chevron-right icon-right' ></i>
+                                    </a>
+                                </li>
+                                <li>
 
-                     
-         
-                        <li>
-                            <a href="paymentForm.jsp">
-                                <i class='bx bx-columns icon' ></i> 
-                                Payment
-                                <i class='bx bx-chevron-right icon-right' ></i>
-                            </a>
-                        </li>
-                         <li>
-                            <a href="paymentForm.jsp">
-                                <i class='bx bx-columns icon' ></i> 
-                               Claim Support
-                                <i class='bx bx-chevron-right icon-right' ></i>
-                            </a>
-                        </li>
-                        <li>
-                            
 
-                                <a class="dropdown-item" href="Logout" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16" color="white">
-                                    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
-                                    <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-                                    </svg> <span style="color: white">Logout</span></a>
-                           
-                        </li>
+                                    <a class="dropdown-item" href="Logout" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16" color="white">
+                                        <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                                        <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                        </svg> <span style="color: white">Logout</span></a>
 
-                      
+                                </li>
 
+
+
+                        </div>
+
+                    </div> 
+                </div>
+            </div><!-- End Sidebar-->
+
+
+            <div class="sidebar-overlay"></div>
+
+
+            <!--Content Start-->
+            <div class="content-start transition">
+                <div class="container-fluid dashboard">
+                    <div class="content-header">
+                        <h4>Hi, ${User.fullName}!</h4>
+                    <p>Complete your Profile</p>
                 </div>
 
-            </div> 
+                <div class="row">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-start align-items-sm-center  ">
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="card-body"> 
+                            <form action="UpdateUser"  method="POST" enctype="multipart/form-data">
+                                <div class="row">
+
+                                    <div class="form-floating text-center">                                        
+                                        <input type="file" id="image-file" name="image" onchange="previewImage(event)">
+                                        <br>
+                                        <img id="image-preview"  style="max-width: 200px; max-height: 200px;">
+                                    </div>
+
+
+                                    <input class="form-control" type="hidden" value="${User.userId}" readonly id="firstName" name="userId"  autofocus />
+
+                                    <div class="mb-3 col-md-6">
+                                        <label for="firstName" class="form-label">Full Name</label>
+                                        <input class="form-control" type="text" value="${User.fullName}" id="firstName" name="fullName"  autofocus required/>
+                                    </div>
+
+                                    <div class="mb-3 col-md-6">
+                                        <label for="lastName" class="form-label">Gender</label>
+                                        <input class="form-control" type="text" value="${User.gender}" name="gender" id="lastName"  required/>
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label for="email" class="form-label">E-mail</label>
+                                        <input class="form-control" type="text" readonly id="email" name="email" value="${User.email}" placeholder="Andree@example.com" />
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label for="organization" class="form-label">Phone</label>
+                                        <input type="text" class="form-control" id="organization" name="phone" value="${User.phone}" title="This is Not a Valid Phone Number" pattern="[6-9]{1}[0-9]{9}" required/>
+                                    </div>
+                                    <!--                                <div class="mb-3 col-md-6">
+                                                                        <label for="DOB" class="form-label">Date of Birth</label>
+                                                                        <input type="text" class="form-control" id="DOB" name="organization" value="AtranaTheme" />
+                                                                    </div>-->
+
+
+                                    <!-- Source of Income and Income Amount -->
+                                    <div class="mb-3 col-md-6">
+                                        <label class="label-title">Source of Income</label>
+                                        <select name="incomeSource" class="form-input" id="level" >
+                                            <option value="B">Employed</option>
+                                            <option value="I">Self-employed</option>
+                                            <option value="A">Unemployed</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3 col-md-6">
+                                        <<label for="age" class="form-label">Age</label>
+                                        <input type="number" class="form-control" id="organization" name="age" value="${User.age}" required/>
+                                    </div>
+
+
+                                </div>
+                        </div>
+
+                        <div class="mt-2">
+                            <button type="submit" class="btn btn-primary me-2">Save changes</button>
+                            <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h5 class="card-header">Delete Account</h5>
+                <div class="card-body">
+                    <div class="mb-3 col-12 mb-0">
+                        <div class="alert alert-warning">
+                            <h6 class="alert-heading fw-bold mb-1">Are you sure you want to delete your account?</h6>
+                            <p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
+                        </div>
+                    </div>
+                    <form  method="POST" accept="my-profile.html"> 
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="accountActivation" id="accountActivation" />
+                            <label class="form-check-label" for="accountActivation">I confirm my account deactivation</label>
+                        </div>
+                        <button type="submit" class="btn btn-danger deactivate-account">Deactivate Account</button>
+                    </form>
+                </div>
+            </div>
         </div>
-    </div><!-- End Sidebar-->
+    </div>
 
 
-                            <div class="sidebar-overlay"></div>
+</div> <!-- End Container -->
+</div><!-- End Content -->
 
 
-                            <!--Content Start-->
-                            <div class="content-start transition">
-                                <div class="container-fluid dashboard">
-                                    <div class="content-header">
-                                        <h4>Hi, ${User.fullName}!</h4>
-                                        <p>Complete your Profile</p>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-start align-items-sm-center  ">
-
-
-
-                                                </div>
-                                            </div>
-
-                                            <div class="card-body"> 
-                                                <form action="UpdateUser"  method="POST" enctype="multipart/form-data">
-                                                    <div class="row">
-
-                                                        <div class="form-floating text-center">                                        
-                                                            <input type="file" id="image-file" name="image" onchange="previewImage(event)">
-                                                            <br>
-                                                            <img id="image-preview" style="max-width: 200px; max-height: 200px;">
-                                                        </div>
+<!-- Footer -->				
+<footer>
+    <div class="footer">
+        <div class="float-start">
+            <p>2022 &copy; Atrana</p>
+        </div>
+        <div class="float-end">
+            <p>Crafted with 
+                <span class="text-danger">
+                    <i class="fa fa-heart"></i> by 
+                    <a href="https://www.facebook.com/andreew.co.id/" class="author-footer">Andre Tri Ramadana</a>
+                </span> 
+            </p>
+        </div>
+    </div>
+</footer>
 
 
-                                                        <input class="form-control" type="hidden" value="${User.userId}" readonly id="firstName" name="userId"  autofocus />
+<!-- Preloader -->
+<div class="loader">
+    <div class="spinner-border text-light" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
 
-                                                        <div class="mb-3 col-md-6">
-                                                            <label for="firstName" class="form-label">Full Name</label>
-                                                            <input class="form-control" type="text" value="${User.fullName}" id="firstName" name="fullName"  autofocus required/>
-                                                        </div>
+<!-- Loader -->
+<div class="loader-overlay"></div>
 
-                                                        <div class="mb-3 col-md-6">
-                                                            <label for="lastName" class="form-label">Gender</label>
-                                                            <input class="form-control" type="text" value="${User.gender}" name="gender" id="lastName"  required/>
-                                                        </div>
-                                                        <div class="mb-3 col-md-6">
-                                                            <label for="email" class="form-label">E-mail</label>
-                                                            <input class="form-control" type="text" readonly id="email" name="email" value="${User.email}" placeholder="Andree@example.com" />
-                                                        </div>
-                                                        <div class="mb-3 col-md-6">
-                                                            <label for="organization" class="form-label">Phone</label>
-                                                            <input type="text" class="form-control" id="organization" name="phone" value="${User.phone}" required/>
-                                                        </div>
-                                                        <!--                                <div class="mb-3 col-md-6">
-                                                                                            <label for="DOB" class="form-label">Date of Birth</label>
-                                                                                            <input type="text" class="form-control" id="DOB" name="organization" value="AtranaTheme" />
-                                                                                        </div>-->
+<!-- General JS Scripts -->
+<script src="assets/js/atrana.js"></script>
 
+<!-- JS Libraies -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/popper.min.js"></script>
 
-                                                        <!-- Source of Income and Income Amount -->
-                                                        <div class="mb-3 col-md-6">
-                                                            <label class="label-title">Source of Income</label>
-                                                            <select name="incomeSource" class="form-input" id="level" >
-                                                                <option value="B">Employed</option>
-                                                                <option value="I">Self-employed</option>
-                                                                <option value="A">Unemployed</option>
-                                                            </select>
-                                                        </div>
-                                                        
-                                                        <div class="mb-3 col-md-6">
-                                                            <<label for="age" class="form-label">Age</label>
-                                                            <input type="number" class="form-control" id="organization" name="age" value="${User.age}" required/>
-                                                        </div>
+<!-- Template JS File -->
+<script src="js/script.js"></script>
+<script src="js/custom.js"></script>
+<!-- Script for range input label -->
 
-
-                                                    </div>
-                                            </div>
-
-                                            <div class="mt-2">
-                                                <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                                                <button type="reset" class="btn btn-outline-secondary">Cancel</button>
-                                            </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card">
-                                    <h5 class="card-header">Delete Account</h5>
-                                    <div class="card-body">
-                                        <div class="mb-3 col-12 mb-0">
-                                            <div class="alert alert-warning">
-                                                <h6 class="alert-heading fw-bold mb-1">Are you sure you want to delete your account?</h6>
-                                                <p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
-                                            </div>
-                                        </div>
-                                        <form  method="POST" accept="my-profile.html"> 
-                                            <div class="form-check mb-3">
-                                                <input class="form-check-input" type="checkbox" name="accountActivation" id="accountActivation" />
-                                                <label class="form-check-label" for="accountActivation">I confirm my account deactivation</label>
-                                            </div>
-                                            <button type="submit" class="btn btn-danger deactivate-account">Deactivate Account</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-
-
-                            </div> <!-- End Container -->
-                            </div><!-- End Content -->
-
-
-                            <!-- Footer -->				
-                            <footer>
-                                <div class="footer">
-                                    <div class="float-start">
-                                        <p>2022 &copy; Atrana</p>
-                                    </div>
-                                    <div class="float-end">
-                                        <p>Crafted with 
-                                            <span class="text-danger">
-                                                <i class="fa fa-heart"></i> by 
-                                                <a href="https://www.facebook.com/andreew.co.id/" class="author-footer">Andre Tri Ramadana</a>
-                                            </span> 
-                                        </p>
-                                    </div>
-                                </div>
-                            </footer>
-
-
-                            <!-- Preloader -->
-                            <div class="loader">
-                                <div class="spinner-border text-light" role="status">
-                                    <span class="sr-only">Loading...</span>
-                                </div>
-                            </div>
-
-                            <!-- Loader -->
-                            <div class="loader-overlay"></div>
-
-                            <!-- General JS Scripts -->
-                            <script src="assets/js/atrana.js"></script>
-
-                            <!-- JS Libraies -->
-                            <script src="js/jquery.min.js"></script>
-                            <script src="js/bootstrap.bundle.min.js"></script>
-                            <script src="js/popper.min.js"></script>
-
-                            <!-- Template JS File -->
-                            <script src="js/script.js"></script>
-                            <script src="js/custom.js"></script>
-                            <!-- Script for range input label -->
-
-                            </body>
-                            </html>
+</body>
+</html>

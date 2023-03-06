@@ -74,18 +74,15 @@ public class LoginService {
 
     public boolean doSignUp(User user) {
 
-       
-        
         try {
-             String sql2 = "select * from users where email=?";
+            String sql2 = "select * from users where email=?";
             String sql = "INSERT INTO users(email,password, role,dateOfRegistration)\n" + "VALUES(? ,?, ?,CURDATE());";
             Connection con = JDBCConnectionManager.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             PreparedStatement ps1 = con.prepareStatement(sql2);
             ps1.setString(1, user.getEmail());
             ResultSet rs = ps1.executeQuery();
-            if(rs.next())
-            {
+            if (rs.next()) {
                 return false;
             }
             ps.setString(1, user.getEmail());
@@ -243,15 +240,49 @@ public class LoginService {
             PreparedStatement preparedStatement = con.prepareStatement(sql);
 
             System.out.println("image: " + user.getImage());
-            FileInputStream inputStream = new FileInputStream(user.getImage());
+
             preparedStatement.setString(1, user.getFullName());
             preparedStatement.setString(2, user.getGender());
             preparedStatement.setString(3, user.getPhone());
             preparedStatement.setString(4, user.getAge());
             preparedStatement.setString(5, user.getIncomeSource());
+
+            FileInputStream inputStream = new FileInputStream(user.getImage());
             preparedStatement.setBinaryStream(6, inputStream);
 
             preparedStatement.setString(7, userId);
+
+            int row = preparedStatement.executeUpdate();
+
+            if (row == 1) {
+                System.out.println("row updated");
+                result = true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return result;
+    }
+    public static boolean updateUser2(User user, String userId) throws FileNotFoundException {
+        boolean result = false;
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            String sql = "UPDATE users SET fullName = ? , gender = ? , phone = ?, age=?, incomeSource=? WHERE userId = ?";
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+
+            //System.out.println("image: " + user.getImage());
+
+            preparedStatement.setString(1, user.getFullName());
+            preparedStatement.setString(2, user.getGender());
+            preparedStatement.setString(3, user.getPhone());
+            preparedStatement.setString(4, user.getAge());
+            preparedStatement.setString(5, user.getIncomeSource());
+
+           
+
+            preparedStatement.setString(6, userId);
 
             int row = preparedStatement.executeUpdate();
 

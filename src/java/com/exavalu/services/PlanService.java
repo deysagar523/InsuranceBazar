@@ -98,13 +98,15 @@ public class PlanService {
         return planList;
     }
         
+        
+        
         public static ArrayList getAllMedPlans(){
         
         ArrayList planList= new ArrayList();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
-            String sql = "select * from plans pl, policies po where pl.policyId= po.policyId and po.policyId=3;";
+            String sql = "select * from plans pl, policies po where pl.policyId= po.policyId and po.policyId=1;";
             PreparedStatement preparedStatement = con.prepareStatement(sql);
 
             ResultSet rs = preparedStatement.executeQuery();

@@ -19,31 +19,10 @@
         <link rel="stylesheet" href="css/all.css">
         <!-- Boxicons CSS-->
         <link rel="stylesheet" href="css/boxicons.min.css">
+        <link rel="stylesheet" href="css/plans.css">
 
     </head>
-    <style>
-        .ftco-section{
-            padding: 0;
-        }
-        .table thead.thead-primary{
-            background: #86B817;
-        }
-        .my-custom-scrollbar {
-            position: relative;
-            height: 300px;
-            overflow: auto;
-        }
-        .table-wrapper-scroll-y {
-            display: block;
-        }
-        #tableId{
-            margin-top: 20px;
-        }
-        #bikeIdentityDetails{
-            margin-left: 20px;
 
-        }
-    </style>
     <script>
         function ajaxViewClaim(claimId) {
             console.log(claimId);
@@ -60,10 +39,12 @@
             });
         }
     </script>
+    
+    <section>
+            <jsp:include page="menu.jsp"></jsp:include>
+        </section>
     <body id="container">
         
-       
-            <jsp:include page="menu.jsp"></jsp:include>
         
 
         <div>
@@ -102,8 +83,8 @@
                                                     <td><c:out value="${plan.planAmount}"> </c:out>
                                                         
                                                         <td>
-                                                            <a onClick="ajaxViewClaim(<c:out value="${plan.claimId}"> </c:out>)" style="cursor:pointer" class="btn btn-success mr-2">View Details</a>
-                                                        <!--<a href="LoadClaimDetails?claimId=${plan.claimId}" style="cursor:pointer" class="btn btn-success mr-2">View Details</a>-->
+                                                            <!--<a onClick="ajaxViewClaim(<c:out value="${plan.claimId}"> </c:out>)" style="cursor:pointer" class="btn btn-success mr-2">View Details</a>-->
+                                                        <a href="LoadClaimDetails?claimId=${plan.claimId}" style="cursor:pointer" class="btn btn-success mr-2">View Details</a>
 
 
 

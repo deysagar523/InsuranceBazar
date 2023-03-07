@@ -45,6 +45,7 @@
                     height: 100%;
                     box-sizing: border-box;
                     border-spacing: 10px;
+
                 }
                 .item {
                     /* float:left; */
@@ -79,7 +80,7 @@
 
                 /* CHECKED STYLES */
                 [type=radio]:checked + img {
-                    outline: 2px solid #f00;
+                    outline: 2px solid #9ec645;
                 }
 
 
@@ -95,21 +96,22 @@
                         <div class="card card-5">
 
                             <div class="card-heading">
-                                <c:choose>
-                                    <c:when test='${Claim.getClaimStatus().equalsIgnoreCase("bought")}'>
-                                    <h2 class="title"> Child Investment</h2>
+                            <c:choose>
+                                <c:when test='${Claim.getClaimStatus().equalsIgnoreCase("bought")}'>
+                                    <h2 class="title"> File Your  MediClaim</h2>
                                 </c:when>
+
                                 <c:when test='${Claim.getClaimStatus().equalsIgnoreCase("1")}'>
-                                    <h2 class="title"> Your FNOL is yet to be approved by the Underwriter!!</h2>
+                                    <h2 class="title">Your FNOL is yet to be approved by the Underwriter!!</h2>
                                 </c:when>
                             </c:choose>
 
                         </div>
                         <div class="card-body">
-                            <form action="UpdateChildClaim" method="POST">
+                            <form action='UpdateMedClaim' method="POST">
                                 <input type="hidden" value="${Claim.getClaimId()}" name="claimId"/>
                                 <div class="form-row">
-                                    <div class="name">Name</div>
+                                    <div class="name">Your Name</div>
                                     <div class="value">
                                         <div class="input-group">
                                             <input class="input--style-5" type="text" value="${Claim.getFullName()}" name="fullName">
@@ -124,11 +126,137 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="form-row">
-                                    <div class="name">Email</div>
+                                    <div class="name">Your Email</div>
                                     <div class="value">
                                         <div class="input-group">
-                                            <input class="input--style-5" type="email" value="${Claim.getEmail()}" name="email">
+                                            <input class="input--style-5" value="${Claim.getEmail()}" type="email" name="email">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="name">Your Age</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <input class="input--style-5" value="${Claim.getAge()}" type="number" name="age">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="name">Your Gender</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <input class="input--style-5" value="${Claim.getGender()}" type="gender" name="gender">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Your Adhar Card</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <input class="input--style-5" value="${Claim.getAdharCard()}"  name="adharCard">
+                                        </div>
+                                    </div>
+                                </div>
+                                <c:choose>
+                                    <c:when test="${!Claim.getRelation().equalsIgnoreCase('SE')}">
+                                        <div class="form-row">
+                                            <div class="name">Relative Name</div>
+                                            <div class="value">
+                                                <div class="input-group">
+                                                    <input class="input--style-5" value="${Claim.getRelativeName()}" type="gender" name="relativeName">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="name">Relative Age</div>
+                                            <div class="value">
+                                                <div class="input-group">
+                                                    <input class="input--style-5" value="${Claim.getRelativeAge()}" type="gender" name="relativeAge">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-row">
+                                            <div class="name">Relative's Adhar Card Number</div>
+                                            <div class="value">
+                                                <div class="input-group">
+                                                    <input class="input--style-5" value="${Claim.getRelationAdhar()}" type="gender" name="relationAdhar">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </c:when>
+                                </c:choose>
+                                <!--                                <div class="form-row">
+                                                            <div class="name">Medical History</div>
+                                                            <div class="value">
+                                                                <div class="input-group">
+                                                                    <input class="input--style-5" value="${Claim.getMedicalHistory()}" type="gender" name="medicalHistory">
+                                                                </div>
+                                                            </div>
+                                                        </div>-->
+
+
+
+
+                                <div class="form-row">
+                                    <div class="name">Medical History</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <c:choose>
+                                                <c:when test="${Claim.getMedicalHistory().equalsIgnoreCase('EX')}">
+                                                    <input class="input--style-5" value="Existing Illness" type="gender" name="medicalHistory">
+                                                </c:when>
+                                                <c:when test="${Claim.getMedicalHistory().equalsIgnoreCase('SU')}">
+                                                    <input class="input--style-5" value="Surgical Procedure" type="gender" name="medicalHistory">
+                                                </c:when>
+                                                <c:when test="${Claim.getMedicalHistory().equalsIgnoreCase('None')}">
+                                                    <input class="input--style-5" value="None" type="gender" name="medicalHistory">
+                                                </c:when>
+                                            </c:choose>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Disease</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <input class="input--style-5" value="${Claim.getDisease()}" type="gender" name="disease">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Insured For</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <c:choose>
+                                             <c:when test="${Claim.getRelation().equalsIgnoreCase('SE')}">
+                                                    <input class="input--style-5" value="Self" type="gender" name="gender">
+                                                    </c:when>     
+
+                                                <c:when test="${Claim.getRelation().equalsIgnoreCase('SP')}">
+                                                    <input class="input--style-5" value="Spouse" type="gender" name="gender">
+                                                    </c:when>
+                                                    <c:when test="${Claim.getRelation().equalsIgnoreCase('MO')}">
+                                                    <input class="input--style-5" value="Mother" type="gender" name="gender">
+                                                    </c:when>
+                                                    <c:when test="${Claim.getRelation().equalsIgnoreCase('SO')}">
+                                                    <input class="input--style-5" value="Son" type="gender" name="gender">
+                                                    </c:when>
+                                                    <c:when test="${Claim.getRelation().equalsIgnoreCase('DA')}">
+                                                    <input class="input--style-5" value="Daughter" type="gender" name="gender">
+                                                    </c:when>
+                                                    <c:when test="${Claim.getRelation().equalsIgnoreCase('FA')}">
+                                                    <input class="input--style-5" value="Father" type="gender" name="gender">
+                                                    </c:when>
+                                            </c:choose>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -158,56 +286,14 @@
                                                         </div>-->
 
 
-                                <div class="form-row">
-                                    <div class="name">Your Age</div>
-                                    <div class="value">
-                                        <div class="input-group">
-                                            <input class="input--style-5" type="number" value="${Claim.getAge()}" name="age">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="name">child's name</div>
-                                    <div class="value">
-                                        <div class="input-group">
-                                            <input class="input--style-5" type="text" value="${Claim.getChildName()}" name="childName">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="name">child's age</div>
-                                    <div class="value">
-                                        <div class="input-group">
-                                            <input class="input--style-5" type="number" value="${Claim.getChildAge()}" name="childAge">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="name">child's gender</div>
-                                    <div class="value">
-                                        <div class="input-group">
-                                            <input class="input--style-5" type="text" value="${Claim.getChildGender()}" name="childGender">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="name">Child's Birth Certificate No.</div>
-                                    <div class="value">
-                                        <div class="input-group">
-                                            <input class="input--style-5" type="text" value="${Claim.getChildBirthNo()}" name="childBirthNo">
-                                        </div>
-                                    </div>
-                                </div>
-                                        <div class="form-row">
-                                    <div class="name">Child's Medical Condition</div>
-                                    <div class="value">
-                                        <div class="input-group">
-                                            <input class="input--style-5" type="text" value="${Claim.getMedicalHistory()}" name="childBirthNo">
-                                        </div>
-                                    </div>
-                                </div>
+                                <!--                        <div class="form-row">
+                                                            <div class="name">child's age</div>
+                                                            <div class="value">
+                                                                <div class="input-group">
+                                                                    <input class="input--style-5" type="number" name="age">
+                                                                </div>
+                                                            </div>
+                                                        </div>-->
                                 <!-- <div class="form-row">
                                                             <div class="name">Medical History</div>
                                                             <div class="value">
@@ -224,7 +310,14 @@
                                                                 </div>
                                                             </div>
                                                         </div>-->
-
+                                <!--                             <div class="form-row">
+                                                            <div class="name">Relation</div>
+                                                            <div class="value">
+                                                                <div class="input-group">
+                                                                    <input class="input--style-5" type="number" name="childAge">
+                                                                </div>
+                                                            </div>
+                                                        </div>-->
                                 <!--  <div class="form-row">
                                                             <div class="name">Relative Name</div>
                                                             <div class="value">
@@ -233,7 +326,14 @@
                                                                 </div>
                                                             </div>
                                                         </div>-->
-
+                                <!--  <div class="form-row">
+                                                            <div class="name">Date of Birth</div>
+                                                            <div class="value">
+                                                                <div class="input-group">
+                                                                    <input class="input--style-5" type="date" name="age">
+                                                                </div>
+                                                            </div>
+                                                        </div>-->
                                 <!--                        <div class="form-row m-b-55">
                                                             <div class="name">Phone</div>
                                                             <div class="value">
@@ -281,6 +381,7 @@
                                         </div>
                                     </c:when>
                                     <c:when test ='${Claim.getClaimStatus().equals("bought")}'>
+                                        <b>Get Your Health Insurance Approved!!</b>
                                         <div class="form-row">
                                             <div class="name">Your Message</div>
                                             <div class="value">
@@ -293,15 +394,17 @@
                                             <button class="btn btn--radius-2 btn" style="background-color: #9ec645" type="submit">Submit</button>
                                         </div>
                                     </c:when>
-                                </c:choose>
-
+                                </c:choose>    
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+
             <div class="item">
-                <img src="img/chlid claim.png" width="70%"/>
+                <img src="img/medi.png" width="70%"/>
             </div>
 
             <!-- Jquery JS-->

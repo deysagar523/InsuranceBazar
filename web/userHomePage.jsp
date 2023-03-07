@@ -133,7 +133,7 @@
                     <div class="row">
                         <div class="col-sm-6 col-lg-3 border-right mb-4">
                             <h6>Health Insurance</h6>
-                            <a class="dropdown-item" href="#"><i class="fab fa-magento"></i> Mediclaim policy</a>
+                            <a class="dropdown-item" onClick="laodPage('mediclaimPolicy.jsp')" style="cursor:pointer;"><i class="fab fa-magento"></i> Mediclaim policy</a>
                             <a class="dropdown-item" href="#"><i class="fab fa-magento"></i>Critical Illness Insurance</a>
                             <a class="dropdown-item" href="#"><i class="fab fa-magento"></i> Odoo ERP</a>
                             <a class="dropdown-item" href="#"><i class="fab fa-magento"></i> Mobile Commerce</a>

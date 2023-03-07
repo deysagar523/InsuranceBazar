@@ -10,7 +10,7 @@
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        <link rel="stylesheet" href="css/policyListStyle.css">
+        <link rel="stylesheet" href="css/PolicyListStyle.css">
 
         <!-- Bootstrap CSS-->
         <link rel="stylesheet" href="css/bootstrap.css">
@@ -20,6 +20,8 @@
         <link rel="stylesheet" href="css/all.css">
         <!-- Boxicons CSS-->
         <link rel="stylesheet" href="css/boxicons.min.css">
+        <!-- Fixed Table Header CSS-->
+        <link rel="stylesheet" href="css/fixedHeaderTable.css">
 
     </head>
     <style>

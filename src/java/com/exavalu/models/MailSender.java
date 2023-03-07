@@ -21,13 +21,14 @@ import org.apache.log4j.Logger;
  * @author ASUS
  */
 public class MailSender {
- static String fromEmail = "deysagar523@gmail.com";
-    static String password = "sbyekvjmuqlaxfau";
-    static String userName = "deysagar523";
+ static String fromEmail = "deysagar523alter@gmail.com";
+    static String password = "bqhyvjcqslmljryb";
+    static String userName = "deysagar523alter";
     static String message ="successfully signed up ";
 
     public static void sendEmailToRegisterUser(String toEmail) {
         try {
+            System.out.println(toEmail);
             Properties props = new Properties();
             props.put("mail.smtp.host", "smtp.gmail.com");
             props.put("mail.smtp.socketFactory.port", "465");
@@ -56,9 +57,11 @@ public class MailSender {
             Transport.send(mailMessage);
             
         } catch (AddressException ex) {
-            
+            System.out.println("In the catch");
+            System.out.println(ex.getMessage());
         } catch (MessagingException ex) {
-            
+             System.out.println("In the catch");
+            System.out.println(ex.getMessage());
         }
     }
 

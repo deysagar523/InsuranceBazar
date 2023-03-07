@@ -214,7 +214,7 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
             sessionMap.put("SuccessMsgForSignUp", successMsg);
             result = "SUCCESS";
         } else {
-            String errorMsg = "Account Creation Failed! Try Again?";
+            String errorMsg = "Email Already Exists! Try with anotherEmail";
             sessionMap.put("ErrorMsgForSignUp", errorMsg);
             System.out.println("Returning Failure from doSignUp method");
         }
@@ -231,7 +231,7 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
             ArrayList planList = PlanService.getAllBikePlans();
             ArrayList childPlanList = PlanService.getAllChildPlans();
             ArrayList medPlanList = PlanService.getAllMedPlans();
-            
+
             System.out.println("Returning Success from doLogin method");
             User user = LoginService.getUser(this.getEmail());
 //            System.out.println("gender:"+user.getGender()+" phone:"+user.getPhone());
@@ -380,7 +380,9 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
             System.out.println(user.getFullName());
 //            result = "SUCCESS";
         } else {
-            System.out.println("Returning Failure from doLogin method");
+            String errorMsg = "Invalid Email Or Password Combination";
+            sessionMap.put("ErrorMsgForLogin", errorMsg);
+            System.out.println("Returning Failure from doSignUp method");
 
         }
 
@@ -389,7 +391,13 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
 
     public String doUpdateUser() throws FileNotFoundException {
         String result = "FAILURE";
-        boolean updated = LoginService.updateUser(this, this.userId);
+        boolean updated = false;
+        if (this.image != null) {
+            updated = LoginService.updateUser(this, this.userId);
+        } else {
+            updated = LoginService.updateUser2(this, this.userId);
+        }
+
         System.out.println("user id " + this.userId + "to be updated");
         if (updated) {
             User user = LoginService.getUser(this.email);

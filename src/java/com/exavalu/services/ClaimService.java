@@ -5,7 +5,9 @@
 package com.exavalu.services;
 
 import com.exavalu.models.Claim;
+import com.exavalu.models.Disease;
 import com.exavalu.models.Plan;
+import com.exavalu.models.Relative;
 import com.exavalu.utils.JDBCConnectionManager;
 import java.io.FileInputStream;
 import java.sql.Connection;
@@ -30,8 +32,8 @@ public class ClaimService {
         try {
 
             Connection con = JDBCConnectionManager.getConnection();
-            String sql = "INSERT INTO claims (userId, policyId, medicalHistory, relation, dob, relativeName, claimStatus, message, fullName, email, age, gender)"
-                    + "VALUES(?, ? ,? ,? ,?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO claims (userId, policyId, medicalHistory, relation, relativeName, claimStatus, fullName, email, age, gender, relativeAge, disease, adharCard, relationAdhar)"
+                    + "VALUES(?, ? ,? ,? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
 
@@ -43,16 +45,19 @@ public class ClaimService {
 
             preparedStatement.setString(4, claim.getRelation());
 
-            preparedStatement.setString(5, claim.getDob());
-            preparedStatement.setString(6, claim.getRelativeName());
+            preparedStatement.setString(5, claim.getRelativeName());
 
-            preparedStatement.setString(7, "registered");
-            preparedStatement.setString(8, claim.getMessage());
+            preparedStatement.setString(6, "registered");
 
-            preparedStatement.setString(9, claim.getFullName());
-            preparedStatement.setString(10, claim.getEmail());
-            preparedStatement.setString(11, claim.getAge());
-            preparedStatement.setString(12, claim.getGender());
+            preparedStatement.setString(7, claim.getFullName());
+            preparedStatement.setString(8, claim.getEmail());
+            preparedStatement.setString(9, claim.getAge());
+            preparedStatement.setString(10, claim.getGender());
+            preparedStatement.setString(11, claim.getRelativeAge());
+
+            preparedStatement.setString(12, claim.getDisease());
+            preparedStatement.setString(13, claim.getAdharCard());
+            preparedStatement.setString(14, claim.getRelationAdhar());
 
             int row = preparedStatement.executeUpdate();
 
@@ -89,7 +94,7 @@ public class ClaimService {
             preparedStatement.setString(6, claim.getBikeVariant());
             preparedStatement.setString(7, claim.getBikeRegistrationYear());
             preparedStatement.setString(8, "registered");
-            
+
             preparedStatement.setString(9, claim.getFullName());
             preparedStatement.setString(10, claim.getEmail());
 
@@ -130,7 +135,6 @@ public class ClaimService {
                 claim.setPlanCompany(rs.getString("planCompany"));
                 claim.setPlanAmount(rs.getString("planAmount"));
                 claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
-                
 
                 claimList.add(claim);
 
@@ -142,7 +146,7 @@ public class ClaimService {
         System.out.println("Number of claims bought = " + claimList.size());
         return claimList;
     }
-    
+
     public static ArrayList getBikes(String userId) {
         ArrayList claimList = new ArrayList();
         try {
@@ -166,7 +170,6 @@ public class ClaimService {
                 claim.setPlanCompany(rs.getString("planCompany"));
                 claim.setPlanAmount(rs.getString("planAmount"));
                 claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
-                
 
                 claimList.add(claim);
 
@@ -328,8 +331,8 @@ public class ClaimService {
         boolean result = false;
 
         LocalDate planExpiryDate = LocalDate.now().plusYears(Integer.parseInt(planDuration));
-        
-        String claimExpiryDate= planExpiryDate.toString();
+
+        String claimExpiryDate = planExpiryDate.toString();
         System.out.println("The LocalDate after adding  years is: " + claimExpiryDate);
         try {
             Connection con = JDBCConnectionManager.getConnection();
@@ -342,12 +345,12 @@ public class ClaimService {
             preparedStatement.setString(1, planId);
             preparedStatement.setString(2, claimExpiryDate);
             preparedStatement.setString(3, claimId);
-            
+
             System.out.println("claim row to be updated");
             int row = preparedStatement.executeUpdate();
-            
+
             if (row == 1) {
-                System.out.println("claim row updated"+ row);
+                System.out.println("claim row updated" + row);
                 result = true;
             }
 
@@ -390,15 +393,13 @@ public class ClaimService {
                 particularClaim.setBikeModel(rs.getString("bikeModel"));
                 particularClaim.setBikeRegistrationYear(rs.getString("bikeRegistrationYear"));
                 particularClaim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
-                
-                
+
                 particularClaim.setChildAge(rs.getString("childAge"));
                 particularClaim.setChildName(rs.getString("childName"));
                 particularClaim.setChildGender(rs.getString("childGender"));
                 particularClaim.setChildBirthNo(rs.getString("childBirthNo"));
-                
-                //particularClaim.setPolicyDescription(rs.getString("policyDescription"));
 
+                //particularClaim.setPolicyDescription(rs.getString("policyDescription"));
                 //particularClaim.setMedicalHistory(rs.getString("medicalHistory"));
                 //particularClaim.setDob(rs.getString("dob"));
                 //particularClaim.setRelation(rs.getString("relation"));
@@ -452,13 +453,20 @@ public class ClaimService {
                 claim.setIncidentDate(rs.getString("incidentDate"));
                 claim.setPoliceReportNo(rs.getString("policeReportNo"));
                 claim.setMessage(rs.getString("message"));
-                
+
                 claim.setPolicyName(rs.getString("policyName"));
-                
+
                 claim.setChildName(rs.getString("childName"));
                 claim.setChildAge(rs.getString("childAge"));
                 claim.setChildGender(rs.getString("childGender"));
                 claim.setChildBirthNo(rs.getString("childBirthNo"));
+                
+                claim.setRelativeName(rs.getString("relativeName"));
+                claim.setRelativeAge(rs.getString("relativeAge"));
+                claim.setRelationAdhar(rs.getString("relationAdhar"));
+                claim.setMedicalHistory(rs.getString("medicalHistory"));
+                claim.setDisease(rs.getString("disease"));
+                claim.setRelation(rs.getString("relation"));
 
             }
 
@@ -472,14 +480,12 @@ public class ClaimService {
 
     public static boolean updateBikeClaim(Claim claim) {
 
-        
-
         String sql = "UPDATE claims SET claimStatus =\"1\", incidentLocation=?, incidentDate=?, policeReportNo=?, adharCard=?, message=? WHERE claimId = ?";
         boolean result = false;
         System.out.println(claim.getIncidentLocation());
         System.out.println(claim.getIncidentDate());
         System.out.println(claim.getAdharCard());
-        
+
         try {
             Connection con = JDBCConnectionManager.getConnection();
 
@@ -536,15 +542,15 @@ public class ClaimService {
         return plan;
 
     }
-    
+
     public static boolean insertChildClaim(Claim claim) {
 
         boolean result = false;
         try {
 
             Connection con = JDBCConnectionManager.getConnection();
-            String sql = "INSERT INTO claims (userId, policyId, childName, childAge, childGender, claimStatus, fullName, email, age, childBirthNo)"
-                    + "VALUES(?, ? ,? ,? ,?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO claims (userId, policyId, childName, childAge, childGender, claimStatus, fullName, email, age, childBirthNo, medicalHistory)"
+                    + "VALUES(?, ? ,? ,? ,?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
 
@@ -558,15 +564,13 @@ public class ClaimService {
 
             preparedStatement.setString(5, claim.getChildGender());
 
-
             preparedStatement.setString(6, "registered");
-            
 
             preparedStatement.setString(7, claim.getFullName());
             preparedStatement.setString(8, claim.getEmail());
             preparedStatement.setString(9, claim.getAge());
             preparedStatement.setString(10, claim.getChildBirthNo());
-            
+            preparedStatement.setString(11, claim.getMedicalHistory());
 
             int row = preparedStatement.executeUpdate();
 
@@ -581,7 +585,67 @@ public class ClaimService {
         return result;
 
     }
-    
+
+    public static int getChildWeightage(Claim claim) {
+
+        int weightageId = 0;
+        int weightageValue = 0;
+        switch (claim.getMedicalHistory()) {
+            case "bad":
+                if (Integer.parseInt(claim.getChildAge()) >= 5 && Integer.parseInt(claim.getChildAge()) <= 8) {
+                    weightageId = 1;
+                } else if (Integer.parseInt(claim.getChildAge()) >= 9 && Integer.parseInt(claim.getChildAge()) <= 12) {
+                    weightageId = 2;
+                } else if (Integer.parseInt(claim.getChildAge()) >= 13 && Integer.parseInt(claim.getChildAge()) <= 18) {
+                    weightageId = 3;
+                }
+                break;
+
+            case "average":
+                if (Integer.parseInt(claim.getChildAge()) >= 5 && Integer.parseInt(claim.getChildAge()) <= 8) {
+                    weightageId = 4;
+                } else if (Integer.parseInt(claim.getChildAge()) >= 9 && Integer.parseInt(claim.getChildAge()) <= 12) {
+                    weightageId = 5;
+                } else if (Integer.parseInt(claim.getChildAge()) >= 13 && Integer.parseInt(claim.getChildAge()) <= 18) {
+                    weightageId = 6;
+                }
+                break;
+
+            case "good":
+                if (Integer.parseInt(claim.getChildAge()) >= 5 && Integer.parseInt(claim.getChildAge()) <= 8) {
+                    weightageId = 7;
+                } else if (Integer.parseInt(claim.getChildAge()) >= 9 && Integer.parseInt(claim.getChildAge()) <= 12) {
+                    weightageId = 8;
+                } else if (Integer.parseInt(claim.getChildAge()) >= 13 && Integer.parseInt(claim.getChildAge()) <= 18) {
+                    weightageId = 9;
+                }
+                break;
+
+            default:
+                System.out.println("something went wrong");
+        }
+
+        try {
+
+            Connection con = JDBCConnectionManager.getConnection();
+            String sql = "SELECT * FROM child WHERE childId=?";
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setInt(1, weightageId);
+
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+
+                weightageValue = rs.getInt(1);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return weightageValue;
+    }
+
     public static Claim getClaimByChildBirthNo(String childBirthNo) {
 
         Claim claim = new Claim();
@@ -607,7 +671,6 @@ public class ClaimService {
                 claim.setChildName(rs.getString("childName"));
                 claim.setChildAge(rs.getString("childAge"));
                 claim.setChildGender(rs.getString("childGender"));
-                
 
             }
 
@@ -620,15 +683,15 @@ public class ClaimService {
     }
 
     public static boolean updateChildClaim(Claim claim) {
-        
+
         String sql = "UPDATE claims SET claimStatus =\"1\", message=? WHERE claimId = ?";
         boolean result = false;
-        
+
         try {
             Connection con = JDBCConnectionManager.getConnection();
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
-            
+
             preparedStatement.setString(1, claim.getMessage());
             preparedStatement.setString(2, claim.getClaimId());
 
@@ -648,7 +711,206 @@ public class ClaimService {
 
     }
 
-        
+    public static ArrayList getDiseases(String medicalHistoryCode) {
+        ArrayList dList = new ArrayList();
+        try {
+
+            Connection con = JDBCConnectionManager.getConnection();
+            //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
+            String sql = "SELECT * FROM diseases where medicalHistoryCode=?; ";
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, medicalHistoryCode);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                Disease disease = new Disease();
+
+                disease.setDiseaseName(rs.getString("diseaseName"));
+
+                dList.add(disease);
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        System.out.println("Number of dideases = " + dList.size());
+        return dList;
+    }
+
+    public static ArrayList getRelatives(String relationCode) {
+
+        ArrayList rList = new ArrayList();
+        try {
+
+            Connection con = JDBCConnectionManager.getConnection();
+            //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
+            String sql = "SELECT * FROM relatives where relationCode=?; ";
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, relationCode);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                Relative r = new Relative();
+
+                r.setRelativeType(rs.getString("relativeType"));
+
+                rList.add(r);
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        System.out.println("Number of relatives = " + rList.size());
+        return rList;
+
     }
 
 
+    public static Claim getClaimByRelationAdhar(String relationAdhar) {
+        
+        Claim claim = new Claim();
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            String sql = "select * from claims c,policies p  where c.policyId=p.policyId and relationAdhar=?;";
+//            String sql = "select * from employees e, departments d, roles r "
+//                    + "where e.departmentId=d.departmentId and e.roleId=r.roleId "
+//                    +"and e.employeeId=?";
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, relationAdhar);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                claim.setClaimId(rs.getString("claimId"));
+                claim.setClaimStatus(rs.getString("claimStatus"));
+                claim.setUserId(rs.getString("userId"));
+                claim.setEmail(rs.getString("email"));
+                claim.setFullName(rs.getString("fullName"));
+                claim.setPolicyName(rs.getString("policyName"));
+                claim.setAge(rs.getString("age"));
+                claim.setRelativeName(rs.getString("relativeName"));
+                claim.setRelativeAge(rs.getString("relativeAge"));
+                claim.setRelativeGender(rs.getString("relativeGender"));
+                claim.setGender(rs.getString("gender"));
+                claim.setMedicalHistory(rs.getString("medicalHistory"));
+                claim.setDisease(rs.getString("disease"));
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        System.out.println("FROM CLAIM SERVICE CLAIM FETCHED: " + claim.getClaimId());
+        return claim;
+
+        
+    }
+    
+    public static boolean updateHealthClaim(Claim claim) {
+
+        String sql = "UPDATE claims SET claimStatus =\"1\", message=? WHERE claimId = ?";
+        boolean result = false;
+
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+
+            preparedStatement.setString(1, claim.getMessage());
+            preparedStatement.setString(2, claim.getClaimId());
+
+            int row = preparedStatement.executeUpdate();
+
+            if (row == 1) {
+                System.out.println(" from claimService status changred to 1");
+                result = true;
+            } else {
+                System.out.println(" status not not changed to 1 claimService ");
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return result;
+
+    }
+
+    public static Claim getClaimByAdhar(String adharCard) {
+        
+        Claim claim = new Claim();
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            String sql = "select * from claims c,policies p  where c.policyId=p.policyId and adharCard=?;";
+//            String sql = "select * from employees e, departments d, roles r "
+//                    + "where e.departmentId=d.departmentId and e.roleId=r.roleId "
+//                    +"and e.employeeId=?";
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, adharCard);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                claim.setClaimId(rs.getString("claimId"));
+                claim.setClaimStatus(rs.getString("claimStatus"));
+                claim.setUserId(rs.getString("userId"));
+                claim.setEmail(rs.getString("email"));
+                claim.setFullName(rs.getString("fullName"));
+                claim.setPolicyName(rs.getString("policyName"));
+                claim.setAge(rs.getString("age"));
+                
+                claim.setGender(rs.getString("gender"));
+                claim.setMedicalHistory(rs.getString("medicalHistory"));
+                claim.setDisease(rs.getString("disease"));
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        System.out.println("FROM CLAIM SERVICE CLAIM FETCHED: " + claim.getClaimId());
+        return claim;
+    }
+
+    public static boolean insertHealthClaim2(Claim claim) {
+        boolean result = false;
+        try {
+
+            Connection con = JDBCConnectionManager.getConnection();
+            String sql = "INSERT INTO claims (userId, policyId, medicalHistory, relation, claimStatus, fullName, email, age, gender,disease, adharCard)"
+                    + "VALUES(?, ? ,? ,? ,?, ?, ?, ?, ?, ?, ?)";
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+
+            int totalRows = 0;
+
+            preparedStatement.setString(1, claim.getUserId());
+            preparedStatement.setString(2, "1");
+            preparedStatement.setString(3, claim.getMedicalHistory());
+
+            preparedStatement.setString(4, claim.getRelation());
+
+            
+            preparedStatement.setString(5, "registered");
+
+            preparedStatement.setString(6, claim.getFullName());
+            preparedStatement.setString(7, claim.getEmail());
+            preparedStatement.setString(8, claim.getAge());
+          
+            preparedStatement.setString(9, claim.getGender());
+
+            preparedStatement.setString(10, claim.getDisease());
+            preparedStatement.setString(11, claim.getAdharCard());
+           
+
+            int row = preparedStatement.executeUpdate();
+
+            if (row == 1) {
+                result = true;
+                System.out.println("FROM CLAIM SERVICE, SELF HEALTH CLAIM INSERTED");
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return result;
+
+    }
+}

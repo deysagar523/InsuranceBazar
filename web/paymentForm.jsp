@@ -390,22 +390,21 @@
                             <input type="hidden" id="cardHolder"  value="${Plan.planId}" name="planId" maxlength="60" />
                             <input type="hidden" id="cardHolder"  value="${Plan.planDuration}" name="planDuration" maxlength="60" />
                             <input  type="hidden"  name="email" value="${User.email}" />
-                             <input  type="hidden"  name="policyName" value="${PolicyName}" />
-                            
+                            <input  type="hidden"  name="policyName" value="${PolicyName}" />
                              <input type="hidden" name="bikeNumber" value="${BikeNumber}"/>
                             <input type="hidden" name="bikeMake" value="${BikeMake}"/>
                             <input type="hidden" name="bikeModel" value="${BikeModel}"/>
                             
-                             <input type="hidden" name="childName" value="${ChildName}"/>
+                            <input type="hidden" name="childName" value="${ChildName}"/>
                             <input type="hidden" name="ChildAge" value="${ChildAge}"/>
                             <input type="hidden" name="childBirthNo" value="${ChildBirthNo}"/>
                             
-                            <input type="text" id="cardHolder"  value="" placeholder="Card Holder" maxlength="60" />
+                            <input type="text" id="cardHolder"  value="" placeholder="Card Holder" maxlength="60" required/>
                             <span id="cardNumberWarning"></span>
-                            <input type="text" id="cardNumber"  value="" placeholder="Card Number" maxlength="16" />
+                            <input type="text" id="cardNumber" onKeyup="loadCards()"  value="" placeholder="Card Number" maxlength="16" required/>
                             <div>
-                                <input type="text" onClick="loadCards()"   value="" placeholder="Expire" maxlength="4" />
-                                <input type="text"  value="" placeholder="CVC" maxlength="3" />
+                                <input type="text"    value="" placeholder="Expire" maxlength="5" required/>
+                                <input type="text"  value="" placeholder="CVC" maxlength="3" required/>
                             </div>
                             <button type="submit" class="confirm_btn">Confirm</button>
                         </form>

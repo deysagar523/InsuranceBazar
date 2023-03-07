@@ -47,7 +47,40 @@
 
 
 
-        <link href="css/stylenav.css" rel="stylesheet">
+<!--        <link href="css/stylenav.css" rel="stylesheet">-->
+        
+        <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  
+  .container-2 {
+  border: 2px solid;
+  border-radius: 4px;
+  padding: 10px;
+  background: white;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border-spacing: 10px;
+}
+.item {
+  /* float:left; */
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+ 
+}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: "Inter", sans-serif;
+    background: white;
+  }</style>
+        
     </head>
 
     <body>

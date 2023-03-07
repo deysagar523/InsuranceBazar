@@ -1,0 +1,21 @@
+.ftco-section{
+            padding: 0;
+        }
+        .table thead.thead-primary{
+            background: #86B817;
+        }
+        .my-custom-scrollbar {
+            position: relative;
+            height: 300px;
+            overflow: auto;
+        }
+        .table-wrapper-scroll-y {
+            display: block;
+        }
+        #tableId{
+            margin-top: 20px;
+        }
+        #bikeIdentityDetails{
+            margin-left: 20px;
+
+        }

@@ -43,8 +43,8 @@
             <result name="FAILURE">travelPolicy.jsp</result>         
         </action> 
         <action name="CreateHealthClaim" class="com.exavalu.models.Claim" method="doAddHealthClaim">
-            <result name="SUCCESS">bikePlanPage.jsp</result>
-            <result name="FAILURE">healthClaimForm.jsp</result>         
+            <result name="SUCCESS">healthPlan.jsp</result>
+            <result name="FAILURE">mediclaimPolicy.jsp</result>         
         </action>
          <action name="FetchPolicies" class="com.exavalu.models.Category" method="doGetPolicies">
             <result name="SUCCESS">policyList.jsp</result>         
@@ -62,7 +62,7 @@
         <action name="LoadClaimDetails" class="com.exavalu.models.Claim" method="doGetClaim">
             <result name="CHILDCLAIM">childServiceClaim.jsp</result>
             <result name="BIKECLAIM">vehicleClaim.jsp</result>
-            <result name="MEDICLAIM">childServiceClaim.jsp</result>
+            <result name="MEDICLAIM">mediClaimFnol.jsp</result>
             <result name="FAILURE">userHomePage.jsp</result>         
         </action>
         <action name="UpdateBikeClaim" class="com.exavalu.models.Claim" method="doUpdateBikeClaim">
@@ -74,7 +74,10 @@
             <result name="SUCCESS">userProfile.jsp</result>
             <result name="FAILURE">childServiceClaim.jsp</result>         
         </action>
-        
+        <action name="UpdateMedClaim" class="com.exavalu.models.Claim" method="doUpdateHealthClaim">
+            <result name="SUCCESS">userProfile.jsp</result>
+            <result name="FAILURE">mediClaimFnol.jsp</result>         
+        </action>
         <action name="Payment" class="com.exavalu.models.Claim" method="doPayment">
             <result name="SUCCESS">downloadPdf.jsp</result>         
         </action>
@@ -112,6 +115,16 @@
         </action>
         <action name="FetchChildApi" class="com.exavalu.models.ChildApi" method="fetchChildApi">
             <result name="SUCCESS">childApiData.jsp</result>         
+        </action>
+        
+        <action name="FetchDisease" class="com.exavalu.models.Disease" method="doFetchDiseases">
+            <result name="SUCCESS">diseaseList.jsp</result>
+               
+        </action>
+        
+        <action name="FetchRelativeType" class="com.exavalu.models.Relative" method="doFetchRelativeType">
+            <result name="SUCCESS">relativeDetails.jsp</result>
+               
         </action>
         
         

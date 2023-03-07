@@ -189,6 +189,23 @@
                                             </label>
                                         </div>
                                     </div>
+                                    
+                                    <div class="value">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="bikeRegistrationYear">
+                                            <option selected>Medical Condition</option>
+                                            <option value="good">Good</option>
+                                            <option value="average">Average</option>
+                                            <option value="bad">Bad</option>
+                                            
+                                             
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
 

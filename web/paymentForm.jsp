@@ -407,8 +407,8 @@
                             <span id="cardNumberWarning"></span>
                             <input type="text" id="cardNumber" onKeyup="loadCards()"  value="" placeholder="Card Number" maxlength="16" required/>
                             <div>
-                                <input type="text"    value="" placeholder="Expire" maxlength="5" required/>
-                                <input type="text"  value="" placeholder="CVC" maxlength="3" required/>
+                                <input type="text" pattern="[0-9]{2}[/]{1}[23-30]{2}" title="card expired"  value="" placeholder="Expire-06/23" maxlength="5" required/>
+                                <input type="text"  value="" placeholder="CVV" min="3" max="3" required/>
                             </div>
                             <button type="submit" class="confirm_btn">Confirm</button>
                         </form>

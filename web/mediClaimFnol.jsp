@@ -1,4 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:if test="${User==null}">
+    <c:redirect url = "login.jsp"/>
+        
+    
+</c:if>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -103,6 +108,15 @@
 
                                 <c:when test='${Claim.getClaimStatus().equalsIgnoreCase("1")}'>
                                     <h2 class="title">Your FNOL is yet to be approved by the Underwriter!!</h2>
+                                </c:when>
+                                    <c:when test='${Claim.getClaimStatus().equalsIgnoreCase("2")}'>
+                                    <h2 class="title">Your claim is yet to be approved by the Insurance Officer!!</h2>
+                                </c:when>
+                                    <c:when test='${Claim.getClaimStatus().equalsIgnoreCase("3")}'>
+                                    <h2 class="title">Congratulations!!Insurance  sanctioned!!</h2>
+                                </c:when>
+                                    <c:when test='${Claim.getClaimStatus().equalsIgnoreCase("4")}'>
+                                    <h2 class="title">Your claim got rejected by the underwriter!!</h2>
                                 </c:when>
                             </c:choose>
 
@@ -370,7 +384,7 @@
                                                             </div>
                                                         </div>-->
                                 <c:choose>
-                                    <c:when test ='${Claim.getClaimStatus().equals("1")}'>
+                                    <c:when test ='${Claim.getClaimStatus().equals("1") || Claim.getClaimStatus().equalsIgnoreCase("2") || Claim.getClaimStatus().equalsIgnoreCase("3") || Claim.getClaimStatus().equalsIgnoreCase("4")}'>
                                         <div class="form-row">
                                             <div class="name">Your Message</div>
                                             <div class="value">

@@ -1,5 +1,10 @@
-S
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${User==null}">
+    <c:redirect url = "login.jsp"/>
+        
+    
+</c:if>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -124,6 +129,7 @@ S
                                         <div class="name">Name</div>
                                         <div class="value">
                                             <div class="input-group">
+                                            
                                                 <input class="input--style-5" type="text" value="${User.getFullName()}" name="fullName" readonly>
                                         </div>
                                     </div>

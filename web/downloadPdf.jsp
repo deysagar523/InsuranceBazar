@@ -4,6 +4,11 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.time.LocalDateTime"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${User==null}">
+    <c:redirect url = "login.jsp"/>
+        
+    
+</c:if>
 <c:set var="user" value="${User}"/>
 
 <c:set var="plan" value="${Plan}"/>

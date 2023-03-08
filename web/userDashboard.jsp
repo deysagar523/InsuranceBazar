@@ -1,5 +1,9 @@
-[3:35 PM, 2/24/2023] ArPiTa: aay
-[3:38 PM, 2/24/2023] Kaushiki: <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<c:if test="${User==null}">
+    <c:redirect url = "login.jsp"/>
+        
+    
+</c:if>
 <!doctype html>
 <html lang="en">
     <head>

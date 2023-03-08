@@ -136,7 +136,7 @@ public class BikeApi extends ActionSupport implements ApplicationAware, SessionA
         String result = "SUCCESS";
         JDBCUtility jdbcUtility = JDBCUtility.getInstanceOfJDBCUtility();
         String apiUrl = "https://retoolapi.dev/DM09ko/InsuranceBikedata";
-
+//        String apiUrl= "https://insuranceapi.free.beeceptor.com/bikedata";
         URL obj = new URL(apiUrl);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         // optional default is GET

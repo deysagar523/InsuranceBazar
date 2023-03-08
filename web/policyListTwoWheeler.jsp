@@ -103,7 +103,7 @@
                                                                                 <th>Police Report No</th>-->
                                         <th>Claim Id</th>
                                         <th>Bike No</th>
-                                        <th>Bike Make</th>
+                                        <th>Bike Model</th>
                                         <th>Bike Registration Year</th>
 
                                         <th>Policy Name</th>
@@ -117,7 +117,7 @@
                                                 <tr data-index="0">
                                                     <td><c:out value="${claim.claimId}"> </c:out></td>
                                                     <td><c:out value="${claim.bikeNumber}"> </c:out></td>
-                                                    <td><c:out value="${claim.bikeMake}"> </c:out>
+                                                    <td><c:out value="${claim.bikeModel}"> </c:out>
                                                     <td><c:out value="${claim.bikeRegistrationYear}"> </c:out></td>
 
                                                         <td><c:out value="${claim.policyName}"> </c:out></td>
@@ -149,7 +149,7 @@
                                             <tr data-index="0">
                                                 <td><c:out value="${claim.claimId}"> </c:out></td>
                                                 <td><c:out value="${claim.bikeNumber}"> </c:out></td>
-                                                <td><c:out value="${claim.bikeMake}"> </c:out>
+                                                <td><c:out value="${claim.bikeModel}"> </c:out>
                                                 <td><c:out value="${claim.bikeRegistrationYear}"> </c:out></td>
 
                                                     <td><c:out value="${claim.policyName}"> </c:out></td>

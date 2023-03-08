@@ -168,7 +168,7 @@ public class InsuranceOfficerService {
 //                claim.setIncidentLocation(rs.getString("incidentLocatin"));
 //                claim.setPoliceReportNo(rs.getString("policeReportNo"));
                 claim.setBikeMake(rs.getString("bikeMake"));
-//                claim.setBikeModel(rs.getString("bikeModel"));
+                claim.setBikeModel(rs.getString("bikeModel"));
                 claim.setBikeNumber(rs.getString("bikeNumber"));
                 claim.setBikeRegistrationYear(rs.getString("bikeRegistrationYear"));
                 claim.setBikeVariant(rs.getString("bikeVariant"));

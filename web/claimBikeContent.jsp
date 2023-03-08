@@ -16,7 +16,37 @@
                         <td>BIKE NUMBER : <strong>${ParticularClaim.bikeNumber}</strong></td>
                     </tr>
                     <tr>
-                        <td>BIKE MAKE : <strong>${ParticularClaim.bikeMake}</strong></td>
+                        <c:choose>
+                                    <c:when test="${ParticularClaim.getBikeMake().equalsIgnoreCase('HO')}">
+                                        <td>BIKE MAKE : <strong>Honda</strong></td>
+                                    </c:when>
+
+                                    <c:when test="${ParticularClaim.getBikeMake().equalsIgnoreCase('BA')}">
+                                        <td>BIKE MAKE : <strong>Bajaj</strong></td>
+                                    </c:when>
+
+                                    <c:when test="${ParticularClaim.getBikeMake().equalsIgnoreCase('YA')}">
+                                        <td>BIKE MAKE : <strong>Yamaha</strong></td>
+                                    </c:when>
+
+                                    <c:when test="${ParticularClaim.getBikeMake().equalsIgnoreCase('RE')}">
+                                       <td>BIKE MAKE : <strong>Royal Enfield</strong></td>
+                                    </c:when>
+
+                                    <c:when test="${ParticularClaim.getBikeMake().equalsIgnoreCase('SU')}">
+                                       <td>BIKE MAKE : <strong>Suzuki</strong></td>
+                                    </c:when>
+                                        <c:when test="${ParticularClaim.getBikeMake().equalsIgnoreCase('HD')}">
+                                        <td>BIKE MAKE : <strong>Harley Davidson</strong></td>
+                                    </c:when>
+                                    <c:when test="${ParticularClaim.getBikeMake().equalsIgnoreCase('HM')}">
+                                        <td>BIKE MAKE : <strong>Hero Motocarp</strong></td>
+                                    </c:when>
+                                    <c:when test="${ParticularClaim.getBikeMake().equalsIgnoreCase('MA')}">
+                                       <td>BIKE MAKE : <strong>Mahindra</strong></td>
+                                    </c:when>
+                                </c:choose>
+                        
                     </tr>
                     <tr>
                         <td>BIKE MODEL : <strong>${ParticularClaim.bikeModel}</strong></td>

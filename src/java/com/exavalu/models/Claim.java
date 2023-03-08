@@ -1206,6 +1206,8 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         sessionMap.put("AllPendingPensionPlanClaims", allPendingPensionPlanClaims);
         sessionMap.put("AllPendingTravelClaims", allPendingTravelClaims);
         sessionMap.put("AllPendingEducationalPlanClaims", allPendingEducationalPlanClaims);
+        Claim claim = ClaimService.getClaim(this.claimId);
+        MailSender.sendEmailAfterRejectPolicy(claim.policyName, claim.email);
         return result;
 
     }
@@ -1238,6 +1240,8 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         sessionMap.put("AllApprovedPensionPlanClaims", allApprovedPensionPlanClaims);
         sessionMap.put("AllApprovedTravelClaims", allApprovedTravelClaims);
         sessionMap.put("AllApprovedEducationalPlanClaims", allApprovedEducationalPlanClaims);
+        Claim claim = ClaimService.getClaim(this.claimId);
+        MailSender.sendEmailAfterIssuePolicy(claim.policyName, claim.email);
         return result;
 
     }

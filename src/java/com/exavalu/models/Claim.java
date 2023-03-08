@@ -335,7 +335,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
     private String message;
 
     //for hralth insurance
-    private String medicalHistory, relation, dob, relativeName, relativeAge, relativeGender, disease, relationAdhar;
+    private String medicalHistory, relation, dob, relativeName, relativeAge, relativeGender, disease, relationAdhar, relativeType;
     private String gender;
 
     //for child plan
@@ -850,26 +850,35 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         claim.setRelativeAge(relativeAge);
         claim.setRelationAdhar(relationAdhar);
         claim.setDisease(disease);
-        
-        boolean res=false;
-        if(this.relation.equalsIgnoreCase("SE")){
-            res= ClaimService.insertHealthClaim2(claim);
-        }else{
-            res= ClaimService.insertHealthClaim(claim);
+
+        boolean res = false;
+        if (this.relation.equalsIgnoreCase("SE")) {
+            res = ClaimService.insertHealthClaim2(claim);
+        } else {
+            res = ClaimService.insertHealthClaim(claim);
         }
-        
-        
-        
+
         if (res) {
 
             if (this.relationAdhar != null) {
                 Claim claim1 = ClaimService.getClaimByRelationAdhar(this.relationAdhar);
                 sessionMap.put("ClaimId", claim1.claimId);
+                sessionMap.put("AdharCard", this.relationAdhar);
+                sessionMap.put("RelativeType", claim1.relativeType);
+                sessionMap.put("RelativeName", claim1.relativeName);
+                sessionMap.put("Disease", this.disease);
+
+                sessionMap.put("PolicyName", claim1.policyName);
                 result = "SUCCESS";
 
             } else {
                 Claim claim1 = ClaimService.getClaimByAdhar(this.adharCard);
                 sessionMap.put("ClaimId", claim1.claimId);
+
+                sessionMap.put("AdharCard", this.adharCard);
+                sessionMap.put("Disease", this.disease);
+
+                sessionMap.put("PolicyName", claim1.policyName);
                 result = "SUCCESS";
 
             }
@@ -1120,6 +1129,13 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
             if (this.policyName.equalsIgnoreCase("Child Investment")) {
                 MailSender.sendEmailAfterChildPayment(this.childName, this.childBirthNo, this.childAge, this.email);
             }
+            if(this.policyName.equalsIgnoreCase("Mediclaim"))
+            {
+                System.out.println("Adhar card"+this.adharCard);
+                System.out.println("Relation"+this.relation);
+                System.out.println("Relative Name "+this.relativeName);
+                MailSender.sendEmailAfterMediclaimPayment(this.adharCard, this.relation, this.relativeName, this.disease,this.email);
+            }
 
             sessionMap.put("Success", "successfull");
 
@@ -1238,6 +1254,8 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
             result = "BIKECLAIM";
             //System.out.println("result:bikeClaim");
         } else if (particularClaim.getPolicyName().equalsIgnoreCase("Mediclaim")) {
+            Claim particularMedClaim = ClaimService.searchMedClaim(this.claimId);
+            sessionMap.put("ParticularMedClaim", particularMedClaim);
             result = "MEDICLAIM";
             System.out.println("result:mediClaim");
         }
@@ -1254,6 +1272,20 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         }
 
         return result;
+    }
+
+    /**
+     * @return the relativeType
+     */
+    public String getRelativeType() {
+        return relativeType;
+    }
+
+    /**
+     * @param relativeType the relativeType to set
+     */
+    public void setRelativeType(String relativeType) {
+        this.relativeType = relativeType;
     }
 
 }

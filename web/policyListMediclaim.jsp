@@ -19,16 +19,64 @@
         <link rel="stylesheet" href="css/all.css">
         <!-- Boxicons CSS-->
         <link rel="stylesheet" href="css/boxicons.min.css">
+        <!-- Fixed Table Header CSS-->
+        <link rel="stylesheet" href="css/fixedHeaderTable.css">
     </head>
     <style>
         .ftco-section{
             padding: 0;
         }
-        .table thead.thead-primary{
-            background: #86B817;
+        #tableId{
+            margin-top: 20px;
+        }
+        #patientIdentityDetails{
+            margin-left: 20px;
+
         }
 
     </style>
+    <script>
+        function fetchContent(claimId)
+        {
+            //alert(claimId);
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function ()
+            {
+                document.getElementById("onclickViewClaim").innerHTML = xmlhttp.responseText;
+            };
+
+
+            xmlhttp.open("POST", "FetchParticularClaim?claimId=" + claimId, true);
+            xmlhttp.send();
+        }
+        function fetchVapi(claimId)
+        {
+            alert(claimId);
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function ()
+            {
+                document.getElementById("patientIdentityDetails").innerHTML = xmlhttp.responseText;
+            };
+
+
+            xmlhttp.open("POST", "FetchMedApi?claimId=" + claimId, true);
+            xmlhttp.send();
+            //FetchApi
+        }
+        function functionApprove(claimId)
+        {
+            alert(claimId);
+            window.location.href = `ApprovePolicy?claimId=` + claimId;
+
+        }
+        function functionReject(claimId)
+        {
+            alert(claimId);
+            window.location.href = `RejectPolicy?claimId=` + claimId;
+
+        }
+
+    </script>
     <body>
 
         <section class="ftco-section">
@@ -39,14 +87,14 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="table-wrap">
-                            <table class="table">
+                        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                            <table class="table table-bordered table-striped mb-0">
                                 <thead class="thead-primary"> 
                                     <tr>
-                                        <th>Medical History</th>
-                                        <th>Relation</th>
-                                        <th>DOB</th>
-                                        <th>Relative Name</th>
+                                        <th>Claim Id</th>
+                                        <th>Issue For</th>
+                                        <th>Relative's Name</th>
+                                        <th>Adhar Card </th>
                                         <th>Policy Name</th>
                                         <th>Action</th>
                                     </tr>
@@ -56,25 +104,51 @@
                                         <c:if test="${AllPendingMediclaimClaims.size()!=0}">
                                             <c:forEach items="${AllPendingMediclaimClaims}" var="claim">
                                                 <tr data-index="0">
-                                                    <td><c:out value="${claim.medicalHistory}"> </c:out></td>
-                                                    <td><c:out value="${claim.relation}"> </c:out>
-                                                    <td><c:out value="${claim.dob}"> </c:out></td>
-                                                    <td><c:out value="${claim.relativeName}"> </c:out></td>
+                                                    <td><c:out value="${claim.claimId}"> </c:out></td>
+
+                                                        <td><c:out value="${claim.relativeType}"> </c:out></td>
+                                                    <c:choose>
+                                                        <c:when test="${claim.relativeName.length()==0 or claim.relativeName==null}">
+                                                            <td>
+                                                                NA
+                                                            </td>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <td>
+                                                                ${claim.relativeName}
+                                                            </td>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                    <c:choose>
+                                                        <c:when test="${claim.relationAdhar.length()==0 or claim.relationAdhar==null}">
+                                                            <td>
+                                                                ${claim.adharCard}
+                                                            </td>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <td>
+                                                                ${claim.relationAdhar}
+                                                            </td>
+                                                        </c:otherwise>
+                                                    </c:choose>
+
+
+
+
+
                                                     <td><c:out value="${claim.policyName}"> </c:out></td>
 
 
+                                                        <!--                                                        <td>
+                                                                                                                    <a href="#" class="btn btn-success">Approve</a>
+                                                                                                                    <a href="#" class="btn btn-danger">Reject</a>
+                                                                                                                </td>-->
                                                         <td>
-                                                            <a href="#" class="btn btn-success">Approve</a>
-                                                            <a href="#" class="btn btn-danger">Reject</a>
-                                                        </td>
+                                                            <button type="button" class="btn btn-success" onclick="fetchContent(${claim.claimId})">View</button>
+                                                    </td>
 
 
-                                                    <c:if test="${User.role.equals('3')}">
-                                                        <td>
-                                                            <a href="#" class="btn btn-primary">Issue</a>
-
-                                                        </td>
-                                                    </c:if>
+                                                   
 
 
 
@@ -122,6 +196,22 @@
                         </div>
                     </div>
                 </div>
+                <table id="tableId" class="table-borderless">
+
+                    <td rowspan = "3">
+                        <div id="onclickViewClaim">
+
+                        </div>
+                    </td>
+                    <td>
+                        <div id="patientIdentityDetails">
+
+
+                        </div>
+
+                    </td>
+
+                </table>
             </div>
         </section>
 

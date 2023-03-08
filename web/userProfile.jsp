@@ -1,6 +1,11 @@
 
 <!doctype html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${User==null}">
+    <c:redirect url = "login.jsp"/>
+        
+    
+</c:if>
 <html lang="en">
     <head>
 
@@ -369,9 +374,16 @@
                                         <input class="form-control" type="text" value="${User.fullName}" id="firstName" name="fullName"  autofocus required/>
                                     </div>
 
+                                    
                                     <div class="mb-3 col-md-6">
-                                        <label for="lastName" class="form-label">Gender</label>
-                                        <input class="form-control" type="text" value="${User.gender}" name="gender" id="lastName"  required/>
+                                        <label class="label-title">Gender</label>
+                                        <select name="gender" class="form-input form-control" id="level" >
+                                            
+                                            
+                                            <option value="Male" <c:if test="${User.gender.equalsIgnoreCase('Male')}"> selected</c:if>>Male</option>
+                                            <option value="Female" <c:if test="${User.gender.equalsIgnoreCase('Female')}"> selected</c:if>>Female</option>
+                                            <option value="Other">Other</option>
+                                        </select>
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label for="email" class="form-label">E-mail</label>
@@ -379,7 +391,7 @@
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label for="organization" class="form-label">Phone</label>
-                                        <input type="text" class="form-control" id="organization" name="phone" value="${User.phone}" title="This is Not a Valid Phone Number" pattern="[6-9]{1}[0-9]{9}" required/>
+                                        <input type="text" class="form-control" id="organization" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" title="phone number should start wuth 6,7,8 or9 and should be of length 10" name="phone" value="${User.phone}" title="This is Not a Valid Phone Number" pattern="[6-9]{1}[0-9]{9}" required/>
                                     </div>
                                     <!--                                <div class="mb-3 col-md-6">
                                                                         <label for="DOB" class="form-label">Date of Birth</label>
@@ -390,8 +402,8 @@
                                     <!-- Source of Income and Income Amount -->
                                     <div class="mb-3 col-md-6">
                                         <label class="label-title">Source of Income</label>
-                                        <select name="incomeSource" class="form-input" id="level" >
-                                            <option value="B">Employed</option>
+                                        <select name="incomeSource" class="form-input form-control" id="level" >
+                                            <option value="B" >Employed</option>
                                             <option value="I">Self-employed</option>
                                             <option value="A">Unemployed</option>
                                         </select>
@@ -399,7 +411,7 @@
 
                                     <div class="mb-3 col-md-6">
                                         <<label for="age" class="form-label">Age</label>
-                                        <input type="number" class="form-control" id="organization" name="age" value="${User.age}" required/>
+                                        <input type="number" class="form-control" id="organization" min="18" max="60" name="age" value="${User.age}" required/>
                                     </div>
 
 

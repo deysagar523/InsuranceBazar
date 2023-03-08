@@ -94,7 +94,8 @@
                         <input type="email" name="email" placeholder="email">
                     </fieldset>
                     <fieldset class="password">
-                        <input id="pass" type="password" name="password" placeholder="password">
+                        <input id="pass" type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                               title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" placeholder="password">
                     </fieldset>
                     <fieldset class="password">
                         <input id="confirm_pass" type="password" name="confirmPassword" onkeyup="validate_password()" placeholder="confirm password">

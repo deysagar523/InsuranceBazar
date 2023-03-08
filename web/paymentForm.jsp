@@ -394,6 +394,10 @@
                              <input type="hidden" name="bikeNumber" value="${BikeNumber}"/>
                             <input type="hidden" name="bikeMake" value="${BikeMake}"/>
                             <input type="hidden" name="bikeModel" value="${BikeModel}"/>
+                            <input type="hidden" name="adharCard" value="${AdharCard}"/>
+                            <input type="hidden" name="relation" value="${RelativeType}"/>
+                            <input type="hidden" name="disease" value="${Disease}"/>
+                            <input type="hidden" name="relativeName" value="${RelativeName}"/>
                             
                             <input type="hidden" name="childName" value="${ChildName}"/>
                             <input type="hidden" name="ChildAge" value="${ChildAge}"/>

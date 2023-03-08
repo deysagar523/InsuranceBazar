@@ -142,4 +142,50 @@ public class MailSender {
             
         }
     }
+
+    static void sendEmailAfterMediclaimPayment(String adharCard, String relation, String relativeName, String disease, String toEmail) {
+       try {
+            Properties props = new Properties();
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            props.put("mail.smtp.socketFactory.port", "465");
+            props.put("mail.smtp.socketFactory.class",
+                    "javax.net.ssl.SSLSocketFactory");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.port", "25");
+            
+            Session session = Session.getDefaultInstance(props,
+                    new javax.mail.Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(userName, password);
+                }
+            });
+            
+            Message mailMessage = new MimeMessage(session);
+
+            //setting up all the messages
+            mailMessage.setFrom(new InternetAddress(fromEmail));
+            mailMessage.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(toEmail));
+            mailMessage.setSubject("Successfully Payment Done of adhar card no"+adharCard+" in InsueranceBazar");
+           
+           System.out.println("relative name "+relativeName);
+            if(relativeName.length()==0)
+            {
+                mailMessage.setText("You Issue this mediclaim for Self");
+            }
+            else
+            {
+                mailMessage.setText("You Issue this mediclaim for "+relation+" whose name is "+relativeName);
+            }
+            
+
+            Transport.send(mailMessage);
+            
+        } catch (AddressException ex) {
+            
+        } catch (MessagingException ex) {
+            
+        }
+    }
 }

@@ -37,7 +37,7 @@ public class UnderwriterService {
         ArrayList pendingHealthMediclaimPolicyList = new ArrayList();
         try {
             Connection con = JDBCConnectionManager.getConnection();
-            String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
+            String sql = "select * from claims c,users u,policies p,relatives r where c.relation=r.relationCode and c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
 
@@ -56,16 +56,20 @@ public class UnderwriterService {
                 claim.setFullName(rs.getString("fullName"));
                 claim.setEmail(rs.getString("email"));
 
-                claim.setCategoryName(rs.getString("categoryName"));
+                //claim.setCategoryName(rs.getString("categoryName"));
 
+                claim.setAdharCard(rs.getString("adharCard"));
                 claim.setPolicyName(rs.getString("policyName"));
-                claim.setPolicyDescription(rs.getString("policyDescription"));
+                //claim.setPolicyDescription(rs.getString("policyDescription"));
 
                 claim.setMedicalHistory(rs.getString("medicalHistory"));
-                claim.setDob(rs.getString("dob"));
+                //claim.setDob(rs.getString("dob"));
                 claim.setRelation(rs.getString("relation"));
                 claim.setRelativeName(rs.getString("relativeName"));
+                claim.setRelativeType(rs.getString("relativeType"));
+                claim.setRelationAdhar(rs.getString("relationAdhar"));
 
+                claim.setDisease("disease");
 //                System.out.println(claim.getClaimId());
 //                 System.out.println(claim.getClaimStatus());
 //                  System.out.println(claim.getDriverName());
@@ -78,7 +82,7 @@ public class UnderwriterService {
         } catch (SQLException ex) {
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
             log.error(LocalDateTime.now() + "@" + ex);
-            ex.printStackTrace();
+            System.out.println(ex.getMessage());
         }
         System.out.println("Number of pending mediclaim policy list = " + pendingHealthMediclaimPolicyList.size());
         return pendingHealthMediclaimPolicyList;
@@ -131,7 +135,7 @@ public class UnderwriterService {
             log.error(LocalDateTime.now() + "@" + ex);
             ex.printStackTrace();
         }
-        System.out.println("Number of pending mediclaim policy list = " + pendingHealthCriticalIllnessPolicyList.size());
+       // System.out.println("Number of pending mediclaim policy list = " + pendingHealthCriticalIllnessPolicyList.size());
         return pendingHealthCriticalIllnessPolicyList;
     }
 

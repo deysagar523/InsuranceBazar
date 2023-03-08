@@ -108,7 +108,8 @@
         </action> 
         <action name="FetchParticularClaim" class="com.exavalu.models.Claim" method="doSearchClaim">
             <result name="BIKECLAIM">claimBikeContent.jsp</result>   
-            <result name="CHILDCLAIM">claimChildContent.jsp</result>         
+            <result name="CHILDCLAIM">claimChildContent.jsp</result>    
+             <result name="MEDICLAIM">claimMedContent.jsp</result>         
         </action> 
         <action name="FetchBikeApi" class="com.exavalu.models.BikeApi" method="fetchBikeApi">
             <result name="SUCCESS">bikeApiData.jsp</result>         
@@ -116,7 +117,9 @@
         <action name="FetchChildApi" class="com.exavalu.models.ChildApi" method="fetchChildApi">
             <result name="SUCCESS">childApiData.jsp</result>         
         </action>
-        
+        <action name="FetchMedApi" class="com.exavalu.models.MediclaimApi" method="fetchMedApi">
+            <result name="SUCCESS">medApiData.jsp</result>         
+        </action>
         <action name="FetchDisease" class="com.exavalu.models.Disease" method="doFetchDiseases">
             <result name="SUCCESS">diseaseList.jsp</result>
                

@@ -420,6 +420,58 @@ public class ClaimService {
         //System.out.println("Number of pending mediclaim policy list = " + pendingHealthMediclaimPolicyList.size());
         return particularClaim;
     }
+    
+    public static Claim searchMedClaim(String claimId) {
+        Claim particularClaim = new Claim();
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            String sql = "select * from claims c,policies p,relatives r,medicalhistory m  where c.medicalHistory=m.medicalHistorycode and c.relation=r.relationCode and c.policyId=p.policyId and  claimId=?";
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+
+            preparedStatement.setString(1, claimId);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+
+                particularClaim.setClaimId(rs.getString("claimId"));
+                //particularClaim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
+                //particularClaim.setClaimStatus(rs.getString("claimStatus"));
+                //particularClaim.setClaimName(rs.getString("claimName"));
+
+                particularClaim.setFullName(rs.getString("fullName"));
+                particularClaim.setEmail(rs.getString("email"));
+
+                //particularClaim.setCategoryName(rs.getString("categoryName"));
+                particularClaim.setPolicyName(rs.getString("policyName"));
+                particularClaim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
+                particularClaim.setMedicalHistory(rs.getString("medicalHistoryName"));
+                particularClaim.setDisease(rs.getString("disease"));
+                particularClaim.setRelativeType(rs.getString("relativeType"));
+                particularClaim.setAdharCard(rs.getString("adharCard"));
+                particularClaim.setRelativeAge(rs.getString("relativeAge"));
+                particularClaim.setRelationAdhar(rs.getString("relationAdhar"));
+
+                //particularClaim.setPolicyDescription(rs.getString("policyDescription"));
+                //particularClaim.setMedicalHistory(rs.getString("medicalHistory"));
+                //particularClaim.setDob(rs.getString("dob"));
+                //particularClaim.setRelation(rs.getString("relation"));
+                //particularClaim.setRelativeName(rs.getString("relativeName"));
+//                System.out.println(claim.getClaimId());
+//                 System.out.println(claim.getClaimStatus());
+//                  System.out.println(claim.getDriverName());
+//                   System.out.println(claim.getEmailAddress());
+//                    System.out.println(claim.getDate());
+            }
+
+        } catch (SQLException ex) {
+
+            System.out.println(ex.getMessage());
+        }
+        //System.out.println("Number of pending mediclaim policy list = " + pendingHealthMediclaimPolicyList.size());
+        return particularClaim;
+    }
 
     public static Claim getClaim(String claimId) {
 
@@ -773,7 +825,7 @@ public class ClaimService {
         Claim claim = new Claim();
         try {
             Connection con = JDBCConnectionManager.getConnection();
-            String sql = "select * from claims c,policies p  where c.policyId=p.policyId and relationAdhar=?;";
+            String sql = "select * from claims c,policies p,relatives r  where c.relation=r.relationCode and c.policyId=p.policyId and relationAdhar=?;";
 //            String sql = "select * from employees e, departments d, roles r "
 //                    + "where e.departmentId=d.departmentId and e.roleId=r.roleId "
 //                    +"and e.employeeId=?";
@@ -790,6 +842,7 @@ public class ClaimService {
                 claim.setPolicyName(rs.getString("policyName"));
                 claim.setAge(rs.getString("age"));
                 claim.setRelativeName(rs.getString("relativeName"));
+                claim.setRelativeType(rs.getString("relativetype"));
                 claim.setRelativeAge(rs.getString("relativeAge"));
                 claim.setRelativeGender(rs.getString("relativeGender"));
                 claim.setGender(rs.getString("gender"));

@@ -19,7 +19,7 @@
             <div class="input-group">
                 <div class="rs-select2 js-select-simple select--no-search">
                     <select name="disease" required>
-                        <option>Select an option</option>
+                        <option value="">Select an option</option>
 
                         <c:forEach items="${diseases}" var="disease">
 

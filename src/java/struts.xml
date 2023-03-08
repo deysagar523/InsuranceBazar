@@ -127,6 +127,13 @@
                
         </action>
         
+        <action name="FetchBikeModels" class="com.exavalu.models.BikeModel" method="doFetchBikeModels">
+            <result name="SUCCESS">models.jsp</result>
+               
+        </action>
+        
+        
+        
         
              
     </package>

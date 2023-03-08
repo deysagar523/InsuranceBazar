@@ -236,27 +236,27 @@
                                     <div class="value">
                                         <div class="input-group">
                                             <c:choose>
-                                             <c:when test="${Claim.getRelation().equalsIgnoreCase('SE')}">
+                                                <c:when test="${Claim.getRelation().equalsIgnoreCase('SE')}">
                                                     <input class="input--style-5" value="Self" type="gender" name="gender">
-                                                    </c:when>     
+                                                </c:when>     
 
                                                 <c:when test="${Claim.getRelation().equalsIgnoreCase('SP')}">
                                                     <input class="input--style-5" value="Spouse" type="gender" name="gender">
-                                                    </c:when>
-                                                    <c:when test="${Claim.getRelation().equalsIgnoreCase('MO')}">
+                                                </c:when>
+                                                <c:when test="${Claim.getRelation().equalsIgnoreCase('MO')}">
                                                     <input class="input--style-5" value="Mother" type="gender" name="gender">
-                                                    </c:when>
-                                                    <c:when test="${Claim.getRelation().equalsIgnoreCase('SO')}">
+                                                </c:when>
+                                                <c:when test="${Claim.getRelation().equalsIgnoreCase('SO')}">
                                                     <input class="input--style-5" value="Son" type="gender" name="gender">
-                                                    </c:when>
-                                                    <c:when test="${Claim.getRelation().equalsIgnoreCase('DA')}">
+                                                </c:when>
+                                                <c:when test="${Claim.getRelation().equalsIgnoreCase('DA')}">
                                                     <input class="input--style-5" value="Daughter" type="gender" name="gender">
-                                                    </c:when>
-                                                    <c:when test="${Claim.getRelation().equalsIgnoreCase('FA')}">
+                                                </c:when>
+                                                <c:when test="${Claim.getRelation().equalsIgnoreCase('FA')}">
                                                     <input class="input--style-5" value="Father" type="gender" name="gender">
-                                                    </c:when>
+                                                </c:when>
                                             </c:choose>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -386,7 +386,14 @@
                                             <div class="name">Your Message</div>
                                             <div class="value">
                                                 <div class="input-group">
-                                                    <input class="input--style-5" type="textarea" name="message" >
+                                                    <textarea
+                                                        rows="6"
+                                                        name="message"
+                                                        id="message"
+                                                        placeholder="Write your message..."
+                                                        class="formbold-form-input"
+                                                        ></textarea>
+<!--                                                    <input class="input--style-5" type="textarea" name="message" >-->
                                                 </div>
                                             </div>
                                         </div>

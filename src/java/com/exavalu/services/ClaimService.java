@@ -4,6 +4,8 @@
  */
 package com.exavalu.services;
 
+import com.exavalu.models.BikeModel;
+import com.exavalu.models.BikeVariant;
 import com.exavalu.models.Claim;
 import com.exavalu.models.Disease;
 import com.exavalu.models.Plan;
@@ -79,8 +81,8 @@ public class ClaimService {
         try {
 
             Connection con = JDBCConnectionManager.getConnection();
-            String sql = "INSERT INTO claims (userId, policyId, bikeNumber, bikeMake, bikeModel, bikeVariant, bikeRegistrationYear, claimStatus, fullName, email)"
-                    + "VALUES(?, ? ,? ,? ,?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO claims (userId, policyId, bikeNumber, bikeMake, bikeModel, bikeRegistrationYear, claimStatus, fullName, email)"
+                    + "VALUES(?, ? ,? ,? ,?, ?, ?, ?, ?)";
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
 
@@ -91,12 +93,12 @@ public class ClaimService {
             preparedStatement.setString(3, claim.getBikeNumber());
             preparedStatement.setString(4, claim.getBikeMake());
             preparedStatement.setString(5, claim.getBikeModel());
-            preparedStatement.setString(6, claim.getBikeVariant());
-            preparedStatement.setString(7, claim.getBikeRegistrationYear());
-            preparedStatement.setString(8, "registered");
+           
+            preparedStatement.setString(6, claim.getBikeRegistrationYear());
+            preparedStatement.setString(7, "registered");
 
-            preparedStatement.setString(9, claim.getFullName());
-            preparedStatement.setString(10, claim.getEmail());
+            preparedStatement.setString(8, claim.getFullName());
+            preparedStatement.setString(9, claim.getEmail());
 
             int row = preparedStatement.executeUpdate();
 
@@ -911,6 +913,64 @@ public class ClaimService {
             System.out.println(ex.getMessage());
         }
         return result;
+
+    }
+    
+    
+    public static ArrayList getBikeModels(String bikeMakeCode) {
+
+        ArrayList mList = new ArrayList();
+        try {
+
+            Connection con = JDBCConnectionManager.getConnection();
+            //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
+            String sql = "SELECT * FROM bikemodel where bikeMakeCode=?; ";
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, bikeMakeCode);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                BikeModel m = new BikeModel();
+
+                m.setBikeModel(rs.getString("bikeModel"));
+                m.setBikeModelCode(rs.getString("bikeModelCode"));
+
+                mList.add(m);
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        System.out.println("Number of makes = " + mList.size());
+        return mList;
+
+    }
+    
+    public static ArrayList getBikeVariants(String bikeModelCode) {
+
+        ArrayList vList = new ArrayList();
+        try {
+
+            Connection con = JDBCConnectionManager.getConnection();
+            //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
+            String sql = "SELECT * FROM bikevariant where bikeModelCode=?; ";
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, bikeModelCode);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                BikeVariant v = new BikeVariant();
+
+                v.setBikeVariant(rs.getString("bikevVariant"));
+
+                vList.add(v);
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        System.out.println("Number of vars = " + vList.size());
+        return vList;
 
     }
 }

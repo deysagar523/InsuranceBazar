@@ -893,7 +893,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         claim.setBikeNumber(bikeNumber);
         claim.setBikeMake(bikeMake);
         claim.setBikeModel(bikeModel);
-        claim.setBikeVariant(bikeVariant);
+       
         claim.setBikeRegistrationYear(bikeRegistrationYear);
         claim.setClaimStatus(claimStatus);
 

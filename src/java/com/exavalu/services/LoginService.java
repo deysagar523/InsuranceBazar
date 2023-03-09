@@ -30,6 +30,7 @@ import org.apache.log4j.Logger;
  */
 public class LoginService {
 
+    private static final Logger log = Logger.getLogger(LoginService.class);
     public static LoginService loginService = null;
 
     private LoginService() {
@@ -64,6 +65,7 @@ public class LoginService {
             }
 
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(LoginService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
 
@@ -96,7 +98,7 @@ public class LoginService {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(LoginService.class.getName());
-            log.error(LocalDateTime.now() + " " + ex.getMessage());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
 
         }
 
@@ -142,94 +144,14 @@ public class LoginService {
             }
 
         } catch (SQLException ex) {
-
+            System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(LoginService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
 
         return user;
     }
 
-    public ArrayList getAllCountries() {
-        ArrayList countryList = new ArrayList();
-        try {
-            Connection con = JDBCConnectionManager.getConnection();
-            //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
-            String sql = "SELECT * FROM country";
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
-
-            ResultSet rs = preparedStatement.executeQuery();
-
-            while (rs.next()) {
-                Country country = new Country();
-                country.setCountryName(rs.getString("countryName"));
-                country.setCountryCode(rs.getString("countryCode"));
-
-                countryList.add(country);
-
-            }
-
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        System.err.println("Number of countries = " + countryList.size());
-        return countryList;
-    }
-
-    public ArrayList getAllStates(String countryCode) {
-        ArrayList stateList = new ArrayList();
-        try {
-            Connection con = JDBCConnectionManager.getConnection();
-            //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
-            String sql = "SELECT * FROM state where countryCode=?";
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setString(1, countryCode);
-
-            ResultSet rs = preparedStatement.executeQuery();
-
-            while (rs.next()) {
-                State state = new State();
-
-                state.setStateCode(rs.getString("stateCode"));
-                state.setStateName(rs.getString("stateName"));
-
-                stateList.add(state);
-
-            }
-
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());;
-        }
-        System.err.println("Number of states = " + stateList.size());
-        return stateList;
-    }
-
-    public ArrayList getAllDistricts(String stateCode) {
-
-        ArrayList districtList = new ArrayList();
-        try {
-            Connection con = JDBCConnectionManager.getConnection();
-            //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
-            String sql = "SELECT * FROM district where stateCode=?";
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setString(1, stateCode);
-
-            ResultSet rs = preparedStatement.executeQuery();
-
-            while (rs.next()) {
-                District district = new District();
-
-                district.setDistrictCode(rs.getString("districtCode"));
-                district.setDistrictName(rs.getString("districtName"));
-
-                districtList.add(district);
-
-            }
-
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        System.err.println("Number of districts = " + districtList.size());
-        return districtList;
-    }
 
     public static boolean updateUser(User user, String userId) throws FileNotFoundException {
         boolean result = false;
@@ -261,9 +183,12 @@ public class LoginService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(LoginService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         return result;
     }
+
     public static boolean updateUser2(User user, String userId) throws FileNotFoundException {
         boolean result = false;
         try {
@@ -273,14 +198,11 @@ public class LoginService {
             PreparedStatement preparedStatement = con.prepareStatement(sql);
 
             //System.out.println("image: " + user.getImage());
-
             preparedStatement.setString(1, user.getFullName());
             preparedStatement.setString(2, user.getGender());
             preparedStatement.setString(3, user.getPhone());
             preparedStatement.setString(4, user.getAge());
             preparedStatement.setString(5, user.getIncomeSource());
-
-           
 
             preparedStatement.setString(6, userId);
 
@@ -292,7 +214,9 @@ public class LoginService {
             }
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+           System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(LoginService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         return result;
     }

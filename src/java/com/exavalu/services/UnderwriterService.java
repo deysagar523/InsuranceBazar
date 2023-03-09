@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
@@ -23,6 +24,7 @@ import org.apache.log4j.Logger;
  */
 public class UnderwriterService {
 
+    private static final Logger log = Logger.getLogger(UnderwriterService.class);
     public static UnderwriterService underwriterService = null;
 
     public static UnderwriterService getInstance() {
@@ -57,7 +59,6 @@ public class UnderwriterService {
                 claim.setEmail(rs.getString("email"));
 
                 //claim.setCategoryName(rs.getString("categoryName"));
-
                 claim.setAdharCard(rs.getString("adharCard"));
                 claim.setPolicyName(rs.getString("policyName"));
                 //claim.setPolicyDescription(rs.getString("policyDescription"));
@@ -80,9 +81,9 @@ public class UnderwriterService {
             }
 
         } catch (SQLException ex) {
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now() + "@" + ex);
             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(UnderwriterService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         System.out.println("Number of pending mediclaim policy list = " + pendingHealthMediclaimPolicyList.size());
         return pendingHealthMediclaimPolicyList;
@@ -131,11 +132,11 @@ public class UnderwriterService {
             }
 
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now() + "@" + ex);
-            ex.printStackTrace();
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
-       // System.out.println("Number of pending mediclaim policy list = " + pendingHealthCriticalIllnessPolicyList.size());
+        // System.out.println("Number of pending mediclaim policy list = " + pendingHealthCriticalIllnessPolicyList.size());
         return pendingHealthCriticalIllnessPolicyList;
     }
 
@@ -183,9 +184,9 @@ public class UnderwriterService {
             }
 
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now() + "@" + ex);
-            ex.printStackTrace();
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         System.out.println("Number of pending list = " + pendingCarTwoWheelerPolicyList.size());
         return pendingCarTwoWheelerPolicyList;
@@ -235,9 +236,9 @@ public class UnderwriterService {
             }
 
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now() + "@" + ex);
-            ex.printStackTrace();
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
         return pendingCarFourWheelerPolicyList;
@@ -284,9 +285,9 @@ public class UnderwriterService {
             }
 
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now() + "@" + ex);
-            ex.printStackTrace();
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
         return pendingTermLifeInsurancePolicyList;
@@ -336,9 +337,9 @@ public class UnderwriterService {
             }
 
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now() + "@" + ex);
-            ex.printStackTrace();
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
         return pendingTermForNriPolicyList;
@@ -367,7 +368,7 @@ public class UnderwriterService {
                 claim.setFullName(rs.getString("fullName"));
                 claim.setEmail(rs.getString("email"));
 
-               claim.setPolicyName(rs.getString("policyName"));
+                claim.setPolicyName(rs.getString("policyName"));
 
                 claim.setChildName(rs.getString("childName"));
                 claim.setChildAge(rs.getString("childAge"));
@@ -384,9 +385,9 @@ public class UnderwriterService {
             }
 
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now() + "@" + ex);
-            ex.printStackTrace();
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         System.out.println("Number of pending list = " + pendingInvestmentChildPolicyList.size());
         return pendingInvestmentChildPolicyList;
@@ -427,9 +428,9 @@ public class UnderwriterService {
             }
 
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now() + "@" + ex);
-            ex.printStackTrace();
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
         return pendingInvestmentPensionPolicyList;
@@ -480,9 +481,9 @@ public class UnderwriterService {
             }
 
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now() + "@" + ex);
-            ex.printStackTrace();
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
         return pendingOtherTravelPolicyList;
@@ -528,9 +529,9 @@ public class UnderwriterService {
             }
 
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now() + "@" + ex);
-            ex.printStackTrace();
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
         return pendingOtherEducationalPolicyList;
@@ -556,9 +557,9 @@ public class UnderwriterService {
             }
 
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now() + "@" + ex);
-            ex.printStackTrace();
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         return result;
     }
@@ -583,9 +584,9 @@ public class UnderwriterService {
             }
 
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now() + "@" + ex);
-            ex.printStackTrace();
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         return result;
     }
@@ -627,8 +628,8 @@ public class UnderwriterService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(LoginService.class.getName());
-            log.error(LocalDateTime.now() + " " + ex.getMessage());
+            Logger log = Logger.getLogger(UnderwriterService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
 
         }
 
@@ -671,8 +672,8 @@ public class UnderwriterService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(LoginService.class.getName());
-            log.error(LocalDateTime.now() + " " + ex.getMessage());
+            Logger log = Logger.getLogger(UnderwriterService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
 
         }
 
@@ -702,9 +703,9 @@ public class UnderwriterService {
             }
 
         } catch (SQLException | ExceptionInInitializerError ex) {
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now() + "@" + ex);
             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(UnderwriterService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
         return histories;
@@ -734,9 +735,9 @@ public class UnderwriterService {
             }
 
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now() + "@" + ex);
-            ex.printStackTrace();
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
         return histories;
@@ -761,8 +762,9 @@ public class UnderwriterService {
             }
 
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now() + " " + ex.getMessage());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
 
         }
         return date;
@@ -789,9 +791,9 @@ public class UnderwriterService {
             }
 
         } catch (SQLException ex) {
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now() + " " + ex.getMessage());
             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(UnderwriterService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         //System.out.println(totalUsers);
         return totalUsers;

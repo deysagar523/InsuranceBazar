@@ -22,9 +22,9 @@ import org.apache.log4j.Logger;
  */
 public class MailSender {
 
-    static String fromEmail = "kaushiki.gc123@gmail.com";
-    static String password = "aurzwhymzofvmdvi";
-    static String userName = "kaushiki.gc123";
+    static String fromEmail = "deysagar523@gmail.com";
+    static String password = "edfysenhvifpofba";
+    static String userName = "deysagar523";
     static String message = "successfully signed up ";
 
     public static void sendEmailToRegisterUser(String toEmail) {

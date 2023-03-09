@@ -11,13 +11,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author user
  */
 public class PolicyService {
+    private static final Logger log = Logger.getLogger(PolicyService.class);
     
     public static ArrayList getPoliciesByCategoryId(String categoryId){
         ArrayList policies= new ArrayList();
@@ -46,7 +51,9 @@ public class PolicyService {
 
         } catch (SQLException ex) {
             
-            System.out.println(ex.getMessage());
+             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(PolicyService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         System.out.println("Number of policies = "+policies.size());
         return policies;
@@ -80,7 +87,9 @@ public class PolicyService {
 
         } catch (SQLException ex) {
             
-            System.out.println(ex.getMessage());
+           System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(PolicyService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         System.out.println("policy fetched = "+policy.getPolicyName());
         return policy;

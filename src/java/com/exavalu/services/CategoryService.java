@@ -11,12 +11,17 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import com.exavalu.models.Category;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author user
  */
 public class CategoryService {
+    private static final Logger log = Logger.getLogger(CategoryService.class);
     
     public static ArrayList getAllCategories(){
         ArrayList categories= new ArrayList();
@@ -46,6 +51,8 @@ public class CategoryService {
         } catch (SQLException ex) {
             
             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(CategoryService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         System.out.println("Number of categories = "+categories.size());
         return categories;

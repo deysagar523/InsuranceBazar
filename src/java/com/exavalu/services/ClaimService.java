@@ -20,14 +20,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import javax.swing.text.DateFormatter;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author user
  */
 public class ClaimService {
-
+private static final Logger log = Logger.getLogger(ClaimService.class);
     public static boolean insertHealthClaim(Claim claim) {
 
         boolean result = false;
@@ -69,7 +71,9 @@ public class ClaimService {
             }
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+           System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(ClaimService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         return result;
 
@@ -109,6 +113,8 @@ public class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(ClaimService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         return result;
 
@@ -144,50 +150,16 @@ public class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(ClaimService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         System.out.println("Number of claims bought = " + claimList.size());
         return claimList;
     }
 
-    public static ArrayList getBikes(String userId) {
-        ArrayList claimList = new ArrayList();
-        try {
+    
 
-            Connection con = JDBCConnectionManager.getConnection();
-            //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
-            String sql = "select * from claims c, policies p, plans plan, users u where c.policyId= p.policyId and c.userId= u.userId and c.planId= plan.planId and c.claimStatus=\"bought\" and u.userId=? order by c.claimId desc; ";
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setString(1, userId);
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                Claim claim = new Claim();
-
-                claim.setClaimId(rs.getString("claimId"));
-                claim.setBikeNumber(rs.getString("bikeNumber"));
-                claim.setBikeMake(rs.getString("bikeMake"));
-                claim.setBikeModel(rs.getString("bikeModel"));
-                claim.setBikeRegistrationYear(rs.getString("bikeRegistrationYear"));
-                claim.setPolicyName(rs.getString("policyName"));
-                claim.setPlanId(rs.getString("planId"));
-                claim.setPlanCompany(rs.getString("planCompany"));
-                claim.setPlanAmount(rs.getString("planAmount"));
-                claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
-
-                claimList.add(claim);
-
-            }
-
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        System.out.println("Number of claims bought = " + claimList.size());
-        return claimList;
-    }
-
-    public static ArrayList getAllClaims() {
-        return null;
-    }
-
+    
     public static boolean insertCarClaim(Claim claim) {
 
         boolean result = false;
@@ -227,6 +199,8 @@ public class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(ClaimService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         return result;
 
@@ -270,14 +244,14 @@ public class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(ClaimService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         return result;
 
     }
 
-    public static ArrayList getOfficerOnlyClaims() {
-        return null;
-    }
+  
 
     public static Claim getClaimById(String bikeNumber) {
 
@@ -314,20 +288,15 @@ public class ClaimService {
             }
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+           System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(ClaimService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         System.out.println("FROM CLAIM SERVICE CLAIM FETCHED: " + claim.getClaimId());
         return claim;
 
     }
 
-    public static Claim getClaimByPolicyId(String policyId) {
-        return null;
-    }
-
-    public static ArrayList searchClaims(String claimId, String claimDate, String claimStatus, String policyName) {
-        return null;
-    }
 
     public static boolean doPayment(String claimId, String planId, String planDuration) {
         boolean result = false;
@@ -358,13 +327,12 @@ public class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(ClaimService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         return result;
     }
 
-    public static boolean doBuy(String planId) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     public static Claim searchClaim(String claimId) {
         Claim particularClaim = new Claim();
@@ -416,6 +384,8 @@ public class ClaimService {
         } catch (SQLException ex) {
 
             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(ClaimService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         //System.out.println("Number of pending mediclaim policy list = " + pendingHealthMediclaimPolicyList.size());
         return particularClaim;
@@ -468,6 +438,8 @@ public class ClaimService {
         } catch (SQLException ex) {
 
             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(ClaimService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         //System.out.println("Number of pending mediclaim policy list = " + pendingHealthMediclaimPolicyList.size());
         return particularClaim;
@@ -525,7 +497,9 @@ public class ClaimService {
             }
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+           System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(ClaimService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         System.out.println("FROM CLAIM SERVICE CLAIM FETCHED: " + claim.getClaimId());
         return claim;
@@ -562,6 +536,8 @@ public class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(ClaimService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         return result;
 
@@ -591,6 +567,8 @@ public class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(ClaimService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         System.out.println("FROM CLAIM SERVICE PLAN FETCHED: " + plan.getPlanId());
         return plan;
@@ -635,71 +613,14 @@ public class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(ClaimService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         return result;
 
     }
 
-    public static int getChildWeightage(Claim claim) {
-
-        int weightageId = 0;
-        int weightageValue = 0;
-        switch (claim.getMedicalHistory()) {
-            case "bad":
-                if (Integer.parseInt(claim.getChildAge()) >= 5 && Integer.parseInt(claim.getChildAge()) <= 8) {
-                    weightageId = 1;
-                } else if (Integer.parseInt(claim.getChildAge()) >= 9 && Integer.parseInt(claim.getChildAge()) <= 12) {
-                    weightageId = 2;
-                } else if (Integer.parseInt(claim.getChildAge()) >= 13 && Integer.parseInt(claim.getChildAge()) <= 18) {
-                    weightageId = 3;
-                }
-                break;
-
-            case "average":
-                if (Integer.parseInt(claim.getChildAge()) >= 5 && Integer.parseInt(claim.getChildAge()) <= 8) {
-                    weightageId = 4;
-                } else if (Integer.parseInt(claim.getChildAge()) >= 9 && Integer.parseInt(claim.getChildAge()) <= 12) {
-                    weightageId = 5;
-                } else if (Integer.parseInt(claim.getChildAge()) >= 13 && Integer.parseInt(claim.getChildAge()) <= 18) {
-                    weightageId = 6;
-                }
-                break;
-
-            case "good":
-                if (Integer.parseInt(claim.getChildAge()) >= 5 && Integer.parseInt(claim.getChildAge()) <= 8) {
-                    weightageId = 7;
-                } else if (Integer.parseInt(claim.getChildAge()) >= 9 && Integer.parseInt(claim.getChildAge()) <= 12) {
-                    weightageId = 8;
-                } else if (Integer.parseInt(claim.getChildAge()) >= 13 && Integer.parseInt(claim.getChildAge()) <= 18) {
-                    weightageId = 9;
-                }
-                break;
-
-            default:
-                System.out.println("something went wrong");
-        }
-
-        try {
-
-            Connection con = JDBCConnectionManager.getConnection();
-            String sql = "SELECT * FROM child WHERE childId=?";
-
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setInt(1, weightageId);
-
-            ResultSet rs = preparedStatement.executeQuery();
-            if (rs.next()) {
-
-                weightageValue = rs.getInt(1);
-            }
-
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-        return weightageValue;
-    }
-
+    
     public static Claim getClaimByChildBirthNo(String childBirthNo) {
 
         Claim claim = new Claim();
@@ -730,6 +651,8 @@ public class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(ClaimService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         System.out.println("FROM CLAIM SERVICE CLAIM FETCHED: " + claim.getClaimId());
         return claim;
@@ -760,6 +683,8 @@ public class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(ClaimService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         return result;
 
@@ -786,6 +711,8 @@ public class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(ClaimService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         System.out.println("Number of dideases = " + dList.size());
         return dList;
@@ -813,6 +740,8 @@ public class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(ClaimService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         System.out.println("Number of relatives = " + rList.size());
         return rList;
@@ -852,7 +781,9 @@ public class ClaimService {
             }
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+           System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(ClaimService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         System.out.println("FROM CLAIM SERVICE CLAIM FETCHED: " + claim.getClaimId());
         return claim;
@@ -884,6 +815,8 @@ public class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(ClaimService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         return result;
 
@@ -918,7 +851,9 @@ public class ClaimService {
             }
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+           System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(ClaimService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         System.out.println("FROM CLAIM SERVICE CLAIM FETCHED: " + claim.getClaimId());
         return claim;
@@ -964,6 +899,8 @@ public class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(ClaimService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         return result;
 
@@ -992,38 +929,14 @@ public class ClaimService {
             }
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+           System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(ClaimService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         System.out.println("Number of makes = " + mList.size());
         return mList;
 
     }
     
-    public static ArrayList getBikeVariants(String bikeModelCode) {
-
-        ArrayList vList = new ArrayList();
-        try {
-
-            Connection con = JDBCConnectionManager.getConnection();
-            //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
-            String sql = "SELECT * FROM bikevariant where bikeModelCode=?; ";
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setString(1, bikeModelCode);
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                BikeVariant v = new BikeVariant();
-
-                v.setBikeVariant(rs.getString("bikevVariant"));
-
-                vList.add(v);
-
-            }
-
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        System.out.println("Number of vars = " + vList.size());
-        return vList;
-
-    }
+    
 }

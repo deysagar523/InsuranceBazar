@@ -12,14 +12,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author user
  */
 public class PlanService {
-    
+    private static final Logger log = Logger.getLogger(PlanService.class);
     public static ArrayList getAllBikePlans(){
         
         ArrayList planList= new ArrayList();
@@ -53,7 +57,9 @@ public class PlanService {
 
         } catch (SQLException ex) {
             
-            System.out.println(ex.getMessage());
+             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(PlanService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         System.out.println("plans:"+planList.size());
         return planList;
@@ -92,7 +98,9 @@ public class PlanService {
 
         } catch (SQLException ex) {
             
-            System.out.println(ex.getMessage());
+              System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(PlanService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         System.out.println("child plans:"+planList.size());
         return planList;
@@ -133,7 +141,9 @@ public class PlanService {
 
         } catch (SQLException ex) {
             
-            System.out.println(ex.getMessage());
+              System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(PlanService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         System.out.println("med plans:"+planList.size());
         return planList;

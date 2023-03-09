@@ -2,8 +2,8 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <c:if test="${User==null}">
     <c:redirect url = "login.jsp"/>
-        
-    
+
+
 </c:if>
 <html lang="en">
     <head>
@@ -14,7 +14,7 @@
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/PolicyListStyle.css">
         <!-- Bootstrap CSS-->
         <link rel="stylesheet" href="css/bootstrap.css">
@@ -44,40 +44,40 @@
             });
         }
     </script>
-    
+
     <section>
-            <jsp:include page="menu.jsp"></jsp:include>
+        <jsp:include page="menu.jsp"></jsp:include>
         </section>
-    <body id="container">
-        
-        
+        <body id="container">
 
-        <div>
-            <section class="ftco-section">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-6 text-center mb-5">
+
+
+            <div>
+                <section class="ftco-section">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-6 text-center mb-5">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-wrapper-scroll-y my-custom-scrollbar">
 
-                                <table class="table table-bordered table-striped mb-0">
-                                    <thead class="thead-primary"> 
-                                        <tr>
-                                            <!--                                        <th>Incident Location</th>
-                                                                                    <th>Incident Date</th>
-                                                                                    <th>Police Report No</th>-->
-                                            <th>Policy</th>
-                                            <th>Plan Company</th>
-                                            <th>Plan Expiry</th>
-                                            <th>Plan Amount</th>
-                                            <th>Action</th>
+                                    <table class="table table-bordered table-striped mb-0">
+                                        <thead class="thead-primary"> 
+                                            <tr>
+                                                <!--                                        <th>Incident Location</th>
+                                                                                        <th>Incident Date</th>
+                                                                                        <th>Police Report No</th>-->
+                                                <th>Policy</th>
+                                                <th>Plan Company</th>
+                                                <th>Plan Expiry</th>
+                                                <th>Plan Amount</th>
+                                                <th>Action</th>
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
                                         <c:if test="${PlanList.size()!=0}">
                                             <c:forEach items="${PlanList}" var="plan">
@@ -85,8 +85,8 @@
                                                     <td><c:out value="${plan.policyName}"> </c:out></td>
                                                     <td><c:out value="${plan.planCompany}"> </c:out></td>
                                                     <td><c:out value="${plan.claimExpiryDate}"> </c:out></td>
-                                                    <td><c:out value="${plan.planAmount}"> </c:out>
-                                                        
+                                                    <td><span>&#8377; &nbsp;</span><c:out value="${plan.planAmount}"> </c:out>
+
                                                         <td>
                                                             <!--<a onClick="ajaxViewClaim(<c:out value="${plan.claimId}"> </c:out>)" style="cursor:pointer" class="btn btn-success mr-2">View Details</a>-->
                                                         <a href="LoadClaimDetails?claimId=${plan.claimId}" style="cursor:pointer" class="btn btn-success mr-2">View Details</a>
@@ -94,16 +94,16 @@
 
 
 
-                                                        </td>
+                                                    </td>
 
 
 
 
 
-                                                        <!--                                                                <td>
-                                                                                                                            <a href=ApprovePolicy?claimId=${claim.claimId} class="btn btn-success">Approve</a>
-                                                                                                                        <a href="RejectPolicy?claimId=${claim.claimId}" class="btn btn-danger">Reject</a>
-                                                                                                                    </td>-->
+                                                    <!--                                                                <td>
+                                                                                                                        <a href=ApprovePolicy?claimId=${claim.claimId} class="btn btn-success">Approve</a>
+                                                                                                                    <a href="RejectPolicy?claimId=${claim.claimId}" class="btn btn-danger">Reject</a>
+                                                                                                                </td>-->
 
 
 

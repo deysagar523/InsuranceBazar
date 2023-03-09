@@ -798,4 +798,91 @@ public class UnderwriterService {
         //System.out.println(totalUsers);
         return totalUsers;
     }
+    
+    public static String totalBoughtPlans(String interval) {
+        String totalPolicies = null;
+
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            String sql = "SELECT COUNT(email) as totalPoliciesToday FROM claims where policyBoughtDay = DATE_ADD(CURDATE(), INTERVAL ? DAY);";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, interval);
+
+            System.out.println("ps:" + ps);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                totalPolicies = rs.getString("totalPoliciesToday");
+            } else {
+                totalPolicies = "0";
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(UnderwriterService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+        }
+        //System.out.println(totalUsers);
+        return totalPolicies;
+    }
+
+    public String getNoOfUsers() {
+        String totalUsers = null;
+
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            String sql = "SELECT COUNT(email) as totalRegisteredUsers FROM users";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+           
+
+            //System.out.println("ps:" + ps);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                totalUsers = rs.getString("totalRegisteredUsers");
+            } else {
+                totalUsers = "0";
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(UnderwriterService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+        }
+        //System.out.println(totalUsers);
+        return totalUsers;
+    }
+
+    public String getTotalRevenue() {
+       String totalRevenue = null;
+
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            String sql = "SELECT sum(planAmount) as revenue FROM claims c,plans p where c.planId=p.planId";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+           
+
+            //System.out.println("ps:" + ps);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                totalRevenue = rs.getString("revenue");
+            } else {
+                totalRevenue = "0";
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(UnderwriterService.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+        }
+        //System.out.println(totalUsers);
+        return totalRevenue;
+    }
 }

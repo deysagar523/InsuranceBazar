@@ -32,7 +32,7 @@ import org.apache.struts2.interceptor.SessionAware;
  */
 public class BikeApi extends ActionSupport implements ApplicationAware, SessionAware, Serializable{
     
-    private String id,claimId,bikeNo,bikeModel,bikeRegistrationYear;
+    private String id,claimId,bikeNo,bikeModel,bikeRegistrationYear,bikeMake;
     
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
@@ -135,7 +135,7 @@ public class BikeApi extends ActionSupport implements ApplicationAware, SessionA
     public String fetchBikeApi() throws Exception {
         String result = "SUCCESS";
         JDBCUtility jdbcUtility = JDBCUtility.getInstanceOfJDBCUtility();
-        String apiUrl = "https://retoolapi.dev/DM09ko/InsuranceBikedata";
+        String apiUrl = "https://mocki.io/v1/8971c40e-b6c5-4b97-8e12-386b1992ace8";
 //        String apiUrl= "https://insuranceapi.free.beeceptor.com/bikedata";
         URL obj = new URL(apiUrl);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -166,7 +166,7 @@ public class BikeApi extends ActionSupport implements ApplicationAware, SessionA
             BikeApi bikeApi = new BikeApi();
             bikeApi.setId(myResponse.get("id").toString());
             //System.out.println(voterAPI.getVoterId());
-            bikeApi.setBikeModel(myResponse.get("bikeModel").toString());
+            bikeApi.setBikeMake(myResponse.get("bikeMake").toString());
             bikeApi.setBikeNo(myResponse.get("bikeNo").toString());
             bikeApi.setBikeRegistrationYear(myResponse.get("bikeRegistrationYear").toString());
            
@@ -191,6 +191,20 @@ public class BikeApi extends ActionSupport implements ApplicationAware, SessionA
      */
     public void setClaimId(String claimId) {
         this.claimId = claimId;
+    }
+
+    /**
+     * @return the bikeMake
+     */
+    public String getBikeMake() {
+        return bikeMake;
+    }
+
+    /**
+     * @param bikeMake the bikeMake to set
+     */
+    public void setBikeMake(String bikeMake) {
+        this.bikeMake = bikeMake;
     }
 
 

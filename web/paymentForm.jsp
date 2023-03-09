@@ -1,8 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:if test="${User==null}">
     <c:redirect url = "login.jsp"/>
-        
-    
+
+
 </c:if>
 <html>
     <head>
@@ -12,7 +12,7 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Favicon -->
         <link href="img/favicon.ico" rel="icon">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -396,18 +396,18 @@
                             <input type="hidden" id="cardHolder"  value="${Plan.planDuration}" name="planDuration" maxlength="60" />
                             <input  type="hidden"  name="email" value="${User.email}" />
                             <input  type="hidden"  name="policyName" value="${PolicyName}" />
-                             <input type="hidden" name="bikeNumber" value="${BikeNumber}"/>
+                            <input type="hidden" name="bikeNumber" value="${BikeNumber}"/>
                             <input type="hidden" name="bikeMake" value="${BikeMake}"/>
                             <input type="hidden" name="bikeModel" value="${BikeModel}"/>
                             <input type="hidden" name="adharCard" value="${AdharCard}"/>
                             <input type="hidden" name="relation" value="${RelativeType}"/>
                             <input type="hidden" name="disease" value="${Disease}"/>
                             <input type="hidden" name="relativeName" value="${RelativeName}"/>
-                            
+
                             <input type="hidden" name="childName" value="${ChildName}"/>
                             <input type="hidden" name="ChildAge" value="${ChildAge}"/>
                             <input type="hidden" name="childBirthNo" value="${ChildBirthNo}"/>
-                            
+
                             <input type="text" id="cardHolder"  value="" placeholder="Card Holder" maxlength="60" required/>
                             <span id="cardNumberWarning"></span>
                             <input type="text" id="cardNumber" onKeyup="loadCards()"  value="" placeholder="Card Number" maxlength="16" required/>
@@ -453,7 +453,7 @@
                         <hr />
                         <div class="total_price">
                             <p class="dark">Total:</p>
-                            <p class="dark">${Plan.getPlanAmount()}</p>
+                            <p class="dark"><i class="fa fa-rupee"></i>${Plan.getPlanAmount()}</p>
                         </div>
                     </div>
                     <img class="qr_code" src="https://cdn-icons-png.flaticon.com/512/714/714390.png" alt="" />
@@ -469,18 +469,18 @@
 
     </body>
     <script>
-                                    const addPri = document.querySelector('.address_primary');
-                                    const addSec = document.querySelector('.address_secondary');
-                                    const addBg = () => {
-                                        addPri.addEventListener('click', () => {
-                                            addPri.classList.remove('active1');
-                                            addSec.classList.remove('active');
-                                        });
-                                        addSec.addEventListener('click', () => {
-                                            addSec.classList.add('active');
-                                            addPri.classList.add('active1');
-                                        });
-                                    };
-                                    addBg();
+                                const addPri = document.querySelector('.address_primary');
+                                const addSec = document.querySelector('.address_secondary');
+                                const addBg = () => {
+                                    addPri.addEventListener('click', () => {
+                                        addPri.classList.remove('active1');
+                                        addSec.classList.remove('active');
+                                    });
+                                    addSec.addEventListener('click', () => {
+                                        addSec.classList.add('active');
+                                        addPri.classList.add('active1');
+                                    });
+                                };
+                                addBg();
     </script>
 </html>

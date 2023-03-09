@@ -307,7 +307,7 @@ private static final Logger log = Logger.getLogger(ClaimService.class);
         System.out.println("The LocalDate after adding  years is: " + claimExpiryDate);
         try {
             Connection con = JDBCConnectionManager.getConnection();
-            String sql = "update claims set paid=\"true\", claimStatus=\"bought\", planId=?, claimExpiryDate=? where claimId=?;";
+            String sql = "update claims set paid=\"true\", claimStatus=\"bought\", planId=?, claimExpiryDate=?,policyBoughtDay=CURDATE() where claimId=?;";
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
 
@@ -315,6 +315,7 @@ private static final Logger log = Logger.getLogger(ClaimService.class);
 
             preparedStatement.setString(1, planId);
             preparedStatement.setString(2, claimExpiryDate);
+             
             preparedStatement.setString(3, claimId);
 
             System.out.println("claim row to be updated");

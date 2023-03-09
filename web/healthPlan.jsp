@@ -2,8 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:if test="${User==null}">
     <c:redirect url = "login.jsp"/>
-        
-    
+
+
 </c:if>
 
 <html class="no-js" lang="zxx">
@@ -15,7 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="site.webmanifest">
         <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- CSS here -->
         <link rel="stylesheet" href="css/style-car.css">
         <link rel="stylesheet" href="./css/jobdiv.css">
@@ -113,7 +113,7 @@
                                                                         <div class="col-md-2">
                                                                             <div class="mo-mb-2">
 
-                                                                                
+
 
                                                                                 <c:choose>
                                                                                     <c:when test ='${plan.getPlanCompany().equalsIgnoreCase("care")}'>
@@ -134,7 +134,7 @@
 
 
                                                                                     </c:when>
-                                                                                 
+
                                                                                     <c:when test ='${plan.getPlanCompany().equalsIgnoreCase("reliance")}'>
                                                                                         <img
                                                                                             src="img/reliance.png"
@@ -148,7 +148,7 @@
 
 
 
-                                                                                    
+
                                                                                 </c:choose>
 
 
@@ -171,7 +171,7 @@
                                                                             <div>
                                                                                 <p class="text-muted mb-0 mo-mb-2">
                                                                                     <span class="text-primary"> &#8377; &nbsp;</span
-                                                                                    >${plan.getPlanAmount()}/-
+                                                                                    ><i class="fa fa-rupee"></i>${plan.getPlanAmount()}/-
                                                                                 </p>
                                                                             </div>
                                                                         </div>
@@ -192,7 +192,7 @@
                                                                                 </p>
                                                                             </div>
                                                                         </div>
-                                                                        
+
                                                                         <div class="col-md-6">
                                                                             <div>
                                                                                 <p class="text-muted mb-0 mo-mb-2">

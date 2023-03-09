@@ -276,13 +276,35 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
 
                 String day5User = UnderwriterService.totalRegisteredUsers("-5");
                 sessionMap.put("Day5Users", day5User);
+                
+                
+                String todayPolicy = UnderwriterService.totalBoughtPlans("0");
+                sessionMap.put("TodayPolicy", todayPolicy);
+                String day1Policy = UnderwriterService.totalBoughtPlans("-1");
+                sessionMap.put("Day1Policy", day1Policy);
+                String day2Policy = UnderwriterService.totalBoughtPlans("-2");
+                sessionMap.put("Day2Policy", day2Policy);
+                String day3Policy = UnderwriterService.totalBoughtPlans("-3");
+                sessionMap.put("Day3Policy", day3Policy);
 
-//                System.out.println("today"+todayRegisteration);
-//                 System.out.println("1"+day1User);
-//                  System.out.println("2"+day2User);
-//                   System.out.println("3"+day3User);
-//                    System.out.println("4"+day4User);
-//                     System.out.println("5"+day5User);
+                String day4Policy = UnderwriterService.totalBoughtPlans("-4");
+                sessionMap.put("Day4Policy", day4Policy);
+
+                String day5Policy = UnderwriterService.totalBoughtPlans("-5");
+                sessionMap.put("Day5Policy", day5Policy);
+                
+                String totalNoOfUsers=UnderwriterService.getInstance().getNoOfUsers();
+                sessionMap.put("TotalUsers", totalNoOfUsers);
+                String totalRevenue=UnderwriterService.getInstance().getTotalRevenue();
+                sessionMap.put("TotalRevenue", totalRevenue);
+                
+
+//                System.out.println("today "+todayPolicy);
+//                 System.out.println("1 "+day1Policy);
+//                  System.out.println("2 "+day2Policy);
+//                   System.out.println("3 "+day3Policy);
+//                    System.out.println("4 "+day4Policy);
+//                     System.out.println("5 "+day5Policy);
                 ArrayList underwriter_approved_histories = UnderwriterService.getInstance().getAllApprovedHistories();
                 sessionMap.put("UnderwriterApprovedHistories", underwriter_approved_histories);
                 ArrayList underwriter_rejected_histories = UnderwriterService.getInstance().getAllRejectedHistories();
@@ -322,6 +344,22 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
                 sessionMap.put("Day4", day4);
                 String day5 = UnderwriterService.elementsForXaxis("-5");
                 sessionMap.put("Day5", day5);
+                
+                String todayPolicy = UnderwriterService.totalBoughtPlans("0");
+                sessionMap.put("TodayPolicy", todayPolicy);
+                String day1Policy = UnderwriterService.totalBoughtPlans("-1");
+                sessionMap.put("Day1Policy", day1Policy);
+                String day2Policy = UnderwriterService.totalBoughtPlans("-2");
+                sessionMap.put("Day2Policy", day2Policy);
+                String day3Policy = UnderwriterService.totalBoughtPlans("-3");
+                sessionMap.put("Day3Policy", day3Policy);
+
+                String day4Policy = UnderwriterService.totalBoughtPlans("-4");
+                sessionMap.put("Day4Policy", day4Policy);
+
+                String day5Policy = UnderwriterService.totalBoughtPlans("-5");
+                sessionMap.put("Day5Policy", day5Policy);
+
 
 //                System.out.println(todayDateElement);
 //                 System.out.println(day1);

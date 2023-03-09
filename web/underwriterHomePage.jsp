@@ -4,8 +4,8 @@
 
 <c:if test="${User==null}">
     <c:redirect url = "login.jsp"/>
-        
-    
+
+
 </c:if>
 <!doctype html>
 <html lang="en">
@@ -31,7 +31,7 @@
                 integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" 
                 crossorigin="anonymous">
         </script>
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Vendor CSS Files -->
         <link href="css/graphBootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-icons.css" rel="stylesheet"> 
@@ -417,7 +417,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Total Revenue</p>
-                                    <h5>$65</h5>
+                                    <h5><i class="fa fa-rupee"></i>${TotalRevenue}</h5>
                                 </div>
                             </div>
                         </div>
@@ -465,7 +465,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Users</p>
-                                    <h5>256</h5>
+                                    <h5>${TotalUsers}</h5>
                                 </div>
                             </div>
                         </div>
@@ -475,7 +475,7 @@
 
                 <div class="col-md-6">
                     <div class="card-body" style="background-color: white; width: 75vw; margin-bottom: 20px">
-                        <h5>Reports/Today</h5>
+                        <h5>Reports/Last 5 days</h5>
 
                         <!-- Line Chart -->
                         <div id="reportsChart"></div>
@@ -483,9 +483,12 @@
                         <script>
                             document.addEventListener("DOMContentLoaded", () => {
                                 new ApexCharts(document.querySelector("#reportsChart"), {
-                                    series: [ {
+                                    series: [{
                                             name: 'Users Registered',
-                                            data: [ ${Day5Users},${Day4Users},${Day3Users},${Day2Users},${Day1Users},${TodayUsers}]
+                                            data: [${Day5Users},${Day4Users},${Day3Users},${Day2Users},${Day1Users},${TodayUsers}]
+                                        }, {
+                                            name: 'Policy Bought',
+                                            data: [${Day5Policy}, ${Day4Policy}, ${Day3Policy}, ${Day2Policy}, ${Day1Policy},${TodayPolicy}]
                                         }],
                                     chart: {
                                         height: 350,
@@ -529,12 +532,12 @@
                         <!-- End Line Chart -->
                     </div>
 
-<!--                    <div class="col-md-6">
-
-                    </div>-->
+                    <!--                    <div class="col-md-6">
+                    
+                                        </div>-->
 
                     <div class="col-md-12">
-                        
+
                         <div class="card" style="width: 75vw">
                             <div class="card-header">
                                 <h4>Latest Claims</h4>

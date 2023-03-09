@@ -12,8 +12,8 @@
         <td><input class="form-control" name="bikeNo" type="text" class="form-control" id="bikeNo" placeholder="bikeNo" readonly value="${BikeApi.bikeNo}"></td>
     </tr>
     <tr>
-        <td>BIKE MODEL : </td>
-        <td><input class="form-control" name="bikeModel" type="text" class="form-control" id="bikeModel" placeholder="bikeModel" readonly value="${BikeApi.bikeModel}"></td>
+        <td>BIKE MAKE: </td>
+        <td><input class="form-control" name="bikeMake" type="text" class="form-control" id="bikeModel" placeholder="bikeMake" readonly value="${BikeApi.bikeMake}"></td>
     </tr>
     <tr>
         <td>BIKE REGISTRATION YEAR </td>

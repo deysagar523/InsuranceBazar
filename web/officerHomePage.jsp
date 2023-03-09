@@ -479,6 +479,9 @@
                                     series: [ {
                                             name: 'Users Registered',
                                             data: [ ${Day5Users},${Day4Users},${Day3Users},${Day2Users},${Day1Users},${TodayUsers}]
+                                        }, {
+                                            name: 'Policy Bought',
+                                            data: [${Day5Policy}, ${Day4Policy}, ${Day3Policy}, ${Day2Policy}, ${Day1Policy},${TodayPolicy}]
                                         }],
                                     chart: {
                                         height: 350,

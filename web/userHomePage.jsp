@@ -232,7 +232,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><button type="button" class="btn btn-primary rounded-pill py-2 px-4"><i class='fas fa-user-circle' style='font-size:20px;color:greenyellow'></i> My Account</button></a>
                         <div class="dropdown-menu m-0">
                             <a href="userProfile.jsp" class="dropdown-item"> <i class='far fa-user-circle' style='font-size:20px;color:greenyellow'></i>  My Profile</a>
-                            <a href="helpClaim.html" class="dropdown-item"><i class='fas fa-id-badge' style='font-size:20px;color:greenyellow'></i>   My Policies</a>
+                            <a href="boughtPlans.jsp" class="dropdown-item"><i class='fas fa-id-badge' style='font-size:20px;color:greenyellow'></i>   My Policies</a>
                             <a href="team.html" class="dropdown-item"><i class='far fa-credit-card' style='font-size:20px;color:greenyellow'></i> My Transactions </a>
                             <a href="Logout" class="dropdown-item"><i class="fa fa-power-off" style="font-size:20px;color:greenyellow"></i> Sign Out</a>
                            

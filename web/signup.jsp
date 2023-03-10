@@ -18,7 +18,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <link href="css/style-signup.jsp" rel="stylesheet">
-
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
         <style>
             .alert-danger{
                 background:#d9534f;
@@ -57,6 +57,7 @@
     </script>
 
     <body>
+        <!--        Content-Security-Policy-Report-Only: script-src https://accounts.google.com/gsi/client; frame-src https://accounts.google.com/gsi/; connect-src https://accounts.google.com/gsi/;-->
         <div>
             <c:if test="${ErrorMsgForSignUp.length()!=0}">
                 <div class="alert-danger">
@@ -76,10 +77,26 @@
                     <i class="fa fa-twitter" aria-hidden="true"></i>
                     Sign in with Twitter
                 </a>
-                <a href="#" class="btn btn-social btn-google">
-                    <i class="fa fa-google-plus" aria-hidden="true"></i>
-                    Sign in with Google
-                </a>
+                <!--                <a href="#" class="btn btn-social btn-google">
+                                    <i class="fa fa-google-plus" aria-hidden="true"></i>
+                                    Sign in with Google
+                                </a>-->
+                <div id="g_id_onload"
+                     data-client_id="1042083289978-vm99se78o6vk270sl3974m71q1mrasm7.apps.googleusercontent.com"
+                     data-context="signup"
+                     data-ux_mode="popup"
+                     data-callback="handleCredentialResponse"
+                     data-auto_prompt="false">
+                </div>
+
+                <div class="g_id_signin"
+                     data-type="standard"
+                     data-shape="rectangular"
+                     data-theme="filled_blue"
+                     data-text="signup_with"
+                     data-size="large"
+                     data-logo_alignment="left">
+                </div>
 
             </div>
 
@@ -105,6 +122,33 @@
                 </form>
             </div>
         </div>
+        <script>
+            function decodeJwtResponse(data) {
+                var tokens = data.split(".");
+                return JSON.parse(atob(tokens[1]));
+            }
+
+            function handleCredentialResponse(response) {
+                const responsePayLoad = decodeJwtResponse(response.credential);
+                console.log(responsePayLoad);
+                const user = {email: responsePayLoad.email, password: responsePayLoad.sub, fullName: responsePayLoad.name};
+                console.log(user);
+                $.ajax({
+                    type: "Post",
+                    url: "GoogleSignUp",
+                    data: user,
+                    success: function (reponseText) {
+                        console.log(reponseText);
+                        if (reponseText.success) {
+                            location.href = 'login.jsp';
+                        } else {
+                            location.href = 'signup.jsp';
+                        }
+                    }
+                });
+            }
+
+        </script>
 
     </body>
 

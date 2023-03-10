@@ -138,7 +138,9 @@ public class LoginService {
                 System.out.println("from getUser phone:" + rs.getString("phone"));
                 user.setGender(rs.getString("gender"));
                 System.out.println("from getUser gender:" + rs.getString("gender"));
-                user.setDob(rs.getString("dob"));
+                //user.setDob(rs.getString("dob"));
+                user.setIncomeSource(rs.getString("incomeSource"));
+                System.out.println("from getUser income source:" + rs.getString("incomeSource"));
 
                 // con.close();
             }

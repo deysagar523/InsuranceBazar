@@ -234,7 +234,7 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
 
             System.out.println("Returning Success from doLogin method");
             User user = LoginService.getUser(this.getEmail());
-//            System.out.println("gender:"+user.getGender()+" phone:"+user.getPhone());
+            System.out.println("gender:"+user.getGender()+" income:"+user.getIncomeSource());
             if (user.getRole().equals("1")) {
                 sessionMap.put("Plans", planList);
                 sessionMap.put("ChildPlans", childPlanList);

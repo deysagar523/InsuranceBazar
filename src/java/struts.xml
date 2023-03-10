@@ -15,6 +15,14 @@
             <result name="SUCCESS">login.jsp</result>
             <result name="FAILURE">signup.jsp</result> 
         </action>
+        <action name="GoogleSignUp" class="com.exavalu.models.User" method="doSignUp">
+            <result name="SUCCESS">success.json</result>
+            <result name="FAILURE">failure.json</result> 
+        </action>
+        <action name="GoogleLogin" class="com.exavalu.models.User" method="doLogin">
+            <result name="USER">success.json</result>
+            <result name="FAILURE">failure.json</result> 
+        </action>
         <action name="Logout" class="com.exavalu.models.User" method="doLogOut">
             <result name="SUCCESS">landingPage.jsp</result>         
         </action>

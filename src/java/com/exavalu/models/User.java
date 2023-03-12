@@ -4,7 +4,7 @@
  */
 package com.exavalu.models;
 
-import com.exavalu.services.CategoryService;
+
 import com.exavalu.services.ClaimService;
 import com.exavalu.services.InsuranceOfficerService;
 import com.exavalu.services.LoginService;
@@ -26,7 +26,7 @@ import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.interceptor.ApplicationAware;
 
 /**
- *
+ *The model has all the instance variables declared and it deals with all CRUD Operations
  * @author HP
  */
 public class User extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
@@ -433,7 +433,7 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
         if (this.image != null) {
             updated = LoginService.updateUser(this, this.userId);
         } else {
-            updated = LoginService.updateUser2(this, this.userId);
+            updated = LoginService.updateUserWithoutImage(this, this.userId);
         }
 
         System.out.println("user id " + this.userId + "to be updated");

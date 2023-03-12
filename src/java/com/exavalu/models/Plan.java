@@ -16,7 +16,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.interceptor.ApplicationAware;
 /**
- *
+ *This is Plan model where all the instance variables are declared and CRUD operations are written
  * @author user
  */
 public class Plan extends ActionSupport implements ApplicationAware, SessionAware, Serializable {

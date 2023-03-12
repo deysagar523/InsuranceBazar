@@ -23,7 +23,7 @@
 
         <c:forEach items="${relatives}" var="r">
 
-        </div><div class="form-row">
+        <div class="form-row">
             <div class="name">${r.getRelativeType()}'s Age</div>
             <div class="value">
                 <div class="input-group">
@@ -56,7 +56,7 @@
             <div class="name">${r.getRelativeType()}'s Adhar Card</div>
             <div class="value">
                 <div class="input-group">
-                    <input class="input--style-5" type="text" name="relationAdhar" minlength="12" required>
+                    <input class="input--style-5" type="text" name="relationAdhar" minlength="12" maxlength="12" required>
                 </div>
             </div>
         </div>

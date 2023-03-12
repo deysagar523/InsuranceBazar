@@ -192,7 +192,7 @@
                                     <div class="name">Your Adhar Card Number</div>
                                     <div class="value">
                                         <div class="input-group">
-                                            <input class="input--style-5" type="text" name="adharCard" minlength="12" required>
+                                            <input class="input--style-5" type="text" name="adharCard" minlength="12" maxlength="12" required>
                                         </div>
                                     </div>
                                 </div>
@@ -216,6 +216,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                                 <div id="correspondingRelativeDetailsId"></div>
                                 <div class="form-row">
                                     <div class="name">Medical History</div>
@@ -234,6 +235,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                                 <div id="correspondingDiseaseId"></div>
 
 

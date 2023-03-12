@@ -171,7 +171,7 @@
                                                                             <div>
                                                                                 <p class="text-muted mb-0 mo-mb-2">
                                                                                     <span class="text-primary"> &#8377; &nbsp;</span
-                                                                                    ><i class="fa fa-rupee"></i>${plan.getPlanAmount()}/-
+                                                                                    >${plan.getPlanAmount()}/-
                                                                                 </p>
                                                                             </div>
                                                                         </div>
@@ -187,7 +187,7 @@
                                                                         <div class="col-md-4">
                                                                             <div>
                                                                                 <p class="text-muted mb-0 mo-mb-2">
-                                                                                    <span class="text-dark">Cover: ${plan.getCoverAmount()}/-</span
+                                                                                    <span class="text-dark">Cover: <i class="fa fa-rupee"></i>${plan.getCoverAmount()}/-</span
                                                                                     >
                                                                                 </p>
                                                                             </div>

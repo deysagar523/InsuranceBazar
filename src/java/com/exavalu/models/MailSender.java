@@ -17,7 +17,7 @@ import javax.mail.internet.MimeMessage;
 import org.apache.log4j.Logger;
 
 /**
- *
+ *The model has all the instance variables declared .Also logics for mail integration are written
  * @author ASUS
  */
 public class MailSender {

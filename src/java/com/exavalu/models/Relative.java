@@ -14,7 +14,7 @@ import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
 
 /**
- *
+ *The model has all the instance variables declared and it deals with fetching relative data corrresponding to the relative type
  * @author user
  */
 public class Relative extends ActionSupport implements SessionAware, Serializable{

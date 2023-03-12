@@ -15,7 +15,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 
 /**
- *
+ *The model has all the instance variables declared and it deals with fetching diseases corrresponding to the medical history
  * @author user
  */
 public class Disease extends ActionSupport implements SessionAware, Serializable{

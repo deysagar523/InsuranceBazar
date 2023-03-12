@@ -14,7 +14,7 @@ import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
 
 /**
- *
+ *The model has all the instance variables declared and it deals with fetching bike models corrresponding to the bike make
  * @author user
  */
 

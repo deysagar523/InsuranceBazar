@@ -27,7 +27,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 
 /**
- *
+ *The model has all the instance variables declared .Also logics for fetching the API data from the APIURL are written
  * @author LENOVO
  */
 public class BikeApi extends ActionSupport implements ApplicationAware, SessionAware, Serializable{

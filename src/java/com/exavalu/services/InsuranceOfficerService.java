@@ -86,7 +86,7 @@ public class InsuranceOfficerService {
             Logger log = Logger.getLogger(InsuranceOfficerService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
-        //System.out.println("Number of approved mediclaim policy list = " + approvedHealthMediclaimPolicyList.size());
+        System.out.println("Number of approved mediclaim policy list = " + approvedHealthMediclaimPolicyList.size());
         return approvedHealthMediclaimPolicyList;
     }
 

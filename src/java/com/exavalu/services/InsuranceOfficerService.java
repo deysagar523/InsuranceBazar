@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
 /**
- *
+ *Service Class that stores all the business logics involving the features of insurance officer in terms of updating the claim status from approved to issued and read data from the database
  * @author LENOVO
  */
 public class InsuranceOfficerService {
@@ -58,7 +58,7 @@ public class InsuranceOfficerService {
                 claim.setFullName(rs.getString("fullName"));
                 claim.setEmail(rs.getString("email"));
 
-                claim.setCategoryName(rs.getString("categoryName"));
+              
 
                 claim.setPolicyName(rs.getString("policyName"));
                 claim.setPolicyDescription(rs.getString("policyDescription"));

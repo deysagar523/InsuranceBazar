@@ -4,9 +4,7 @@
  */
 package com.exavalu.services;
 
-import com.exavalu.models.Country;
-import com.exavalu.models.District;
-import com.exavalu.models.State;
+
 import com.exavalu.models.User;
 import com.exavalu.utils.JDBCConnectionManager;
 import com.mysql.cj.protocol.Resultset;
@@ -25,7 +23,7 @@ import java.util.Base64;
 import org.apache.log4j.Logger;
 
 /**
- *
+ *Service Class for Login Functionalities that stores all the business logics in terms of adding data to database, updating the database and read data from the database
  * @author Avijit Chattopadhyay
  */
 public class LoginService {
@@ -191,7 +189,7 @@ public class LoginService {
         return result;
     }
 
-    public static boolean updateUser2(User user, String userId) throws FileNotFoundException {
+    public static boolean updateUserWithoutImage(User user, String userId) throws FileNotFoundException {
         boolean result = false;
         try {
             Connection con = JDBCConnectionManager.getConnection();

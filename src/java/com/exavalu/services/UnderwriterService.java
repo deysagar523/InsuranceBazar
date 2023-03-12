@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
 /**
- *
+ *Service Class that stores all the business logics involving the features of underwriter in terms of updating the claim status from pending to approved/rejected and read data from the database
  * @author LENOVO
  */
 public class UnderwriterService {

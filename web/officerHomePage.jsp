@@ -410,7 +410,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Total Revenue</p>
-                                    <h5>$65</h5>
+                                    <h5>${TotalRevenue}</h5>
                                 </div>
                             </div>
                         </div>
@@ -458,7 +458,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Users</p>
-                                    <h5>256</h5>
+                                    <h5>${TotalUsers}</h5>
                                 </div>
                             </div>
                         </div>

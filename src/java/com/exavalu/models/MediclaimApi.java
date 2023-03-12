@@ -143,7 +143,7 @@ public class MediclaimApi extends ActionSupport implements ApplicationAware, Ses
     public String fetchMedApi() throws Exception {
         String result = "SUCCESS";
         JDBCUtility jdbcUtility = JDBCUtility.getInstanceOfJDBCUtility();
-        String apiUrl = "https://mocki.io/v1/3d401d5e-6360-4e80-bfa9-5d026f38fd64";
+        String apiUrl = "https://mocki.io/v1/7804ef0b-6c09-4df6-83fb-f5ccc7974638";
 
         URL obj = new URL(apiUrl);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();

@@ -417,7 +417,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Total Revenue</p>
-                                    <h5><i class="fa fa-rupee"></i>${TotalRevenue}</h5>
+                                    <h5>${TotalRevenue}</h5>
                                 </div>
                             </div>
                         </div>

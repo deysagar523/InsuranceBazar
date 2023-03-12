@@ -12,10 +12,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.Locale;
 import org.apache.log4j.Logger;
 
 /**
@@ -858,17 +860,15 @@ public class UnderwriterService {
     }
 
     public String getTotalRevenue() {
-       String totalRevenue = null;
-
+        String totalRevenue = null;
+        String moneyString = null;
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "SELECT sum(planAmount) as revenue FROM claims c,plans p where c.planId=p.planId";
 
             PreparedStatement ps = con.prepareStatement(sql);
-           
 
             //System.out.println("ps:" + ps);
-
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
@@ -876,6 +876,13 @@ public class UnderwriterService {
             } else {
                 totalRevenue = "0";
             }
+            float amount = (float) Double.parseDouble(totalRevenue);
+
+            NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
+
+            moneyString = formatter.format(amount);
+
+            System.out.println(moneyString);
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -883,6 +890,6 @@ public class UnderwriterService {
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         //System.out.println(totalUsers);
-        return totalRevenue;
+        return moneyString;
     }
 }

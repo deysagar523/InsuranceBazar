@@ -4,7 +4,6 @@
  */
 package com.exavalu.models;
 
-
 import com.exavalu.services.ClaimService;
 import com.exavalu.services.InsuranceOfficerService;
 import com.exavalu.services.LoginService;
@@ -26,7 +25,9 @@ import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.interceptor.ApplicationAware;
 
 /**
- *The model has all the instance variables declared and it deals with all CRUD Operations
+ * The model has all the instance variables declared and it deals with all CRUD
+ * Operations
+ *
  * @author HP
  */
 public class User extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
@@ -234,7 +235,7 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
 
             System.out.println("Returning Success from doLogin method");
             User user = LoginService.getUser(this.getEmail());
-            System.out.println("gender:"+user.getGender()+" income:"+user.getIncomeSource());
+            System.out.println("gender:" + user.getGender() + " income:" + user.getIncomeSource());
             if (user.getRole().equals("1")) {
                 sessionMap.put("Plans", planList);
                 sessionMap.put("ChildPlans", childPlanList);
@@ -276,8 +277,7 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
 
                 String day5User = UnderwriterService.totalRegisteredUsers("-5");
                 sessionMap.put("Day5Users", day5User);
-                
-                
+
                 String todayPolicy = UnderwriterService.totalBoughtPlans("0");
                 sessionMap.put("TodayPolicy", todayPolicy);
                 String day1Policy = UnderwriterService.totalBoughtPlans("-1");
@@ -292,12 +292,11 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
 
                 String day5Policy = UnderwriterService.totalBoughtPlans("-5");
                 sessionMap.put("Day5Policy", day5Policy);
-                
-                String totalNoOfUsers=UnderwriterService.getInstance().getNoOfUsers();
+
+                String totalNoOfUsers = UnderwriterService.getInstance().getNoOfUsers();
                 sessionMap.put("TotalUsers", totalNoOfUsers);
-                String totalRevenue=UnderwriterService.getInstance().getTotalRevenue();
+                String totalRevenue = UnderwriterService.getInstance().getTotalRevenue();
                 sessionMap.put("TotalRevenue", totalRevenue);
-                
 
 //                System.out.println("today "+todayPolicy);
 //                 System.out.println("1 "+day1Policy);
@@ -344,7 +343,7 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
                 sessionMap.put("Day4", day4);
                 String day5 = UnderwriterService.elementsForXaxis("-5");
                 sessionMap.put("Day5", day5);
-                
+
                 String todayPolicy = UnderwriterService.totalBoughtPlans("0");
                 sessionMap.put("TodayPolicy", todayPolicy);
                 String day1Policy = UnderwriterService.totalBoughtPlans("-1");
@@ -360,6 +359,10 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
                 String day5Policy = UnderwriterService.totalBoughtPlans("-5");
                 sessionMap.put("Day5Policy", day5Policy);
 
+                String totalNoOfUsers = UnderwriterService.getInstance().getNoOfUsers();
+                sessionMap.put("TotalUsers", totalNoOfUsers);
+                String totalRevenue = UnderwriterService.getInstance().getTotalRevenue();
+                sessionMap.put("TotalRevenue", totalRevenue);
 
 //                System.out.println(todayDateElement);
 //                 System.out.println(day1);

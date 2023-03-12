@@ -36,10 +36,10 @@ public class InsuranceOfficerService {
     }
 
     public ArrayList getAllApprovedHealthMediclaimClaims() {
-        ArrayList approvedHealthMediclaimPolicyList = new ArrayList();
+         ArrayList approvedHealthMediclaimPolicyList = new ArrayList();
         try {
             Connection con = JDBCConnectionManager.getConnection();
-            String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
+            String sql = "select * from claims c,users u,policies p,relatives r where c.relation=r.relationCode and c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
 
@@ -58,15 +58,19 @@ public class InsuranceOfficerService {
                 claim.setFullName(rs.getString("fullName"));
                 claim.setEmail(rs.getString("email"));
 
-              
-
+                //claim.setCategoryName(rs.getString("categoryName"));
+                claim.setAdharCard(rs.getString("adharCard"));
                 claim.setPolicyName(rs.getString("policyName"));
-                claim.setPolicyDescription(rs.getString("policyDescription"));
+                //claim.setPolicyDescription(rs.getString("policyDescription"));
 
                 claim.setMedicalHistory(rs.getString("medicalHistory"));
-                claim.setDob(rs.getString("dob"));
+                //claim.setDob(rs.getString("dob"));
                 claim.setRelation(rs.getString("relation"));
                 claim.setRelativeName(rs.getString("relativeName"));
+                claim.setRelativeType(rs.getString("relativeType"));
+                claim.setRelationAdhar(rs.getString("relationAdhar"));
+
+                claim.setDisease("disease");
 
 //                System.out.println(claim.getClaimId());
 //                 System.out.println(claim.getClaimStatus());
@@ -82,7 +86,7 @@ public class InsuranceOfficerService {
             Logger log = Logger.getLogger(InsuranceOfficerService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
-        //System.out.println("Number of pending mediclaim policy list = " + approvedHealthMediclaimPolicyList.size());
+        //System.out.println("Number of approved mediclaim policy list = " + approvedHealthMediclaimPolicyList.size());
         return approvedHealthMediclaimPolicyList;
     }
 

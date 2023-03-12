@@ -2,8 +2,8 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <c:if test="${User==null}">
     <c:redirect url = "login.jsp"/>
-        
-    
+
+
 </c:if>
 <html lang="en">
     <head>
@@ -153,7 +153,7 @@
                                                     </td>
 
 
-                                                   
+
 
 
 
@@ -168,10 +168,38 @@
                                     <c:if test="${AllApprovedMediclaimClaims.size()!=0}">
                                         <c:forEach items="${AllApprovedMediclaimClaims}" var="claim">
                                             <tr data-index="0">
-                                                <td><c:out value="${claim.medicalHistory}"> </c:out></td>
-                                                <td><c:out value="${claim.relation}"> </c:out>
-                                                <td><c:out value="${claim.dob}"> </c:out></td>
-                                                <td><c:out value="${claim.relativeName}"> </c:out></td>
+                                                <td><c:out value="${claim.claimId}"> </c:out></td>
+
+                                                    <td><c:out value="${claim.relativeType}"> </c:out></td>
+                                                <c:choose>
+                                                    <c:when test="${claim.relativeName.length()==0 or claim.relativeName==null}">
+                                                        <td>
+                                                            NA
+                                                        </td>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <td>
+                                                            ${claim.relativeName}
+                                                        </td>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <c:choose>
+                                                    <c:when test="${claim.relationAdhar.length()==0 or claim.relationAdhar==null}">
+                                                        <td>
+                                                            ${claim.adharCard}
+                                                        </td>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <td>
+                                                            ${claim.relationAdhar}
+                                                        </td>
+                                                    </c:otherwise>
+                                                </c:choose>
+
+
+
+
+
                                                 <td><c:out value="${claim.policyName}"> </c:out></td>
 
 
@@ -180,14 +208,14 @@
 
 
                                                     <td>
-                                                        <a href="#" class="btn btn-success">Issue</a>
+                                                        <a href=SanctionPolicy?claimId=${claim.claimId} class="btn btn-success">Issue</a>
 
-                                                    </td>
-
-
+                                                </td>
 
 
-                                                </tr>
+
+
+                                            </tr>
                                         </c:forEach>
                                     </c:if>
 

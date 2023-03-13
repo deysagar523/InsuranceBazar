@@ -11,26 +11,22 @@
         
     
 </c:if>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
+
+
         <div class="form-row">
         <div class="name">Disease</div>
         <div class="value">
             <div class="input-group">
                 <div class="rs-select2 js-select-simple select--no-search">
-                    <select name="disease" required>
+                    <select name="disease" style="width:auto; background-color: #e0dcdb; height:45px; border-radius: 3px; border:none; color: #555;
+    font-size: 16px;font-family: inherit; cursor:pointer; padding-left: 22px; padding-right: 50px;" required>
                         <option value="">Select an option</option>
 
                         <c:forEach items="${diseases}" var="disease">
 
                             
 
-                            <option value="${disease.getDiseaseName()}">${disease.getDiseaseName()}</option>
+                            <option style="color:#9ec645;" value="${disease.getDiseaseName()}">${disease.getDiseaseName()}</option>
 
 
                         </c:forEach>
@@ -41,5 +37,4 @@
         </div>
     </div>
 
-</body>
-</html>
+

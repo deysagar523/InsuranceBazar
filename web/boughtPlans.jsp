@@ -46,38 +46,55 @@
     </script>
 
     <section>
-        <jsp:include page="menu.jsp"></jsp:include>
-        </section>
-        <body id="container">
+        <nav class="navbar" style="background-image: url(img/bg.png);">
+            <div class="container main-nav flex">
+                <a href="userHomePage.jsp" class="company-logo">
+                    <!--                        <img src="assets/HireSphere.png" alt="Company Logo">-->
+                    <h1 style="color:#9ec645"> Insurance Bazzar</h1>
+                </a>
+                <div class="nav-links">
+                    <ul class="flex" style="display: flex">
+                        <li><a style="text-decoration: none; color:#9ec645" href="userHomePage.jsp" class="hover-link">Home</a></li>
+
+                        <li><a style="text-decoration: none; color:#9ec645" href="ViewApplication?candidateId=${candidate.getCandidateId()}" class="hover-link">My Policies</a></li>
+
+                        <li><a style="text-decoration: none; color:#9ec645" href="userProfile.jsp" class="hover-link">Profile</a></li>
+                        <li><a href="Logout" class="hover-link secondary-button" style="background-color:#9ec645; color:white;";>Logout</a></li
+                    </ul>
+                </div>
+            </div>
+        </nav> 
+    </section>
+    <body id="container">
 
 
 
-            <div>
-                <section class="ftco-section">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-md-6 text-center mb-5">
-                            </div>
+        <div>
+            <section class="ftco-section">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 text-center mb-5">
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar">
 
-                                    <table class="table table-bordered table-striped mb-0">
-                                        <thead class="thead-primary"> 
-                                            <tr>
-                                                <!--                                        <th>Incident Location</th>
-                                                                                        <th>Incident Date</th>
-                                                                                        <th>Police Report No</th>-->
-                                                <th>Policy</th>
-                                                <th>Plan Company</th>
-                                                <th>Plan Expiry</th>
-                                                <th>Plan Amount</th>
-                                                <th>Action</th>
+                                <table class="table table-bordered table-striped mb-0">
+                                    <thead class="thead-primary"> 
+                                        <tr>
+                                            <!--                                        <th>Incident Location</th>
+                                                                                    <th>Incident Date</th>
+                                                                                    <th>Police Report No</th>-->
+                                            <th>Policy</th>
+                                            <th>Plan Company</th>
+                                            <th>Plan Expiry</th>
+                                            <th>Plan Amount</th>
+                                            <th>Action</th>
 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
                                         <c:if test="${PlanList.size()!=0}">
                                             <c:forEach items="${PlanList}" var="plan">
@@ -160,4 +177,3 @@
     <script src="js/custom.js"></script>
 </body>
 </html>
-

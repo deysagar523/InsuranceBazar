@@ -6,8 +6,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:if test="${User==null}">
     <c:redirect url = "login.jsp"/>
-        
-    
+
+
 </c:if>
 <c:set var="user" value="${User}"/>
 
@@ -90,7 +90,26 @@
         <title>Policy Details</title>
     </head>
     <body>
-        <jsp:include page="menu.jsp"></jsp:include>
+        <section>
+            <nav class="navbar" style="background-image: url(img/bg.png);">
+                <div class="container main-nav flex">
+                    
+                        <!--                        <img src="assets/HireSphere.png" alt="Company Logo">-->
+                        <h1 class="company-logo" style="color:#9ec645"> Insurance Bazzar</h1>
+                    
+                    <div class="nav-links">
+                        <ul class="flex" style="display: flex">
+                            <a style="text-decoration: none; color:#9ec645" href="userHomePage.jsp" class="hover-link mr-3 ml-3">Home</a></li>
+
+                            <a style="text-decoration: none; color:#9ec645" href="ViewApplication?candidateId=${candidate.getCandidateId()}" class="hover-link mr-3 ml-3">My Policies</a></li>
+
+                            <a style="text-decoration: none; color:#9ec645" href="userProfile.jsp" class="hover-link mr-3 ml-3">Profile</a></li>
+                           <a href="Logout" class="hover-link secondary-button mr-3 ml-3" style="background-color:#9ec645; color:white;";>Logout</a></li
+                        </ul>
+                    </div>
+                </div>
+            </nav> 
+        </section>
         <script>
             window.onload = function () {
                 document.getElementById("GetFile")

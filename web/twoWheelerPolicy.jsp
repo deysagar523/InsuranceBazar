@@ -2,8 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:if test="${User==null}">
     <c:redirect url = "login.jsp"/>
-        
-    
+
+
 </c:if>
 <!DOCTYPE html>
 <html lang="en">
@@ -129,7 +129,7 @@
                                         <div class="name">Name</div>
                                         <div class="value">
                                             <div class="input-group">
-                                            
+
                                                 <input class="input--style-5" type="text" value="${User.getFullName()}" name="fullName" readonly>
                                         </div>
                                     </div>
@@ -159,6 +159,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                                 <div class="form-row">
                                     <div class="name">Bike Make</div>
                                     <div class="value">
@@ -182,8 +183,6 @@
                                 </div>
                                 <div id="bikeModelsId"></div>
                                 
-
-
                                 <div class="form-row">
                                     <div class="name">Bike Registration Year</div>
                                     <div class="value">
@@ -199,7 +198,7 @@
                                                     <option value="2018">2018</option>
                                                     <option value="2017">2017</option>
                                                     <option value="2016">2016</option>
-                                                    
+
 
                                                 </select>
                                                 <div class="select-dropdown"></div>
@@ -207,6 +206,10 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+
+
 
 
 

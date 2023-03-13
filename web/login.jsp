@@ -66,22 +66,23 @@
                 </form>
             </div>
             <div class="form-container sign-in-container">
-                <div>
-                    <c:if test="${ErrorMsgForLogin.length()!=0}">
+<!--                <div>
+                    <c:if test="${ErrorMsgForLogin.length()!=0 && ErrorMsgForLogin!=null}">
                         <div class="alert alert-danger" role="alert" style="margin-top: 50px;width: 50%;justify-content: center;">
                             ${ErrorMsgForLogin}
                         </div>
                     </c:if>
                 </div>
                 <div>
-                    <c:if test="${SuccessMsgForSignUp.length()!=0}">
+                    <c:if test="${SuccessMsgForSignUp.length()!=0 && SuccessMsgForSignUp!=null}">
                         <div class="alert alert-success" role="alert" style="margin-top: 50px;width: 50%;justify-content: center;">
                             ${SuccessMsgForSignUp}
                         </div>
                     </c:if>
-                </div>
+                </div>-->
                 <form action="Login" method ="Post">
-                    <h1>Sign in</h1>
+                    <h1 style="margin-bottom:20px;">Sign in</h1>
+                    
                     <div id="g_id_onload"
                      data-client_id="1042083289978-vm99se78o6vk270sl3974m71q1mrasm7.apps.googleusercontent.com"
                      data-context="signup"
@@ -92,18 +93,20 @@
 
                 <div class="g_id_signin"
                      data-type="standard"
-                     data-shape="rectangular"
-                     data-theme="filled_blue"
+                     data-shape="pill"
+                     data-theme="filled_black"
                      data-text="signup_with"
-                     data-size="large"
+                     data-size="medium"
                      data-logo_alignment="left">
                 </div>
-                    <div class="social-container">
-                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    <span style="margin-bottom: 10px; margin-top: 5px">or use your account</span>
+                    <div>
+                        <c:if test="${ErrorMsgForLogin.length()!=0 && ErrorMsgForLogin!=null}">
+                            <div class="alert alert-info alert-dismissible fade show w-100 p-3 text-center" style="background-color: #ef7c7c; border-style: solid; border-color: crimson; border-radius: 7px; color: darkred;/* border-width: 83px; */" role="alert">
+                                ${ErrorMsgForLogin}           
+                            </div>
+                        </c:if>
                     </div>
-                    <span>or use your account</span>
                     <input type="email" name="email" placeholder="Email" />
                     <input type="password"  name="password" placeholder="Password" />
                     <a href="#"></a>

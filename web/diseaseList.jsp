@@ -18,7 +18,7 @@
         <div class="value">
             <div class="input-group">
                 <div class="rs-select2 js-select-simple select--no-search">
-                    <select name="disease" style="width:auto; background-color: #e0dcdb; height:45px; border-radius: 3px; border:none; color: #555;
+                    <select name="disease" style="width:470px; background-color: #e0dcdb; height:45px; border-radius: 3px; border:none; color: #555;
     font-size: 16px;font-family: inherit; cursor:pointer; padding-left: 22px; padding-right: 50px;" required>
                         <option value="">Select an option</option>
 

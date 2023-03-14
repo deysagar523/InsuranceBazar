@@ -4,7 +4,6 @@
  */
 package com.exavalu.services;
 
-
 import com.exavalu.models.User;
 import com.exavalu.utils.JDBCConnectionManager;
 import com.mysql.cj.protocol.Resultset;
@@ -26,7 +25,10 @@ import java.util.Base64;
 import org.apache.log4j.Logger;
 
 /**
- *Service Class for Login Functionalities that stores all the business logics in terms of adding data to database, updating the database and read data from the database
+ * Service Class for Login Functionalities that stores all the business logics
+ * in terms of adding data to database, updating the database and read data from
+ * the database
+ *
  * @author Avijit Chattopadhyay
  */
 public class LoginService {
@@ -37,6 +39,18 @@ public class LoginService {
     private LoginService() {
     }
 
+    /**
+     *
+     * This method is for getting the instance of the class
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public static LoginService getInstance() {
         if (loginService == null) {
             return new LoginService();
@@ -45,6 +59,19 @@ public class LoginService {
         }
     }
 
+    /**
+     *
+     * This method is for login functionality of the
+     * user(customer,underwriter,insurance officer)
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public boolean doLogin(User user) throws NoSuchAlgorithmException {
         boolean success = false;
 
@@ -54,14 +81,14 @@ public class LoginService {
             Connection con = JDBCConnectionManager.getConnection();
             // Static getInstance method is called with hashing MD5
             MessageDigest md = MessageDigest.getInstance("MD5");
- 
+
             // digest() method is called to calculate message digest
             // of an input digest() return array of byte
             byte[] messageDigest = md.digest(user.getPassword().getBytes());
- 
+
             // Convert byte array into signum representation
             BigInteger no = new BigInteger(1, messageDigest);
- 
+
             // Convert message digest into hex value
             String hashtext = no.toString(16);
             while (hashtext.length() < 32) {
@@ -70,8 +97,6 @@ public class LoginService {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, user.getEmail());
             ps.setString(2, hashtext);
-            
-            
 
             System.out.println("LoginService :: " + ps);
 
@@ -92,6 +117,19 @@ public class LoginService {
         return success;
     }
 
+    /**
+     *
+     * This method is for sign up a normal customer using both google and normal
+     * login
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public boolean doSignUp(User user) throws NoSuchAlgorithmException {
 
         try {
@@ -107,20 +145,19 @@ public class LoginService {
             }
             // Static getInstance method is called with hashing MD5
             MessageDigest md = MessageDigest.getInstance("MD5");
- 
+
             // digest() method is called to calculate message digest
             // of an input digest() return array of byte
             byte[] messageDigest = md.digest(user.getPassword().getBytes());
- 
+
             // Convert byte array into signum representation
             BigInteger no = new BigInteger(1, messageDigest);
- 
+
             // Convert message digest into hex value
             String hashtext = no.toString(16);
             while (hashtext.length() < 32) {
                 hashtext = "0" + hashtext;
             }
-            
 
             ps.setString(1, user.getEmail());
             ps.setString(2, hashtext);
@@ -141,6 +178,19 @@ public class LoginService {
 
     }
 
+    /**
+     *
+     * This method is for getting the details of a particular user when he or
+     * she logs in
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public static User getUser(String email) {
         User user = new User();
         Connection con = JDBCConnectionManager.getConnection();
@@ -189,7 +239,18 @@ public class LoginService {
         return user;
     }
 
-
+    /**
+     *
+     * This method is for update the fields of a user
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public static boolean updateUser(User user, String userId) throws FileNotFoundException {
         boolean result = false;
         try {
@@ -226,6 +287,18 @@ public class LoginService {
         return result;
     }
 
+    /**
+     *
+     * This method is for update the fields of a user without image
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public static boolean updateUserWithoutImage(User user, String userId) throws FileNotFoundException {
         boolean result = false;
         try {
@@ -251,7 +324,7 @@ public class LoginService {
             }
 
         } catch (SQLException ex) {
-           System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(LoginService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }

@@ -21,12 +21,27 @@ import java.util.Locale;
 import org.apache.log4j.Logger;
 
 /**
- *Service Class that stores all the business logics involving the features of underwriter in terms of updating the claim status from pending to approved/rejected and read data from the database
+ * Service Class that stores all the business logics involving the features of
+ * underwriter in terms of updating the claim status from pending to
+ * approved/rejected and read data from the database
+ *
  * @author LENOVO
  */
 public class UnderwriterService {
 
     private static final Logger log = Logger.getLogger(UnderwriterService.class);
+    /**
+     *
+     * This method is for getting the instance of the class
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public static UnderwriterService underwriterService = null;
 
     public static UnderwriterService getInstance() {
@@ -37,6 +52,17 @@ public class UnderwriterService {
         }
     }
 
+    /**
+     *
+     * This method is for underwriter to get all the pending mediclaim insurance
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public ArrayList getAllPendingHealthMediclaimClaims() {
         ArrayList pendingHealthMediclaimPolicyList = new ArrayList();
         try {
@@ -91,6 +117,18 @@ public class UnderwriterService {
         return pendingHealthMediclaimPolicyList;
     }
 
+    /**
+     *
+     * This method is for underwriter to get all the pending critical illness
+     * insurance
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public ArrayList getAllPendingHealthCriticalIllnessClaims() {
         ArrayList pendingHealthCriticalIllnessPolicyList = new ArrayList();
         try {
@@ -142,6 +180,18 @@ public class UnderwriterService {
         return pendingHealthCriticalIllnessPolicyList;
     }
 
+    /**
+     *
+     * This method is for underwriter to get all the pending two wheeler
+     * insurance
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public ArrayList getAllPendingCarTwoWheelerClaims() {
         ArrayList pendingCarTwoWheelerPolicyList = new ArrayList();
         try {
@@ -194,6 +244,18 @@ public class UnderwriterService {
         return pendingCarTwoWheelerPolicyList;
     }
 
+    /**
+     *
+     * This method is for underwriter to get all the pending four wheeler
+     * insurance
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public ArrayList getAllPendingCarFourWheelerClaims() {
         ArrayList pendingCarFourWheelerPolicyList = new ArrayList();
         try {
@@ -246,6 +308,17 @@ public class UnderwriterService {
         return pendingCarFourWheelerPolicyList;
     }
 
+    /**
+     *
+     * This method is for underwriter to get all the pending life insurance
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public ArrayList getAllPendingTermLifeInsuranceClaims() {
         ArrayList pendingTermLifeInsurancePolicyList = new ArrayList();
         try {
@@ -295,6 +368,17 @@ public class UnderwriterService {
         return pendingTermLifeInsurancePolicyList;
     }
 
+    /**
+     *
+     * This method is for underwriter to get all the pending nri insurance
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public ArrayList getAllPendingTermForNriClaims() {
         ArrayList pendingTermForNriPolicyList = new ArrayList();
         try {
@@ -347,6 +431,18 @@ public class UnderwriterService {
         return pendingTermForNriPolicyList;
     }
 
+    /**
+     *
+     * This method is for underwriter to get all the pending child investment
+     * insurance
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public ArrayList getAllPendingInvestmentChildClaims() {
         ArrayList pendingInvestmentChildPolicyList = new ArrayList();
         try {
@@ -395,6 +491,17 @@ public class UnderwriterService {
         return pendingInvestmentChildPolicyList;
     }
 
+    /**
+     *
+     * This method is for underwriter to get all the pending pension insurance
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public ArrayList getAllPendingInvestmentPensionClaims() {
         ArrayList pendingInvestmentPensionPolicyList = new ArrayList();
         try {
@@ -438,6 +545,17 @@ public class UnderwriterService {
         return pendingInvestmentPensionPolicyList;
     }
 
+    /**
+     *
+     * This method is for underwriter to get all the pending travel insurance
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public ArrayList getAllPendingOtherTravelClaims() {
         ArrayList pendingOtherTravelPolicyList = new ArrayList();
         try {
@@ -491,6 +609,17 @@ public class UnderwriterService {
         return pendingOtherTravelPolicyList;
     }
 
+    /**
+     *
+     * This method is for underwriter to get all the pending education insurance
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public ArrayList getAllPendingOtherEducationalClaims() {
         ArrayList pendingOtherEducationalPolicyList = new ArrayList();
         try {
@@ -539,6 +668,18 @@ public class UnderwriterService {
         return pendingOtherEducationalPolicyList;
     }
 
+    /**
+     *
+     * This method is for underwriter to approve a policy depending all rest api
+     * call verification
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public boolean approvePolicy(String claimId) {
         boolean result = true;
         try {
@@ -565,6 +706,19 @@ public class UnderwriterService {
         }
         return result;
     }
+
+    /**
+     *
+     * This method is for underwriter to reject a policy depending all rest api
+     * call verification
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
 
     public boolean rejectPolicy(String claimId) {
         boolean result = true;
@@ -593,6 +747,19 @@ public class UnderwriterService {
         return result;
     }
 
+    /**
+     *
+     * This method is for underwriter if he approve that then it will go to the
+     * underwriter history(approved)
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public void addToApproveHistory(String claimId) {
         String sql = "INSERT INTO underwriter_histories(claimId,userFullName,userEmail,policyName,claimStatus,timeOfAction)\n" + "VALUES(? ,?,?,?,?,?);";
 
@@ -637,6 +804,19 @@ public class UnderwriterService {
 
     }
 
+    /**
+     *
+     * This method is for underwriter if he approve that then it will go to the
+     * underwriter history(rejected)
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public void addToRejectedHistory(String claimId) {
         String sql = "INSERT INTO underwriter_histories(claimId,userFullName,userEmail,policyName,claimStatus,timeOfAction)\n" + "VALUES(? ,?,?,?,?,?);";
 
@@ -681,6 +861,18 @@ public class UnderwriterService {
 
     }
 
+    /**
+     *
+     * This method is for underwriter to get all the approved histories
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public ArrayList getAllApprovedHistories() {
         ArrayList histories = new ArrayList();
         try {
@@ -713,6 +905,18 @@ public class UnderwriterService {
         return histories;
     }
 
+    /**
+     *
+     * This method is for underwriter to get all the rejected histories
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public ArrayList getAllRejectedHistories() {
         ArrayList histories = new ArrayList();
         try {
@@ -745,6 +949,18 @@ public class UnderwriterService {
         return histories;
     }
 
+    /**
+     *
+     * This method is for x axis in the chart.js
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public static String elementsForXaxis(String interval) {
         String date = null;
 
@@ -772,6 +988,18 @@ public class UnderwriterService {
         return date;
     }
 
+    /**
+     *
+     * This method is for total no of users registered in our database
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public static String totalRegisteredUsers(String interval) {
         String totalUsers = null;
 
@@ -800,7 +1028,20 @@ public class UnderwriterService {
         //System.out.println(totalUsers);
         return totalUsers;
     }
-    
+
+    /**
+     *
+     * This method is for total no of bought plans in our database for last 5
+     * days to show in the chart
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public static String totalBoughtPlans(String interval) {
         String totalPolicies = null;
 
@@ -830,6 +1071,19 @@ public class UnderwriterService {
         return totalPolicies;
     }
 
+    /**
+     *
+     * This method is for total no of users registered in last 5 days to show in
+     * the chart
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public String getNoOfUsers() {
         String totalUsers = null;
 
@@ -838,10 +1092,8 @@ public class UnderwriterService {
             String sql = "SELECT COUNT(email) as totalRegisteredUsers FROM users";
 
             PreparedStatement ps = con.prepareStatement(sql);
-           
 
             //System.out.println("ps:" + ps);
-
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
@@ -859,6 +1111,18 @@ public class UnderwriterService {
         return totalUsers;
     }
 
+    /**
+     *
+     * This method is for total revenue generated
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public String getTotalRevenue() {
         String totalRevenue = null;
         String moneyString = null;

@@ -10,6 +10,9 @@ import com.exavalu.utils.JDBCConnectionManager;
 import com.mysql.cj.protocol.Resultset;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -42,16 +45,33 @@ public class LoginService {
         }
     }
 
-    public boolean doLogin(User user) {
+    public boolean doLogin(User user) throws NoSuchAlgorithmException {
         boolean success = false;
 
         String sql = "Select * from users where email=? and password=?";
 
         try {
             Connection con = JDBCConnectionManager.getConnection();
+            // Static getInstance method is called with hashing MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
+ 
+            // digest() method is called to calculate message digest
+            // of an input digest() return array of byte
+            byte[] messageDigest = md.digest(user.getPassword().getBytes());
+ 
+            // Convert byte array into signum representation
+            BigInteger no = new BigInteger(1, messageDigest);
+ 
+            // Convert message digest into hex value
+            String hashtext = no.toString(16);
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, user.getEmail());
-            ps.setString(2, user.getPassword());
+            ps.setString(2, hashtext);
+            
+            
 
             System.out.println("LoginService :: " + ps);
 
@@ -72,7 +92,7 @@ public class LoginService {
         return success;
     }
 
-    public boolean doSignUp(User user) {
+    public boolean doSignUp(User user) throws NoSuchAlgorithmException {
 
         try {
             String sql2 = "select * from users where email=?";
@@ -85,8 +105,25 @@ public class LoginService {
             if (rs.next()) {
                 return false;
             }
+            // Static getInstance method is called with hashing MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
+ 
+            // digest() method is called to calculate message digest
+            // of an input digest() return array of byte
+            byte[] messageDigest = md.digest(user.getPassword().getBytes());
+ 
+            // Convert byte array into signum representation
+            BigInteger no = new BigInteger(1, messageDigest);
+ 
+            // Convert message digest into hex value
+            String hashtext = no.toString(16);
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            
+
             ps.setString(1, user.getEmail());
-            ps.setString(2, user.getPassword());
+            ps.setString(2, hashtext);
             ps.setString(3, "1");
 
             System.out.println("LoginService dosignup :: " + ps);

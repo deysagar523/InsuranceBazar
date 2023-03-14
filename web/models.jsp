@@ -18,7 +18,7 @@
             <div class="value">
                 <div class="input-group">
                     <div class="rs-select2 js-select-simple select--no-search">
-                        <select id="bikeModelCode" name="bikeModel" style="width:auto; background-color: #e0dcdb; height:45px; border-radius: 3px; border:none; color: #555;
+                        <select id="bikeModelCode" name="bikeModel" style="width:472px; background-color: #e0dcdb; height:45px; border-radius: 3px; border:none; color: #555;
     font-size: 16px;font-family: inherit; cursor:pointer; padding-left: 22px; padding-right: 50px;" required>
                             <option selected="selected" value="">Choose option</option>
                             <c:forEach items="${models}" var="m">

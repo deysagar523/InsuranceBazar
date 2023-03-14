@@ -95,7 +95,7 @@
                      data-type="standard"
                      data-shape="pill"
                      data-theme="filled_black"
-                     data-text="signup_with"
+                     data-text="signin_with"
                      data-size="medium"
                      data-logo_alignment="left">
                 </div>

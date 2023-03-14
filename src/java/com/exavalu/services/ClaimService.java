@@ -31,7 +31,18 @@ import org.apache.log4j.Logger;
 public class ClaimService {
 private static final Logger log = Logger.getLogger(ClaimService.class);
 
-
+ /**
+     *
+     * This method is for getting all the diseases according to the medical history
+     * 
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
  public static ArrayList getDiseases(String medicalHistoryCode) {
         ArrayList dList = new ArrayList();
         try {
@@ -60,6 +71,18 @@ private static final Logger log = Logger.getLogger(ClaimService.class);
         return dList;
     }
 
+    /**
+     *
+     * This method is for getting all the relatives details field whenever choosing a relative
+     * 
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public static ArrayList getRelatives(String relationCode) {
 
         ArrayList rList = new ArrayList();
@@ -93,8 +116,19 @@ private static final Logger log = Logger.getLogger(ClaimService.class);
 
 
 
-
-// adding health claim to database. the method takes an object of the model "Claim" as the parameter. This method adds values to the follwing columns of the table "claims"- userId, policyId, medicalJistory, relation, relationName, claimStatus, fullName, email,  age gender, relativeNmae, relativeAge, relationAdhar, disease
+/**
+     *
+     * This method is for adding health claim to database.
+     * 
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
+ 
     public static boolean insertHealthClaimForFamilyMembers(Claim claim) {
 
         boolean result = false;
@@ -144,7 +178,18 @@ private static final Logger log = Logger.getLogger(ClaimService.class);
 
     }
     
-        
+    /**
+     *
+     * This method is for adding health claim for self to database.
+     * 
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */    
     public static boolean insertHealthClaimForSelf(Claim claim) {
         boolean result = false;
         try {
@@ -192,6 +237,18 @@ private static final Logger log = Logger.getLogger(ClaimService.class);
 
     }
     
+    /**
+     *
+     * This method is for getting the bike models according to the bikemake we choose 
+     * 
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */    
     public static ArrayList getBikeModels(String bikeMakeCode) {
 
         ArrayList mList = new ArrayList();
@@ -223,8 +280,19 @@ private static final Logger log = Logger.getLogger(ClaimService.class);
 
     }
     
-//    // adding bike claim to database. the method takes an object of the model "Claim" as the parameter.This method adds values to the follwing columns of the table "claims"- userId, policyId, bikenumber, bikeMake, bikeModel, claimStatus, fullName, email,  age
 
+/**
+     *
+     * This method is for adding bike claim  to database.
+     * 
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */    
     public static boolean insertBikeClaim(Claim claim) {
 
         boolean result = false;
@@ -266,14 +334,18 @@ private static final Logger log = Logger.getLogger(ClaimService.class);
 
     }
     
-
-    
-
-    
-    
-
-  
-    // The method deals with fetching all details of bike claim and its corresponding policies by passing bikeNumber aa the parameter. This method comes handy when we wish to get details of  a claim right after it is inserted
+    /**
+     *
+     * This method is for getting the details of the bike according to the bike Number.
+     * 
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */    
     public static Claim getClaimByBikeNumber(String bikeNumber) {
 
         Claim claim = new Claim();
@@ -318,6 +390,18 @@ private static final Logger log = Logger.getLogger(ClaimService.class);
 
     }
     
+    /**
+     *
+     * This method is for getting the details of the medical history and details according to the adharcard.
+     * 
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */    
     public static Claim getClaimByAdhar(String adharCard) {
         
         Claim claim = new Claim();
@@ -356,7 +440,18 @@ private static final Logger log = Logger.getLogger(ClaimService.class);
     }
 
     
-        // The method deals with fetching all details of health claim and its corresponding policies by passing a unique field like relative adhar card number aa the parameter. This method comes handy when we wish to get details of  a claim right after it is inserted
+    /**
+     *
+     * This method is for getting the details of the medical history and details of relative according to the adharcard of the relative.
+     * 
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */  
     public static Claim getClaimByRelationAdhar(String relationAdhar) {
         
         Claim claim = new Claim();
@@ -400,6 +495,18 @@ private static final Logger log = Logger.getLogger(ClaimService.class);
     }
     
 
+    /**
+     *
+     * This method is for getting the details of plan
+     * 
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */  
     public static Plan getPlanDetails(String planId) {
         Plan plan = new Plan();
         try {
@@ -434,6 +541,18 @@ private static final Logger log = Logger.getLogger(ClaimService.class);
 
 
 
+    /**
+     *
+     * This method is for payment process of any insurance.
+     * 
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */  
     public static boolean doPayment(String claimId, String planId, String planDuration) {
         boolean result = false;
 
@@ -470,7 +589,18 @@ private static final Logger log = Logger.getLogger(ClaimService.class);
         return result;
     }
     
-        //This method retrives those data from the claims table which have got the value true in the column "paid" of the claims table. The table shows the company and amount of the plan, name of the policy. This retrieval is achieved with the help of "JOIN", where 3 tables are joined to get the data.
+    /**
+     *
+     * This method is for getting the details of the plans of the user which he or she bought.
+     * 
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */  
 
     public static ArrayList getBoughtPlans(String userId) {
         ArrayList claimList = new ArrayList();
@@ -570,6 +700,18 @@ private static final Logger log = Logger.getLogger(ClaimService.class);
 
     }
 
+    /**
+     *
+     * This method is for updating bike claim.
+     * 
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */  
     public static boolean updateBikeClaim(Claim claim) {
 
         String sql = "UPDATE claims SET claimStatus =\"1\", incidentLocation=?, incidentDate=?, policeReportNo=?, adharCard=?, message=? WHERE claimId = ?";
@@ -612,6 +754,18 @@ private static final Logger log = Logger.getLogger(ClaimService.class);
 
     
 
+     /**
+     *
+     * This method is for updating health claim.
+     * 
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */  
 
    
     

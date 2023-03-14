@@ -4,8 +4,6 @@
  */
 package com.exavalu.services;
 
-
- 
 import com.exavalu.models.Plan;
 import com.exavalu.utils.JDBCConnectionManager;
 import java.sql.Connection;
@@ -23,10 +21,24 @@ import org.apache.log4j.Logger;
  * @author user
  */
 public class PlanService {
+
     private static final Logger log = Logger.getLogger(PlanService.class);
-    public static ArrayList getAllBikePlans(){
-        
-        ArrayList planList= new ArrayList();
+
+    /**
+     *
+     * This method is for getting all the plans of bike insurance
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
+    public static ArrayList getAllBikePlans() {
+
+        ArrayList planList = new ArrayList();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
@@ -35,9 +47,7 @@ public class PlanService {
 
             ResultSet rs = preparedStatement.executeQuery();
 
-
-            while(rs.next())
-            {
+            while (rs.next()) {
                 System.out.println("plans page:");
                 Plan plan = new Plan();
                 plan.setPlanId(rs.getString("planId"));
@@ -46,28 +56,36 @@ public class PlanService {
                 plan.setPlanDuration(rs.getString("planDuration"));
                 plan.setPlanAmount(rs.getString("planAmount"));
                 plan.setIDV(rs.getString("IDV"));
-                
-                
-                
+
                 planList.add(plan);
-                
 
             }
 
-
         } catch (SQLException ex) {
-            
-             System.out.println(ex.getMessage());
+
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(PlanService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
-        System.out.println("plans:"+planList.size());
+        System.out.println("plans:" + planList.size());
         return planList;
     }
-    
-        public static ArrayList getAllChildPlans(){
-        
-        ArrayList planList= new ArrayList();
+
+    /**
+     *
+     * This method is for getting all the plans of child investment insurance
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
+    public static ArrayList getAllChildPlans() {
+
+        ArrayList planList = new ArrayList();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
@@ -76,9 +94,7 @@ public class PlanService {
 
             ResultSet rs = preparedStatement.executeQuery();
 
-
-            while(rs.next())
-            {
+            while (rs.next()) {
                 System.out.println("child plans page:");
                 Plan plan = new Plan();
                 plan.setPlanId(rs.getString("planId"));
@@ -87,30 +103,36 @@ public class PlanService {
                 plan.setPlanDuration(rs.getString("planDuration"));
                 plan.setPlanAmount(rs.getString("planAmount"));
                 plan.setLumpSumPayout(rs.getString("lumpSumPayout"));
-                
-                
-                
+
                 planList.add(plan);
-                
 
             }
 
-
         } catch (SQLException ex) {
-            
-              System.out.println(ex.getMessage());
+
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(PlanService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
-        System.out.println("child plans:"+planList.size());
+        System.out.println("child plans:" + planList.size());
         return planList;
     }
-        
-        
-        
-        public static ArrayList getAllMedPlans(){
-        
-        ArrayList planList= new ArrayList();
+
+    /**
+     *
+     * This method is for getting all the plans of mediclaim insurance
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
+    public static ArrayList getAllMedPlans() {
+
+        ArrayList planList = new ArrayList();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
@@ -119,9 +141,7 @@ public class PlanService {
 
             ResultSet rs = preparedStatement.executeQuery();
 
-
-            while(rs.next())
-            {
+            while (rs.next()) {
                 System.out.println("med plans page:");
                 Plan plan = new Plan();
                 plan.setPlanId(rs.getString("planId"));
@@ -130,22 +150,18 @@ public class PlanService {
                 plan.setPlanDuration(rs.getString("planDuration"));
                 plan.setPlanAmount(rs.getString("planAmount"));
                 plan.setCoverAmount(rs.getString("coverAmount"));
-                
-                
-                
+
                 planList.add(plan);
-                
 
             }
 
-
         } catch (SQLException ex) {
-            
-              System.out.println(ex.getMessage());
+
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(PlanService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
-        System.out.println("med plans:"+planList.size());
+        System.out.println("med plans:" + planList.size());
         return planList;
     }
 }

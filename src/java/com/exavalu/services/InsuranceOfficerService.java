@@ -19,7 +19,10 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
 /**
- *Service Class that stores all the business logics involving the features of insurance officer in terms of updating the claim status from approved to issued and read data from the database
+ * Service Class that stores all the business logics involving the features of
+ * insurance officer in terms of updating the claim status from approved to
+ * issued and read data from the database
+ *
  * @author LENOVO
  */
 public class InsuranceOfficerService {
@@ -27,6 +30,18 @@ public class InsuranceOfficerService {
     private static final Logger log = Logger.getLogger(InsuranceOfficerService.class);
     public static InsuranceOfficerService insuranceOfficerService = null;
 
+    /**
+     *
+     * This method is for getting the instance of the class
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public static InsuranceOfficerService getInstance() {
         if (insuranceOfficerService == null) {
             return new InsuranceOfficerService();
@@ -35,8 +50,20 @@ public class InsuranceOfficerService {
         }
     }
 
+    /**
+     *
+     * This method is for getting all the approved mediclaim insurance
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public ArrayList getAllApprovedHealthMediclaimClaims() {
-         ArrayList approvedHealthMediclaimPolicyList = new ArrayList();
+        ArrayList approvedHealthMediclaimPolicyList = new ArrayList();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p,relatives r where c.relation=r.relationCode and c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
@@ -90,6 +117,18 @@ public class InsuranceOfficerService {
         return approvedHealthMediclaimPolicyList;
     }
 
+    /**
+     *
+     * This method is for getting all the approved critical illness insurance
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public ArrayList getAllApprovedHealthCriticalIllnessClaims() {
         ArrayList approvedHealthCriticalIllnessPolicyList = new ArrayList();
         try {
@@ -133,7 +172,7 @@ public class InsuranceOfficerService {
             }
 
         } catch (SQLException ex) {
-             System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(InsuranceOfficerService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
@@ -141,6 +180,18 @@ public class InsuranceOfficerService {
         return approvedHealthCriticalIllnessPolicyList;
     }
 
+    /**
+     *
+     * This method is for getting all the approved two wheeler insurance
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public ArrayList getAllApprovedCarTwoWheelerClaims() {
         ArrayList approvedCarTwoWheelerPolicyList = new ArrayList();
 
@@ -194,6 +245,18 @@ public class InsuranceOfficerService {
         return approvedCarTwoWheelerPolicyList;
     }
 
+    /**
+     *
+     * This method is for getting all the approved four wheeler insurance
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public ArrayList getAllApprovedCarFourWheelerClaims() {
         ArrayList approvedCarFourWheelerPolicyList = new ArrayList();
         try {
@@ -239,7 +302,7 @@ public class InsuranceOfficerService {
             }
 
         } catch (SQLException ex) {
-             System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(InsuranceOfficerService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
@@ -247,6 +310,18 @@ public class InsuranceOfficerService {
         return approvedCarFourWheelerPolicyList;
     }
 
+    /**
+     *
+     * This method is for getting all the approved life insurance
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public ArrayList getAllApprovedTermLifeInsuranceClaims() {
         ArrayList approvedTermLifeInsurancePolicyList = new ArrayList();
         try {
@@ -288,7 +363,7 @@ public class InsuranceOfficerService {
             }
 
         } catch (SQLException ex) {
-             System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(InsuranceOfficerService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
@@ -296,6 +371,18 @@ public class InsuranceOfficerService {
         return approvedTermLifeInsurancePolicyList;
     }
 
+    /**
+     *
+     * This method is for getting all the approved nri insurance
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public ArrayList getAllApprovedTermForNriClaims() {
         ArrayList approvedTermForNriPolicyList = new ArrayList();
         try {
@@ -340,7 +427,7 @@ public class InsuranceOfficerService {
             }
 
         } catch (SQLException ex) {
-             System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(InsuranceOfficerService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
@@ -348,6 +435,18 @@ public class InsuranceOfficerService {
         return approvedTermForNriPolicyList;
     }
 
+    /**
+     *
+     * This method is for getting all the approved child investment insurance
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public ArrayList getAllApprovedInvestmentChildClaims() {
         ArrayList approvedInvestmentChildPolicyList = new ArrayList();
         try {
@@ -394,6 +493,18 @@ public class InsuranceOfficerService {
         return approvedInvestmentChildPolicyList;
     }
 
+    /**
+     *
+     * This method is for getting all the approved pension insurance
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public ArrayList getAllApprovedInvestmentPensionClaims() {
         ArrayList approvedInvestmentPensionPolicyList = new ArrayList();
         try {
@@ -429,7 +540,7 @@ public class InsuranceOfficerService {
             }
 
         } catch (SQLException ex) {
-             System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(InsuranceOfficerService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
@@ -437,6 +548,18 @@ public class InsuranceOfficerService {
         return approvedInvestmentPensionPolicyList;
     }
 
+    /**
+     *
+     * This method is for getting all the approved travel insurance
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public ArrayList getAllApprovedOtherTravelClaims() {
         ArrayList approvedOtherTravelPolicyList = new ArrayList();
         try {
@@ -490,6 +613,18 @@ public class InsuranceOfficerService {
         return approvedOtherTravelPolicyList;
     }
 
+    /**
+     *
+     * This method is for getting all the approved education insurance
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public ArrayList getAllApprovedOtherEducationalClaims() {
         ArrayList approvedOtherEducationalPolicyList = new ArrayList();
         try {
@@ -530,7 +665,7 @@ public class InsuranceOfficerService {
             }
 
         } catch (SQLException ex) {
-             System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(InsuranceOfficerService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
@@ -538,6 +673,19 @@ public class InsuranceOfficerService {
         return approvedOtherEducationalPolicyList;
     }
 
+    /**
+     *
+     * This method is for insurance officer to sanction a policy which is being
+     * approved by the underwriter
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public boolean sanctionPolicy(String claimId) {
         boolean result = false;
         try {
@@ -558,7 +706,7 @@ public class InsuranceOfficerService {
             }
 
         } catch (SQLException ex) {
-             System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(InsuranceOfficerService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
@@ -567,6 +715,19 @@ public class InsuranceOfficerService {
 
     }
 
+    /**
+     *
+     * This method is for insurance officer if he sanctions any policy then it
+     * goes to the sanctioed history section
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public void addToSanctionedHistory(String claimId) {
         String sql = "INSERT INTO insurance_officer_histories(claimId,userFullName,userEmail,policyName,claimStatus,timeOfAction)\n" + "VALUES(? ,?,?,?,?,?);";
 
@@ -603,7 +764,7 @@ public class InsuranceOfficerService {
             ps.executeUpdate();
 
         } catch (SQLException ex) {
-             System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(InsuranceOfficerService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
 
@@ -611,6 +772,18 @@ public class InsuranceOfficerService {
 
     }
 
+    /**
+     *
+     * This method is for insurance officer to get all the sanctioned policies
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *      
+     */
     public ArrayList getAllSanctionedHistories() {
         ArrayList histories = new ArrayList();
         try {
@@ -634,7 +807,7 @@ public class InsuranceOfficerService {
             }
 
         } catch (SQLException ex) {
-             System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(InsuranceOfficerService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }

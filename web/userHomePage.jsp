@@ -75,7 +75,7 @@
                 
                 success: function (responseText) {
                     
-                    alert(responseText);
+//                    alert(responseText);
                     $("#home_container").html(responseText);
                 }
             });

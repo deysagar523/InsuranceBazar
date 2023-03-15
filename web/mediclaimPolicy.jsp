@@ -37,7 +37,7 @@
     </head>
     <script>
         function laodDisease(selectedId, targetId) {
-            alert($("#" + selectedId).val());
+//            alert($("#" + selectedId).val());
 
             $.ajax({
                 url: 'FetchDisease',
@@ -46,14 +46,14 @@
                 },
                 success: function (responseText) {
 
-                    alert(responseText);
+//                    alert(responseText);
                     $("#" + targetId).html(responseText);
                 }
             });
         }
 
         function laodRelations(selectedId, targetId) {
-            alert($("#" + selectedId).val());
+//            alert($("#" + selectedId).val());
 
             $.ajax({
                 url: 'FetchRelativeType',
@@ -62,7 +62,7 @@
                 },
                 success: function (responseText) {
 
-                    alert(responseText);
+//                    alert(responseText);
                     $("#" + targetId).html(responseText);
                 }
             });

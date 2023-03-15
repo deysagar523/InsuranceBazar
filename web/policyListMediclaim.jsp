@@ -70,13 +70,13 @@
         }
         function functionApprove(claimId)
         {
-            alert(claimId);
+            //alert(claimId);
             window.location.href = `ApprovePolicy?claimId=` + claimId;
 
         }
         function functionReject(claimId)
         {
-            alert(claimId);
+            //alert(claimId);
             window.location.href = `RejectPolicy?claimId=` + claimId;
 
         }

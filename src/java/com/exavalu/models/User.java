@@ -15,14 +15,11 @@ import com.opensymphony.xwork2.util.logging.Logger;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Map;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
-import org.apache.struts2.dispatcher.ApplicationMap;
 
-import org.apache.struts2.interceptor.ApplicationAware;
 
 /**
  * The model has all the instance variables declared and it deals with all CRUD
@@ -30,7 +27,7 @@ import org.apache.struts2.interceptor.ApplicationAware;
  *
  * @author HP
  */
-public class User extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
+public class User extends ActionSupport implements  SessionAware, Serializable {
 
     /**
      * @return the age
@@ -88,7 +85,17 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
         this.incomeSource = incomeSource;
     }
 
-    private String email, password, role, fullName, userId, countryCode, stateCode, districtCode, phone, gender, dob;
+    private String email;
+    private String password;
+    private String role;
+    private String fullName;
+    private String userId;
+    private String countryCode;
+    private String stateCode;
+    private String districtCode;
+    private String phone;
+    private String gender;
+    private String dob;
     private String incomeSource;
     private String imageData;
     private File image;
@@ -191,12 +198,12 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
     }
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
-    private ApplicationMap map = (ApplicationMap) ActionContext.getContext().getApplication();
-
-    @Override
-    public void setApplication(Map<String, Object> application) {
-        map = (ApplicationMap) application;
-    }
+//    private ApplicationMap map = (ApplicationMap) ActionContext.getContext().getApplication();
+//
+//    @Override
+//    public void setApplication(Map<String, Object> application) {
+//        map = (ApplicationMap) application;
+//    }
 
     @Override
     public void setSession(Map<String, Object> session) {
@@ -236,13 +243,13 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
             System.out.println("Returning Success from doLogin method");
             User user = LoginService.getUser(this.getEmail());
             System.out.println("gender:" + user.getGender() + " income:" + user.getIncomeSource());
-            if (user.getRole().equals("1")) {
+            if ("1".equalsIgnoreCase(user.getRole())) {
                 sessionMap.put("Plans", planList);
                 sessionMap.put("ChildPlans", childPlanList);
                 sessionMap.put("MedPlans", medPlanList);
                 sessionMap.put("userId", user.userId);
                 result = "USER";
-            } else if (user.getRole().equals("2")) {
+            } else if ("2".equalsIgnoreCase(user.getRole())) {
                 result = "UNDERWRITER";
                 String todayDateElement = UnderwriterService.elementsForXaxis("0");
                 sessionMap.put("CurrentDay", todayDateElement);
@@ -304,10 +311,10 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
 //                   System.out.println("3 "+day3Policy);
 //                    System.out.println("4 "+day4Policy);
 //                     System.out.println("5 "+day5Policy);
-                ArrayList underwriter_approved_histories = UnderwriterService.getInstance().getAllApprovedHistories();
-                sessionMap.put("UnderwriterApprovedHistories", underwriter_approved_histories);
-                ArrayList underwriter_rejected_histories = UnderwriterService.getInstance().getAllRejectedHistories();
-                sessionMap.put("UnderwriterRejectedHistories", underwriter_rejected_histories);
+                ArrayList underwriterApprovedHistories = UnderwriterService.getInstance().getAllApprovedHistories();
+                sessionMap.put("UnderwriterApprovedHistories", underwriterApprovedHistories );
+                ArrayList underwriterRejectedHistories = UnderwriterService.getInstance().getAllRejectedHistories();
+                sessionMap.put("UnderwriterRejectedHistories", underwriterRejectedHistories);
                 ArrayList allPendingMediclaimClaims = UnderwriterService.getInstance().getAllPendingHealthMediclaimClaims();
                 ArrayList allPendingCriticalIllnessClaims = UnderwriterService.getInstance().getAllPendingHealthCriticalIllnessClaims();
                 ArrayList allPendingTwoWheelerClaims = UnderwriterService.getInstance().getAllPendingCarTwoWheelerClaims();
@@ -391,8 +398,8 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
 //                   System.out.println("3"+day3User);
 //                    System.out.println("4"+day4User);
 //                     System.out.println("5"+day5User);
-                ArrayList insuranceOfficer_sanctioned_histories = InsuranceOfficerService.getInstance().getAllSanctionedHistories();
-                sessionMap.put("InsuranceOfficerSanctionedHistories", insuranceOfficer_sanctioned_histories);
+                ArrayList insuranceOfficerSanctionedHistories = InsuranceOfficerService.getInstance().getAllSanctionedHistories();
+                sessionMap.put("InsuranceOfficerSanctionedHistories", insuranceOfficerSanctionedHistories);
                 ArrayList allApprovedMediclaimClaims = InsuranceOfficerService.getInstance().getAllApprovedHealthMediclaimClaims();
                 ArrayList allApprovedCriticalIllnessClaims = InsuranceOfficerService.getInstance().getAllApprovedHealthCriticalIllnessClaims();
                 ArrayList allApprovedTwoWheelerClaims = InsuranceOfficerService.getInstance().getAllApprovedCarTwoWheelerClaims();

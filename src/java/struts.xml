@@ -54,9 +54,7 @@
             <result name="SUCCESS">healthPlan.jsp</result>
             <result name="FAILURE">mediclaimPolicy.jsp</result>         
         </action>
-         <action name="FetchPolicies" class="com.exavalu.models.Category" method="doGetPolicies">
-            <result name="SUCCESS">policyList.jsp</result>         
-        </action>
+         
         <action name="BuyPlan" class="com.exavalu.models.Claim" method="doGetPlanDetails">
             <result name="SUCCESS">paymentForm.jsp</result>
             <result name="FAILURE">bikePlan.jsp</result>          
@@ -89,9 +87,7 @@
         <action name="Payment" class="com.exavalu.models.Claim" method="doPayment">
             <result name="SUCCESS">downloadPdf.jsp</result>         
         </action>
-        <action name="ConsumePaymentCardAPI" class="com.exavalu.models.PaymentCard" method="getDataFromAPI">
-            <result name="SUCCESS">confirmationPage.jsp</result>         
-        </action>
+        
         <action name="ApprovePolicy" class="com.exavalu.models.Claim" method="doApprovePolicy">
             <result name="SUCCESS">underwriterHomePage.jsp</result>         
         </action> 

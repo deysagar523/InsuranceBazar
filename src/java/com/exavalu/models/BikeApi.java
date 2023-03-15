@@ -3,13 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.exavalu.models;
-
-import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
-import com.exavalu.utils.JDBCUtility;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.BufferedReader;
@@ -17,9 +13,7 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Map;
-
 import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.ApplicationAware;
@@ -32,7 +26,12 @@ import org.apache.struts2.interceptor.SessionAware;
  */
 public class BikeApi extends ActionSupport implements ApplicationAware, SessionAware, Serializable{
     
-    private String id,claimId,bikeNo,bikeModel,bikeRegistrationYear,bikeMake;
+    private String id;
+    private String claimId;
+    private String bikeNo;
+    private String bikeModel;
+    private String bikeRegistrationYear;
+    private String bikeMake;
     
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
@@ -134,7 +133,7 @@ public class BikeApi extends ActionSupport implements ApplicationAware, SessionA
     
     public String fetchBikeApi() throws Exception {
         String result = "SUCCESS";
-        JDBCUtility jdbcUtility = JDBCUtility.getInstanceOfJDBCUtility();
+        //JDBCUtility jdbcUtility = JDBCUtility.getInstanceOfJDBCUtility();
         String apiUrl = "https://mocki.io/v1/8971c40e-b6c5-4b97-8e12-386b1992ace8";
 //        String apiUrl= "https://insuranceapi.free.beeceptor.com/bikedata";
         URL obj = new URL(apiUrl);
@@ -150,14 +149,15 @@ public class BikeApi extends ActionSupport implements ApplicationAware, SessionA
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
         String inputLine;
         StringBuffer response = new StringBuffer();
-        int c = 0;
-        ArrayList userList = new ArrayList<>();
+        //int c = 0;
+        //ArrayList userList = new ArrayList<>();
         JSONParser parse = new JSONParser();
 
         while ((inputLine = in.readLine()) != null) {
 
             response.append(inputLine);
         }
+//        in.close();
         JSONArray jsonArray = (JSONArray) parse.parse(response.toString());
         System.out.println(jsonArray.size());
         for (int i = 0; i < jsonArray.size(); i++) {
@@ -175,6 +175,7 @@ public class BikeApi extends ActionSupport implements ApplicationAware, SessionA
                 sessionMap.put("BikeApi", bikeApi);
             }
         }
+        
         //System.out.println(sessionMap);
         return result;
     }

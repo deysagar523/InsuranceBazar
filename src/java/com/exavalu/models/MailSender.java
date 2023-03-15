@@ -4,8 +4,10 @@
  */
 package com.exavalu.models;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Properties;
-import java.util.logging.Level;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -27,7 +29,7 @@ public class MailSender {
     static String fromEmail = "srabana.work@gmail.com";
     static String password = "hsphhnxpnmpqbgwq";
     static String userName = "srabana.work";
-    static String message = "successfully signed up ";
+    
 
     public static void sendEmailToRegisterUser(String toEmail) {
         try {
@@ -59,12 +61,14 @@ public class MailSender {
 
             Transport.send(mailMessage);
 
-        } catch (AddressException ex) {
-            System.out.println("In the catch");
+        } catch (AddressException ex ) {
             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(MailSender.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         } catch (MessagingException ex) {
-            System.out.println("In the catch");
             System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(MailSender.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
     }
 
@@ -94,21 +98,21 @@ public class MailSender {
                     InternetAddress.parse(toEmail));
             mailMessage.setSubject("Successfully Payment Done of " + bikeNumber + " in InsueranceBazar");
             String bikeMakeFullName = null;
-            if (bikeMake.equalsIgnoreCase("HO")) {
+            if ("HO".equalsIgnoreCase(bikeMake)) {
                 bikeMakeFullName = "Honda";
-            } else if (bikeMake.equalsIgnoreCase("YA")) {
+            } else if ("YA".equalsIgnoreCase(bikeMake)) {
                 bikeMakeFullName = "Yamaha";
-            } else if (bikeMake.equalsIgnoreCase("RE")) {
+            } else if ("RE".equalsIgnoreCase(bikeMake)) {
                 bikeMakeFullName = "Yamaha";
-            } else if (bikeMake.equalsIgnoreCase("BA")) {
+            } else if ("BA".equalsIgnoreCase(bikeMake)) {
                 bikeMakeFullName = "Bajaj";
-            } else if (bikeMake.equalsIgnoreCase("SU")) {
+            } else if ("SU".equalsIgnoreCase(bikeMake)) {
                 bikeMakeFullName = "Suzuki";
-            } else if (bikeMake.equalsIgnoreCase("HD")) {
+            } else if ("HD".equalsIgnoreCase(bikeMake)) {
                 bikeMakeFullName = "Harley Davidson";
-            } else if (bikeMake.equalsIgnoreCase("HM")) {
+            } else if ("HM".equalsIgnoreCase(bikeMake)) {
                 bikeMakeFullName = "Hero Motocarp";
-            } else if (bikeMake.equalsIgnoreCase("MA")) {
+            } else if ("MA".equalsIgnoreCase(bikeMake)) {
                 bikeMakeFullName = "Mahindra";
             }
 
@@ -116,9 +120,13 @@ public class MailSender {
             Transport.send(mailMessage);
 
         } catch (AddressException ex) {
-
+            System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(MailSender.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         } catch (MessagingException ex) {
-
+            System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(MailSender.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
     }
 
@@ -153,9 +161,13 @@ public class MailSender {
             Transport.send(mailMessage);
 
         } catch (AddressException ex) {
-
+            System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(MailSender.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         } catch (MessagingException ex) {
-
+            System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(MailSender.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
     }
 
@@ -195,9 +207,13 @@ public class MailSender {
             Transport.send(mailMessage);
 
         } catch (AddressException ex) {
-
+            System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(MailSender.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         } catch (MessagingException ex) {
-
+            System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(MailSender.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
     }
 
@@ -232,9 +248,13 @@ public class MailSender {
             Transport.send(mailMessage);
 
         } catch (AddressException ex) {
-
+            System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(MailSender.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         } catch (MessagingException ex) {
-
+            System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(MailSender.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
     }
 
@@ -269,9 +289,13 @@ public class MailSender {
             Transport.send(mailMessage);
 
         } catch (AddressException ex) {
-
+            System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(MailSender.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         } catch (MessagingException ex) {
-
+            System.out.println(ex.getMessage());
+            Logger log = Logger.getLogger(MailSender.class.getName());
+            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
     }
 }

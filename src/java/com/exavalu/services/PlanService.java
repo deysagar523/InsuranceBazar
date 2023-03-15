@@ -55,7 +55,7 @@ public class PlanService {
                 plan.setPolicyName(rs.getString("policyName"));
                 plan.setPlanDuration(rs.getString("planDuration"));
                 plan.setPlanAmount(rs.getString("planAmount"));
-                plan.setIDV(rs.getString("IDV"));
+                plan.setPlanIDV(rs.getString("planIDV"));
 
                 planList.add(plan);
 

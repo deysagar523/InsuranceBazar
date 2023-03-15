@@ -107,7 +107,9 @@ public class Disease extends ActionSupport implements SessionAware, Serializable
 
    
     
-    private String diseaseId, diseaseName, medicalHistoryCode;
+    private String diseaseId; 
+    private String diseaseName; 
+    private String medicalHistoryCode;
     
     public String doFetchDiseases(){
         String result="FAILURE";

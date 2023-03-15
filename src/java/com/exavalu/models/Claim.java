@@ -9,9 +9,7 @@ import com.exavalu.services.InsuranceOfficerService;
 import com.exavalu.services.UnderwriterService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.util.logging.Logger;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Map;
 import org.apache.struts2.dispatcher.SessionMap;
@@ -329,30 +327,53 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
     private String incidentDate;
     private String incidentLocation;
     private String policeReportNo;
-    private String carModel, carNo, carRegistrationYear;
+    private String carModel;
+    private String carNo;
+    private String carRegistrationYear;
 
-    private String bikeNumber, bikeMake, bikeModel, bikeVariant, bikeRegistrationYear;
+    private String bikeNumber;
+    private String bikeMake;
+    private String bikeModel;
+    private String bikeVariant;
+    private String bikeRegistrationYear;
     private String message;
 
-    //for hralth insurance
-    private String medicalHistory, relation, dob, relativeName, relativeAge, relativeGender, disease, relationAdhar, relativeType;
+    //for health insurance
+    private String medicalHistory;
+    private String relation;
+    private String dob;
+    private String relativeName;
+    private String relativeAge;
+    private String relativeGender;
+    private String disease;
+    private String relationAdhar;
+    private String relativeType;
     private String gender;
 
     //for child plan
-    private String childName, childAge, childGender, childBirthNo;
+    private String childName; 
+    private String childAge; 
+    private String childGender; 
+    private String childBirthNo;
 
     //for investment insurance
-    private String occupation, annualIncome;
+    private String occupation; 
+    private String annualIncome;
 
     //for travel inusrance
-    private String travelDestination, travelStartDate, travelEndDate, noOfTravelMembers;
+    private String travelDestination;
+    private String travelStartDate;
+    private String travelEndDate;
+    private String noOfTravelMembers;
 
     //for educational plan 
     private String educationLevel;
 
     //plan deatils
     private String planId;
-    private String planCompany, planDuration, planAmount;
+    private String planCompany; 
+    private String planDuration; 
+    private String planAmount;
 
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
@@ -852,7 +873,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         claim.setDisease(disease);
 
         boolean res = false;
-        if (this.relation.equalsIgnoreCase("SE")) {
+        if ("SE".equalsIgnoreCase(this.relation)) {
             res = ClaimService.insertHealthClaimForSelf(claim);
         } else {
             res = ClaimService.insertHealthClaimForFamilyMembers(claim);
@@ -935,14 +956,14 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         System.out.println("Current claim is under do getclaim: " + this.getClaimId());
         Claim claim = ClaimService.getClaim(this.getClaimId());
         sessionMap.put("Claim", claim);
-        if (claim.getPolicyName().equalsIgnoreCase("Child Investment")) {
+        if ("Child Investment".equalsIgnoreCase(claim.getPolicyName())) {
 
             result = "CHILDCLAIM";
             System.out.println("result:childClaim");
-        } else if (claim.getPolicyName().equalsIgnoreCase("Two Wheeler")) {
+        } else if ("Two Wheeler".equalsIgnoreCase(claim.getPolicyName())) {
             result = "BIKECLAIM";
             System.out.println("result:bikeClaim");
-        } else if (claim.getPolicyName().equalsIgnoreCase("Mediclaim")) {
+        } else if ("Mediclaim".equalsIgnoreCase(claim.getPolicyName())) {
             result = "MEDICLAIM";
             System.out.println("result:mediClaim");
         }
@@ -1006,13 +1027,13 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
             System.out.println("policy name=" + this.policyName);
             Claim claim = ClaimService.getClaim(this.claimId);
             sessionMap.put("ClaimExpiryDate", claim.claimExpiryDate);
-            if (this.policyName.equalsIgnoreCase("Two Wheeler")) {
+            if ("Two Wheeler".equalsIgnoreCase(this.policyName)) {
                 MailSender.sendEmailAfterBikePayment(this.bikeMake, this.bikeModel, this.bikeNumber, this.email);
             }
-            if (this.policyName.equalsIgnoreCase("Child Investment")) {
+            if ("Child Investment".equalsIgnoreCase(this.policyName)) {
                 MailSender.sendEmailAfterChildPayment(this.childName, this.childBirthNo, this.childAge, this.email);
             }
-            if(this.policyName.equalsIgnoreCase("Mediclaim"))
+            if("Mediclaim".equalsIgnoreCase(this.policyName))
             {
                 System.out.println("Adhar card"+this.adharCard);
                 System.out.println("Relation"+this.relation);
@@ -1032,8 +1053,8 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
     public String doApprovePolicy() {
         String result = "SUCCESS";
         UnderwriterService.getInstance().addToApproveHistory(this.claimId);
-        ArrayList underwriter_approved_histories = UnderwriterService.getInstance().getAllApprovedHistories();
-        sessionMap.put("UnderwriterApprovedHistories", underwriter_approved_histories);
+        ArrayList underwriterApprovedHistories = UnderwriterService.getInstance().getAllApprovedHistories();
+        sessionMap.put("UnderwriterApprovedHistories", underwriterApprovedHistories);
         UnderwriterService.getInstance().approvePolicy(this.claimId);
 
         ArrayList allPendingMediclaimClaims = UnderwriterService.getInstance().getAllPendingHealthMediclaimClaims();
@@ -1064,8 +1085,8 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
     public String doRejectPolicy() {
         String result = "SUCCESS";
         UnderwriterService.getInstance().addToRejectedHistory(this.claimId);
-        ArrayList underwriter_rejected_histories = UnderwriterService.getInstance().getAllRejectedHistories();
-        sessionMap.put("UnderwriterRejectedHistories", underwriter_rejected_histories);
+        ArrayList underwriterRejectedHistories = UnderwriterService.getInstance().getAllRejectedHistories();
+        sessionMap.put("UnderwriterRejectedHistories", underwriterRejectedHistories);
         UnderwriterService.getInstance().rejectPolicy(this.claimId);
 
         ArrayList allPendingMediclaimClaims = UnderwriterService.getInstance().getAllPendingHealthMediclaimClaims();
@@ -1098,8 +1119,8 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
     public String doSanctionPolicy() {
         String result = "SUCCESS";
         InsuranceOfficerService.getInstance().addToSanctionedHistory(this.claimId);
-        ArrayList insuranceOfficer_sanctioned_histories = InsuranceOfficerService.getInstance().getAllSanctionedHistories();
-        sessionMap.put("InsuranceOfficerSanctionedHistories", insuranceOfficer_sanctioned_histories);
+        ArrayList insuranceOfficerSanctionedHistories = InsuranceOfficerService.getInstance().getAllSanctionedHistories();
+        sessionMap.put("InsuranceOfficerSanctionedHistories", insuranceOfficerSanctionedHistories);
         InsuranceOfficerService.getInstance().sanctionPolicy(this.claimId);
 
         ArrayList allApprovedMediclaimClaims = InsuranceOfficerService.getInstance().getAllApprovedHealthMediclaimClaims();
@@ -1202,14 +1223,14 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
        String result = "SUCCESS";
         Claim particularClaim = ClaimService.searchClaim(this.claimId);
 
-       if (particularClaim.getPolicyName().equalsIgnoreCase("Child Investment")) {
+       if ("Child Investment".equalsIgnoreCase(particularClaim.getPolicyName())) {
 
             result = "CHILDCLAIM";
             System.out.println("result:childClaim");
-        } else if (particularClaim.getPolicyName().equalsIgnoreCase("Two Wheeler")) {
+        } else if ("Two Wheeler".equalsIgnoreCase(particularClaim.getPolicyName())) {
            result = "BIKECLAIM";
           //System.out.println("result:bikeClaim");
-        } else if (particularClaim.getPolicyName().equalsIgnoreCase("Mediclaim")) {
+        } else if ("Mediclaim".equalsIgnoreCase(particularClaim.getPolicyName())) {
            Claim particularMedClaim = ClaimService.searchMedClaim(this.claimId);
            sessionMap.put("ParticularMedClaim", particularMedClaim);
           result = "MEDICLAIM";

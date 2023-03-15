@@ -6,10 +6,7 @@ package com.exavalu.models;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.util.logging.Logger;
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Map;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
@@ -22,18 +19,20 @@ import org.apache.struts2.interceptor.ApplicationAware;
 public class Plan extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
 
     /**
-     * @return the IDV
+     * @return the planIDV
      */
-    public String getIDV() {
-        return IDV;
+    public String getPlanIDV() {
+        return planIDV;
     }
 
     /**
-     * @param IDV the IDV to set
+     * @param planIDV the planIDV to set
      */
-    public void setIDV(String IDV) {
-        this.IDV = IDV;
+    public void setPlanIDV(String planIDV) {
+        this.planIDV = planIDV;
     }
+
+  
 
     /**
      * @return the lumpSumPayout
@@ -62,7 +61,15 @@ public class Plan extends ActionSupport implements ApplicationAware, SessionAwar
     public void setCoverAmount(String coverAmount) {
         this.coverAmount = coverAmount;
     }
-    private String planId, policyId, planCompany, planDuration, planAmount, policyName;
+    private String planId; 
+    private String policyId;
+    private String planCompany; 
+    private String planDuration; 
+    private String planAmount;
+    private String policyName;
+    private String planIDV;
+    private String lumpSumPayout; 
+    private String coverAmount;
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
     private ApplicationMap map = (ApplicationMap) ActionContext.getContext().getApplication();
@@ -191,7 +198,7 @@ public class Plan extends ActionSupport implements ApplicationAware, SessionAwar
         this.planAmount = planAmount;
     }
     
-    private String IDV, lumpSumPayout, coverAmount;
+    
 
     
     

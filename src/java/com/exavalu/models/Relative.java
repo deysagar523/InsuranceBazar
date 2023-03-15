@@ -105,7 +105,9 @@ public class Relative extends ActionSupport implements SessionAware, Serializabl
         this.relativeType = relativeType;
     }
     
-    private String relativeId, relationCode, relativeType;
+    private String relativeId; 
+    private String relationCode;
+    private String relativeType;
     
     public String doFetchRelativeType(){
         String result="FAILURE";

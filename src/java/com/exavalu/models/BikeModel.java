@@ -75,7 +75,11 @@ public class BikeModel extends ActionSupport implements SessionAware, Serializab
     public void setBikeModel(String bikeModel) {
         this.bikeModel = bikeModel;
     }
-    private String bikeModelId, bikeMakeCode, bikeModel, bikeModelCode;
+    private String bikeModelId;
+    
+    private String bikeMakeCode;
+    private String bikeModel; 
+    private String bikeModelCode;
     
    private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 

@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.exavalu.models;
-
-import com.exavalu.utils.JDBCUtility;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.BufferedReader;
@@ -12,7 +10,6 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Map;
 import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.dispatcher.SessionMap;
@@ -27,7 +24,10 @@ import org.json.simple.parser.JSONParser;
  * @author LENOVO
  */
 public class ChildApi extends ActionSupport implements ApplicationAware, SessionAware, Serializable{
-    private String id,dob,birthLocation,birthCertificateNumber;
+    private String id;
+    private String dob;
+    private String birthLocation;
+    private String birthCertificateNumber;
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
     private ApplicationMap map = (ApplicationMap) ActionContext.getContext().getApplication();
@@ -128,7 +128,7 @@ public class ChildApi extends ActionSupport implements ApplicationAware, Session
     }
     public String fetchChildApi() throws Exception {
         String result = "SUCCESS";
-        JDBCUtility jdbcUtility = JDBCUtility.getInstanceOfJDBCUtility();
+//        JDBCUtility jdbcUtility = JDBCUtility.getInstanceOfJDBCUtility();
         String apiUrl = "https://retoolapi.dev/JbyUzo/Childdata";
 
         URL obj = new URL(apiUrl);
@@ -144,8 +144,8 @@ public class ChildApi extends ActionSupport implements ApplicationAware, Session
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
         String inputLine;
         StringBuffer response = new StringBuffer();
-        int c = 0;
-        ArrayList userList = new ArrayList<>();
+//        int c = 0;
+//        ArrayList userList = new ArrayList<>();
         JSONParser parse = new JSONParser();
 
         while ((inputLine = in.readLine()) != null) {

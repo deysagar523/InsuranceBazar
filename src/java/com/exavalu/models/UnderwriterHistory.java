@@ -19,7 +19,12 @@ import org.apache.struts2.interceptor.SessionAware;
  */
 public class UnderwriterHistory extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
 
-    private String claimId, policyName, userFullName, userEmail, claimStatus, timeOfAction;
+    private String claimId;
+    private String policyName;
+    private String userFullName;
+    private String userEmail;
+    private String claimStatus;
+    private String timeOfAction;
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
     private ApplicationMap map = (ApplicationMap) ActionContext.getContext().getApplication();

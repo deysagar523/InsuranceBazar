@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.exavalu.models;
-
-import com.exavalu.utils.JDBCUtility;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.BufferedReader;
@@ -12,7 +10,6 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Map;
 import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.dispatcher.SessionMap;
@@ -27,7 +24,11 @@ import org.json.simple.parser.JSONParser;
  * @author LENOVO
  */
 public class MediclaimApi extends ActionSupport implements ApplicationAware, SessionAware, Serializable{
-    private String id,adharCard,medicalHistory,disease,claimId;
+    private String id;
+    private String adharCard;
+    private String medicalHistory;
+    private String disease;
+    private String claimId;
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
     private ApplicationMap map = (ApplicationMap) ActionContext.getContext().getApplication();
@@ -142,7 +143,7 @@ public class MediclaimApi extends ActionSupport implements ApplicationAware, Ses
     
     public String fetchMedApi() throws Exception {
         String result = "SUCCESS";
-        JDBCUtility jdbcUtility = JDBCUtility.getInstanceOfJDBCUtility();
+        //JDBCUtility jdbcUtility = JDBCUtility.getInstanceOfJDBCUtility();
         String apiUrl = "https://mocki.io/v1/7804ef0b-6c09-4df6-83fb-f5ccc7974638";
 
         URL obj = new URL(apiUrl);
@@ -158,8 +159,8 @@ public class MediclaimApi extends ActionSupport implements ApplicationAware, Ses
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
         String inputLine;
         StringBuffer response = new StringBuffer();
-        int c = 0;
-        ArrayList userList = new ArrayList<>();
+//        int c = 0;
+//        ArrayList userList = new ArrayList<>();
         JSONParser parse = new JSONParser();
 
         while ((inputLine = in.readLine()) != null) {

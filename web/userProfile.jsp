@@ -86,7 +86,7 @@
                 },
                 success: function (responseText) {
 
-                    alert(responseText);
+//                    alert(responseText);
                     $("#container").html(responseText);
                 }
             });
@@ -95,7 +95,7 @@
     </script>
     <script>
         function previewImage(event) {
-            alert("preview img working");
+//            alert("preview img working");
             var input = event.target;
             if (input.files && input.files[0]) {
                 var reader = new FileReader();

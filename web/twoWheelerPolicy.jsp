@@ -39,7 +39,7 @@
         function fetchBikeModels(selectedId, targetId)
 
                 {
-            alert($("#" + selectedId).val());
+//            alert($("#" + selectedId).val());
                             
                     $.ajax({
                              url: 'FetchBikeModels',
@@ -58,7 +58,7 @@
         function fetchBikeVariants(selectedId, targetId)
 
                 {
-            alert($("#" + selectedId).val());
+//            alert($("#" + selectedId).val());
                             
                     $.ajax({
                              url: 'FetchBikeVariants',

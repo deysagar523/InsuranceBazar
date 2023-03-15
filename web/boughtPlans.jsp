@@ -37,7 +37,7 @@
                     claimId: claimId
                 },
                 success: function (responseText) {
-                    alert(responseText)
+//                    alert(responseText)
 
                     $("#container").html(responseText);
                 }

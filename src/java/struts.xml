@@ -92,19 +92,6 @@
         <action name="ConsumePaymentCardAPI" class="com.exavalu.models.PaymentCard" method="getDataFromAPI">
             <result name="SUCCESS">confirmationPage.jsp</result>         
         </action>
-        <action name="GetPolicyDetails" class="com.exavalu.models.Policy" method="doGetPolicyDetails">
-            <result name="TWOWHEELER">twoWheelerPolicy.jsp</result> 
-            <result name="FOURWHEELER">fourWheelerPolicy.jsp</result>
-            <result name="TRAVEL">travelPolicy.jsp</result> 
-            <result name="HEALTH">healthClaimForm.jsp</result> 
-            <result name="TRAVEL">travelPolicy.jsp</result> 
-            <result name="EDUCATION">userProfile.jsp</result> 
-            <result name="PENSION">vehicleClaim.jsp</result> 
-            <result name="CHILD">vehicleClaim.jsp</result> 
-            <result name="LIFE">lifeInsurancePolicy.jsp</result>
-            <result name="NRI">NRIPolicy.jsp</result>         
-        </action>  
-        
         <action name="ApprovePolicy" class="com.exavalu.models.Claim" method="doApprovePolicy">
             <result name="SUCCESS">underwriterHomePage.jsp</result>         
         </action> 
@@ -130,7 +117,6 @@
         </action>
         <action name="FetchDisease" class="com.exavalu.models.Disease" method="doFetchDiseases">
             <result name="SUCCESS">diseaseList.jsp</result>
-               
         </action>
         
         <action name="FetchRelativeType" class="com.exavalu.models.Relative" method="doFetchRelativeType">

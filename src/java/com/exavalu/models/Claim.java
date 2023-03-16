@@ -874,15 +874,15 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
 
         boolean res = false;
         if ("SE".equalsIgnoreCase(this.relation)) {
-            res = ClaimService.insertHealthClaimForSelf(claim);
+            res = ClaimService.getInstance().insertHealthClaimForSelf(claim);
         } else {
-            res = ClaimService.insertHealthClaimForFamilyMembers(claim);
+            res = ClaimService.getInstance().insertHealthClaimForFamilyMembers(claim);
         }
 
         if (res) {
 
             if (this.relationAdhar != null) {
-                Claim claim1 = ClaimService.getClaimByRelationAdhar(this.relationAdhar);
+                Claim claim1 = ClaimService.getInstance().getClaimByRelationAdhar(this.relationAdhar);
                 sessionMap.put("ClaimId", claim1.claimId);
                 sessionMap.put("AdharCard", this.relationAdhar);
                 sessionMap.put("RelativeType", claim1.relativeType);
@@ -893,7 +893,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
                 result = "SUCCESS";
 
             } else {
-                Claim claim1 = ClaimService.getClaimByAdhar(this.adharCard);
+                Claim claim1 = ClaimService.getInstance().getClaimByAdhar(this.adharCard);
                 sessionMap.put("ClaimId", claim1.claimId);
 
                 sessionMap.put("AdharCard", this.adharCard);
@@ -931,11 +931,11 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         claim.setEmail(email);
         claim.setGender(gender);
 
-        boolean res = ClaimService.insertBikeClaim(claim);
+        boolean res = ClaimService.getInstance().insertBikeClaim(claim);
         if (res) {
             result = "SUCCESS";
 //            sessionMap.put("ClaimId", this.claimId);
-            Claim claim1 = ClaimService.getClaimByBikeNumber(this.bikeNumber);
+            Claim claim1 = ClaimService.getInstance().getClaimByBikeNumber(this.bikeNumber);
             sessionMap.put("ClaimId", claim1.claimId);
             sessionMap.put("BikeNumber", this.bikeNumber);
             sessionMap.put("BikeMake", this.bikeMake);
@@ -955,7 +955,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
 
         String result = "SUCCESS";
         System.out.println("Current claim is under do getclaim: " + this.getClaimId());
-        Claim claim = ClaimService.getClaim(this.getClaimId());
+        Claim claim = ClaimService.getInstance().getClaim(this.getClaimId());
         sessionMap.put("Claim", claim);
         if ("Child Investment".equalsIgnoreCase(claim.getPolicyName())) {
 
@@ -980,7 +980,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         System.out.println("Current claim is: " + this.getClaimId());
         System.out.println("Current claim is: " + this.getIncidentLocation());
         System.out.println("Current claim is: " + this.getIncidentDate());
-        boolean res = ClaimService.updateBikeClaim(this);
+        boolean res = ClaimService.getInstance().updateBikeClaim(this);
 
         if (res) {
             result = "SUCCESS";
@@ -998,7 +998,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         String result = "FAILURE";
         System.out.println("Current health claim is: " + this.getClaimId());
 
-        boolean res = ClaimService.updateHealthClaim(this);
+        boolean res = ClaimService.getInstance().updateHealthClaim(this);
 
         if (res) {
             result = "SUCCESS";
@@ -1017,7 +1017,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
 
         String result = "FAILURE";
 
-        boolean res = ClaimService.doPayment(this.claimId, this.planId, this.planDuration);
+        boolean res = ClaimService.getInstance().doPayment(this.claimId, this.planId, this.planDuration);
         System.out.println("claimId within dopayment: " + this.claimId);
         System.out.println("res: " + res);
         //System.out.println("res:"+res);
@@ -1026,7 +1026,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
             result = "SUCCESS";
 
             System.out.println("policy name=" + this.policyName);
-            Claim claim = ClaimService.getClaim(this.claimId);
+            Claim claim = ClaimService.getInstance().getClaim(this.claimId);
             sessionMap.put("ClaimExpiryDate", claim.claimExpiryDate);
             if ("Two Wheeler".equalsIgnoreCase(this.policyName)) {
                 MailSender.sendEmailAfterBikePayment(this.bikeMake, this.bikeModel, this.bikeNumber, this.email);
@@ -1111,7 +1111,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         sessionMap.put("AllPendingPensionPlanClaims", allPendingPensionPlanClaims);
         sessionMap.put("AllPendingTravelClaims", allPendingTravelClaims);
         sessionMap.put("AllPendingEducationalPlanClaims", allPendingEducationalPlanClaims);
-        Claim claim = ClaimService.getClaim(this.claimId);
+        Claim claim = ClaimService.getInstance().getClaim(this.claimId);
         MailSender.sendEmailAfterRejectPolicy(claim.policyName, claim.email);
         return result;
 
@@ -1145,7 +1145,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         sessionMap.put("AllApprovedPensionPlanClaims", allApprovedPensionPlanClaims);
         sessionMap.put("AllApprovedTravelClaims", allApprovedTravelClaims);
         sessionMap.put("AllApprovedEducationalPlanClaims", allApprovedEducationalPlanClaims);
-        Claim claim = ClaimService.getClaim(this.claimId);
+        Claim claim = ClaimService.getInstance().getClaim(this.claimId);
         MailSender.sendEmailAfterIssuePolicy(claim.policyName, claim.email);
         return result;
 
@@ -1155,7 +1155,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
 
     public String doGetPlanDetails() {
         String result = "FAILURE";
-        Plan plan = ClaimService.getPlanDetails(this.planId);
+        Plan plan = ClaimService.getInstance().getPlanDetails(this.planId);
         if (plan != null) {
             result = "SUCCESS";
             sessionMap.put("Plan", plan);
@@ -1222,7 +1222,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
 
     public String doSearchClaim() {
        String result = "SUCCESS";
-        Claim particularClaim = ClaimService.searchClaim(this.claimId);
+        Claim particularClaim = ClaimService.getInstance().searchClaim(this.claimId);
 
        if ("Child Investment".equalsIgnoreCase(particularClaim.getPolicyName())) {
 
@@ -1232,7 +1232,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
            result = "BIKECLAIM";
           //System.out.println("result:bikeClaim");
         } else if ("Mediclaim".equalsIgnoreCase(particularClaim.getPolicyName())) {
-           Claim particularMedClaim = ClaimService.searchMedClaim(this.claimId);
+           Claim particularMedClaim = ClaimService.getInstance().searchMedClaim(this.claimId);
            sessionMap.put("ParticularMedClaim", particularMedClaim);
           result = "MEDICLAIM";
            System.out.println("result:mediClaim");

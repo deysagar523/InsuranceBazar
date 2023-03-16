@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.exavalu.models;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.BufferedReader;
@@ -23,7 +24,8 @@ import org.json.simple.parser.JSONParser;
  *
  * @author LENOVO
  */
-public class ChildApi extends ActionSupport implements ApplicationAware, SessionAware, Serializable{
+public class ChildApi extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
+
     private String id;
     private String dob;
     private String birthLocation;
@@ -126,6 +128,7 @@ public class ChildApi extends ActionSupport implements ApplicationAware, Session
     public void setMap(ApplicationMap map) {
         this.map = map;
     }
+
     public String fetchChildApi() throws Exception {
         String result = "SUCCESS";
 //        JDBCUtility jdbcUtility = JDBCUtility.getInstanceOfJDBCUtility();
@@ -141,35 +144,36 @@ public class ChildApi extends ActionSupport implements ApplicationAware, Session
         //System.out.println(this.claimId);
         System.out.println("\nSending 'GET' request to URL : " + apiUrl);
         System.out.println("Response Code : " + responseCode);
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuffer response = new StringBuffer();
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));) {
+            String inputLine;
+            StringBuffer response = new StringBuffer();
 //        int c = 0;
 //        ArrayList userList = new ArrayList<>();
-        JSONParser parse = new JSONParser();
+            JSONParser parse = new JSONParser();
 
-        while ((inputLine = in.readLine()) != null) {
+            while ((inputLine = in.readLine()) != null) {
 
-            response.append(inputLine);
-        }
-        JSONArray jsonArray = (JSONArray) parse.parse(response.toString());
-        System.out.println(jsonArray.size());
-        for (int i = 0; i < jsonArray.size(); i++) {
-            JSONObject myResponse = (JSONObject) jsonArray.get(i);
+                response.append(inputLine);
+            }
+            JSONArray jsonArray = (JSONArray) parse.parse(response.toString());
+            System.out.println(jsonArray.size());
+            for (int i = 0; i < jsonArray.size(); i++) {
+                JSONObject myResponse = (JSONObject) jsonArray.get(i);
 
-            ChildApi childApi = new ChildApi();
-            childApi.setId(myResponse.get("id").toString());
-            //System.out.println(voterAPI.getVoterId());
-            childApi.setDob(myResponse.get("dob").toString());
-            childApi.setBirthLocation(myResponse.get("birthLocation").toString());
-            childApi.setBirthCertificateNumber(myResponse.get("birthCertificateNumber").toString());
+                ChildApi childApi = new ChildApi();
+                childApi.setId(myResponse.get("id").toString());
+                //System.out.println(voterAPI.getVoterId());
+                childApi.setDob(myResponse.get("dob").toString());
+                childApi.setBirthLocation(myResponse.get("birthLocation").toString());
+                childApi.setBirthCertificateNumber(myResponse.get("birthCertificateNumber").toString());
 //           System.out.println(this.getClaimId());
 
-            if (childApi.getId().equals(this.getClaimId())) {
-                sessionMap.put("ChildApi", childApi);
+                if (childApi.getId().equals(this.getClaimId())) {
+                    sessionMap.put("ChildApi", childApi);
+                }
             }
         }
-        
+
         return result;
     }
 
@@ -186,6 +190,5 @@ public class ChildApi extends ActionSupport implements ApplicationAware, Session
     public void setClaimId(String claimId) {
         this.claimId = claimId;
     }
-
 
 }

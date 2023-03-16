@@ -160,7 +160,7 @@ public class MailSender {
 
             Transport.send(mailMessage);
 
-        } catch (AddressException ex) {
+        } catch (AddressException ex ) {
             System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(MailSender.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());

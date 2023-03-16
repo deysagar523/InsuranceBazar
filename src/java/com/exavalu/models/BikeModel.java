@@ -132,7 +132,7 @@ public class BikeModel extends ActionSupport implements SessionAware, Serializab
         System.out.println("bikeMakeCode: "+this.getBikeMakeCode());
         if(this.getBikeMakeCode()!=null){
             System.out.println("bikeMakeCode: "+this.getBikeMakeCode());
-            ArrayList models= ClaimService.getBikeModels(this.getBikeMakeCode());
+            ArrayList models= ClaimService.getInstance().getBikeModels(this.getBikeMakeCode());
             System.out.println("models: "+models.size());
             result="SUCCESS";
             getSessionMap().put("models", models);

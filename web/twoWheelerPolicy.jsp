@@ -125,6 +125,7 @@
                             </div>
                             <div class="card-body">
                                 <form action="CreateBikeClaim" method="POST">
+                                    <input class="input--style-5" type="hidden" value="${User.getGender()}" name="gender">
                                     <div class="form-row">
                                         <div class="name">Name</div>
                                         <div class="value">

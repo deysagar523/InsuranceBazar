@@ -377,18 +377,17 @@
                                 </div>
                                 <!-- form bold input flex end -->
 
-                                <div class="formbold-textarea">
-                                    <textarea
-                                        rows="6"
-                                        name="message"
-                                        id="message"
-                                        value="${Claim.getMessage()}"
-                                        placeholder="Write your message..."
-                                        class="formbold-form-input"
-                                        readonly
-                                        ></textarea>
-                                    <label for="message" class="formbold-form-label"> Message </label>
-                                </div>
+                                <div>
+                                        <input
+                                            type="text"
+                                            name="message"
+                                            id="message"
+                                            value="${Claim.getMessage()}"
+                                            class="formbold-form-input"
+                                            readonly
+                                            />
+                                        <label for="phone" class="formbold-form-label"> Your Message </label>
+                                    </div>
 
 
                             </c:when>

@@ -49,9 +49,9 @@ public class PlanService {
      *
      *      
      */
-    public static ArrayList getAllBikePlans() {
+    public static List getAllBikePlans() {
 
-        List<Plan> planList = new ArrayList<>();
+        List<Plan> planList = new ArrayList<Plan>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
@@ -96,9 +96,9 @@ public class PlanService {
      *
      *      
      */
-    public static ArrayList getAllChildPlans() {
+    public static List getAllChildPlans() {
 
-        ArrayList planList = new ArrayList();
+        List<Plan> planList = new ArrayList<Plan>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
@@ -143,9 +143,9 @@ public class PlanService {
      *
      *      
      */
-    public static ArrayList getAllMedPlans() {
+    public static List getAllMedPlans() {
 
-        ArrayList planList = new ArrayList();
+        List<Plan> planList = new ArrayList<Plan>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";

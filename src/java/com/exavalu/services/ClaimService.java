@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.List;
 import org.apache.log4j.Logger;
 
 /**
@@ -58,8 +59,8 @@ public final class ClaimService {
      *
      *      
      */
-    public static ArrayList getDiseases(String medicalHistoryCode) {
-        ArrayList<Disease> dList = new ArrayList<Disease>();
+    public static List getDiseases(String medicalHistoryCode) {
+        List<Disease> dList = new ArrayList<Disease>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
@@ -105,11 +106,12 @@ public final class ClaimService {
      *
      *      
      */
-    public ArrayList getRelatives(String relationCode) {
+    public List getRelatives(String relationCode) {
 
-        ArrayList rList = new ArrayList();
+        List rList = new ArrayList();
         try {
             Connection con = JDBCConnectionManager.getConnection();
+
             //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
             String sql = "SELECT * FROM relatives where relationCode=?; ";
             try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
@@ -265,9 +267,9 @@ public final class ClaimService {
      *
      *      
      */
-    public ArrayList getBikeModels(String bikeMakeCode) {
+    public List getBikeModels(String bikeMakeCode) {
 
-        ArrayList mList = new ArrayList();
+        List<BikeModel> mList = new ArrayList<BikeModel>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
@@ -621,8 +623,8 @@ public final class ClaimService {
      *
      *      
      */
-    public ArrayList getBoughtPlans(String userId) {
-        ArrayList claimList = new ArrayList();
+    public List getBoughtPlans(String userId) {
+        List<Claim> claimList = new ArrayList<Claim>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";

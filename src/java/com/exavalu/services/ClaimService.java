@@ -299,8 +299,8 @@ private static final Logger log = Logger.getLogger(ClaimService.class);
         try {
 
             Connection con = JDBCConnectionManager.getConnection();
-            String sql = "INSERT INTO claims (userId, policyId, bikeNumber, bikeMake, bikeModel, bikeRegistrationYear, claimStatus, fullName, email)"
-                    + "VALUES(?, ? ,? ,? ,?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO claims (userId, policyId, bikeNumber, bikeMake, bikeModel, bikeRegistrationYear, claimStatus, fullName, email,gender)"
+                    + "VALUES(?, ? ,? ,? ,?, ?, ?, ?, ?,?)";
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
 
@@ -317,6 +317,7 @@ private static final Logger log = Logger.getLogger(ClaimService.class);
 
             preparedStatement.setString(8, claim.getFullName());
             preparedStatement.setString(9, claim.getEmail());
+            preparedStatement.setString(10, claim.getGender());
 
             int row = preparedStatement.executeUpdate();
 
@@ -695,7 +696,7 @@ private static final Logger log = Logger.getLogger(ClaimService.class);
             Logger log = Logger.getLogger(ClaimService.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
-        System.out.println("FROM CLAIM SERVICE CLAIM FETCHED: " + claim.getClaimId());
+        System.out.println("FROM CLAIM SERVICE CLAIM FETCHED: " + claim.getMessage());
         return claim;
 
     }

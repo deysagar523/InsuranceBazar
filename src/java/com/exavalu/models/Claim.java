@@ -929,6 +929,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
 
         claim.setFullName(fullName);
         claim.setEmail(email);
+        claim.setGender(gender);
 
         boolean res = ClaimService.insertBikeClaim(claim);
         if (res) {

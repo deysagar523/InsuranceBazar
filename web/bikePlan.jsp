@@ -203,7 +203,7 @@
                                                                         <div class="col-md-4">
                                                                             <div>
                                                                                 <p class="text-muted mb-0 mo-mb-2">
-                                                                                    <span class="text-dark">IDV: <i class="fa fa-rupee"></i>${plan.getIDV()}/-</span
+                                                                                    <span class="text-dark">IDV: <i class="fa fa-rupee"></i>${plan.getPlanIDV()}/-</span
                                                                                     >
                                                                                 </p>
                                                                             </div>

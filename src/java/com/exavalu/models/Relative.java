@@ -114,7 +114,7 @@ public class Relative extends ActionSupport implements SessionAware, Serializabl
         System.out.println("relationcode: "+this.relationCode);
         if(this.relationCode!=null && !this.relationCode.equalsIgnoreCase("SE")){
             System.out.println("relationCode: "+this.relationCode);
-            ArrayList relatives= ClaimService.getRelatives(this.relationCode);
+            ArrayList relatives= ClaimService.getInstance().getRelatives(this.relationCode);
             System.out.println("relatives: "+relatives.size());
             result="SUCCESS";
             sessionMap.put("relatives", relatives);

@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.List;
 import org.apache.log4j.Logger;
 
 /**
@@ -22,7 +23,19 @@ import org.apache.log4j.Logger;
  */
 public class PlanService {
 
-    private static final Logger log = Logger.getLogger(PlanService.class);
+    public static PlanService planService = null;
+
+    private PlanService() {
+
+    }
+
+    public static synchronized PlanService getInstance() {
+        if (planService == null) {
+            return new PlanService();
+        } else {
+            return planService;
+        }
+    }
 
     /**
      *
@@ -38,27 +51,27 @@ public class PlanService {
      */
     public static ArrayList getAllBikePlans() {
 
-        ArrayList planList = new ArrayList();
+        List<Plan> planList = new ArrayList<>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
             String sql = "select * from plans pl, policies po where pl.policyId= po.policyId and po.policyId=3;";
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+                try (ResultSet rs = preparedStatement.executeQuery()) {
+                    while (rs.next()) {
+                        System.out.println("plans page:");
+                        Plan plan = new Plan();
+                        plan.setPlanId(rs.getString("planId"));
+                        plan.setPlanCompany(rs.getString("planCompany"));
+                        plan.setPolicyName(rs.getString("policyName"));
+                        plan.setPlanDuration(rs.getString("planDuration"));
+                        plan.setPlanAmount(rs.getString("planAmount"));
+                        plan.setPlanIDV(rs.getString("planIDV"));
 
-            ResultSet rs = preparedStatement.executeQuery();
+                        planList.add(plan);
 
-            while (rs.next()) {
-                System.out.println("plans page:");
-                Plan plan = new Plan();
-                plan.setPlanId(rs.getString("planId"));
-                plan.setPlanCompany(rs.getString("planCompany"));
-                plan.setPolicyName(rs.getString("policyName"));
-                plan.setPlanDuration(rs.getString("planDuration"));
-                plan.setPlanAmount(rs.getString("planAmount"));
-                plan.setPlanIDV(rs.getString("planIDV"));
-
-                planList.add(plan);
-
+                    }
+                }
             }
 
         } catch (SQLException ex) {
@@ -68,7 +81,7 @@ public class PlanService {
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
         }
         System.out.println("plans:" + planList.size());
-        return planList;
+        return (ArrayList) planList;
     }
 
     /**
@@ -90,22 +103,22 @@ public class PlanService {
             Connection con = JDBCConnectionManager.getConnection();
             //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
             String sql = "select * from plans pl, policies po where pl.policyId= po.policyId and po.policyId=7;";
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+                try (ResultSet rs = preparedStatement.executeQuery();) {
+                    while (rs.next()) {
+                        System.out.println("child plans page:");
+                        Plan plan = new Plan();
+                        plan.setPlanId(rs.getString("planId"));
+                        plan.setPlanCompany(rs.getString("planCompany"));
+                        plan.setPolicyName(rs.getString("policyName"));
+                        plan.setPlanDuration(rs.getString("planDuration"));
+                        plan.setPlanAmount(rs.getString("planAmount"));
+                        plan.setLumpSumPayout(rs.getString("lumpSumPayout"));
 
-            ResultSet rs = preparedStatement.executeQuery();
+                        planList.add(plan);
 
-            while (rs.next()) {
-                System.out.println("child plans page:");
-                Plan plan = new Plan();
-                plan.setPlanId(rs.getString("planId"));
-                plan.setPlanCompany(rs.getString("planCompany"));
-                plan.setPolicyName(rs.getString("policyName"));
-                plan.setPlanDuration(rs.getString("planDuration"));
-                plan.setPlanAmount(rs.getString("planAmount"));
-                plan.setLumpSumPayout(rs.getString("lumpSumPayout"));
-
-                planList.add(plan);
-
+                    }
+                }
             }
 
         } catch (SQLException ex) {
@@ -137,22 +150,22 @@ public class PlanService {
             Connection con = JDBCConnectionManager.getConnection();
             //String sql = "SELECT employeeId, firstName, lastName, phone, address, gender, age, basicSalary, .employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId carAllowance, departmentName, roleName FROM employeedb.employees, employeedb.departments, employeedb.roles where employees.departmentId = departments.departmentId and employees.roleId = roles.roleId order by employeeId;";
             String sql = "select * from plans pl, policies po where pl.policyId= po.policyId and po.policyId=1;";
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+                try (ResultSet rs = preparedStatement.executeQuery();) {
+                    while (rs.next()) {
+                        System.out.println("med plans page:");
+                        Plan plan = new Plan();
+                        plan.setPlanId(rs.getString("planId"));
+                        plan.setPlanCompany(rs.getString("planCompany"));
+                        plan.setPolicyName(rs.getString("policyName"));
+                        plan.setPlanDuration(rs.getString("planDuration"));
+                        plan.setPlanAmount(rs.getString("planAmount"));
+                        plan.setCoverAmount(rs.getString("coverAmount"));
 
-            ResultSet rs = preparedStatement.executeQuery();
+                        planList.add(plan);
 
-            while (rs.next()) {
-                System.out.println("med plans page:");
-                Plan plan = new Plan();
-                plan.setPlanId(rs.getString("planId"));
-                plan.setPlanCompany(rs.getString("planCompany"));
-                plan.setPolicyName(rs.getString("policyName"));
-                plan.setPlanDuration(rs.getString("planDuration"));
-                plan.setPlanAmount(rs.getString("planAmount"));
-                plan.setCoverAmount(rs.getString("coverAmount"));
-
-                planList.add(plan);
-
+                    }
+                }
             }
 
         } catch (SQLException ex) {

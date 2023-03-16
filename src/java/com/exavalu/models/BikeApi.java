@@ -146,8 +146,8 @@ public class BikeApi extends ActionSupport implements ApplicationAware, SessionA
         System.out.println(this.claimId);
         System.out.println("\nSending 'GET' request to URL : " + apiUrl);
         System.out.println("Response Code : " + responseCode);
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String inputLine;
+        try(BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));){
+            String inputLine;
         StringBuffer response = new StringBuffer();
         //int c = 0;
         //ArrayList userList = new ArrayList<>();
@@ -157,7 +157,6 @@ public class BikeApi extends ActionSupport implements ApplicationAware, SessionA
 
             response.append(inputLine);
         }
-//        in.close();
         JSONArray jsonArray = (JSONArray) parse.parse(response.toString());
         System.out.println(jsonArray.size());
         for (int i = 0; i < jsonArray.size(); i++) {
@@ -178,6 +177,11 @@ public class BikeApi extends ActionSupport implements ApplicationAware, SessionA
         
         //System.out.println(sessionMap);
         return result;
+        }
+        
+        
+//        in.close();
+        
     }
 
     /**

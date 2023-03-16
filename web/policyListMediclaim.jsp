@@ -56,7 +56,7 @@
         }
         function fetchVapi(claimId)
         {
-            alert(claimId);
+            //alert(claimId);
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function ()
             {

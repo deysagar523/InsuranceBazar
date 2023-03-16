@@ -26,9 +26,9 @@ import org.apache.log4j.Logger;
  */
 public class InsuranceOfficerService {
 
-   
     public static InsuranceOfficerService insuranceOfficerService = null;
-    private InsuranceOfficerService(){
+
+    private InsuranceOfficerService() {
     }
 
     /**
@@ -69,44 +69,44 @@ public class InsuranceOfficerService {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p,relatives r where c.relation=r.relationCode and c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
 
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+                preparedStatement.setString(1, "2");
 
-            preparedStatement.setString(1, "2");
+                preparedStatement.setString(2, "1");
+                try (ResultSet rs = preparedStatement.executeQuery()) {
+                    while (rs.next()) {
+                        Claim claim = new Claim();
+                        claim.setClaimId(rs.getString("claimId"));
+                        claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
+                        claim.setClaimStatus(rs.getString("claimStatus"));
+                        claim.setClaimName(rs.getString("claimName"));
 
-            preparedStatement.setString(2, "1");
-            ResultSet rs = preparedStatement.executeQuery();
+                        claim.setFullName(rs.getString("fullName"));
+                        claim.setEmail(rs.getString("email"));
 
-            while (rs.next()) {
-                Claim claim = new Claim();
-                claim.setClaimId(rs.getString("claimId"));
-                claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
-                claim.setClaimStatus(rs.getString("claimStatus"));
-                claim.setClaimName(rs.getString("claimName"));
+                        //claim.setCategoryName(rs.getString("categoryName"));
+                        claim.setAdharCard(rs.getString("adharCard"));
+                        claim.setPolicyName(rs.getString("policyName"));
+                        //claim.setPolicyDescription(rs.getString("policyDescription"));
 
-                claim.setFullName(rs.getString("fullName"));
-                claim.setEmail(rs.getString("email"));
+                        claim.setMedicalHistory(rs.getString("medicalHistory"));
+                        //claim.setDob(rs.getString("dob"));
+                        claim.setRelation(rs.getString("relation"));
+                        claim.setRelativeName(rs.getString("relativeName"));
+                        claim.setRelativeType(rs.getString("relativeType"));
+                        claim.setRelationAdhar(rs.getString("relationAdhar"));
 
-                //claim.setCategoryName(rs.getString("categoryName"));
-                claim.setAdharCard(rs.getString("adharCard"));
-                claim.setPolicyName(rs.getString("policyName"));
-                //claim.setPolicyDescription(rs.getString("policyDescription"));
-
-                claim.setMedicalHistory(rs.getString("medicalHistory"));
-                //claim.setDob(rs.getString("dob"));
-                claim.setRelation(rs.getString("relation"));
-                claim.setRelativeName(rs.getString("relativeName"));
-                claim.setRelativeType(rs.getString("relativeType"));
-                claim.setRelationAdhar(rs.getString("relationAdhar"));
-
-                claim.setDisease("disease");
+                        claim.setDisease("disease");
 
 //                System.out.println(claim.getClaimId());
 //                 System.out.println(claim.getClaimStatus());
 //                  System.out.println(claim.getDriverName());
 //                   System.out.println(claim.getEmailAddress());
 //                    System.out.println(claim.getDate());
-                approvedHealthMediclaimPolicyList.add(claim);
+                        approvedHealthMediclaimPolicyList.add(claim);
 
+                    }
+                }
             }
 
         } catch (SQLException ex) {
@@ -136,39 +136,40 @@ public class InsuranceOfficerService {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
 
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+                preparedStatement.setString(1, "2");
 
-            preparedStatement.setString(1, "2");
+                preparedStatement.setString(2, "2");
+                try (ResultSet rs = preparedStatement.executeQuery()) {
+                    while (rs.next()) {
+                        Claim claim = new Claim();
+                        claim.setClaimId(rs.getString("claimId"));
+                        claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
+                        claim.setClaimStatus(rs.getString("claimStatus"));
+                        claim.setClaimName(rs.getString("claimName"));
 
-            preparedStatement.setString(2, "2");
-            ResultSet rs = preparedStatement.executeQuery();
+                        claim.setFullName(rs.getString("fullName"));
+                        claim.setEmail(rs.getString("email"));
 
-            while (rs.next()) {
-                Claim claim = new Claim();
-                claim.setClaimId(rs.getString("claimId"));
-                claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
-                claim.setClaimStatus(rs.getString("claimStatus"));
-                claim.setClaimName(rs.getString("claimName"));
+                        claim.setCategoryName(rs.getString("categoryName"));
 
-                claim.setFullName(rs.getString("fullName"));
-                claim.setEmail(rs.getString("email"));
+                        claim.setPolicyName(rs.getString("policyName"));
+                        claim.setPolicyDescription(rs.getString("policyDescription"));
 
-                claim.setCategoryName(rs.getString("categoryName"));
-
-                claim.setPolicyName(rs.getString("policyName"));
-                claim.setPolicyDescription(rs.getString("policyDescription"));
-
-                claim.setMedicalHistory(rs.getString("medicalHistory"));
-                claim.setDob(rs.getString("dob"));
-                claim.setRelation(rs.getString("relation"));
-                claim.setRelativeName(rs.getString("relativeName"));
+                        claim.setMedicalHistory(rs.getString("medicalHistory"));
+                        claim.setDob(rs.getString("dob"));
+                        claim.setRelation(rs.getString("relation"));
+                        claim.setRelativeName(rs.getString("relativeName"));
 
 //                System.out.println(claim.getClaimId());
 //                 System.out.println(claim.getClaimStatus());
 //                  System.out.println(claim.getDriverName());
 //                   System.out.println(claim.getEmailAddress());
 //                    System.out.println(claim.getDate());
-                approvedHealthCriticalIllnessPolicyList.add(claim);
+                        approvedHealthCriticalIllnessPolicyList.add(claim);
+
+                    }
+                }
 
             }
 
@@ -200,40 +201,41 @@ public class InsuranceOfficerService {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
 
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+                preparedStatement.setString(1, "2");
 
-            preparedStatement.setString(1, "2");
+                preparedStatement.setString(2, "3");
+                try (ResultSet rs = preparedStatement.executeQuery()) {
+                    while (rs.next()) {
+                        Claim claim = new Claim();
+                        claim.setClaimId(rs.getString("claimId"));
+                        claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
+                        claim.setClaimStatus(rs.getString("claimStatus"));
+                        claim.setClaimName(rs.getString("claimName"));
 
-            preparedStatement.setString(2, "3");
-            ResultSet rs = preparedStatement.executeQuery();
+                        claim.setFullName(rs.getString("fullName"));
+                        claim.setEmail(rs.getString("email"));
 
-            while (rs.next()) {
-                Claim claim = new Claim();
-                claim.setClaimId(rs.getString("claimId"));
-                claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
-                claim.setClaimStatus(rs.getString("claimStatus"));
-                claim.setClaimName(rs.getString("claimName"));
-
-                claim.setFullName(rs.getString("fullName"));
-                claim.setEmail(rs.getString("email"));
-
-                claim.setPolicyName(rs.getString("policyName"));
-                claim.setPolicyDescription(rs.getString("policyDescription"));
+                        claim.setPolicyName(rs.getString("policyName"));
+                        claim.setPolicyDescription(rs.getString("policyDescription"));
 
 //                claim.setIncidentDate(rs.getString("incidentDate"));
 //                claim.setIncidentLocation(rs.getString("incidentLocatin"));
 //                claim.setPoliceReportNo(rs.getString("policeReportNo"));
-                claim.setBikeMake(rs.getString("bikeMake"));
-                claim.setBikeModel(rs.getString("bikeModel"));
-                claim.setBikeNumber(rs.getString("bikeNumber"));
-                claim.setBikeRegistrationYear(rs.getString("bikeRegistrationYear"));
-                claim.setBikeVariant(rs.getString("bikeVariant"));
+                        claim.setBikeMake(rs.getString("bikeMake"));
+                        claim.setBikeModel(rs.getString("bikeModel"));
+                        claim.setBikeNumber(rs.getString("bikeNumber"));
+                        claim.setBikeRegistrationYear(rs.getString("bikeRegistrationYear"));
+                        claim.setBikeVariant(rs.getString("bikeVariant"));
 //                System.out.println(claim.getClaimId());
 //                 System.out.println(claim.getClaimStatus());
 //                  System.out.println(claim.getDriverName());
 //                   System.out.println(claim.getEmailAddress());
 //                    System.out.println(claim.getDate());
-                approvedCarTwoWheelerPolicyList.add(claim);
+                        approvedCarTwoWheelerPolicyList.add(claim);
+
+                    }
+                }
 
             }
 
@@ -329,37 +331,38 @@ public class InsuranceOfficerService {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
 
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+                preparedStatement.setString(1, "2");
 
-            preparedStatement.setString(1, "2");
+                preparedStatement.setString(2, "5");
+                try (ResultSet rs = preparedStatement.executeQuery()) {
+                    while (rs.next()) {
+                        Claim claim = new Claim();
+                        claim.setClaimId(rs.getString("claimId"));
+                        claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
+                        claim.setClaimStatus(rs.getString("claimStatus"));
+                        claim.setClaimName(rs.getString("claimName"));
 
-            preparedStatement.setString(2, "5");
-            ResultSet rs = preparedStatement.executeQuery();
+                        claim.setFullName(rs.getString("fullName"));
+                        claim.setEmail(rs.getString("email"));
 
-            while (rs.next()) {
-                Claim claim = new Claim();
-                claim.setClaimId(rs.getString("claimId"));
-                claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
-                claim.setClaimStatus(rs.getString("claimStatus"));
-                claim.setClaimName(rs.getString("claimName"));
+                        claim.setCategoryName(rs.getString("categoryName"));
 
-                claim.setFullName(rs.getString("fullName"));
-                claim.setEmail(rs.getString("email"));
+                        claim.setPolicyName(rs.getString("policyName"));
+                        claim.setPolicyDescription(rs.getString("policyDescription"));
 
-                claim.setCategoryName(rs.getString("categoryName"));
-
-                claim.setPolicyName(rs.getString("policyName"));
-                claim.setPolicyDescription(rs.getString("policyDescription"));
-
-                claim.setOccupation(rs.getString("occupation"));
-                claim.setAnnualIncome(rs.getString("annualIncome"));
+                        claim.setOccupation(rs.getString("occupation"));
+                        claim.setAnnualIncome(rs.getString("annualIncome"));
 
 //                System.out.println(claim.getClaimId());
 //                 System.out.println(claim.getClaimStatus());
 //                  System.out.println(claim.getDriverName());
 //                   System.out.println(claim.getEmailAddress());
 //                    System.out.println(claim.getDate());
-                approvedTermLifeInsurancePolicyList.add(claim);
+                        approvedTermLifeInsurancePolicyList.add(claim);
+
+                    }
+                }
 
             }
 
@@ -390,41 +393,41 @@ public class InsuranceOfficerService {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
 
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+                preparedStatement.setString(1, "2");
 
-            preparedStatement.setString(1, "2");
+                preparedStatement.setString(2, "6");
+                try (ResultSet rs = preparedStatement.executeQuery()) {
+                    while (rs.next()) {
+                        Claim claim = new Claim();
+                        claim.setClaimId(rs.getString("claimId"));
+                        claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
+                        claim.setClaimStatus(rs.getString("claimStatus"));
+                        claim.setClaimName(rs.getString("claimName"));
 
-            preparedStatement.setString(2, "6");
-            ResultSet rs = preparedStatement.executeQuery();
+                        claim.setFullName(rs.getString("fullName"));
+                        claim.setEmail(rs.getString("email"));
 
-            while (rs.next()) {
-                Claim claim = new Claim();
-                claim.setClaimId(rs.getString("claimId"));
-                claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
-                claim.setClaimStatus(rs.getString("claimStatus"));
-                claim.setClaimName(rs.getString("claimName"));
+                        claim.setCategoryName(rs.getString("categoryName"));
 
-                claim.setFullName(rs.getString("fullName"));
-                claim.setEmail(rs.getString("email"));
+                        claim.setPolicyName(rs.getString("policyName"));
+                        claim.setPolicyDescription(rs.getString("policyDescription"));
 
-                claim.setCategoryName(rs.getString("categoryName"));
+                        claim.setOccupation(rs.getString("occupation"));
+                        claim.setAnnualIncome(rs.getString("annualIncome"));
 
-                claim.setPolicyName(rs.getString("policyName"));
-                claim.setPolicyDescription(rs.getString("policyDescription"));
-
-                claim.setOccupation(rs.getString("occupation"));
-                claim.setAnnualIncome(rs.getString("annualIncome"));
-
-                claim.setChildName(rs.getString("childName"));
-                claim.setDob(rs.getString("dob"));
+                        claim.setChildName(rs.getString("childName"));
+                        claim.setDob(rs.getString("dob"));
 
 //                System.out.println(claim.getClaimId());
 //                 System.out.println(claim.getClaimStatus());
 //                  System.out.println(claim.getDriverName());
 //                   System.out.println(claim.getEmailAddress());
 //                    System.out.println(claim.getDate());
-                approvedTermForNriPolicyList.add(claim);
+                        approvedTermForNriPolicyList.add(claim);
 
+                    }
+                }
             }
 
         } catch (SQLException ex) {
@@ -454,35 +457,35 @@ public class InsuranceOfficerService {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
 
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+                preparedStatement.setString(1, "2");
 
-            preparedStatement.setString(1, "2");
+                preparedStatement.setString(2, "7");
+                try (ResultSet rs = preparedStatement.executeQuery()) {
+                    while (rs.next()) {
+                        Claim claim = new Claim();
+                        claim.setClaimId(rs.getString("claimId"));
+                        claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
+                        claim.setClaimStatus(rs.getString("claimStatus"));
+                        claim.setClaimName(rs.getString("claimName"));
 
-            preparedStatement.setString(2, "7");
-            ResultSet rs = preparedStatement.executeQuery();
+                        claim.setFullName(rs.getString("fullName"));
+                        claim.setEmail(rs.getString("email"));
 
-            while (rs.next()) {
-                Claim claim = new Claim();
-                claim.setClaimId(rs.getString("claimId"));
-                claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
-                claim.setClaimStatus(rs.getString("claimStatus"));
-                claim.setClaimName(rs.getString("claimName"));
+                        claim.setCategoryName(rs.getString("categoryName"));
 
-                claim.setFullName(rs.getString("fullName"));
-                claim.setEmail(rs.getString("email"));
-
-                claim.setCategoryName(rs.getString("categoryName"));
-
-                claim.setChildName(rs.getString("childName"));
-                claim.setDob(rs.getString("dob"));
+                        claim.setChildName(rs.getString("childName"));
+                        claim.setDob(rs.getString("dob"));
 
 //                System.out.println(claim.getClaimId());
 //                 System.out.println(claim.getClaimStatus());
 //                  System.out.println(claim.getDriverName());
 //                   System.out.println(claim.getEmailAddress());
 //                    System.out.println(claim.getDate());
-                approvedInvestmentChildPolicyList.add(claim);
+                        approvedInvestmentChildPolicyList.add(claim);
 
+                    }
+                }
             }
 
         } catch (SQLException ex) {
@@ -512,31 +515,32 @@ public class InsuranceOfficerService {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
 
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+                preparedStatement.setString(1, "2");
 
-            preparedStatement.setString(1, "2");
+                preparedStatement.setString(2, "8");
+                try (ResultSet rs = preparedStatement.executeQuery()) {
+                    while (rs.next()) {
+                        Claim claim = new Claim();
+                        claim.setClaimId(rs.getString("claimId"));
+                        claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
+                        claim.setClaimStatus(rs.getString("claimStatus"));
+                        claim.setClaimName(rs.getString("claimName"));
 
-            preparedStatement.setString(2, "8");
-            ResultSet rs = preparedStatement.executeQuery();
+                        claim.setFullName(rs.getString("fullName"));
+                        claim.setEmail(rs.getString("email"));
 
-            while (rs.next()) {
-                Claim claim = new Claim();
-                claim.setClaimId(rs.getString("claimId"));
-                claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
-                claim.setClaimStatus(rs.getString("claimStatus"));
-                claim.setClaimName(rs.getString("claimName"));
-
-                claim.setFullName(rs.getString("fullName"));
-                claim.setEmail(rs.getString("email"));
-
-                claim.setCategoryName(rs.getString("categoryName"));
+                        claim.setCategoryName(rs.getString("categoryName"));
 
 //                System.out.println(claim.getClaimId());
 //                 System.out.println(claim.getClaimStatus());
 //                  System.out.println(claim.getDriverName());
 //                   System.out.println(claim.getEmailAddress());
 //                    System.out.println(claim.getDate());
-                approvedInvestmentPensionPolicyList.add(claim);
+                        approvedInvestmentPensionPolicyList.add(claim);
+
+                    }
+                }
 
             }
 
@@ -567,42 +571,42 @@ public class InsuranceOfficerService {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
 
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+                preparedStatement.setString(1, "2");
 
-            preparedStatement.setString(1, "2");
+                preparedStatement.setString(2, "9");
+                try (ResultSet rs = preparedStatement.executeQuery()) {
+                    while (rs.next()) {
+                        Claim claim = new Claim();
+                        claim.setClaimId(rs.getString("claimId"));
+                        claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
+                        claim.setClaimStatus(rs.getString("claimStatus"));
+                        claim.setClaimName(rs.getString("claimName"));
 
-            preparedStatement.setString(2, "9");
-            ResultSet rs = preparedStatement.executeQuery();
+                        claim.setFullName(rs.getString("fullName"));
+                        claim.setEmail(rs.getString("email"));
 
-            while (rs.next()) {
-                Claim claim = new Claim();
-                claim.setClaimId(rs.getString("claimId"));
-                claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
-                claim.setClaimStatus(rs.getString("claimStatus"));
-                claim.setClaimName(rs.getString("claimName"));
+                        claim.setCategoryName(rs.getString("categoryName"));
 
-                claim.setFullName(rs.getString("fullName"));
-                claim.setEmail(rs.getString("email"));
+                        claim.setPolicyName(rs.getString("policyName"));
+                        claim.setPolicyDescription(rs.getString("policyDescription"));
 
-                claim.setCategoryName(rs.getString("categoryName"));
+                        claim.setEducationLevel(rs.getString("educationLevel"));
 
-                claim.setPolicyName(rs.getString("policyName"));
-                claim.setPolicyDescription(rs.getString("policyDescription"));
-
-                claim.setEducationLevel(rs.getString("educationLevel"));
-
-                claim.setTravelEndDate(rs.getString("travelEndDate"));
-                claim.setTravelStartDate(rs.getString("travelStartDate"));
-                claim.setTravelDestination(rs.getString("travelDestination"));
-                claim.setNoOfTravelMembers(rs.getString("noOfTravelMembers"));
+                        claim.setTravelEndDate(rs.getString("travelEndDate"));
+                        claim.setTravelStartDate(rs.getString("travelStartDate"));
+                        claim.setTravelDestination(rs.getString("travelDestination"));
+                        claim.setNoOfTravelMembers(rs.getString("noOfTravelMembers"));
 
 //                System.out.println(claim.getClaimId());
 //                 System.out.println(claim.getClaimStatus());
 //                  System.out.println(claim.getDriverName());
 //                   System.out.println(claim.getEmailAddress());
 //                    System.out.println(claim.getDate());
-                approvedOtherTravelPolicyList.add(claim);
+                        approvedOtherTravelPolicyList.add(claim);
 
+                    }
+                }
             }
 
         } catch (SQLException ex) {
@@ -632,37 +636,37 @@ public class InsuranceOfficerService {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
 
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+                preparedStatement.setString(1, "2");
 
-            preparedStatement.setString(1, "2");
+                preparedStatement.setString(2, "10");
+                try (ResultSet rs = preparedStatement.executeQuery()) {
+                    while (rs.next()) {
+                        Claim claim = new Claim();
+                        claim.setClaimId(rs.getString("claimId"));
+                        claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
+                        claim.setClaimStatus(rs.getString("claimStatus"));
+                        claim.setClaimName(rs.getString("claimName"));
 
-            preparedStatement.setString(2, "10");
-            ResultSet rs = preparedStatement.executeQuery();
+                        claim.setFullName(rs.getString("fullName"));
+                        claim.setEmail(rs.getString("email"));
 
-            while (rs.next()) {
-                Claim claim = new Claim();
-                claim.setClaimId(rs.getString("claimId"));
-                claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
-                claim.setClaimStatus(rs.getString("claimStatus"));
-                claim.setClaimName(rs.getString("claimName"));
+                        claim.setCategoryName(rs.getString("categoryName"));
 
-                claim.setFullName(rs.getString("fullName"));
-                claim.setEmail(rs.getString("email"));
+                        claim.setPolicyName(rs.getString("policyName"));
+                        claim.setPolicyDescription(rs.getString("policyDescription"));
 
-                claim.setCategoryName(rs.getString("categoryName"));
-
-                claim.setPolicyName(rs.getString("policyName"));
-                claim.setPolicyDescription(rs.getString("policyDescription"));
-
-                claim.setEducationLevel(rs.getString("educationLevel"));
+                        claim.setEducationLevel(rs.getString("educationLevel"));
 
 //                System.out.println(claim.getClaimId());
 //                 System.out.println(claim.getClaimStatus());
 //                  System.out.println(claim.getDriverName());
 //                   System.out.println(claim.getEmailAddress());
 //                    System.out.println(claim.getDate());
-                approvedOtherEducationalPolicyList.add(claim);
+                        approvedOtherEducationalPolicyList.add(claim);
 
+                    }
+                }
             }
 
         } catch (SQLException ex) {
@@ -694,16 +698,17 @@ public class InsuranceOfficerService {
             String sql = "UPDATE insurancebazardb.claims\n"
                     + "SET claimStatus = ? where claimId=?";
 
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
-            //status 3 = sanctioned by the io
-            preparedStatement.setString(1, "3");
-            preparedStatement.setString(2, claimId);
+            try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+                //status 3 = sanctioned by the io
+                preparedStatement.setString(1, "3");
+                preparedStatement.setString(2, claimId);
 
 //            System.out.println("sql="+preparedStatement);
-            int row = preparedStatement.executeUpdate();
+                int row = preparedStatement.executeUpdate();
 
-            if (row == 1) {
-                result = true;
+                if (row == 1) {
+                    result = true;
+                }
             }
 
         } catch (SQLException ex) {
@@ -736,33 +741,37 @@ public class InsuranceOfficerService {
 
         try {
             Connection con = JDBCConnectionManager.getConnection();
-            PreparedStatement ps = con.prepareStatement(sql);
-            PreparedStatement ps2 = con.prepareStatement(sql2);
-            ps2.setString(1, claimId);
+            try (PreparedStatement ps = con.prepareStatement(sql)) {
+                try (PreparedStatement ps2 = con.prepareStatement(sql2)) {
+                    ps2.setString(1, claimId);
 
-            ResultSet rs = ps2.executeQuery();
-            String userFullName = "", userEmail = "", policyName = "";
-            while (rs.next()) {
-                userFullName = rs.getString("fullName");
-                policyName = rs.getString("policyName");
-                userEmail = rs.getString("email");
+                    try (ResultSet rs = ps2.executeQuery()) {
+                        String userFullName = "", userEmail = "", policyName = "";
+                        while (rs.next()) {
+                            userFullName = rs.getString("fullName");
+                            policyName = rs.getString("policyName");
+                            userEmail = rs.getString("email");
+                        }
+                        LocalDateTime currentLocalDateTime = LocalDateTime.now();
+
+                        // Create DateTimeFormatter instance with specified format
+                        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+                        // Format LocalDateTime to String
+                        String formattedDateTime = currentLocalDateTime.format(dateTimeFormatter);
+                        ps.setString(1, claimId);
+
+                        ps.setString(2, userFullName);
+                        ps.setString(3, userEmail);
+                        ps.setString(4, policyName);
+                        ps.setString(5, "3");
+                        ps.setString(6, formattedDateTime);
+                        //System.out.println("LoginService dosignup :: "+ps);
+                        ps.executeUpdate();
+                    }
+
+                }
             }
-            LocalDateTime currentLocalDateTime = LocalDateTime.now();
-
-            // Create DateTimeFormatter instance with specified format
-            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
-            // Format LocalDateTime to String
-            String formattedDateTime = currentLocalDateTime.format(dateTimeFormatter);
-            ps.setString(1, claimId);
-
-            ps.setString(2, userFullName);
-            ps.setString(3, userEmail);
-            ps.setString(4, policyName);
-            ps.setString(5, "3");
-            ps.setString(6, formattedDateTime);
-            //System.out.println("LoginService dosignup :: "+ps);
-            ps.executeUpdate();
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -791,19 +800,20 @@ public class InsuranceOfficerService {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from insurance_officer_histories";
 
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+                try (ResultSet rs = preparedStatement.executeQuery()) {
+                    while (rs.next()) {
+                        InsuranceOfficerHistory history = new InsuranceOfficerHistory();
 
-            ResultSet rs = preparedStatement.executeQuery();
+                        history.setClaimId(rs.getString("claimId"));
+                        history.setPolicyName(rs.getString("policyName"));
+                        history.setUserEmail(rs.getString("userEmail"));
+                        history.setUserFullName(rs.getString("userFullName"));
+                        history.setTimeOfAction(rs.getString("timeOfAction"));
+                        histories.add(history);
 
-            while (rs.next()) {
-                InsuranceOfficerHistory history = new InsuranceOfficerHistory();
-
-                history.setClaimId(rs.getString("claimId"));
-                history.setPolicyName(rs.getString("policyName"));
-                history.setUserEmail(rs.getString("userEmail"));
-                history.setUserFullName(rs.getString("userFullName"));
-                history.setTimeOfAction(rs.getString("timeOfAction"));
-                histories.add(history);
+                    }
+                }
 
             }
 

@@ -260,23 +260,25 @@ public final class LoginService {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "UPDATE users SET fullName = ? , gender = ? , phone = ?, age=?, incomeSource=?, image=? WHERE userId = ?";
             try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
-                System.out.println("image: " + user.getImage());
+                try (FileInputStream inputStream = new FileInputStream(user.getImage())) {
+                    System.out.println("image: " + user.getImage());
 
-                preparedStatement.setString(1, user.getFullName());
-                preparedStatement.setString(2, user.getGender());
-                preparedStatement.setString(3, user.getPhone());
-                preparedStatement.setString(4, user.getAge());
-                preparedStatement.setString(5, user.getIncomeSource());
-                FileInputStream inputStream = new FileInputStream(user.getImage());
-                preparedStatement.setBinaryStream(6, inputStream);
+                    preparedStatement.setString(1, user.getFullName());
+                    preparedStatement.setString(2, user.getGender());
+                    preparedStatement.setString(3, user.getPhone());
+                    preparedStatement.setString(4, user.getAge());
+                    preparedStatement.setString(5, user.getIncomeSource());
 
-                preparedStatement.setString(7, userId);
+                    preparedStatement.setBinaryStream(6, inputStream);
 
-                int row = preparedStatement.executeUpdate();
+                    preparedStatement.setString(7, userId);
 
-                if (row == 1) {
-                    System.out.println("row updated");
-                    result = true;
+                    int row = preparedStatement.executeUpdate();
+
+                    if (row == 1) {
+                        System.out.println("row updated");
+                        result = true;
+                    }
                 }
             }
 

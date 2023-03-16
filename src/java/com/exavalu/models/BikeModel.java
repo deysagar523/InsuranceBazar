@@ -7,7 +7,7 @@ import com.exavalu.services.ClaimService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.dispatcher.SessionMap;
@@ -132,7 +132,7 @@ public class BikeModel extends ActionSupport implements SessionAware, Serializab
         System.out.println("bikeMakeCode: "+this.getBikeMakeCode());
         if(this.getBikeMakeCode()!=null){
             System.out.println("bikeMakeCode: "+this.getBikeMakeCode());
-            ArrayList models= ClaimService.getInstance().getBikeModels(this.getBikeMakeCode());
+            List models= ClaimService.getInstance().getBikeModels(this.getBikeMakeCode());
             System.out.println("models: "+models.size());
             result="SUCCESS";
             getSessionMap().put("models", models);

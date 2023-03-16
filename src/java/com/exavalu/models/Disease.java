@@ -8,6 +8,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.dispatcher.SessionMap;
@@ -117,7 +118,7 @@ public class Disease extends ActionSupport implements SessionAware, Serializable
         System.out.println("medicalhistorycode: "+this.medicalHistoryCode);
         if(this.medicalHistoryCode!=null && !this.medicalHistoryCode.equalsIgnoreCase("None")){
             System.out.println("medicalhistorycode: "+this.medicalHistoryCode);
-            ArrayList diseases= ClaimService.getInstance().getDiseases(this.medicalHistoryCode);
+            List diseases= ClaimService.getInstance().getDiseases(this.medicalHistoryCode);
             System.out.println("diseeases: "+diseases.size());
             result="SUCCESS";
             sessionMap.put("diseases", diseases);

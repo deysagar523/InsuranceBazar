@@ -29,7 +29,7 @@ import org.apache.log4j.Logger;
  */
 public class UnderwriterService {
 
-    private static final Logger log = Logger.getLogger(UnderwriterService.class);
+//    private static final Logger log = Logger.getLogger(UnderwriterService.class);
     /**
      *
      * This method is for getting the instance of the class
@@ -43,6 +43,8 @@ public class UnderwriterService {
      *      
      */
     public static UnderwriterService underwriterService = null;
+    private UnderwriterService(){
+    }
 
     public static UnderwriterService getInstance() {
         if (underwriterService == null) {
@@ -961,7 +963,7 @@ public class UnderwriterService {
      *
      *      
      */
-    public static String elementsForXaxis(String interval) {
+    public  String elementsForXaxis(String interval) {
         String date = null;
 
         try {
@@ -1000,7 +1002,7 @@ public class UnderwriterService {
      *
      *      
      */
-    public static String totalRegisteredUsers(String interval) {
+    public  String totalRegisteredUsers(String interval) {
         String totalUsers = null;
 
         try {
@@ -1042,7 +1044,7 @@ public class UnderwriterService {
      *
      *      
      */
-    public static String totalBoughtPlans(String interval) {
+    public  String totalBoughtPlans(String interval) {
         String totalPolicies = null;
 
         try {

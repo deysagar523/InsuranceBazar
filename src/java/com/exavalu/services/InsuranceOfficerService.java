@@ -6,7 +6,6 @@ package com.exavalu.services;
 
 import com.exavalu.models.Claim;
 import com.exavalu.models.InsuranceOfficerHistory;
-import com.exavalu.models.UnderwriterHistory;
 import com.exavalu.utils.JDBCConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,8 +26,10 @@ import org.apache.log4j.Logger;
  */
 public class InsuranceOfficerService {
 
-    private static final Logger log = Logger.getLogger(InsuranceOfficerService.class);
+   
     public static InsuranceOfficerService insuranceOfficerService = null;
+    private InsuranceOfficerService(){
+    }
 
     /**
      *

@@ -245,17 +245,17 @@ public class User extends ActionSupport implements  SessionAware, Serializable {
                 result = "USER";
             } else if ("2".equalsIgnoreCase(user.getRole())) {
                 result = "UNDERWRITER";
-                String todayDateElement = UnderwriterService.elementsForXaxis("0");
+                String todayDateElement = UnderwriterService.getInstance().elementsForXaxis("0");
                 sessionMap.put("CurrentDay", todayDateElement);
-                String day1 = UnderwriterService.elementsForXaxis("-1");
+                String day1 = UnderwriterService.getInstance().elementsForXaxis("-1");
                 sessionMap.put("Day1", day1);
-                String day2 = UnderwriterService.elementsForXaxis("-2");
+                String day2 = UnderwriterService.getInstance().elementsForXaxis("-2");
                 sessionMap.put("Day2", day2);
-                String day3 = UnderwriterService.elementsForXaxis("-3");
+                String day3 = UnderwriterService.getInstance().elementsForXaxis("-3");
                 sessionMap.put("Day3", day3);
-                String day4 = UnderwriterService.elementsForXaxis("-4");
+                String day4 = UnderwriterService.getInstance().elementsForXaxis("-4");
                 sessionMap.put("Day4", day4);
-                String day5 = UnderwriterService.elementsForXaxis("-5");
+                String day5 = UnderwriterService.getInstance().elementsForXaxis("-5");
                 sessionMap.put("Day5", day5);
 
 //                System.out.println(todayDateElement);
@@ -264,34 +264,34 @@ public class User extends ActionSupport implements  SessionAware, Serializable {
 //                   System.out.println(day3);
 //                    System.out.println(day4);
 //                     System.out.println(day5);
-                String todayRegisteration = UnderwriterService.totalRegisteredUsers("0");
+                String todayRegisteration = UnderwriterService.getInstance().totalRegisteredUsers("0");
                 sessionMap.put("TodayUsers", todayRegisteration);
-                String day1User = UnderwriterService.totalRegisteredUsers("-1");
+                String day1User = UnderwriterService.getInstance().totalRegisteredUsers("-1");
                 sessionMap.put("Day1Users", day1User);
-                String day2User = UnderwriterService.totalRegisteredUsers("-2");
+                String day2User = UnderwriterService.getInstance().totalRegisteredUsers("-2");
                 sessionMap.put("Day2Users", day2User);
-                String day3User = UnderwriterService.totalRegisteredUsers("-3");
+                String day3User = UnderwriterService.getInstance().totalRegisteredUsers("-3");
                 sessionMap.put("Day3Users", day3User);
 
-                String day4User = UnderwriterService.totalRegisteredUsers("-4");
+                String day4User = UnderwriterService.getInstance().totalRegisteredUsers("-4");
                 sessionMap.put("Day4Users", day4User);
 
-                String day5User = UnderwriterService.totalRegisteredUsers("-5");
+                String day5User = UnderwriterService.getInstance().totalRegisteredUsers("-5");
                 sessionMap.put("Day5Users", day5User);
 
-                String todayPolicy = UnderwriterService.totalBoughtPlans("0");
+                String todayPolicy = UnderwriterService.getInstance().totalBoughtPlans("0");
                 sessionMap.put("TodayPolicy", todayPolicy);
-                String day1Policy = UnderwriterService.totalBoughtPlans("-1");
+                String day1Policy = UnderwriterService.getInstance().totalBoughtPlans("-1");
                 sessionMap.put("Day1Policy", day1Policy);
-                String day2Policy = UnderwriterService.totalBoughtPlans("-2");
+                String day2Policy = UnderwriterService.getInstance().totalBoughtPlans("-2");
                 sessionMap.put("Day2Policy", day2Policy);
-                String day3Policy = UnderwriterService.totalBoughtPlans("-3");
+                String day3Policy = UnderwriterService.getInstance().totalBoughtPlans("-3");
                 sessionMap.put("Day3Policy", day3Policy);
 
-                String day4Policy = UnderwriterService.totalBoughtPlans("-4");
+                String day4Policy = UnderwriterService.getInstance().totalBoughtPlans("-4");
                 sessionMap.put("Day4Policy", day4Policy);
 
-                String day5Policy = UnderwriterService.totalBoughtPlans("-5");
+                String day5Policy = UnderwriterService.getInstance().totalBoughtPlans("-5");
                 sessionMap.put("Day5Policy", day5Policy);
 
                 String totalNoOfUsers = UnderwriterService.getInstance().getNoOfUsers();
@@ -332,32 +332,32 @@ public class User extends ActionSupport implements  SessionAware, Serializable {
                 sessionMap.put("AllPendingEducationalPlanClaims", allPendingEducationalPlanClaims);
             } else {
                 result = "OFFICER";
-                String todayDateElement = UnderwriterService.elementsForXaxis("0");
+                String todayDateElement = UnderwriterService.getInstance().elementsForXaxis("0");
                 sessionMap.put("CurrentDay", todayDateElement);
-                String day1 = UnderwriterService.elementsForXaxis("-1");
+                String day1 = UnderwriterService.getInstance().elementsForXaxis("-1");
                 sessionMap.put("Day1", day1);
-                String day2 = UnderwriterService.elementsForXaxis("-2");
+                String day2 = UnderwriterService.getInstance().elementsForXaxis("-2");
                 sessionMap.put("Day2", day2);
-                String day3 = UnderwriterService.elementsForXaxis("-3");
+                String day3 = UnderwriterService.getInstance().elementsForXaxis("-3");
                 sessionMap.put("Day3", day3);
-                String day4 = UnderwriterService.elementsForXaxis("-4");
+                String day4 = UnderwriterService.getInstance().elementsForXaxis("-4");
                 sessionMap.put("Day4", day4);
-                String day5 = UnderwriterService.elementsForXaxis("-5");
+                String day5 = UnderwriterService.getInstance().elementsForXaxis("-5");
                 sessionMap.put("Day5", day5);
 
-                String todayPolicy = UnderwriterService.totalBoughtPlans("0");
+                String todayPolicy = UnderwriterService.getInstance().totalBoughtPlans("0");
                 sessionMap.put("TodayPolicy", todayPolicy);
-                String day1Policy = UnderwriterService.totalBoughtPlans("-1");
+                String day1Policy = UnderwriterService.getInstance().totalBoughtPlans("-1");
                 sessionMap.put("Day1Policy", day1Policy);
-                String day2Policy = UnderwriterService.totalBoughtPlans("-2");
+                String day2Policy = UnderwriterService.getInstance().totalBoughtPlans("-2");
                 sessionMap.put("Day2Policy", day2Policy);
-                String day3Policy = UnderwriterService.totalBoughtPlans("-3");
+                String day3Policy = UnderwriterService.getInstance().totalBoughtPlans("-3");
                 sessionMap.put("Day3Policy", day3Policy);
 
-                String day4Policy = UnderwriterService.totalBoughtPlans("-4");
+                String day4Policy = UnderwriterService.getInstance().totalBoughtPlans("-4");
                 sessionMap.put("Day4Policy", day4Policy);
 
-                String day5Policy = UnderwriterService.totalBoughtPlans("-5");
+                String day5Policy = UnderwriterService.getInstance().totalBoughtPlans("-5");
                 sessionMap.put("Day5Policy", day5Policy);
 
                 String totalNoOfUsers = UnderwriterService.getInstance().getNoOfUsers();
@@ -371,19 +371,19 @@ public class User extends ActionSupport implements  SessionAware, Serializable {
 //                   System.out.println(day3);
 //                    System.out.println(day4);
 //                     System.out.println(day5);
-                String todayRegisteration = UnderwriterService.totalRegisteredUsers("0");
+                String todayRegisteration = UnderwriterService.getInstance().totalRegisteredUsers("0");
                 sessionMap.put("TodayUsers", todayRegisteration);
-                String day1User = UnderwriterService.totalRegisteredUsers("-1");
+                String day1User = UnderwriterService.getInstance().totalRegisteredUsers("-1");
                 sessionMap.put("Day1Users", day1User);
-                String day2User = UnderwriterService.totalRegisteredUsers("-2");
+                String day2User = UnderwriterService.getInstance().totalRegisteredUsers("-2");
                 sessionMap.put("Day2Users", day2User);
-                String day3User = UnderwriterService.totalRegisteredUsers("-3");
+                String day3User = UnderwriterService.getInstance().totalRegisteredUsers("-3");
                 sessionMap.put("Day3Users", day3User);
 
-                String day4User = UnderwriterService.totalRegisteredUsers("-4");
+                String day4User = UnderwriterService.getInstance().totalRegisteredUsers("-4");
                 sessionMap.put("Day4Users", day4User);
 
-                String day5User = UnderwriterService.totalRegisteredUsers("-5");
+                String day5User = UnderwriterService.getInstance().totalRegisteredUsers("-5");
                 sessionMap.put("Day5Users", day5User);
 
 //                System.out.println("today"+todayRegisteration);

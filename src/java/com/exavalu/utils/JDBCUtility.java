@@ -13,7 +13,7 @@ import java.util.Properties;
  *
  * @author Avijit Chattopadhyay
  */
-public class JDBCUtility {
+public final class JDBCUtility {
 
     public static JDBCUtility jdbcUtility = null;
 
@@ -27,13 +27,13 @@ public class JDBCUtility {
 
             String path = JDBCUtility.class.getClassLoader().getResource("settings.properties").getPath();
 
-            BufferedReader input = new BufferedReader(new FileReader(path));
+            try (BufferedReader input = new BufferedReader(new FileReader(path))) {
+                Properties prop = new Properties();
 
-            Properties prop = new Properties();
+                prop.load(input);
 
-            prop.load(input);
-
-            value = prop.getProperty(param);
+                value = prop.getProperty(param);
+            }
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -47,12 +47,11 @@ public class JDBCUtility {
         // Private constructor
     }
 
-    public static JDBCUtility getInstanceOfJDBCUtility() {
+    public static synchronized JDBCUtility getInstanceOfJDBCUtility() {
         if (jdbcUtility == null) {
             jdbcUtility = new JDBCUtility();
         }
         return jdbcUtility;
     }
-
 
 }

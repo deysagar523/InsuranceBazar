@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.List;
 import org.apache.log4j.Logger;
 
 /**
@@ -24,7 +25,7 @@ import org.apache.log4j.Logger;
  *
  * @author LENOVO
  */
-public class InsuranceOfficerService {
+public final class InsuranceOfficerService {
 
     public static InsuranceOfficerService insuranceOfficerService = null;
 
@@ -63,8 +64,8 @@ public class InsuranceOfficerService {
      *
      *      
      */
-    public ArrayList getAllApprovedHealthMediclaimClaims() {
-        ArrayList approvedHealthMediclaimPolicyList = new ArrayList();
+    public List getAllApprovedHealthMediclaimClaims() {
+        List<Claim> approvedHealthMediclaimPolicyList = new ArrayList<Claim>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p,relatives r where c.relation=r.relationCode and c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
@@ -130,8 +131,8 @@ public class InsuranceOfficerService {
      *
      *      
      */
-    public ArrayList getAllApprovedHealthCriticalIllnessClaims() {
-        ArrayList approvedHealthCriticalIllnessPolicyList = new ArrayList();
+    public List getAllApprovedHealthCriticalIllnessClaims() {
+        List<Claim> approvedHealthCriticalIllnessPolicyList = new ArrayList<Claim>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
@@ -194,8 +195,8 @@ public class InsuranceOfficerService {
      *
      *      
      */
-    public ArrayList getAllApprovedCarTwoWheelerClaims() {
-        ArrayList approvedCarTwoWheelerPolicyList = new ArrayList();
+    public List getAllApprovedCarTwoWheelerClaims() {
+        List<Claim> approvedCarTwoWheelerPolicyList = new ArrayList<Claim>();
 
         try {
             Connection con = JDBCConnectionManager.getConnection();
@@ -260,48 +261,50 @@ public class InsuranceOfficerService {
      *
      *      
      */
-    public ArrayList getAllApprovedCarFourWheelerClaims() {
-        ArrayList approvedCarFourWheelerPolicyList = new ArrayList();
+    public List getAllApprovedCarFourWheelerClaims() {
+        List<Claim> approvedCarFourWheelerPolicyList = new ArrayList<Claim>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
 
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
 
-            preparedStatement.setString(1, "2");
+                preparedStatement.setString(1, "2");
 
-            preparedStatement.setString(2, "4");
-            ResultSet rs = preparedStatement.executeQuery();
+                preparedStatement.setString(2, "4");
+                try (ResultSet rs = preparedStatement.executeQuery()) {
 
-            while (rs.next()) {
-                Claim claim = new Claim();
-                claim.setClaimId(rs.getString("claimId"));
-                claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
-                claim.setClaimStatus(rs.getString("claimStatus"));
-                claim.setClaimName(rs.getString("claimName"));
+                    while (rs.next()) {
+                        Claim claim = new Claim();
+                        claim.setClaimId(rs.getString("claimId"));
+                        claim.setClaimExpiryDate(rs.getString("claimExpiryDate"));
+                        claim.setClaimStatus(rs.getString("claimStatus"));
+                        claim.setClaimName(rs.getString("claimName"));
 
-                claim.setFullName(rs.getString("fullName"));
-                claim.setEmail(rs.getString("email"));
+                        claim.setFullName(rs.getString("fullName"));
+                        claim.setEmail(rs.getString("email"));
 
-                claim.setCategoryName(rs.getString("categoryName"));
+                        claim.setCategoryName(rs.getString("categoryName"));
 
-                claim.setPolicyName(rs.getString("policyName"));
-                claim.setPolicyDescription(rs.getString("policyDescription"));
+                        claim.setPolicyName(rs.getString("policyName"));
+                        claim.setPolicyDescription(rs.getString("policyDescription"));
 
-                claim.setIncidentDate(rs.getString("incidentDate"));
-                claim.setIncidentLocation(rs.getString("incidentLocatin"));
-                claim.setPoliceReportNo(rs.getString("policeReportNo"));
-                claim.setCarModel(rs.getString("carModel"));
-                claim.setCarNo(rs.getString("carNo"));
-                claim.setCarRegistrationYear(rs.getString("carRegistrationYear"));
+                        claim.setIncidentDate(rs.getString("incidentDate"));
+                        claim.setIncidentLocation(rs.getString("incidentLocatin"));
+                        claim.setPoliceReportNo(rs.getString("policeReportNo"));
+                        claim.setCarModel(rs.getString("carModel"));
+                        claim.setCarNo(rs.getString("carNo"));
+                        claim.setCarRegistrationYear(rs.getString("carRegistrationYear"));
 
 //                System.out.println(claim.getClaimId());
 //                 System.out.println(claim.getClaimStatus());
 //                  System.out.println(claim.getDriverName());
 //                   System.out.println(claim.getEmailAddress());
 //                    System.out.println(claim.getDate());
-                approvedCarFourWheelerPolicyList.add(claim);
+                        approvedCarFourWheelerPolicyList.add(claim);
 
+                    }
+                }
             }
 
         } catch (SQLException ex) {
@@ -325,8 +328,8 @@ public class InsuranceOfficerService {
      *
      *      
      */
-    public ArrayList getAllApprovedTermLifeInsuranceClaims() {
-        ArrayList approvedTermLifeInsurancePolicyList = new ArrayList();
+    public List getAllApprovedTermLifeInsuranceClaims() {
+        List<Claim> approvedTermLifeInsurancePolicyList = new ArrayList<Claim>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
@@ -387,8 +390,8 @@ public class InsuranceOfficerService {
      *
      *      
      */
-    public ArrayList getAllApprovedTermForNriClaims() {
-        ArrayList approvedTermForNriPolicyList = new ArrayList();
+    public List getAllApprovedTermForNriClaims() {
+        List<Claim> approvedTermForNriPolicyList = new ArrayList<Claim>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
@@ -451,8 +454,8 @@ public class InsuranceOfficerService {
      *
      *      
      */
-    public ArrayList getAllApprovedInvestmentChildClaims() {
-        ArrayList approvedInvestmentChildPolicyList = new ArrayList();
+    public List getAllApprovedInvestmentChildClaims() {
+        List<Claim> approvedInvestmentChildPolicyList = new ArrayList<Claim>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
@@ -509,8 +512,8 @@ public class InsuranceOfficerService {
      *
      *      
      */
-    public ArrayList getAllApprovedInvestmentPensionClaims() {
-        ArrayList approvedInvestmentPensionPolicyList = new ArrayList();
+    public List getAllApprovedInvestmentPensionClaims() {
+        List<Claim> approvedInvestmentPensionPolicyList = new ArrayList<Claim>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
@@ -565,8 +568,8 @@ public class InsuranceOfficerService {
      *
      *      
      */
-    public ArrayList getAllApprovedOtherTravelClaims() {
-        ArrayList approvedOtherTravelPolicyList = new ArrayList();
+    public List getAllApprovedOtherTravelClaims() {
+        List<Claim> approvedOtherTravelPolicyList = new ArrayList<Claim>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
@@ -630,8 +633,8 @@ public class InsuranceOfficerService {
      *
      *      
      */
-    public ArrayList getAllApprovedOtherEducationalClaims() {
-        ArrayList approvedOtherEducationalPolicyList = new ArrayList();
+    public List getAllApprovedOtherEducationalClaims() {
+        List<Claim> approvedOtherEducationalPolicyList = new ArrayList<Claim>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
@@ -746,7 +749,9 @@ public class InsuranceOfficerService {
                     ps2.setString(1, claimId);
 
                     try (ResultSet rs = ps2.executeQuery()) {
-                        String userFullName = "", userEmail = "", policyName = "";
+                        String userFullName = "";
+                        String userEmail = "";
+                        String policyName = "";
                         while (rs.next()) {
                             userFullName = rs.getString("fullName");
                             policyName = rs.getString("policyName");
@@ -794,8 +799,8 @@ public class InsuranceOfficerService {
      *
      *      
      */
-    public ArrayList getAllSanctionedHistories() {
-        ArrayList histories = new ArrayList();
+    public List getAllSanctionedHistories() {
+        List<InsuranceOfficerHistory> histories = new ArrayList<InsuranceOfficerHistory>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from insurance_officer_histories";

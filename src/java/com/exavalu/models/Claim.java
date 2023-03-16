@@ -10,7 +10,7 @@ import com.exavalu.services.UnderwriterService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
@@ -1054,20 +1054,20 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
     public String doApprovePolicy() {
         String result = "SUCCESS";
         UnderwriterService.getInstance().addToApproveHistory(this.claimId);
-        ArrayList underwriterApprovedHistories = UnderwriterService.getInstance().getAllApprovedHistories();
+        List underwriterApprovedHistories = UnderwriterService.getInstance().getAllApprovedHistories();
         sessionMap.put("UnderwriterApprovedHistories", underwriterApprovedHistories);
         UnderwriterService.getInstance().approvePolicy(this.claimId);
 
-        ArrayList allPendingMediclaimClaims = UnderwriterService.getInstance().getAllPendingHealthMediclaimClaims();
-        ArrayList allPendingCriticalIllnessClaims = UnderwriterService.getInstance().getAllPendingHealthCriticalIllnessClaims();
-        ArrayList allPendingTwoWheelerClaims = UnderwriterService.getInstance().getAllPendingCarTwoWheelerClaims();
-        ArrayList allPendingFourWheelerClaims = UnderwriterService.getInstance().getAllPendingCarFourWheelerClaims();
-        ArrayList allPendingLifeInsuranceClaims = UnderwriterService.getInstance().getAllPendingTermLifeInsuranceClaims();
-        ArrayList allPendingTermForNriClaims = UnderwriterService.getInstance().getAllPendingTermForNriClaims();
-        ArrayList allPendingChildInvestmentClaims = UnderwriterService.getInstance().getAllPendingInvestmentChildClaims();
-        ArrayList allPendingPensionPlanClaims = UnderwriterService.getInstance().getAllPendingInvestmentPensionClaims();
-        ArrayList allPendingTravelClaims = UnderwriterService.getInstance().getAllPendingOtherTravelClaims();
-        ArrayList allPendingEducationalPlanClaims = UnderwriterService.getInstance().getAllPendingOtherEducationalClaims();
+        List allPendingMediclaimClaims = UnderwriterService.getInstance().getAllPendingHealthMediclaimClaims();
+        List allPendingCriticalIllnessClaims = UnderwriterService.getInstance().getAllPendingHealthCriticalIllnessClaims();
+        List allPendingTwoWheelerClaims = UnderwriterService.getInstance().getAllPendingCarTwoWheelerClaims();
+        List allPendingFourWheelerClaims = UnderwriterService.getInstance().getAllPendingCarFourWheelerClaims();
+        List allPendingLifeInsuranceClaims = UnderwriterService.getInstance().getAllPendingTermLifeInsuranceClaims();
+        List allPendingTermForNriClaims = UnderwriterService.getInstance().getAllPendingTermForNriClaims();
+        List allPendingChildInvestmentClaims = UnderwriterService.getInstance().getAllPendingInvestmentChildClaims();
+        List allPendingPensionPlanClaims = UnderwriterService.getInstance().getAllPendingInvestmentPensionClaims();
+        List allPendingTravelClaims = UnderwriterService.getInstance().getAllPendingOtherTravelClaims();
+        List allPendingEducationalPlanClaims = UnderwriterService.getInstance().getAllPendingOtherEducationalClaims();
 
         sessionMap.put("AllPendingMediclaimClaims", allPendingMediclaimClaims);
         sessionMap.put("AllPendingCriticalIllnessClaims", allPendingCriticalIllnessClaims);
@@ -1086,20 +1086,20 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
     public String doRejectPolicy() {
         String result = "SUCCESS";
         UnderwriterService.getInstance().addToRejectedHistory(this.claimId);
-        ArrayList underwriterRejectedHistories = UnderwriterService.getInstance().getAllRejectedHistories();
+        List underwriterRejectedHistories = UnderwriterService.getInstance().getAllRejectedHistories();
         sessionMap.put("UnderwriterRejectedHistories", underwriterRejectedHistories);
         UnderwriterService.getInstance().rejectPolicy(this.claimId);
 
-        ArrayList allPendingMediclaimClaims = UnderwriterService.getInstance().getAllPendingHealthMediclaimClaims();
-        ArrayList allPendingCriticalIllnessClaims = UnderwriterService.getInstance().getAllPendingHealthCriticalIllnessClaims();
-        ArrayList allPendingTwoWheelerClaims = UnderwriterService.getInstance().getAllPendingCarTwoWheelerClaims();
-        ArrayList allPendingFourWheelerClaims = UnderwriterService.getInstance().getAllPendingCarFourWheelerClaims();
-        ArrayList allPendingLifeInsuranceClaims = UnderwriterService.getInstance().getAllPendingTermLifeInsuranceClaims();
-        ArrayList allPendingTermForNriClaims = UnderwriterService.getInstance().getAllPendingTermForNriClaims();
-        ArrayList allPendingChildInvestmentClaims = UnderwriterService.getInstance().getAllPendingInvestmentChildClaims();
-        ArrayList allPendingPensionPlanClaims = UnderwriterService.getInstance().getAllPendingInvestmentPensionClaims();
-        ArrayList allPendingTravelClaims = UnderwriterService.getInstance().getAllPendingOtherTravelClaims();
-        ArrayList allPendingEducationalPlanClaims = UnderwriterService.getInstance().getAllPendingOtherEducationalClaims();
+        List allPendingMediclaimClaims = UnderwriterService.getInstance().getAllPendingHealthMediclaimClaims();
+        List allPendingCriticalIllnessClaims = UnderwriterService.getInstance().getAllPendingHealthCriticalIllnessClaims();
+        List allPendingTwoWheelerClaims = UnderwriterService.getInstance().getAllPendingCarTwoWheelerClaims();
+        List allPendingFourWheelerClaims = UnderwriterService.getInstance().getAllPendingCarFourWheelerClaims();
+        List allPendingLifeInsuranceClaims = UnderwriterService.getInstance().getAllPendingTermLifeInsuranceClaims();
+        List allPendingTermForNriClaims = UnderwriterService.getInstance().getAllPendingTermForNriClaims();
+        List allPendingChildInvestmentClaims = UnderwriterService.getInstance().getAllPendingInvestmentChildClaims();
+        List allPendingPensionPlanClaims = UnderwriterService.getInstance().getAllPendingInvestmentPensionClaims();
+        List allPendingTravelClaims = UnderwriterService.getInstance().getAllPendingOtherTravelClaims();
+        List allPendingEducationalPlanClaims = UnderwriterService.getInstance().getAllPendingOtherEducationalClaims();
 
         sessionMap.put("AllPendingMediclaimClaims", allPendingMediclaimClaims);
         sessionMap.put("AllPendingCriticalIllnessClaims", allPendingCriticalIllnessClaims);
@@ -1120,20 +1120,20 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
     public String doSanctionPolicy() {
         String result = "SUCCESS";
         InsuranceOfficerService.getInstance().addToSanctionedHistory(this.claimId);
-        ArrayList insuranceOfficerSanctionedHistories = InsuranceOfficerService.getInstance().getAllSanctionedHistories();
+        List insuranceOfficerSanctionedHistories = InsuranceOfficerService.getInstance().getAllSanctionedHistories();
         sessionMap.put("InsuranceOfficerSanctionedHistories", insuranceOfficerSanctionedHistories);
         InsuranceOfficerService.getInstance().sanctionPolicy(this.claimId);
 
-        ArrayList allApprovedMediclaimClaims = InsuranceOfficerService.getInstance().getAllApprovedHealthMediclaimClaims();
-        ArrayList allApprovedCriticalIllnessClaims = InsuranceOfficerService.getInstance().getAllApprovedHealthCriticalIllnessClaims();
-        ArrayList allApprovedTwoWheelerClaims = InsuranceOfficerService.getInstance().getAllApprovedCarTwoWheelerClaims();
-        ArrayList allApprovedFourWheelerClaims = InsuranceOfficerService.getInstance().getAllApprovedCarFourWheelerClaims();
-        ArrayList allApprovedLifeInsuranceClaims = InsuranceOfficerService.getInstance().getAllApprovedTermLifeInsuranceClaims();
-        ArrayList allApprovedTermForNriClaims = InsuranceOfficerService.getInstance().getAllApprovedTermForNriClaims();
-        ArrayList allApprovedChildInvestmentClaims = InsuranceOfficerService.getInstance().getAllApprovedInvestmentChildClaims();
-        ArrayList allApprovedPensionPlanClaims = InsuranceOfficerService.getInstance().getAllApprovedInvestmentPensionClaims();
-        ArrayList allApprovedTravelClaims = InsuranceOfficerService.getInstance().getAllApprovedOtherTravelClaims();
-        ArrayList allApprovedEducationalPlanClaims = InsuranceOfficerService.getInstance().getAllApprovedOtherEducationalClaims();
+        List allApprovedMediclaimClaims = InsuranceOfficerService.getInstance().getAllApprovedHealthMediclaimClaims();
+        List allApprovedCriticalIllnessClaims = InsuranceOfficerService.getInstance().getAllApprovedHealthCriticalIllnessClaims();
+        List allApprovedTwoWheelerClaims = InsuranceOfficerService.getInstance().getAllApprovedCarTwoWheelerClaims();
+        List allApprovedFourWheelerClaims = InsuranceOfficerService.getInstance().getAllApprovedCarFourWheelerClaims();
+        List allApprovedLifeInsuranceClaims = InsuranceOfficerService.getInstance().getAllApprovedTermLifeInsuranceClaims();
+        List allApprovedTermForNriClaims = InsuranceOfficerService.getInstance().getAllApprovedTermForNriClaims();
+        List allApprovedChildInvestmentClaims = InsuranceOfficerService.getInstance().getAllApprovedInvestmentChildClaims();
+        List allApprovedPensionPlanClaims = InsuranceOfficerService.getInstance().getAllApprovedInvestmentPensionClaims();
+        List allApprovedTravelClaims = InsuranceOfficerService.getInstance().getAllApprovedOtherTravelClaims();
+        List allApprovedEducationalPlanClaims = InsuranceOfficerService.getInstance().getAllApprovedOtherEducationalClaims();
 
         sessionMap.put("AllApprovedMediclaimClaims", allApprovedMediclaimClaims);
         sessionMap.put("AllApprovedCriticalIllnessClaims", allApprovedCriticalIllnessClaims);

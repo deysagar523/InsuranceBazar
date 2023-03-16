@@ -24,6 +24,7 @@ import org.apache.log4j.Logger;
  *
  * @author ASUS
  */
+@SuppressWarnings("PMD")
 public class MailSender {
 
     static String fromEmail = "srabana.work@gmail.com";

@@ -8,6 +8,7 @@ import java.sql.SQLException;
  *
  * @author Avijit Chattopadhyay
  */
+@SuppressWarnings("PMD")
 public class JDBCConnectionManager {
 
     public static JDBCConnectionManager connectionManager = null;

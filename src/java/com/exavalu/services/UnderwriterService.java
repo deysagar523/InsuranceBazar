@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import org.apache.log4j.Logger;
 
@@ -27,7 +28,9 @@ import org.apache.log4j.Logger;
  *
  * @author LENOVO
  */
-public class UnderwriterService {
+public final class UnderwriterService {
+
+    private static final Logger log = Logger.getLogger(UnderwriterService.class.getName());
 
 //    private static final Logger log = Logger.getLogger(UnderwriterService.class);
     /**
@@ -66,8 +69,8 @@ public class UnderwriterService {
      *
      *      
      */
-    public ArrayList getAllPendingHealthMediclaimClaims() {
-        ArrayList pendingHealthMediclaimPolicyList = new ArrayList();
+    public List getAllPendingHealthMediclaimClaims() {
+        List<Claim> pendingHealthMediclaimPolicyList = new ArrayList<Claim>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p,relatives r where c.relation=r.relationCode and c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
@@ -113,8 +116,11 @@ public class UnderwriterService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            }
+
         }
         System.out.println("Number of pending mediclaim policy list = " + pendingHealthMediclaimPolicyList.size());
         return pendingHealthMediclaimPolicyList;
@@ -132,8 +138,8 @@ public class UnderwriterService {
      *
      *      
      */
-    public ArrayList getAllPendingHealthCriticalIllnessClaims() {
-        ArrayList pendingHealthCriticalIllnessPolicyList = new ArrayList();
+    public List getAllPendingHealthCriticalIllnessClaims() {
+        List<Claim> pendingHealthCriticalIllnessPolicyList = new ArrayList<Claim>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
@@ -177,7 +183,9 @@ public class UnderwriterService {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            }
         }
         // System.out.println("Number of pending mediclaim policy list = " + pendingHealthCriticalIllnessPolicyList.size());
         return pendingHealthCriticalIllnessPolicyList;
@@ -195,8 +203,8 @@ public class UnderwriterService {
      *
      *      
      */
-    public ArrayList getAllPendingCarTwoWheelerClaims() {
-        ArrayList pendingCarTwoWheelerPolicyList = new ArrayList();
+    public List getAllPendingCarTwoWheelerClaims() {
+        List<Claim> pendingCarTwoWheelerPolicyList = new ArrayList<Claim>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
@@ -259,8 +267,8 @@ public class UnderwriterService {
      *
      *      
      */
-    public ArrayList getAllPendingCarFourWheelerClaims() {
-        ArrayList pendingCarFourWheelerPolicyList = new ArrayList();
+    public List getAllPendingCarFourWheelerClaims() {
+        List<Claim> pendingCarFourWheelerPolicyList = new ArrayList<Claim>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
@@ -322,8 +330,8 @@ public class UnderwriterService {
      *
      *      
      */
-    public ArrayList getAllPendingTermLifeInsuranceClaims() {
-        ArrayList pendingTermLifeInsurancePolicyList = new ArrayList();
+    public List getAllPendingTermLifeInsuranceClaims() {
+        List<Claim> pendingTermLifeInsurancePolicyList = new ArrayList<Claim>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
@@ -382,8 +390,8 @@ public class UnderwriterService {
      *
      *      
      */
-    public ArrayList getAllPendingTermForNriClaims() {
-        ArrayList pendingTermForNriPolicyList = new ArrayList();
+    public List getAllPendingTermForNriClaims() {
+        List<Claim> pendingTermForNriPolicyList = new ArrayList<Claim>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
@@ -447,8 +455,8 @@ public class UnderwriterService {
      *
      *      
      */
-    public ArrayList getAllPendingInvestmentChildClaims() {
-        ArrayList pendingInvestmentChildPolicyList = new ArrayList();
+    public List getAllPendingInvestmentChildClaims() {
+        List<Claim> pendingInvestmentChildPolicyList = new ArrayList<Claim>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
@@ -507,8 +515,8 @@ public class UnderwriterService {
      *
      *      
      */
-    public ArrayList getAllPendingInvestmentPensionClaims() {
-        ArrayList pendingInvestmentPensionPolicyList = new ArrayList();
+    public List getAllPendingInvestmentPensionClaims() {
+        List<Claim> pendingInvestmentPensionPolicyList = new ArrayList<Claim>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
@@ -562,8 +570,8 @@ public class UnderwriterService {
      *
      *      
      */
-    public ArrayList getAllPendingOtherTravelClaims() {
-        ArrayList pendingOtherTravelPolicyList = new ArrayList();
+    public List getAllPendingOtherTravelClaims() {
+        List<Claim> pendingOtherTravelPolicyList = new ArrayList<Claim>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
@@ -626,8 +634,8 @@ public class UnderwriterService {
      *
      *      
      */
-    public ArrayList getAllPendingOtherEducationalClaims() {
-        ArrayList pendingOtherEducationalPolicyList = new ArrayList();
+    public List getAllPendingOtherEducationalClaims() {
+        List<Claim> pendingOtherEducationalPolicyList = new ArrayList<Claim>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
@@ -781,7 +789,9 @@ public class UnderwriterService {
                     ps2.setString(1, claimId);
 
                     try (ResultSet rs = ps2.executeQuery()) {
-                        String userFullName = "", userEmail = "", policyName = "";
+                        String userFullName = "";
+                        String userEmail = "";
+                        String policyName = "";
                         while (rs.next()) {
                             userFullName = rs.getString("fullName");
                             policyName = rs.getString("policyName");
@@ -841,7 +851,9 @@ public class UnderwriterService {
                     ps2.setString(1, claimId);
 
                     try (ResultSet rs = ps2.executeQuery()) {
-                        String userFullName = "", userEmail = "", policyName = "";
+                        String userFullName = "";
+                        String userEmail = "";
+                        String policyName = "";
                         while (rs.next()) {
                             userFullName = rs.getString("fullName");
                             policyName = rs.getString("policyName");
@@ -887,8 +899,8 @@ public class UnderwriterService {
      *
      *      
      */
-    public ArrayList getAllApprovedHistories() {
-        ArrayList histories = new ArrayList();
+    public List getAllApprovedHistories() {
+        List<UnderwriterHistory> histories = new ArrayList<UnderwriterHistory>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from underwriter_histories where claimStatus=?";
@@ -933,8 +945,8 @@ public class UnderwriterService {
      *
      *      
      */
-    public ArrayList getAllRejectedHistories() {
-        ArrayList histories = new ArrayList();
+    public List getAllRejectedHistories() {
+        List<UnderwriterHistory> histories = new ArrayList<UnderwriterHistory>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
             String sql = "select * from underwriter_histories where claimStatus=?";
@@ -989,13 +1001,13 @@ public class UnderwriterService {
 
                 System.out.println("ps:" + ps);
 
-                ResultSet rs = ps.executeQuery();
+                try (ResultSet rs = ps.executeQuery()) {
 
-                if (rs.next()) {
-                    date = rs.getString("Date");
+                    if (rs.next()) {
+                        date = rs.getString("Date");
+                    }
                 }
             }
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
@@ -1029,12 +1041,13 @@ public class UnderwriterService {
 
                 System.out.println("ps:" + ps);
 
-                ResultSet rs = ps.executeQuery();
+                try (ResultSet rs = ps.executeQuery()) {
 
-                if (rs.next()) {
-                    totalUsers = rs.getString("totalRegisteredUsersToday");
-                } else {
-                    totalUsers = "0";
+                    if (rs.next()) {
+                        totalUsers = rs.getString("totalRegisteredUsersToday");
+                    } else {
+                        totalUsers = "0";
+                    }
                 }
             }
         } catch (SQLException ex) {
@@ -1071,15 +1084,15 @@ public class UnderwriterService {
 
                 System.out.println("ps:" + ps);
 
-                ResultSet rs = ps.executeQuery();
+                try (ResultSet rs = ps.executeQuery()) {
 
-                if (rs.next()) {
-                    totalPolicies = rs.getString("totalPoliciesToday");
-                } else {
-                    totalPolicies = "0";
+                    if (rs.next()) {
+                        totalPolicies = rs.getString("totalPoliciesToday");
+                    } else {
+                        totalPolicies = "0";
+                    }
                 }
             }
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
@@ -1112,12 +1125,13 @@ public class UnderwriterService {
             try (PreparedStatement ps = con.prepareStatement(sql)) {
 
                 //System.out.println("ps:" + ps);
-                ResultSet rs = ps.executeQuery();
+                try (ResultSet rs = ps.executeQuery()) {
 
-                if (rs.next()) {
-                    totalUsers = rs.getString("totalRegisteredUsers");
-                } else {
-                    totalUsers = "0";
+                    if (rs.next()) {
+                        totalUsers = rs.getString("totalRegisteredUsers");
+                    } else {
+                        totalUsers = "0";
+                    }
                 }
             }
         } catch (SQLException ex) {

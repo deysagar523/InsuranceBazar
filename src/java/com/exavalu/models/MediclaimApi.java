@@ -156,8 +156,8 @@ public class MediclaimApi extends ActionSupport implements ApplicationAware, Ses
         System.out.println(this.claimId);
         System.out.println("\nSending 'GET' request to URL : " + apiUrl);
         System.out.println("Response Code : " + responseCode);
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String inputLine;
+        try(BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()))){
+            String inputLine;
         StringBuffer response = new StringBuffer();
 //        int c = 0;
 //        ArrayList userList = new ArrayList<>();
@@ -186,6 +186,9 @@ public class MediclaimApi extends ActionSupport implements ApplicationAware, Ses
         }
         //System.out.println(sessionMap);
         return result;
+        }
+        
+        
     }
 
 }

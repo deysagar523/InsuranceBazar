@@ -11,9 +11,9 @@ import com.exavalu.services.PlanService;
 import com.exavalu.services.UnderwriterService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.util.logging.Logger;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
@@ -189,13 +189,7 @@ public class User extends ActionSupport implements  SessionAware, Serializable {
         this.dob = dob;
     }
 
-    public static Logger getLOG() {
-        return LOG;
-    }
-
-    public static void setLOG(Logger LOG) {
-        ActionSupport.LOG = LOG;
-    }
+    
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
 //    private ApplicationMap map = (ApplicationMap) ActionContext.getContext().getApplication();
@@ -437,7 +431,7 @@ public class User extends ActionSupport implements  SessionAware, Serializable {
         return result;
     }
 
-    public String doUpdateUser() throws FileNotFoundException {
+    public String doUpdateUser() throws FileNotFoundException, IOException {
         String result = "FAILURE";
         boolean updated = false;
         if (this.image != null) {
@@ -469,7 +463,7 @@ public class User extends ActionSupport implements  SessionAware, Serializable {
 
     public String doGetBoughtBikes() {
         String result = "FAILURE";
-        ArrayList planList = ClaimService.getBoughtPlans(this.userId);
+        ArrayList planList = ClaimService.getInstance().getBoughtPlans(this.userId);
         System.out.println("bought bikes" + this.userId);
         if (!planList.isEmpty()) {
             System.out.println("planlist fetched");

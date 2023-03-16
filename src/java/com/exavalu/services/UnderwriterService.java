@@ -46,7 +46,7 @@ public class UnderwriterService {
     private UnderwriterService(){
     }
 
-    public static UnderwriterService getInstance() {
+    public static  UnderwriterService getInstance() {
         if (underwriterService == null) {
             return new UnderwriterService();
         } else {

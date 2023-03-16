@@ -117,7 +117,7 @@ public class Disease extends ActionSupport implements SessionAware, Serializable
         System.out.println("medicalhistorycode: "+this.medicalHistoryCode);
         if(this.medicalHistoryCode!=null && !this.medicalHistoryCode.equalsIgnoreCase("None")){
             System.out.println("medicalhistorycode: "+this.medicalHistoryCode);
-            ArrayList diseases= ClaimService.getDiseases(this.medicalHistoryCode);
+            ArrayList diseases= ClaimService.getInstance().getDiseases(this.medicalHistoryCode);
             System.out.println("diseeases: "+diseases.size());
             result="SUCCESS";
             sessionMap.put("diseases", diseases);

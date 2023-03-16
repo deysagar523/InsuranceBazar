@@ -29,6 +29,8 @@ import org.apache.log4j.Logger;
  */
 public class UnderwriterService {
 
+    private static final Logger log = Logger.getLogger(UnderwriterService.class.getName());
+
 //    private static final Logger log = Logger.getLogger(UnderwriterService.class);
     /**
      *
@@ -113,8 +115,11 @@ public class UnderwriterService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            }
+
         }
         System.out.println("Number of pending mediclaim policy list = " + pendingHealthMediclaimPolicyList.size());
         return pendingHealthMediclaimPolicyList;
@@ -177,7 +182,9 @@ public class UnderwriterService {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            }
         }
         // System.out.println("Number of pending mediclaim policy list = " + pendingHealthCriticalIllnessPolicyList.size());
         return pendingHealthCriticalIllnessPolicyList;

@@ -16,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
@@ -309,7 +310,7 @@ public class User extends ActionSupport implements  SessionAware, Serializable {
                 sessionMap.put("UnderwriterApprovedHistories", underwriterApprovedHistories );
                 ArrayList underwriterRejectedHistories = UnderwriterService.getInstance().getAllRejectedHistories();
                 sessionMap.put("UnderwriterRejectedHistories", underwriterRejectedHistories);
-                ArrayList allPendingMediclaimClaims = UnderwriterService.getInstance().getAllPendingHealthMediclaimClaims();
+                ArrayList<Claim> allPendingMediclaimClaims = UnderwriterService.getInstance().getAllPendingHealthMediclaimClaims();
                 ArrayList allPendingCriticalIllnessClaims = UnderwriterService.getInstance().getAllPendingHealthCriticalIllnessClaims();
                 ArrayList allPendingTwoWheelerClaims = UnderwriterService.getInstance().getAllPendingCarTwoWheelerClaims();
                 ArrayList allPendingFourWheelerClaims = UnderwriterService.getInstance().getAllPendingCarFourWheelerClaims();

@@ -231,9 +231,9 @@ public class User extends ActionSupport implements  SessionAware, Serializable {
         boolean success = LoginService.getInstance().doLogin(this);
 
         if (success) {
-            ArrayList planList = PlanService.getAllBikePlans();
-            ArrayList childPlanList = PlanService.getAllChildPlans();
-            ArrayList medPlanList = PlanService.getAllMedPlans();
+            List planList = PlanService.getAllBikePlans();
+            List childPlanList = PlanService.getAllChildPlans();
+            List medPlanList = PlanService.getAllMedPlans();
 
             System.out.println("Returning Success from doLogin method");
             User user = LoginService.getUser(this.getEmail());
@@ -464,7 +464,7 @@ public class User extends ActionSupport implements  SessionAware, Serializable {
 
     public String doGetBoughtBikes() {
         String result = "FAILURE";
-        ArrayList planList = ClaimService.getInstance().getBoughtPlans(this.userId);
+        List planList = ClaimService.getInstance().getBoughtPlans(this.userId);
         System.out.println("bought bikes" + this.userId);
         if (!planList.isEmpty()) {
             System.out.println("planlist fetched");

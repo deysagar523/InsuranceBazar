@@ -118,7 +118,8 @@ public final class UnderwriterService {
             System.out.println(ex.getMessage());
 
             if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
-                log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
             }
 
         }
@@ -182,9 +183,9 @@ public final class UnderwriterService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
             if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
-                log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
             }
         }
         // System.out.println("Number of pending mediclaim policy list = " + pendingHealthCriticalIllnessPolicyList.size());
@@ -248,8 +249,10 @@ public final class UnderwriterService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         System.out.println("Number of pending list = " + pendingCarTwoWheelerPolicyList.size());
         return pendingCarTwoWheelerPolicyList;
@@ -312,8 +315,10 @@ public final class UnderwriterService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
         return pendingCarFourWheelerPolicyList;
@@ -372,8 +377,10 @@ public final class UnderwriterService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
         return pendingTermLifeInsurancePolicyList;
@@ -436,8 +443,10 @@ public final class UnderwriterService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
         return pendingTermForNriPolicyList;
@@ -497,8 +506,10 @@ public final class UnderwriterService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         System.out.println("Number of pending list = " + pendingInvestmentChildPolicyList.size());
         return pendingInvestmentChildPolicyList;
@@ -552,8 +563,10 @@ public final class UnderwriterService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
         return pendingInvestmentPensionPolicyList;
@@ -616,8 +629,10 @@ public final class UnderwriterService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
         return pendingOtherTravelPolicyList;
@@ -675,8 +690,10 @@ public final class UnderwriterService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
         return pendingOtherEducationalPolicyList;
@@ -717,8 +734,10 @@ public final class UnderwriterService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         return result;
     }
@@ -757,8 +776,10 @@ public final class UnderwriterService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         return result;
     }
@@ -819,8 +840,10 @@ public final class UnderwriterService {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
 
         }
 
@@ -880,8 +903,10 @@ public final class UnderwriterService {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
 
         }
 
@@ -926,8 +951,10 @@ public final class UnderwriterService {
 
         } catch (SQLException | ExceptionInInitializerError ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
         return histories;
@@ -970,8 +997,10 @@ public final class UnderwriterService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
         return histories;
@@ -1010,8 +1039,10 @@ public final class UnderwriterService {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
 
         }
         return date;
@@ -1052,8 +1083,10 @@ public final class UnderwriterService {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         //System.out.println(totalUsers);
         return totalUsers;
@@ -1095,8 +1128,10 @@ public final class UnderwriterService {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         //System.out.println(totalUsers);
         return totalPolicies;
@@ -1136,8 +1171,10 @@ public final class UnderwriterService {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         //System.out.println(totalUsers);
         return totalUsers;
@@ -1182,8 +1219,10 @@ public final class UnderwriterService {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(UnderwriterService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         //System.out.println(totalUsers);
         return moneyString;

@@ -33,6 +33,8 @@ import org.apache.log4j.Logger;
  */
 public final class LoginService {
 
+    private static final Logger log = Logger.getLogger(LoginService.class.getName());
+
     private LoginService() {
 
     }
@@ -110,8 +112,10 @@ public final class LoginService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(LoginService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
 
         }
 
@@ -174,8 +178,10 @@ public final class LoginService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(LoginService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
 
         }
 
@@ -235,8 +241,10 @@ public final class LoginService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(LoginService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
 
         return user;
@@ -284,8 +292,10 @@ public final class LoginService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(LoginService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         return result;
     }
@@ -327,8 +337,10 @@ public final class LoginService {
             //System.out.println("image: " + user.getImage());
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(LoginService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         return result;
     }

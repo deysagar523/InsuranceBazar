@@ -32,10 +32,10 @@ public final class PlanService {
 
     public static synchronized PlanService getInstance() {
         if (planService == null) {
-            return new PlanService();
-        } else {
+            planService= new PlanService();
+        } 
             return planService;
-        }
+        
     }
 
     /**

@@ -2,8 +2,8 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <c:if test="${User==null}">
     <c:redirect url = "login.jsp"/>
-        
-    
+
+
 </c:if>
 <html lang="en">
     <head>
@@ -57,11 +57,11 @@
                     <div class="col-md-12">
 
 
-
+                        <h2>Sanctioned</h2>
                         <div class="table-wrapper-scroll-y my-custom-scrollbar">
 
                             <table class="table table-bordered table-striped mb-0">
-                                <h2>Sanctioned</h2>
+
                                 <thead class="thead-primary"> 
                                     <tr>
                                         <th>Claim Id</th>
@@ -94,7 +94,7 @@
                                     </c:if>
                                     <c:if test="${InsuranceOfficerSanctionedHistories.size()==0}">
                                     <h1>No results to show for sanctioned histories</h1>
-                                    </c:if>
+                                </c:if>
 
 
                                 </tbody>

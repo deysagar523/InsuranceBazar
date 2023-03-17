@@ -52,7 +52,7 @@ public final class UnderwriterService {
     
     public static synchronized UnderwriterService getInstance() {
         if (underwriterService == null) {
-            return new UnderwriterService();
+            underwriterService= new UnderwriterService();
         }
         return underwriterService;
 

@@ -31,7 +31,7 @@ import org.apache.log4j.Logger;
  * @author Srabana
  */
 public final class ClaimService {
-
+    private static final Logger log = Logger.getLogger(UnderwriterService.class.getName());
     public static ClaimService claimService = null;
 
     private ClaimService() {
@@ -84,9 +84,10 @@ public final class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(ClaimService.class.getName());
-
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
 
         }
         System.out.println("Number of diseases = " + dList.size());
@@ -132,8 +133,10 @@ public final class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(ClaimService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         System.out.println("Number of relatives = " + rList.size());
         return rList;
@@ -192,8 +195,10 @@ public final class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(ClaimService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         return result;
 
@@ -247,8 +252,10 @@ public final class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(ClaimService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         return result;
 
@@ -294,8 +301,10 @@ public final class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(ClaimService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         System.out.println("Number of makes = " + mList.size());
         return mList;
@@ -346,8 +355,10 @@ public final class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(ClaimService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         return result;
 
@@ -403,8 +414,10 @@ public final class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(ClaimService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         System.out.println("FROM CLAIM SERVICE CLAIM FETCHED: " + claim.getClaimId());
         return claim;
@@ -455,8 +468,10 @@ public final class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(ClaimService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         System.out.println("FROM CLAIM SERVICE CLAIM FETCHED: " + claim.getClaimId());
         return claim;
@@ -509,8 +524,10 @@ public final class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(ClaimService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         System.out.println("FROM CLAIM SERVICE CLAIM FETCHED: " + claim.getClaimId());
         return claim;
@@ -554,8 +571,10 @@ public final class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(ClaimService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         System.out.println("FROM CLAIM SERVICE PLAN FETCHED: " + plan.getPlanId());
         return plan;
@@ -604,8 +623,10 @@ public final class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(ClaimService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         return result;
     }
@@ -654,8 +675,10 @@ public final class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(ClaimService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         System.out.println("Number of claims bought = " + claimList.size());
         return claimList;
@@ -716,8 +739,10 @@ public final class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(ClaimService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         System.out.println("FROM CLAIM SERVICE CLAIM FETCHED: " + claim.getMessage());
         return claim;
@@ -766,8 +791,10 @@ public final class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(ClaimService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         return result;
 
@@ -808,8 +835,10 @@ public final class ClaimService {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(ClaimService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         return result;
 
@@ -864,8 +893,10 @@ public final class ClaimService {
         } catch (SQLException ex) {
 
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(ClaimService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         //System.out.println("Number of pending mediclaim policy list = " + pendingHealthMediclaimPolicyList.size());
         return particularClaim;
@@ -916,8 +947,10 @@ public final class ClaimService {
         } catch (SQLException ex) {
 
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(ClaimService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         //System.out.println("Number of pending mediclaim policy list = " + pendingHealthMediclaimPolicyList.size());
         return particularClaim;

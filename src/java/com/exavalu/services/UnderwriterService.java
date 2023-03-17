@@ -32,7 +32,11 @@ public final class UnderwriterService {
 
     private static final Logger log = Logger.getLogger(UnderwriterService.class.getName());
 
-//    private static final Logger log = Logger.getLogger(UnderwriterService.class);
+    public static UnderwriterService underwriterService = null;
+
+    private UnderwriterService() {
+    }
+
     /**
      *
      * This method is for getting the instance of the class
@@ -45,17 +49,13 @@ public final class UnderwriterService {
      *
      *      
      */
-    public static UnderwriterService underwriterService = null;
-
-    private UnderwriterService() {
-    }
-
-    public static UnderwriterService getInstance() {
+    
+    public static synchronized UnderwriterService getInstance() {
         if (underwriterService == null) {
             return new UnderwriterService();
-        } else {
-            return underwriterService;
         }
+        return underwriterService;
+
     }
 
     /**

@@ -53,12 +53,12 @@ public final class LoginService {
      *
      *      
      */
-    public static LoginService getInstance() {
+    public static synchronized LoginService getInstance() {
         if (loginService == null) {
-            return new LoginService();
-        } else {
-            return loginService;
+            loginService = new LoginService();
         }
+        return loginService;
+
     }
 
     /**

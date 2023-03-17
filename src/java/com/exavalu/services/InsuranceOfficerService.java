@@ -45,12 +45,12 @@ public final class InsuranceOfficerService {
      *
      *      
      */
-    public static InsuranceOfficerService getInstance() {
+    public static synchronized InsuranceOfficerService getInstance() {
         if (insuranceOfficerService == null) {
-            return new InsuranceOfficerService();
-        } else {
-            return insuranceOfficerService;
+            insuranceOfficerService = new InsuranceOfficerService();
         }
+        return insuranceOfficerService;
+
     }
 
     /**
@@ -317,7 +317,7 @@ public final class InsuranceOfficerService {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
-                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
                 log.error(msg);
             }
         }
@@ -381,7 +381,7 @@ public final class InsuranceOfficerService {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
-                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
                 log.error(msg);
             }
         }
@@ -447,7 +447,7 @@ public final class InsuranceOfficerService {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
-                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
                 log.error(msg);
             }
         }
@@ -507,7 +507,7 @@ public final class InsuranceOfficerService {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
-                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
                 log.error(msg);
             }
         }
@@ -565,7 +565,7 @@ public final class InsuranceOfficerService {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
-                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
                 log.error(msg);
             }
         }
@@ -632,7 +632,7 @@ public final class InsuranceOfficerService {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
-                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
                 log.error(msg);
             }
         }
@@ -694,7 +694,7 @@ public final class InsuranceOfficerService {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
-                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
                 log.error(msg);
             }
         }
@@ -738,7 +738,7 @@ public final class InsuranceOfficerService {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
-                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
                 log.error(msg);
             }
         }
@@ -804,7 +804,7 @@ public final class InsuranceOfficerService {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
-                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
                 log.error(msg);
             }
 
@@ -850,7 +850,7 @@ public final class InsuranceOfficerService {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
-                String msg=LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
                 log.error(msg);
             }
         }

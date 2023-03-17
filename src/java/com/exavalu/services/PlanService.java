@@ -21,8 +21,9 @@ import org.apache.log4j.Logger;
  *
  * @author user
  */
-public class PlanService {
+public final class PlanService {
 
+    private static final Logger log = Logger.getLogger(PlanService.class.getName());
     public static PlanService planService = null;
 
     private PlanService() {
@@ -77,8 +78,10 @@ public class PlanService {
         } catch (SQLException ex) {
 
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(PlanService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         System.out.println("plans:" + planList.size());
         return (ArrayList) planList;
@@ -124,8 +127,10 @@ public class PlanService {
         } catch (SQLException ex) {
 
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(PlanService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         System.out.println("child plans:" + planList.size());
         return planList;
@@ -171,8 +176,10 @@ public class PlanService {
         } catch (SQLException ex) {
 
             System.out.println(ex.getMessage());
-            Logger log = Logger.getLogger(PlanService.class.getName());
-            log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
         }
         System.out.println("med plans:" + planList.size());
         return planList;

@@ -87,7 +87,7 @@
             }
         </style>
 
-        <title>Policy Details</title>
+        <title>InsuranceBazar-Policy Payment</title>
     </head>
     <body>
         <section>

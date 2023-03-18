@@ -9,7 +9,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>View Jobs</title>
+        <title>Bike FNOL Form</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="site.webmanifest">
@@ -788,6 +788,6 @@
             }
 
         </style>
-        <script src="dateValidation.js"></script>
+        <script src="js/dateValidation.js"></script>
     </body>
 </html>

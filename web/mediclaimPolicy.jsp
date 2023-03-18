@@ -16,7 +16,7 @@
         <meta name="keywords" content="Colorlib Templates">
 
         <!-- Title Page-->
-        <title>Au Register Forms by Colorlib</title>
+        <title>Mediclaim Policy</title>
 
         <!-- Icons font CSS-->
         <link href="policyRegister/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">

@@ -7,7 +7,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>InsuranceBazaar</title>
+        <title>InsuranceBazaar-Payment</title>
 
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
@@ -465,7 +465,7 @@
 
             </div>
         </main>
-        <script src="cardValidation.js"></script>
+        <script src="js/cardValidation.js"></script>
 
     </body>
     <script>

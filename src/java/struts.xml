@@ -42,14 +42,6 @@
             <result name="FAILURE">childPolicy.jsp</result>         
         </action>
         
-         <action name="CreateCarClaim" class="com.exavalu.models.Claim" method="doAddCarClaim">
-            <result name="SUCCESS">bikePlan.jsp</result>
-            <result name="FAILURE">fourWheelerPolicy.jsp</result>         
-        </action>
-        <action name="CreateTravelClaim" class="com.exavalu.models.Claim" method="doAddTravelClaim">
-            <result name="SUCCESS">bikePlan.jsp</result>
-            <result name="FAILURE">travelPolicy.jsp</result>         
-        </action> 
         <action name="CreateHealthClaim" class="com.exavalu.models.Claim" method="doAddHealthClaim">
             <result name="SUCCESS">healthPlan.jsp</result>
             <result name="FAILURE">mediclaimPolicy.jsp</result>         

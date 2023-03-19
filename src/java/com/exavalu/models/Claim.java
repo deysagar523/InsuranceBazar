@@ -18,7 +18,9 @@ import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.interceptor.ApplicationAware;
 
 /**
- *This is Claim model where all the instance variables are declared and CRUD operations are written as well
+ * This is Claim model where all the instance variables are declared and CRUD
+ * operations are written as well
+ *
  * @author user
  */
 public class Claim extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
@@ -351,13 +353,13 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
     private String gender;
 
     //for child plan
-    private String childName; 
-    private String childAge; 
-    private String childGender; 
+    private String childName;
+    private String childAge;
+    private String childGender;
     private String childBirthNo;
 
     //for investment insurance
-    private String occupation; 
+    private String occupation;
     private String annualIncome;
 
     //for travel inusrance
@@ -371,8 +373,8 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
 
     //plan deatils
     private String planId;
-    private String planCompany; 
-    private String planDuration; 
+    private String planCompany;
+    private String planDuration;
     private String planAmount;
 
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
@@ -923,7 +925,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         claim.setBikeNumber(bikeNumber);
         claim.setBikeMake(bikeMake);
         claim.setBikeModel(bikeModel);
-       
+
         claim.setBikeRegistrationYear(bikeRegistrationYear);
         claim.setClaimStatus(claimStatus);
 
@@ -1011,8 +1013,6 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         return result;
     }
 
-    
-
     public String doPayment() {
 
         String result = "FAILURE";
@@ -1034,12 +1034,11 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
             if ("Child Investment".equalsIgnoreCase(this.policyName)) {
                 MailSender.sendEmailAfterChildPayment(this.childName, this.childBirthNo, this.childAge, this.email);
             }
-            if("Mediclaim".equalsIgnoreCase(this.policyName))
-            {
-                System.out.println("Adhar card"+this.adharCard);
-                System.out.println("Relation"+this.relation);
-                System.out.println("Relative Name "+this.relativeName);
-                MailSender.sendEmailAfterMediclaimPayment(this.adharCard, this.relation, this.relativeName, this.disease,this.email);
+            if ("Mediclaim".equalsIgnoreCase(this.policyName)) {
+                System.out.println("Adhar card" + this.adharCard);
+                System.out.println("Relation" + this.relation);
+                System.out.println("Relative Name " + this.relativeName);
+                MailSender.sendEmailAfterMediclaimPayment(this.adharCard, this.relation, this.relativeName, this.disease, this.email);
             }
 
             sessionMap.put("Success", "successfull");
@@ -1057,6 +1056,9 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         List underwriterApprovedHistories = UnderwriterService.getInstance().getAllApprovedHistories();
         sessionMap.put("UnderwriterApprovedHistories", underwriterApprovedHistories);
         UnderwriterService.getInstance().approvePolicy(this.claimId);
+
+        List allLatestClaims = UnderwriterService.getInstance().getAllLatestClaims();
+        sessionMap.put("AllLatestClaims", allLatestClaims);
 
         List allPendingMediclaimClaims = UnderwriterService.getInstance().getAllPendingHealthMediclaimClaims();
         List allPendingCriticalIllnessClaims = UnderwriterService.getInstance().getAllPendingHealthCriticalIllnessClaims();
@@ -1089,6 +1091,9 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         List underwriterRejectedHistories = UnderwriterService.getInstance().getAllRejectedHistories();
         sessionMap.put("UnderwriterRejectedHistories", underwriterRejectedHistories);
         UnderwriterService.getInstance().rejectPolicy(this.claimId);
+
+        List allLatestClaims = UnderwriterService.getInstance().getAllLatestClaims();
+        sessionMap.put("AllLatestClaims", allLatestClaims);
 
         List allPendingMediclaimClaims = UnderwriterService.getInstance().getAllPendingHealthMediclaimClaims();
         List allPendingCriticalIllnessClaims = UnderwriterService.getInstance().getAllPendingHealthCriticalIllnessClaims();
@@ -1124,6 +1129,9 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
         sessionMap.put("InsuranceOfficerSanctionedHistories", insuranceOfficerSanctionedHistories);
         InsuranceOfficerService.getInstance().sanctionPolicy(this.claimId);
 
+        List allLatestIoClaims = InsuranceOfficerService.getInstance().getAllLatestClaims();
+        sessionMap.put("AllLatestIoClaims", allLatestIoClaims);
+
         List allApprovedMediclaimClaims = InsuranceOfficerService.getInstance().getAllApprovedHealthMediclaimClaims();
         List allApprovedCriticalIllnessClaims = InsuranceOfficerService.getInstance().getAllApprovedHealthCriticalIllnessClaims();
         List allApprovedTwoWheelerClaims = InsuranceOfficerService.getInstance().getAllApprovedCarTwoWheelerClaims();
@@ -1151,8 +1159,6 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
 
     }
 
-
-
     public String doGetPlanDetails() {
         String result = "FAILURE";
         Plan plan = ClaimService.getInstance().getPlanDetails(this.planId);
@@ -1177,9 +1183,7 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
     public void setRelativeType(String relativeType) {
         this.relativeType = relativeType;
     }
-    
-    
-    
+
 //    public String doAddChildClaim() {
 //
 //        String result = "FAILURE";
@@ -1218,30 +1222,27 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
 //        }
 //        return result;
 //    }
-    
-
     public String doSearchClaim() {
-       String result = "SUCCESS";
+        String result = "SUCCESS";
         Claim particularClaim = ClaimService.getInstance().searchClaim(this.claimId);
 
-       if ("Child Investment".equalsIgnoreCase(particularClaim.getPolicyName())) {
+        if ("Child Investment".equalsIgnoreCase(particularClaim.getPolicyName())) {
 
             result = "CHILDCLAIM";
             System.out.println("result:childClaim");
         } else if ("Two Wheeler".equalsIgnoreCase(particularClaim.getPolicyName())) {
-           result = "BIKECLAIM";
-          //System.out.println("result:bikeClaim");
+            result = "BIKECLAIM";
+            //System.out.println("result:bikeClaim");
         } else if ("Mediclaim".equalsIgnoreCase(particularClaim.getPolicyName())) {
-           Claim particularMedClaim = ClaimService.getInstance().searchMedClaim(this.claimId);
-           sessionMap.put("ParticularMedClaim", particularMedClaim);
-          result = "MEDICLAIM";
-           System.out.println("result:mediClaim");
+            Claim particularMedClaim = ClaimService.getInstance().searchMedClaim(this.claimId);
+            sessionMap.put("ParticularMedClaim", particularMedClaim);
+            result = "MEDICLAIM";
+            System.out.println("result:mediClaim");
         }
         sessionMap.put("ParticularClaim", particularClaim);
         return result;
     }
-   
-    
+
 //    public String doUpdateChildClaim() {
 //
 //        String result = "FAILURE";
@@ -1259,7 +1260,4 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
 //        }
 //        return result;
 //    }
-
-
-
 }

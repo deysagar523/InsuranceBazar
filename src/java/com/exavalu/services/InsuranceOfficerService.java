@@ -857,4 +857,43 @@ public final class InsuranceOfficerService {
         //System.out.println("Number of pending list = " + pendingLifePolicyList.size());
         return histories;
     }
+    public List getAllLatestClaims() {
+        List<InsuranceOfficerHistory> latestClaims = new ArrayList();
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            String sql = "select  * from insurance_officer_histories order by timeOfAction desc;";
+            int count =0;
+
+            try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+                try (ResultSet rs = preparedStatement.executeQuery()) {
+
+                    while (rs.next()) {
+                        if(count==3)
+                        {
+                            break;
+                        }
+                        InsuranceOfficerHistory claim = new InsuranceOfficerHistory();
+                        claim.setClaimId(rs.getString("claimId"));
+                        claim.setPolicyName(rs.getString("policyName"));
+                        claim.setUserEmail(rs.getString("userEmail"));
+                        claim.setUserFullName(rs.getString("userFullName"));
+                        claim.setTimeOfAction(rs.getString("timeOfAction"));
+                        claim.setClaimStatus(rs.getString("claimStatus"));
+                        latestClaims.add(claim);
+                        count++;
+
+                    }
+                }
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
+        }
+        System.out.println("Number of latesclaim  list in io = " + latestClaims.size());
+        return latestClaims;
+    }
 }

@@ -20,14 +20,13 @@ import java.util.Map;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
 
-
 /**
  * The model has all the instance variables declared and it deals with all CRUD
  * Operations
  *
  * @author HP
  */
-public class User extends ActionSupport implements  SessionAware, Serializable {
+public class User extends ActionSupport implements SessionAware, Serializable {
 
     /**
      * @return the age
@@ -189,7 +188,6 @@ public class User extends ActionSupport implements  SessionAware, Serializable {
         this.dob = dob;
     }
 
-    
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
 
 //    private ApplicationMap map = (ApplicationMap) ActionContext.getContext().getApplication();
@@ -198,7 +196,6 @@ public class User extends ActionSupport implements  SessionAware, Serializable {
 //    public void setApplication(Map<String, Object> application) {
 //        map = (ApplicationMap) application;
 //    }
-
     @Override
     public void setSession(Map<String, Object> session) {
         sessionMap = (SessionMap) session;
@@ -296,6 +293,9 @@ public class User extends ActionSupport implements  SessionAware, Serializable {
 
                 String totalNoOfUsers = UnderwriterService.getInstance().getNoOfUsers();
                 sessionMap.put("TotalUsers", totalNoOfUsers);
+
+                String totalBoughtPlans = UnderwriterService.getInstance().getNoOfBoughtPlans();
+                sessionMap.put("TotalBoughtPlans", totalBoughtPlans);
                 String totalRevenue = UnderwriterService.getInstance().getTotalRevenue();
                 sessionMap.put("TotalRevenue", totalRevenue);
 
@@ -305,8 +305,11 @@ public class User extends ActionSupport implements  SessionAware, Serializable {
 //                   System.out.println("3 "+day3Policy);
 //                    System.out.println("4 "+day4Policy);
 //                     System.out.println("5 "+day5Policy);
+                List allLatestClaims = UnderwriterService.getInstance().getAllLatestClaims();
+                sessionMap.put("AllLatestClaims", allLatestClaims);
+
                 List underwriterApprovedHistories = UnderwriterService.getInstance().getAllApprovedHistories();
-                sessionMap.put("UnderwriterApprovedHistories", underwriterApprovedHistories );
+                sessionMap.put("UnderwriterApprovedHistories", underwriterApprovedHistories);
                 List underwriterRejectedHistories = UnderwriterService.getInstance().getAllRejectedHistories();
                 sessionMap.put("UnderwriterRejectedHistories", underwriterRejectedHistories);
                 List allPendingMediclaimClaims = UnderwriterService.getInstance().getAllPendingHealthMediclaimClaims();
@@ -362,6 +365,10 @@ public class User extends ActionSupport implements  SessionAware, Serializable {
 
                 String totalNoOfUsers = UnderwriterService.getInstance().getNoOfUsers();
                 sessionMap.put("TotalUsers", totalNoOfUsers);
+
+                String totalBoughtPlans = UnderwriterService.getInstance().getNoOfBoughtPlans();
+                sessionMap.put("TotalBoughtPlans", totalBoughtPlans);
+
                 String totalRevenue = UnderwriterService.getInstance().getTotalRevenue();
                 sessionMap.put("TotalRevenue", totalRevenue);
 
@@ -392,6 +399,9 @@ public class User extends ActionSupport implements  SessionAware, Serializable {
 //                   System.out.println("3"+day3User);
 //                    System.out.println("4"+day4User);
 //                     System.out.println("5"+day5User);
+                List allLatestIoClaims = InsuranceOfficerService.getInstance().getAllLatestClaims();
+                sessionMap.put("AllLatestIoClaims", allLatestIoClaims);
+
                 List insuranceOfficerSanctionedHistories = InsuranceOfficerService.getInstance().getAllSanctionedHistories();
                 sessionMap.put("InsuranceOfficerSanctionedHistories", insuranceOfficerSanctionedHistories);
                 List allApprovedMediclaimClaims = InsuranceOfficerService.getInstance().getAllApprovedHealthMediclaimClaims();

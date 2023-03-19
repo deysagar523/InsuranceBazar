@@ -135,14 +135,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-row">
-                                    <div class="name">User ID</div>
+<!--                                <div class="form-row">-->
+<!--                                    <div class="name">User ID</div>-->
                                     <div class="value">
                                         <div class="input-group">
-                                            <input class="input--style-5" type="text" value="${User.getUserId()}" name="userId" readonly>
+                                            <input class="input--style-5" type="hidden" value="${User.getUserId()}" name="userId" readonly>
                                         </div>
                                     </div>
-                                </div>
+<!--                                </div>-->
 
                                 <div class="form-row">
                                     <div class="name">Email</div>

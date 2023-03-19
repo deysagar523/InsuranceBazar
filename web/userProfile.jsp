@@ -415,7 +415,7 @@
 
                                 <div class="mb-3 col-md-6">
                                     <<label for="age" class="form-label">Age</label>
-                                    <input type="number" class="form-control" id="organization" name="age" value="${User.age}" required/>
+                                    <input type="number" class="form-control" id="organization" name="age" min="18" max="70" value="${User.age}" required/>
                                 </div>
 
                                 <div class="mb-3 col-md-6">

@@ -208,7 +208,7 @@
 
 
                                                     <td>
-                                                        <a href=SanctionPolicy?claimId=${claim.claimId} class="btn btn-success">Issue</a>
+                                                        <a href=SanctionPolicy?claimId=${claim.claimId} class="btn btn-success">Sanction</a>
 
                                                 </td>
 

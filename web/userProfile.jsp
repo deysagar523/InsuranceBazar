@@ -295,9 +295,16 @@
                                                             </div> End Sidebar-->
                             </a>
                         </li>
+                        <li>
+                                <a href="userHomePage.jsp">
+                                    <i class='bx bx-columns icon' ></i> 
+                                    Home
+                                    <i class='bx bx-chevron-right icon-right' ></i>
+                                </a>
+                            </li>
 
                         <!-- Divider-->
-                        <li class="divider" data-text="STARTER"></li>
+                       
 
 
                         <!--                            <li>

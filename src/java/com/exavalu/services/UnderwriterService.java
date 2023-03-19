@@ -49,10 +49,9 @@ public final class UnderwriterService {
      *
      *      
      */
-    
     public static synchronized UnderwriterService getInstance() {
         if (underwriterService == null) {
-            underwriterService= new UnderwriterService();
+            underwriterService = new UnderwriterService();
         }
         return underwriterService;
 
@@ -1227,4 +1226,74 @@ public final class UnderwriterService {
         //System.out.println(totalUsers);
         return moneyString;
     }
+
+    public String getNoOfBoughtPlans() {
+        String totalBoughtPlans = null;
+
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            String sql = "SELECT COUNT(email) as totalBoughtPlans FROM claims where paid=?";
+
+            try (PreparedStatement ps = con.prepareStatement(sql)) {
+                ps.setString(1, "true");
+                //System.out.println("ps:" + ps);
+                try (ResultSet rs = ps.executeQuery()) {
+
+                    if (rs.next()) {
+                        totalBoughtPlans = rs.getString("totalBoughtPlans");
+                    } else {
+                        totalBoughtPlans = "0";
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
+        }
+        System.out.println("total bought plans "+totalBoughtPlans);
+        return totalBoughtPlans;
+    }
+    public List getAllLatestClaims() {
+        List<UnderwriterHistory> latestClaims = new ArrayList();
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            String sql = "select  * from underwriter_histories order by timeOfAction desc;";
+            int count =0;
+
+            try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+                try (ResultSet rs = preparedStatement.executeQuery()) {
+
+                    while (rs.next()) {
+                        if(count==3)
+                        {
+                            break;
+                        }
+                        UnderwriterHistory claim = new UnderwriterHistory();
+                        claim.setClaimId(rs.getString("claimId"));
+                        claim.setPolicyName(rs.getString("policyName"));
+                        claim.setUserEmail(rs.getString("userEmail"));
+                        claim.setUserFullName(rs.getString("userFullName"));
+                        claim.setTimeOfAction(rs.getString("timeOfAction"));
+                        claim.setClaimStatus(rs.getString("claimStatus"));
+                        latestClaims.add(claim);
+                        count++;
+
+                    }
+                }
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            if (log.isEnabledFor(org.apache.log4j.Level.ERROR)) {
+                String msg = LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage();
+                log.error(msg);
+            }
+        }
+        System.out.println("Number of latesclaim  list = " + latestClaims.size());
+        return latestClaims;
+    }
+
 }

@@ -1,8 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <c:if test="${User==null}">
     <c:redirect url = "login.jsp"/>
-        
-    
+
+
 </c:if>
 <!doctype html>
 <html lang="en">
@@ -426,7 +427,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Policies</p>
-                                    <h5>30</h5>
+                                    <h5>10</h5>
                                 </div>
                             </div>
                         </div>
@@ -441,8 +442,8 @@
                                     <i class="fas fa-chart-bar  icon-home bg-info text-light"></i>
                                 </div>
                                 <div class="col-8">
-                                    <p>Top Most Sale</p>
-                                    <h5>5000</h5>
+                                    <p>Total Bought Plans</p>
+                                    <h5>${TotalBoughtPlans}</h5>
                                 </div>
                             </div>
                         </div>
@@ -476,9 +477,9 @@
                         <script>
                             document.addEventListener("DOMContentLoaded", () => {
                                 new ApexCharts(document.querySelector("#reportsChart"), {
-                                    series: [ {
+                                    series: [{
                                             name: 'Users Registered',
-                                            data: [ ${Day5Users},${Day4Users},${Day3Users},${Day2Users},${Day1Users},${TodayUsers}]
+                                            data: [${Day5Users},${Day4Users},${Day3Users},${Day2Users},${Day1Users},${TodayUsers}]
                                         }, {
                                             name: 'Policy Bought',
                                             data: [${Day5Policy}, ${Day4Policy}, ${Day3Policy}, ${Day2Policy}, ${Day1Policy},${TodayPolicy}]
@@ -536,57 +537,45 @@
                                 <div class="table-responsive"> 
                                     <table class="table table-striped">
                                         <thead>
-                                            <tr>
-                                                <th scope="col">FNOL Id</th>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Date</th>
-                                                <th scope="col">Amount</th>
+                                            <tr style="background-color: #86B817; color:white">
+                                                <th scope="col">Claim ID</th>
+                                                <th scope="col">User Name</th>
                                                 <th scope="col">Policy Name</th>
-                                                <th scope="col">Status</th>
+                                                <th scope="col">User Email</th>
 
-                                                <th scope="col">Action</th>
+                                                <th scope="col">Claim Status</th>
+
+                                                <th scope="col">Time Of Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <th scope="row">#SK2548	</th>
-                                                <td>Neal Matthews</td>
-                                                <td>07 Oct, 2022</td>
-                                                <td>$400</td>
-                                                <td>Health</td>
-                                                <td><span class="text-success">Santioned</span></td>
-                                                <td><button class="btn btn-primary btn-success" style="background-color: #86B817;">--</button></td>
-                                            </tr>
+                                        <c:forEach items="${AllLatestIoClaims}" var="claim">
+                                            <tr >
+                                                <th scope="row"><c:out value="${claim.claimId}"> </c:out>	</th>
+                                            <td><c:out value="${claim.userFullName}"> </c:out></td>
+                                            <td><c:out value="${claim.policyName}"> </c:out></td>
+                                            <td><c:out value="${claim.userEmail}"> </c:out></td>
+                                            <td><span class="text-success">Sanctioned</span></td>
 
-                                            <tr>
-                                                <th scope="row">#SK2548	</th>
-                                                <td>Neal Matthews</td>
-                                                <td>07 Oct, 2022</td>
-                                                <td>$400</td>
-                                                <td>Life</td>
-                                                <td><span class="text-success">Santioned</span></td>
-                                                <td><button class="btn btn-primary btn-success" style="background-color: #86B817;">--</button></td>
-                                            </tr>
 
-                                            <tr>
-                                                <th scope="row">#SK2548	</th>
-                                                <td>Neal Matthews</td>
-                                                <td>07 Oct, 2022</td>
-                                                <td>$400</td>
-                                                <td>Car</td>
-                                                <td><span class="text-danger">Rejected</span></td>
-                                                <td><button class="btn btn-primary btn-success" style="background-color: #86B817;">--</button></td>
-                                            </tr>
 
-                                            <tr>
-                                                <th scope="row">#SK2548	</th>
-                                                <td>Neal Matthews</td>
-                                                <td>07 Oct, 2022</td>
-                                                <td>$400</td>
-                                                <td>Education</td>
-                                                <td><span class="text-warning">Pending</span></td>
-                                                <td><button class="btn btn-primary btn-success" style="background-color: #86B817;">Edit</button></td>
+
+
+                                            <td><c:out value="${claim.timeOfAction}"> </c:out></td>
+
+
+
+
+
+
+
+
+
+
+
                                             </tr>
+                                        </c:forEach>
+
                                         </tbody>
                                     </table>
                                 </div>

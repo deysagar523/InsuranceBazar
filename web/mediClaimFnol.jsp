@@ -107,7 +107,7 @@
                                 </c:when>
 
                                 <c:when test='${Claim.getClaimStatus().equalsIgnoreCase("1")}'>
-                                    <h2 class="title">Your FNOL is yet to be approved by the Underwriter!!</h2>
+                                    <h2 class="title">Your Claim is yet to be approved by the Underwriter!!</h2>
                                 </c:when>
                                     <c:when test='${Claim.getClaimStatus().equalsIgnoreCase("2")}'>
                                     <h2 class="title">Your claim is yet to be approved by the Insurance Officer!!</h2>
@@ -132,14 +132,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-row">
-                                    <div class="name">User ID</div>
+<!--                                <div class="form-row">-->
+<!--                                    <div class="name">User ID</div>-->
                                     <div class="value">
                                         <div class="input-group">
-                                            <input class="input--style-5" type="text" value="${Claim.getUserId()}" name="userId">
+                                            <input class="input--style-5" type="hidden" value="${Claim.getUserId()}" name="userId">
                                         </div>
                                     </div>
-                                </div>
+<!--                                </div>-->
 
                                 <div class="form-row">
                                     <div class="name">Your Email</div>

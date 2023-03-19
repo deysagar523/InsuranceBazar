@@ -72,7 +72,7 @@ public final class UnderwriterService {
         List<Claim> pendingHealthMediclaimPolicyList = new ArrayList<Claim>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
-            String sql = "select * from claims c,users u,policies p,relatives r where c.relation=r.relationCode and c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
+            String sql = "select * from claims c,users u,policies p,relatives r where c.relation=r.relationCode and c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=? order by claimid";
 
             try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
                 preparedStatement.setString(1, "1");
@@ -207,7 +207,7 @@ public final class UnderwriterService {
         List<Claim> pendingCarTwoWheelerPolicyList = new ArrayList<Claim>();
         try {
             Connection con = JDBCConnectionManager.getConnection();
-            String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=?";
+            String sql = "select * from claims c,users u,policies p where c.userId=u.userId  and c.policyId=p.policyId and claimStatus=?  and p.policyId=? order by claimid";
 
             try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
                 preparedStatement.setString(1, "1");

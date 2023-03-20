@@ -152,7 +152,7 @@
 <!--                            <a href="404.html" class="dropdown-item">404 Page</a>-->
                         </div>
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    <a href="contactus.jsp" class="nav-item nav-link">Contact</a>
                 </div>
                 <a href="login.jsp"  class="btn btn-primary rounded-pill py-2 px-4">Sign In</a>
             </div>

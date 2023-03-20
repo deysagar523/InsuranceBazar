@@ -16,6 +16,12 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
         <link href="css/style-login.css" rel="stylesheet">
     </head>
+    <style>
+        body{
+            background-image: url('img/blur.png');
+        }
+    </style>
+
 
     <body>
 

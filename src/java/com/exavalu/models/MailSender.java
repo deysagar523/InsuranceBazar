@@ -30,7 +30,6 @@ public class MailSender {
     static String fromEmail = "srabana.work@gmail.com";
     static String password = "hsphhnxpnmpqbgwq";
     static String userName = "srabana.work";
-    
 
     public static void sendEmailToRegisterUser(String toEmail) {
         try {
@@ -58,11 +57,18 @@ public class MailSender {
             mailMessage.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(toEmail));
             mailMessage.setSubject("Successfully Account Created");
-            mailMessage.setText("You are Successfully signed up to Insurance Bazar , now login and buy some policies you like");
-
+            String message = "<html><body style='font-family: Arial, sans-serif; font-size: 14px;'>"
+                    + "<p>Dear Sir/Maam,<br>Hope You are doing well,</p>"
+                    + "<p>You are Successfully signed up to Insurance Bazar </p>"
+                    + "<p>You can now login to our website <b>InsuranceBazar</b> and can purchase some intresting policies of your choice</p>"
+                    + "<p>We hope that you will continue to stay engaged and active in your communities</p>"
+                    + "<p><a href='http://localhost:8080/InsuranceBazzar/'>Click Here</a> to go to InsuranceBazar</p>"
+                    + "<p><b><i>Regards,</i></b><br><span style='color: #86B817'>InsuranceBazar</span> </p></body></html>";
+            //mailMessage.setText("You are Successfully signed up to Insurance Bazar , now login and buy some policies you like");
+            mailMessage.setContent(message, "text/html; charset=utf-8");
             Transport.send(mailMessage);
 
-        } catch (AddressException ex ) {
+        } catch (AddressException ex) {
             System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(MailSender.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
@@ -97,7 +103,7 @@ public class MailSender {
             mailMessage.setFrom(new InternetAddress(fromEmail));
             mailMessage.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(toEmail));
-            mailMessage.setSubject("Successfully Payment Done of " + bikeNumber + " in InsueranceBazar");
+            mailMessage.setSubject("Successfully Payment Done of your bike in InsueranceBazar");
             String bikeMakeFullName = null;
             if ("HO".equalsIgnoreCase(bikeMake)) {
                 bikeMakeFullName = "Honda";
@@ -116,8 +122,16 @@ public class MailSender {
             } else if ("MA".equalsIgnoreCase(bikeMake)) {
                 bikeMakeFullName = "Mahindra";
             }
-
-            mailMessage.setText("Relax, now your bike " + bikeMakeFullName + " " + bikeModel + " " + " is safe with us!!!");
+            String message = "<html><body style='font-family: Arial, sans-serif; font-size: 14px;'>"
+                    + "<p>Dear Sir/Maam,<br>Hope You are doing well,<br></p>"
+                    + "<p>PFB the details of your bike plan</p>"
+                    + "<table style='width:50%;line-height:50px'><thead><tr style='background-color: #86B817; color:white'><th>Bike Number</th><th>Bike Make</th><th>Bike Model</th></tr></thead><tbody> <td style='border:1px solid black'>" + bikeNumber + "</td><td style='border:1px solid black'>" + bikeMakeFullName + "</td> <td style='border:1px solid black'>" + bikeModel + "</td> </tbody></table>"
+                    + "<p>We hope that you will continue to stay engaged and active in your communities</p>"
+                    + "<p><a href='http://localhost:8080/InsuranceBazzar/'>Click Here</a> to go to InsuranceBazar</p>"
+                    + "<p><b><i>Regards,</i></b><br><span style='color: #86B817'>InsuranceBazar</span> </p></body></html>";
+            //mailMessage.setText("You are Successfully signed up to Insurance Bazar , now login and buy some policies you like");
+            mailMessage.setContent(message, "text/html; charset=utf-8");
+//            mailMessage.setText("Relax, now your bike " + bikeMakeFullName + " " + bikeModel + " " + " is safe with us!!!");
             Transport.send(mailMessage);
 
         } catch (AddressException ex) {
@@ -161,7 +175,7 @@ public class MailSender {
 
             Transport.send(mailMessage);
 
-        } catch (AddressException ex ) {
+        } catch (AddressException ex) {
             System.out.println(ex.getMessage());
             Logger log = Logger.getLogger(MailSender.class.getName());
             log.error(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.MEDIUM)) + " " + ex.getMessage());
@@ -196,14 +210,36 @@ public class MailSender {
             mailMessage.setFrom(new InternetAddress(fromEmail));
             mailMessage.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(toEmail));
-            mailMessage.setSubject("Successfully Payment Done of adhar card no" + adharCard + " in InsueranceBazar");
+            mailMessage.setSubject("Successfully Payment Done of your mediclaim in InsueranceBazar");
 
             System.out.println("relative name " + relativeName);
-            if (relativeName.length() == 0) {
-                mailMessage.setText("You Issue this mediclaim for Self");
-            } else {
-                mailMessage.setText("You Issue this mediclaim for " + relation + " whose name is " + relativeName);
+            String Name = "NA";
+            if (relativeName.length() != 0) {
+                Name = relativeName;
+
             }
+            if (disease.length() == 0) {
+                disease = "NA";
+
+            }
+            if (relation.length() == 0) {
+                relation = "Self";
+
+            }
+            String message = "<html><body style='font-family: Arial, sans-serif; font-size: 14px;'>"
+                    + "<p>Dear Sir/Maam,<br>Hope You are doing well,<br></p>"
+                    + "<p>PFB the details of your mediclaim plan</p>"
+                    + "<table style='width:50%;line-height:50px'><thead>"
+                    + "<tr style='background-color: #86B817; color:white'>"
+                    + "<th>Adhar Card Number</th><th>Issue For</th><th>Relative Name </th><th>Disease </th></tr></thead>"
+                    + "<tbody> <td style='border:1px solid black'>" + adharCard + "</td><td style='border:1px solid black'>"
+                    + relation + "</td> <td style='border:1px solid black'>" + Name + "</td> <td style='border:1px solid black'>"
+                    + disease + "</td> </tbody></table>"
+                    + "<p>We hope that you will continue to stay engaged and active in your communities</p>"
+                    + "<p><a href='http://localhost:8080/InsuranceBazzar/'>Click Here</a> to go to InsuranceBazar</p>"
+                    + "<p><b><i>Regards,</i></b><br><span style='color: #86B817'>InsuranceBazar</span> </p></body></html>";
+            //mailMessage.setText("You are Successfully signed up to Insurance Bazar , now login and buy some policies you like");
+            mailMessage.setContent(message, "text/html; charset=utf-8");
 
             Transport.send(mailMessage);
 
@@ -243,9 +279,16 @@ public class MailSender {
             mailMessage.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(toEmail));
             mailMessage.setSubject("Rejection Of Policy By Underwriter");
+            String message = "<html><body style='font-family: Arial, sans-serif; font-size: 14px;'>"
+                    + "<p>Dear Sir/Maam,<br>Hope You are doing well,</p>"
+                    + "<p>Your policy  <b>" + policyName + "</b> is rejected <b>due to mismatch fields</b> </p>"
+                    + "<p>We hope that you will continue to stay engaged and active in your communities</p>"
+                    + "<p><a href='http://localhost:8080/InsuranceBazzar/'>Click Here</a> to go to InsuranceBazar</p>"
+                    + "<p><b><i>Regards,</i></b><br><span style='color: #86B817'>InsuranceBazar</span> </p></body></html>";
+            //mailMessage.setText("You are Successfully signed up to Insurance Bazar , now login and buy some policies you like");
+            mailMessage.setContent(message, "text/html; charset=utf-8");
 
-            mailMessage.setText("Your policy " + policyName + " is rejected due to mismatch fields");
-
+            //mailMessage.setText("Your policy " + policyName + " is rejected due to mismatch fields");
             Transport.send(mailMessage);
 
         } catch (AddressException ex) {
@@ -284,8 +327,15 @@ public class MailSender {
             mailMessage.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(toEmail));
             mailMessage.setSubject("Issue Of Policy By Insurance Officer");
-
-            mailMessage.setText("Your policy " + policyName + " is isseued by Insurance Officer");
+            String message = "<html><body style='font-family: Arial, sans-serif; font-size: 14px;'>"
+                    + "<p>Dear Sir/Maam,<br>Hope You are doing well,</p>"
+                    + "<p>Your policy  <b>" + policyName + "<b>is isseued by Insurance Officer</b> </p>"
+                    + "<p>We hope that you will continue to stay engaged and active in your communities</p>"
+                    + "<p><a href='http://localhost:8080/InsuranceBazzar/'>Click Here</a> to go to InsuranceBazar</p>"
+                    + "<p><b><i>Regards,</i></b><br><span style='color: #86B817'>InsuranceBazar</span> </p></body></html>";
+            //mailMessage.setText("You are Successfully signed up to Insurance Bazar , now login and buy some policies you like");
+             mailMessage.setContent(message, "text/html; charset=utf-8");
+            //mailMessage.setText("Your policy " + policyName + " is isseued by Insurance Officer");
 
             Transport.send(mailMessage);
 

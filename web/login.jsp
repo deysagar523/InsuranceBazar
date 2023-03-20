@@ -111,7 +111,7 @@
                     <input type="password"  name="password" placeholder="Password" />
                     <a href="#"></a>
                     <button type="submit">Sign In</button>
-                    <a onclick="loadPage('ForgetPassword.jsp')">Forgot your password? </a>
+                    <a href="ForgetPassword.jsp">Forgot your password? </a>
                 </form>
             </div>
             <div class="overlay-container">

@@ -226,7 +226,7 @@
 <!--                            <a href="404.html" class="dropdown-item">404 Page</a>-->
                         </div>
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    <a href="contactus.jsp" class="nav-item nav-link">Contact</a>
                 </div>
                  <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><button type="button" class="btn btn-primary rounded-pill py-2 px-4"><i class='fas fa-user-circle' style='font-size:20px;color:greenyellow'></i> My Account</button></a>
